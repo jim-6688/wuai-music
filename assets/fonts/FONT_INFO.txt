@@ -1,0 +1,34 @@
+# GlassMusic 字体配置
+# 使用 Google Fonts 的 Inter 字体 - 现代化无衬线字体
+# 
+# Inter 字体特点：
+# - 专为屏幕设计
+# - 高可读性
+# - 多语言支持
+# - SIL 开源许可证 (OFL)
+#
+# 字体权重：
+# - Regular (400) - 正文
+# - Medium (500) - 强调
+# - SemiBold (600) - 标题
+# - Bold (700) - 重点
+#
+# 使用方式：
+# Text(
+#   'Hello GlassMusic',
+#   style: TextStyle(
+#     fontFamily: 'Inter',
+#     fontWeight: FontWeight.w600,
+#     fontSize: 24,
+#   ),
+# )
+
+# 字体版本信息
+version: "4.0"
+download-date: "2026-03-26"
+license: "SIL Open Font License (OFL)"
+source: "https://fonts.google.com/specimen/Inter"
+
+# 字体文件说明
+# Flutter 支持 .ttf, .otf, .woff, .woff2 格式
+# 这里使用 woff2 格式，因为它压缩率更高，加载更快

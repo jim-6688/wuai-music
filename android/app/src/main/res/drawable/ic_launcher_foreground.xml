@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- 玻璃质感背景圆形 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.15"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"/>
+    
+    <!-- 主音符 -->
+    <group>
+        <!-- 音符头部 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="1.0"
+            android:pathData="M38,58 A12,12 0 1,1 38,58.01"/>
+        
+        <!-- 音符杆 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="1.0"
+            android:pathData="M48,32 L52,32 L52,62 L48,62 Z"/>
+        
+        <!-- 音符旗 - 渐变效果 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="1.0"
+            android:pathData="M52,32 Q68,44 52,56 L52,32 Z"/>
+    </group>
+    
+    <!-- 装饰光晕 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.3"
+        android:pathData="M54,54m-25,0a25,25 0,1 1,50 0a25,25 0,1 1,-50 0"/>
+    
+    <!-- 高光点 -->
+    <circle
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.8"
+        android:centerX="72"
+        android:centerY="36"
+        android:radius="3dp"/>
+        
+</vector>

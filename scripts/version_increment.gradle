@@ -1,0 +1,35 @@
+// version_increment.gradle
+// 每次构建自动递增 versionCode（构建号）
+// version.properties 存储当前版本信息
+
+import groovy.json.JsonSlurper
+
+def versionFile = file("../scripts/version.json")
+
+def readVersion() {
+    if (!versionFile.exists()) {
+        return [versionName: "1.3.0", versionCode: 4]
+    }
+    def slurper = new JsonSlurper()
+    def data = slurper.parse(versionFile)
+    return data
+}
+
+def writeVersion(data) {
+    versionFile.text = new groovy.json.JsonBuilder(data).toPrettyString()
+}
+
+def bumpVersionCode() {
+    def v = readVersion()
+    v.versionCode = (v.versionCode as int) + 1
+    writeVersion(v)
+    return v
+}
+
+ext {
+    autoBump = { ->
+        def v = bumpVersionCode()
+        println "=== Auto Bump: v${v.versionName} build ${v.versionCode} ==="
+        return v
+    }
+}

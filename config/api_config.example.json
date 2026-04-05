@@ -1,0 +1,10 @@
+{
+  "netease": {
+    "apiKey": "YOUR_NETEASE_API_KEY",
+    "appSecret": "YOUR_NETEASE_APP_SECRET"
+  },
+  "qqmusic": {
+    "apiKey": "YOUR_QQMUSIC_API_KEY",
+    "appKey": "YOUR_QQMUSIC_APP_KEY"
+  }
+}

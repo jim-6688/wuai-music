@@ -1,0 +1,544 @@
+import 'dart:typed_data';
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:on_audio_query/on_audio_query.dart';
+import '../../../../shared/widgets/glass_widgets.dart';
+import '../../service/audio_player_service.dart';
+import '../providers/player_provider.dart';
+import '../../widgets/spectrum_visualizer.dart';
+
+class PlayerPage extends ConsumerStatefulWidget {
+  const PlayerPage({super.key});
+
+  @override
+  ConsumerState<PlayerPage> createState() => _PlayerPageState();
+}
+
+class _PlayerPageState extends ConsumerState<PlayerPage> {
+  SpectrumMode _spectrumMode = SpectrumMode.circular;
+  
+  // 缓存封面数据，防止重复加载
+  int? _cachedSongId;
+  ImageProvider? _cachedImageProvider;
+
+  @override
+  void didUpdateWidget(PlayerPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 当歌曲改变时清除缓存
+    final audioService = ref.read(audioPlayerServiceProvider);
+    final currentTrack = audioService.currentTrack;
+    if (currentTrack?.id != null) {
+      final songId = int.tryParse(currentTrack!.id);
+      if (songId != _cachedSongId) {
+        _cachedSongId = songId;
+        _cachedImageProvider = null;
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final audioService = ref.watch(audioPlayerServiceProvider);
+    final playerState = audioService.state;
+    final currentTrack = audioService.currentTrack;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    int? songId;
+    if (currentTrack?.id != null) {
+      songId = int.tryParse(currentTrack!.id);
+    }
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        // 背景封面 - 使用 RepaintBoundary 防止重绘
+        RepaintBoundary(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isDarkMode
+                    ? [Colors.purple.shade800, Colors.blue.shade900]
+                    : [Colors.blue.shade100, Colors.purple.shade100],
+              ),
+            ),
+          ),
+        ),
+
+        // 毛玻璃背景
+        BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+          child: Container(
+            color: isDarkMode 
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.white.withValues(alpha: 0.4),
+          ),
+        ),
+
+        // 主内容
+        SafeArea(
+          child: Column(
+            children: [
+              // 顶部标题
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '正在播放',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: isDarkMode ? Colors.white : Colors.black87,
+                      ),
+                    ),
+                    GlassButton(
+                      onPressed: () {},
+                      padding: const EdgeInsets.all(12),
+                      child: Icon(
+                        Icons.list_rounded,
+                        color: isDarkMode ? Colors.white70 : Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // 歌曲信息
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                child: Column(
+                  children: [
+                    Text(
+                      currentTrack?.title ?? '未播放',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: isDarkMode ? Colors.white : Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      currentTrack?.artist ?? '请选择歌曲播放',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isDarkMode 
+                            ? Colors.white.withValues(alpha: 0.7)
+                            : Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const Spacer(),
+
+              // 圆形频谱 - 中间
+              if (playerState.isPlaying && _spectrumMode == SpectrumMode.circular)
+                RepaintBoundary(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: SizedBox(
+                      width: 280,
+                      height: 280,
+                      child: SpectrumVisualizer(
+                        spectrumStream: audioService.spectrumStream,
+                        mode: SpectrumMode.circular,
+                        barCount: 40,
+                        currentPositionMs: playerState.currentPosition,
+                        progress: playerState.progress,
+                        isPlaying: playerState.isPlaying,
+                        color: Theme.of(context).primaryColor,
+                        width: 280,
+                        height: 280,
+                      ),
+                    ),
+                  ),
+                ),
+
+              const Spacer(),
+
+              // 底部控制区域
+              Container(
+                color: isDarkMode
+                    ? Colors.black.withValues(alpha: 0.2)
+                    : Colors.white.withValues(alpha: 0.2),
+                child: Column(
+                  children: [
+                    // 控制按钮
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _ControlButton(
+                            icon: _getPlayModeIcon(playerState.playMode),
+                            size: 24,
+                            color: isDarkMode ? Colors.white70 : Colors.black54,
+                            onPressed: () => audioService.togglePlayMode(),
+                          ),
+                          _ControlButton(
+                            icon: Icons.skip_previous_rounded,
+                            size: 36,
+                            color: isDarkMode ? Colors.white : Colors.black87,
+                            onPressed: () => audioService.previous(),
+                          ),
+                          GlassContainer(
+                            borderRadius: 50,
+                            blur: 15,
+                            backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                            child: IconButton(
+                              onPressed: () {
+                                if (playerState.isPlaying) {
+                                  audioService.pause();
+                                } else {
+                                  audioService.play();
+                                }
+                              },
+                              icon: Icon(
+                                playerState.isPlaying
+                                    ? Icons.pause_rounded
+                                    : Icons.play_arrow_rounded,
+                                size: 48,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                          ),
+                          _ControlButton(
+                            icon: Icons.skip_next_rounded,
+                            size: 36,
+                            color: isDarkMode ? Colors.white : Colors.black87,
+                            onPressed: () => audioService.next(),
+                          ),
+                          _ControlButton(
+                            icon: Icons.favorite_border_rounded,
+                            size: 24,
+                            color: isDarkMode ? Colors.white70 : Colors.black54,
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // 频谱模式切换
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _SpectrumModeButton(
+                            icon: Icons.equalizer_rounded,
+                            label: '条形',
+                            isSelected: _spectrumMode == SpectrumMode.bars,
+                            isDarkMode: isDarkMode,
+                            onTap: () => setState(() => _spectrumMode = SpectrumMode.bars),
+                          ),
+                          const SizedBox(width: 8),
+                          _SpectrumModeButton(
+                            icon: Icons.waves_rounded,
+                            label: '波浪',
+                            isSelected: _spectrumMode == SpectrumMode.wave,
+                            isDarkMode: isDarkMode,
+                            onTap: () => setState(() => _spectrumMode = SpectrumMode.wave),
+                          ),
+                          const SizedBox(width: 8),
+                          _SpectrumModeButton(
+                            icon: Icons.radio_button_checked_rounded,
+                            label: '圆形',
+                            isSelected: _spectrumMode == SpectrumMode.circular,
+                            isDarkMode: isDarkMode,
+                            onTap: () => setState(() => _spectrumMode = SpectrumMode.circular),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // 条形/波浪频谱
+                    if (playerState.isPlaying && _spectrumMode != SpectrumMode.circular)
+                      RepaintBoundary(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+                          child: SizedBox(
+                            height: 50,
+                            child: SpectrumVisualizer(
+                              spectrumStream: audioService.spectrumStream,
+                              mode: _spectrumMode,
+                              barCount: 40,
+                              currentPositionMs: playerState.currentPosition,
+                              progress: playerState.progress,
+                              isPlaying: playerState.isPlaying,
+                              color: Theme.of(context).primaryColor,
+                              width: MediaQuery.of(context).size.width - 48,
+                              height: 50,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    // 进度条 - 放在底部
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(32, 8, 32, 16),
+                      child: Column(
+                        children: [
+                          SliderTheme(
+                            data: SliderTheme.of(context).copyWith(
+                              trackHeight: 4,
+                              thumbShape: const RoundSliderThumbShape(
+                                enabledThumbRadius: 6,
+                              ),
+                              overlayShape: const RoundSliderOverlayShape(
+                                overlayRadius: 16,
+                              ),
+                              activeTrackColor: Theme.of(context).primaryColor,
+                              inactiveTrackColor: isDarkMode
+                                  ? Colors.white.withValues(alpha: 0.2)
+                                  : Colors.black.withValues(alpha: 0.2),
+                              thumbColor: Theme.of(context).primaryColor,
+                              overlayColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                            ),
+                            child: Slider(
+                              value: playerState.progress.clamp(0.0, 1.0),
+                              onChanged: (value) {
+                                final position = Duration(
+                                  milliseconds: (value * playerState.duration).toInt(),
+                                );
+                                audioService.seek(position);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  _formatDuration(
+                                    Duration(milliseconds: playerState.currentPosition),
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isDarkMode
+                                        ? Colors.white.withValues(alpha: 0.6)
+                                        : Colors.black54,
+                                  ),
+                                ),
+                                Text(
+                                  currentTrack?.duration != null
+                                      ? _formatDuration(currentTrack!.duration!)
+                                      : '--:--',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isDarkMode
+                                        ? Colors.white.withValues(alpha: 0.6)
+                                        : Colors.black54,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBackgroundCover(int? songId, bool isDarkMode) {
+    if (songId == null) {
+      return _buildDefaultBackground(isDarkMode);
+    }
+
+    // 如果已经有缓存的 ImageProvider，直接使用
+    if (_cachedImageProvider != null && _cachedSongId == songId) {
+      return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: _cachedImageProvider!,
+            fit: BoxFit.cover,
+          ),
+        ),
+      );
+    }
+
+    // 使用 FutureBuilder 只加载一次
+    return FutureBuilder<ImageProvider?>(
+      future: _loadArtworkImage(songId),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data != null) {
+          // 缓存 ImageProvider
+          _cachedImageProvider = snapshot.data;
+          return Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: snapshot.data!,
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
+        }
+        return _buildDefaultBackground(isDarkMode);
+      },
+    );
+  }
+
+  Widget _buildDefaultBackground(bool isDarkMode) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isDarkMode
+              ? [Colors.purple.shade800, Colors.blue.shade900]
+              : [Colors.blue.shade100, Colors.purple.shade100],
+        ),
+      ),
+    );
+  }
+
+  Future<ImageProvider?> _loadArtworkImage(int songId) async {
+    try {
+      final onAudioQuery = OnAudioQuery();
+      final artwork = await onAudioQuery.queryArtwork(
+        songId,
+        ArtworkType.AUDIO,
+        format: ArtworkFormat.JPEG,
+        size: 1000,
+        quality: 90,
+      );
+      
+      if (artwork != null && artwork.isNotEmpty) {
+        return MemoryImage(Uint8List.fromList(artwork));
+      }
+    } catch (e) {
+      debugPrint('Error loading artwork: $e');
+    }
+    return null;
+  }
+
+  Future<List<int>?> _queryArtwork(int songId) async {
+    try {
+      final onAudioQuery = OnAudioQuery();
+      return await onAudioQuery.queryArtwork(
+        songId,
+        ArtworkType.AUDIO,
+        format: ArtworkFormat.JPEG,
+        size: 1000,
+        quality: 90,
+      );
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String _formatDuration(Duration duration) {
+    final minutes = duration.inMinutes;
+    final seconds = duration.inSeconds % 60;
+    return '$minutes:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  IconData _getPlayModeIcon(PlayMode playMode) {
+    return switch (playMode) {
+      PlayMode.loop => Icons.repeat_rounded,
+      PlayMode.one => Icons.repeat_one_rounded,
+      PlayMode.shuffle => Icons.shuffle_rounded,
+    };
+  }
+}
+
+class _ControlButton extends StatelessWidget {
+  final IconData icon;
+  final double size;
+  final Color? color;
+  final VoidCallback onPressed;
+
+  const _ControlButton({
+    required this.icon,
+    required this.size,
+    this.color,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        size: size,
+        color: color ?? Colors.black87,
+      ),
+    );
+  }
+}
+
+class _SpectrumModeButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool isSelected;
+  final bool isDarkMode;
+  final VoidCallback onTap;
+
+  const _SpectrumModeButton({
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+    required this.isDarkMode,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? primaryColor.withValues(alpha: 0.15)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected
+                ? primaryColor.withValues(alpha: 0.5)
+                : (isDarkMode
+                    ? Colors.white.withValues(alpha: 0.2)
+                    : Colors.black.withValues(alpha: 0.2)),
+            width: 1,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 16,
+              color: isSelected ? primaryColor : (isDarkMode ? Colors.white70 : Colors.black54),
+            ),
+            const SizedBox(width: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                color: isSelected ? primaryColor : (isDarkMode ? Colors.white70 : Colors.black54),
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

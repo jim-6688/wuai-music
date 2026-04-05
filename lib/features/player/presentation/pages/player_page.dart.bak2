@@ -1,0 +1,349 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../shared/widgets/glass_widgets.dart';
+import '../../service/audio_player_service.dart';
+import '../providers/player_provider.dart';
+import '../../widgets/spectrum_visualizer.dart';
+import '../../widgets/particle_effect.dart';
+
+class PlayerPage extends ConsumerStatefulWidget {
+  const PlayerPage({super.key});
+
+  @override
+  ConsumerState<PlayerPage> createState() => _PlayerPageState();
+}
+
+class _PlayerPageState extends ConsumerState<PlayerPage>
+    with TickerProviderStateMixin {
+  SpectrumMode _spectrumMode = SpectrumMode.bars;
+  
+  // 缓存封面数据，防止重复加载
+  int? _cachedSongId;
+  
+  // 所有频谱模式列表
+  static const List<SpectrumMode> _allSpectrumModes = [
+    SpectrumMode.bars,
+    SpectrumMode.wave,
+    SpectrumMode.static,
+    SpectrumMode.dynamic,
+    SpectrumMode.mel,
+    SpectrumMode.psd,
+    SpectrumMode.line,
+  ];
+
+  @override
+  void didUpdateWidget(PlayerPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final audioService = ref.read(audioPlayerServiceProvider);
+    final currentTrack = audioService.currentTrack;
+    if (currentTrack?.id != null) {
+      final songId = int.tryParse(currentTrack!.id);
+      if (songId != _cachedSongId) {
+        _cachedSongId = songId;
+      }
+    }
+  }
+  
+  /// 切换到下一个频谱模式
+  void _cycleSpectrumMode() {
+    setState(() {
+      final currentIndex = _allSpectrumModes.indexOf(_spectrumMode);
+      final nextIndex = (currentIndex + 1) % _allSpectrumModes.length;
+      _spectrumMode = _allSpectrumModes[nextIndex];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final audioService = ref.watch(audioPlayerServiceProvider);
+    final playerState = audioService.state;
+    final currentTrack = audioService.currentTrack;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // 渐变背景
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isDarkMode
+                    ? [Colors.purple.shade800, Colors.blue.shade900]
+                    : [Colors.blue.shade100, Colors.purple.shade100],
+              ),
+            ),
+          ),
+
+          // 毛玻璃背景
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+            child: Container(
+              color: isDarkMode 
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : Colors.white.withValues(alpha: 0.4),
+            ),
+          ),
+
+          // 主内容
+          SafeArea(
+            child: Column(
+              children: [
+                // 顶部标题
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '正在播放',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: isDarkMode ? Colors.white : Colors.black87,
+                        ),
+                      ),
+                      GlassButton(
+                        onPressed: () {},
+                        padding: const EdgeInsets.all(12),
+                        child: Icon(
+                          Icons.list_rounded,
+                          color: isDarkMode ? Colors.white70 : Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 歌曲信息
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  child: Column(
+                    children: [
+                      Text(
+                        currentTrack?.title ?? '未播放',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                          color: isDarkMode ? Colors.white : Colors.black87,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        currentTrack?.artist ?? '请选择歌曲播放',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: isDarkMode 
+                              ? Colors.white.withValues(alpha: 0.7)
+                              : Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 频谱可视化区域
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: playerState.isPlaying
+                        ? SpectrumVisualizer(
+                            spectrumStream: audioService.spectrumStream,
+                            mode: _spectrumMode,
+                            barCount: 48,
+                            currentPositionMs: playerState.currentPosition,
+                            progress: playerState.progress,
+                            isPlaying: playerState.isPlaying,
+                            color: Theme.of(context).primaryColor,
+                            width: MediaQuery.of(context).size.width - 32,
+                            height: double.infinity,
+                          )
+                        : Center(
+                            child: Text(
+                              '播放音乐以显示频谱',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: isDarkMode 
+                                    ? Colors.white.withValues(alpha: 0.5)
+                                    : Colors.black45,
+                              ),
+                            ),
+                          ),
+                  ),
+                ),
+
+                // 控制按钮行（播放按钮在中间）
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _ControlButton(
+                        icon: _getPlayModeIcon(playerState.playMode),
+                        size: 24,
+                        color: isDarkMode ? Colors.white70 : Colors.black54,
+                        onPressed: () => audioService.togglePlayMode(),
+                      ),
+                      _ControlButton(
+                        icon: Icons.skip_previous_rounded,
+                        size: 36,
+                        color: isDarkMode ? Colors.white : Colors.black87,
+                        onPressed: () => audioService.previous(),
+                      ),
+                      // 播放按钮
+                      GlassContainer(
+                        borderRadius: 50,
+                        blur: 15,
+                        backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                        child: IconButton(
+                          onPressed: () {
+                            if (playerState.isPlaying) {
+                              audioService.pause();
+                            } else {
+                              audioService.play();
+                            }
+                          },
+                          icon: Icon(
+                            playerState.isPlaying
+                                ? Icons.pause_rounded
+                                : Icons.play_arrow_rounded,
+                            size: 40,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
+                      _ControlButton(
+                        icon: Icons.skip_next_rounded,
+                        size: 36,
+                        color: isDarkMode ? Colors.white : Colors.black87,
+                        onPressed: () => audioService.next(),
+                      ),
+                      // 频谱切换按钮
+                      _ControlButton(
+                        icon: Icons.equalizer_rounded,
+                        size: 24,
+                        color: isDarkMode ? Colors.white70 : Colors.black54,
+                        onPressed: _cycleSpectrumMode,
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 进度条
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 4, 32, 20),
+                  child: Column(
+                    children: [
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          trackHeight: 4,
+                          thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 6,
+                          ),
+                          overlayShape: const RoundSliderOverlayShape(
+                            overlayRadius: 16,
+                          ),
+                          activeTrackColor: Theme.of(context).primaryColor,
+                          inactiveTrackColor: isDarkMode
+                              ? Colors.white.withValues(alpha: 0.2)
+                              : Colors.black.withValues(alpha: 0.2),
+                          thumbColor: Theme.of(context).primaryColor,
+                          overlayColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                        ),
+                        child: Slider(
+                          value: playerState.progress.clamp(0.0, 1.0),
+                          onChanged: (value) {
+                            final position = Duration(
+                              milliseconds: (value * playerState.duration).toInt(),
+                            );
+                            audioService.seek(position);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              _formatDuration(
+                                Duration(milliseconds: playerState.currentPosition),
+                              ),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: isDarkMode
+                                    ? Colors.white.withValues(alpha: 0.6)
+                                    : Colors.black54,
+                              ),
+                            ),
+                            Text(
+                              currentTrack?.duration != null
+                                  ? _formatDuration(currentTrack!.duration!)
+                                  : '--:--',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: isDarkMode
+                                    ? Colors.white.withValues(alpha: 0.6)
+                                    : Colors.black54,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatDuration(Duration duration) {
+    final minutes = duration.inMinutes;
+    final seconds = duration.inSeconds % 60;
+    return '$minutes:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  IconData _getPlayModeIcon(PlayMode playMode) {
+    return switch (playMode) {
+      PlayMode.loop => Icons.repeat_rounded,
+      PlayMode.one => Icons.repeat_one_rounded,
+      PlayMode.shuffle => Icons.shuffle_rounded,
+    };
+  }
+}
+
+class _ControlButton extends StatelessWidget {
+  final IconData icon;
+  final double size;
+  final Color? color;
+  final VoidCallback onPressed;
+
+  const _ControlButton({
+    required this.icon,
+    required this.size,
+    this.color,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        size: size,
+        color: color ?? Colors.black87,
+      ),
+    );
+  }
+}

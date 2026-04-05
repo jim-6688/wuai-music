@@ -1,0 +1,68 @@
+{
+  "name": "GlassMusic TV",
+  "description": "GlassMusic TV Edition - Optimized for Android TV",
+  "version": "1.0.0",
+  "target_platform": "android_tv",
+  
+  "features": {
+    "remote_control": {
+      "enabled": true,
+      "supported_keys": [
+        "DPAD_UP",
+        "DPAD_DOWN", 
+        "DPAD_LEFT",
+        "DPAD_RIGHT",
+        "DPAD_CENTER",
+        "MEDIA_PLAY_PAUSE",
+        "MEDIA_PLAY",
+        "MEDIA_PAUSE",
+        "MEDIA_STOP",
+        "MEDIA_NEXT",
+        "MEDIA_PREVIOUS"
+      ]
+    },
+    
+    "big_screen_ui": {
+      "enabled": true,
+      "font_size_multiplier": 1.5,
+      "icon_size_multiplier": 1.3,
+      "spacing_multiplier": 1.2,
+      "min_touch_target": 88
+    },
+    
+    "usb_support": {
+      "enabled": true,
+      "auto_detect": true,
+      "supported_formats": [
+        "mp3",
+        "m4a",
+        "aac",
+        "flac",
+        "wav",
+        "ogg"
+      ]
+    },
+    
+    "landscape_mode": {
+      "enabled": true,
+      "preferred_orientation": "landscape"
+    }
+  },
+  
+  "android_manifest": {
+    "leanback": true,
+    "touchscreen": false,
+    "features": [
+      "android.software.leanback",
+      "android.hardware.touchscreen"
+    ]
+  },
+  
+  "permissions": [
+    "android.permission.INTERNET",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.WAKE_LOCK",
+    "android.permission.FOREGROUND_SERVICE"
+  ]
+}

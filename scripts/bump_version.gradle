@@ -1,0 +1,42 @@
+// bump_version.gradle
+// Place in: android/build.gradle (root project, applied to :app)
+// Logic: reads version.json, increments versionCode, writes back
+// Usage: included from android/build.gradle root project
+
+def versionJsonFile = new File(rootDir, "../scripts/version.json")
+
+def getVersionData() {
+    if (!versionJsonFile.exists()) {
+        // Default if file doesn't exist yet
+        return [versionName: "1.3.0", versionCode: 4]
+    }
+    return new groovy.json.JsonSlurper().parse(versionJsonFile)
+}
+
+def saveVersionData(data) {
+    versionJsonFile.text = new groovy.json.JsonBuilder(data).toPrettyString()
+}
+
+def bumpAndApply(targetVersionCode) {
+    def v = getVersionData()
+    if (targetVersionCode != null && targetVersionCode > 0) {
+        v.versionCode = targetVersionCode
+    } else {
+        v.versionCode = (v.versionCode as int) + 1
+    }
+    saveVersionData(v)
+    println "[bump_version] => name=${v.versionName}, code=${v.versionCode}"
+    return v
+}
+
+// Expose ext method to all subprojects
+allprojects { project ->
+    project.ext {
+        autoVersionBump = { Integer targetCode = null ->
+            def v = bumpAndApply(targetCode)
+            project.ext.APP_VERSION_NAME = v.versionName
+            project.ext.APP_VERSION_CODE = v.versionCode
+            return v
+        }
+    }
+}

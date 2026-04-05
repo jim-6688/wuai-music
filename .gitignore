@@ -1,0 +1,116 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio build artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# API 配置文件（不提交用户的密钥）
+config/api_config.json
+config/.env
+
+# 构建产物
+*.apk
+
+# 开发日志和临时文件
+analyze_log*.txt
+analyze_output*.txt
+analyze_results*.txt
+build_log*.txt
+build_error*.txt
+build_output*.txt
+build_result*.txt
+full_analyze.txt
+pub_get_log*.txt
+
+# 截图和测试截图
+screenshot*.png
+tv_screenshot*.png
+test_screenshots/
+
+# 开发过程中的报告文档
+*_REPORT.md
+*_REPORT_*.md
+*_GUIDE.md
+*_PLAN.md
+*_PROGRESS.md
+*_PROGRESS_*.md
+*_CHECKLIST.md
+*_SUMMARY.txt
+*_SUMMARY.md
+*DAILY_REPORT*.md
+*FEATURE_UPDATE*.md
+*COMPLETION_REPORT*.md
+*INTEGRATION_GUIDE.md
+*LYRICS_SERVICE*.md
+*FNOS_SMB*.md
+*FIX_REPORT*.md
+*BUILD_REPORT*.md
+*DAILY_REPORT*.md
+*BUILD_GUIDE.md
+*BUILD_PROGRESS.md
+*DOCUMENTATION_INDEX.md
+*FINAL_DELIVERY_REPORT.md
+*FINAL_PROGRESS.md
+*APK_BUILD_REPORT*.md
+*PHASE_*_REPORT.md
+*MODIFICATION_SUMMARY.md
+*NETEASE_INTEGRATION_PLAN.md
+*PROJECT_COMPLETE.md
+*PROJECT_STRUCTURE.md
+*PROJECT_SUMMARY*.md
+*FOUNTAIN_VISUALIZATION_IMPL.md
+*ICON_DESIGN.md
+*METING_INTEGRATION.md
+*QUICKSTART.md
+*QUICK_REFERENCE.md
+*QUICK_START_GUIDE.md
+*TV_QUICK_REFERENCE.md
+*TV_VERSION_SUPPORT.md
+*UI_COMPONENTS.md
+*UI_PREVIEW.md
+*SPEC.md
+*SUMMARY.md
+*RELEASE_NOTES_*.md
+docs/CUSTOM_SOURCE_FEATURE.md
+PROGRESS*.md
+
+# 临时脚本
+fix_version.py
