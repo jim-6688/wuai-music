@@ -39,7 +39,9 @@
 
 ## 截图
 
-> 持续更新中...
+| 手机端 | TV 端 |
+|:---:|:---:|
+| ![手机端](screenshots/phone_main.png) | ![TV端](screenshots/tv_main.png) |
 
 ## 技术栈
 
