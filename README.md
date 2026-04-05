@@ -138,6 +138,16 @@ lib/
 
 MIT License
 
+## ☕ 支持与赞助
+
+如果这个项目对你有帮助，欢迎请作者喝杯咖啡 ☕
+
+| 支付宝 | 微信 |
+|:---:|:---:|
+| ![支付宝](screenshots/alipay.jpg) | ![微信](screenshots/wechat.png) |
+
+你的支持是持续开发的动力，感谢每一位赞助者！
+
 ## 致谢
 
 本程序基于 **[QCLaw](https://github.com/nicepkg/qclaw)** 及 **[WorkBuddy](https://www.codebuddy.cn)** 协助开发完成。
