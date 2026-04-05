@@ -441,12 +441,37 @@
                 max-width: 180px;
             }
 
-            .platform-features {
+                        .platform-features {
                 text-align: center;
             }
 
             .feature-list li {
                 text-align: left;
+            }
+
+            /* TV 图片手机端改为 2 列 */
+            .tv-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                max-width: 100%;
+            }
+
+            .tv-gallery img:hover {
+                transform: none;
+            }
+
+            /* 手机截图也适当放大 */
+            .platform-screenshots img {
+                width: 120px;
+            }
+
+            .platform-screenshots img:hover {
+                transform: none;
+            }
+
+            /* TV 功能列表改单列 */
+            .platform-card.tv .feature-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
