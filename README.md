@@ -1,6 +1,18 @@
-# 吾爱Music
+<div align="center">
 
-一款基于 Flutter 开发的跨平台音乐播放器，支持手机和 Android TV，具备毛玻璃 UI 设计风格。
+# 🎵 吾爱Music
+
+**Flutter 跨平台音乐播放器，支持手机和 Android TV**
+
+[![Release](https://img.shields.io/github/v/release/jim-6688/wuai-music?style=flat-square)](https://github.com/jim-6688/wuai-music/releases/latest)
+[![License](https://img.shields.io/github/license/jim-6688/wuai-music?style=flat-square)](https://github.com/jim-6688/wuai-music/blob/main/LICENSE)
+[![Flutter](https://img.shields.io/badge/Flutter-3.24+-02569B?style=flat-square&logo=flutter)](https://flutter.dev)
+[![Platform](https://img.shields.io/badge/Platform-Android-green?style=flat-square&logo=android)](https://github.com/jim-6688/wuai-music/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/jim-6688/wuai-music/total?style=flat-square)](https://github.com/jim-6688/wuai-music/releases/latest)
+
+毛玻璃 UI 设计 · NAS 音乐集成 · 网易云/QQ音乐 · 手机+TV 双端适配
+
+</div>
 
 ## 功能特性
 
