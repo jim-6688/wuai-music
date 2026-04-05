@@ -138,6 +138,14 @@ MIT License
 
 ## 致谢
 
+本程序基于 **[QCLaw](https://github.com/nicepkg/qclaw)** 及 **[WorkBuddy](https://www.codebuddy.cn)** 协助开发完成。
+
+特别感谢：
+- **[QCLaw](https://github.com/nicepkg/qclaw)** — AI 驱动的开发辅助工具，为本项目提供了强大的代码生成与重构能力
+- **[WorkBuddy](https://www.codebuddy.cn)** 及其项目组 — 提供了全方位的 AI 协作开发支持，涵盖代码编写、调试、构建和发布全流程
+
+感谢以上开源项目对本程序开发的帮助与支持！
+
 - [Flutter](https://flutter.dev)
 - [just_audio](https://pub.dev/packages/just_audio)
 - [Riverpod](https://riverpod.dev)
