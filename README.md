@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎵 吾爱Music
+# 🎵 吾爱Music 官网已开通https://music.52ta.top/
 
 **Flutter 跨平台音乐播放器，支持手机和 Android TV**
 
