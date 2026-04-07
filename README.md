@@ -10,7 +10,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Android-green?style=flat-square&logo=android)](https://github.com/jim-6688/wuai-music/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/jim-6688/wuai-music/total?style=flat-square)](https://github.com/jim-6688/wuai-music/releases/latest)
 
-毛玻璃 UI 设计 · NAS 音乐集成 · 网易云/QQ音乐 · 手机+TV 双端适配
+毛玻璃 UI 设计 · NAS 音乐集成 · 云盘接入 · 手机+TV 双端适配
 
 </div>
 
