@@ -1,0 +1,32 @@
+{
+  "releases": {
+    "phone": {
+      "versionName": "1.0.0",
+      "versionCode": 1,
+      "flavor": "phone",
+      "notes": "吾爱音乐 1.0.0 首个正式版本发布。",
+      "url": "",
+      "size": 0,
+      "sha256": ""
+    },
+    "hd": {
+      "versionName": "1.0.0",
+      "versionCode": 1,
+      "flavor": "hd",
+      "notes": "吾爱音乐 1.0.0 首个正式版本（车机/平板）发布。",
+      "url": "",
+      "size": 0,
+      "sha256": ""
+    },
+    "tv": {
+      "versionName": "1.0.0",
+      "versionCode": 1,
+      "flavor": "tv",
+      "notes": "吾爱音乐 1.0.0 首个正式版本（电视）发布。",
+      "url": "",
+      "size": 0,
+      "sha256": ""
+    }
+  },
+  "minRequiredCode": { "phone": 1, "hd": 1, "tv": 1 }
+}
