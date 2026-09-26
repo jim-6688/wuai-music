@@ -1,55 +1,65 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.0.1",
-      "versionCode": 8,
+      "versionName": "1.0.2",
+      "versionCode": 9,
       "flavor": "phone",
-      "notes": "吾爱Music 1.0.1 更新",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-phone-arm64-v8a.apk",
-      "size": 63806145,
-      "sha256": "91928d8b3c09a159c07a056ebd3ef92b5e059872f85daac217da74512d3b649c",
+      "notes": "- 新增界面语言切换：简体中文 / 繁體中文 / English（设置 → 外观 → 语言）。本次覆盖设置相关页面，其余页面陆续跟进\n- 繁體中文补齐字体：主字体加入 Big5 常用繁体字形，繁中界面不再缺字、不再字重跳变\n- 修复 TV 端焦点定位错误：方向键光标与真实焦点错位、左右键被侧边栏抢走\n- 修复 NAS 播放：点开即响更稳，修掉「没播完就跳下一首」\n- 均衡器新增丹拿三档预设：丹拿原音 / 丹拿人声 / 丹拿现场\n- 手机版、车机版新增 32 位（armeabi-v7a）安装包，老设备也能装",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-arm64-v8a.apk",
+      "size": 65512073,
+      "sha256": "aceb0576666ef3bdd89bd6514f541c7cbca9e54d763946e8399c2098960e7fa6",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-phone-arm64-v8a.apk",
-          "size": 63806145,
-          "sha256": "91928d8b3c09a159c07a056ebd3ef92b5e059872f85daac217da74512d3b649c"
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-arm64-v8a.apk",
+          "size": 65512073,
+          "sha256": "aceb0576666ef3bdd89bd6514f541c7cbca9e54d763946e8399c2098960e7fa6"
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-armeabi-v7a.apk",
+          "size": 77284017,
+          "sha256": "9a706ca8c6c5db8bc943186669aa1848ed332bb642d87436fad5067e68bd23ce"
         }
       }
     },
     "hd": {
-      "versionName": "1.0.1",
-      "versionCode": 8,
+      "versionName": "1.0.2",
+      "versionCode": 9,
       "flavor": "hd",
-      "notes": "吾爱Music 1.0.1 更新",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-hd-arm64-v8a.apk",
-      "size": 63809905,
-      "sha256": "2683a0ff5e834a09875647c59af65411d2c283b41d2f7d0ff5436f59baa9b1c4",
+      "notes": "- 新增界面语言切换：简体中文 / 繁體中文 / English（设置 → 外观 → 语言）。本次覆盖设置相关页面，其余页面陆续跟进\n- 繁體中文补齐字体：主字体加入 Big5 常用繁体字形，繁中界面不再缺字、不再字重跳变\n- 修复 TV 端焦点定位错误：方向键光标与真实焦点错位、左右键被侧边栏抢走\n- 修复 NAS 播放：点开即响更稳，修掉「没播完就跳下一首」\n- 均衡器新增丹拿三档预设：丹拿原音 / 丹拿人声 / 丹拿现场\n- 手机版、车机版新增 32 位（armeabi-v7a）安装包，老设备也能装",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-arm64-v8a.apk",
+      "size": 65515833,
+      "sha256": "ab79bd181bf77e0ba5c67e5a313629746371f4a67f35d92bb5a7b3a299767750",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-hd-arm64-v8a.apk",
-          "size": 63809905,
-          "sha256": "2683a0ff5e834a09875647c59af65411d2c283b41d2f7d0ff5436f59baa9b1c4"
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-arm64-v8a.apk",
+          "size": 65515833,
+          "sha256": "ab79bd181bf77e0ba5c67e5a313629746371f4a67f35d92bb5a7b3a299767750"
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-armeabi-v7a.apk",
+          "size": 77287777,
+          "sha256": "58034dba3f1f162564bc0265e3365f613039d672179099f5d82a1e0ecfffefa1"
         }
       }
     },
     "tv": {
-      "versionName": "1.0.1",
-      "versionCode": 8,
+      "versionName": "1.0.2",
+      "versionCode": 9,
       "flavor": "tv",
-      "notes": "吾爱Music 1.0.1 更新",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-tv-arm64-v8a.apk",
-      "size": 63809761,
-      "sha256": "e0401f4760f853123ed90e62af0ad17ac081ea6c63900eb4398cb4de628db838",
+      "notes": "- 新增界面语言切换：简体中文 / 繁體中文 / English（设置 → 外观 → 语言）。本次覆盖设置相关页面，其余页面陆续跟进\n- 繁體中文补齐字体：主字体加入 Big5 常用繁体字形，繁中界面不再缺字、不再字重跳变\n- 修复 TV 端焦点定位错误：方向键光标与真实焦点错位、左右键被侧边栏抢走\n- 修复 NAS 播放：点开即响更稳，修掉「没播完就跳下一首」\n- 均衡器新增丹拿三档预设：丹拿原音 / 丹拿人声 / 丹拿现场\n- 手机版、车机版新增 32 位（armeabi-v7a）安装包，老设备也能装",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-arm64-v8a.apk",
+      "size": 65711137,
+      "sha256": "b5bf477d9627fad50794167254e260f90a7f384301adef206baf8bb4f3c3507f",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-tv-arm64-v8a.apk",
-          "size": 63809761,
-          "sha256": "e0401f4760f853123ed90e62af0ad17ac081ea6c63900eb4398cb4de628db838"
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-arm64-v8a.apk",
+          "size": 65711137,
+          "sha256": "b5bf477d9627fad50794167254e260f90a7f384301adef206baf8bb4f3c3507f"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-tv-armeabi-v7a.apk",
-          "size": 75565321,
-          "sha256": "2417454fba70e6b98254048e4d89673943e6d4511ea93ca8c7054686700153c4"
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-armeabi-v7a.apk",
+          "size": 77466697,
+          "sha256": "c0c9deca1f9dcdc7853c0369bfdaa19495dfb9d915228b2277a09883e803e963"
         }
       }
     }
