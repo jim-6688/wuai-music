@@ -315,6 +315,62 @@ img, svg { display: block; }
 .alts__link:hover { color: var(--gold-soft); border-color: var(--border-strong); }
 .platforms__note { text-align: center; color: var(--text-faint); font-size: 0.88rem; margin-top: 36px; }
 
+/* ---------- 界面预览 ---------- */
+/* 两行布局：
+   行一 三端「正在播放」—— 手机竖屏窄、车机与电视横屏宽，垂直居中对成一组；
+   行二 手机端「可视化 / 均衡器」—— 左侧一段说明，右侧两张竖屏图。
+   三张横屏图（车机/电视）用 .shot--wide：圆角略小、悬停位移也小一点。 */
+.shots { display: grid; gap: 34px; }
+.shots--devices { grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+.shots--pages { grid-template-columns: minmax(0, 1fr) minmax(0, 258px) minmax(0, 258px); align-items: center; }
+.shots__note { max-width: 32em; }
+.shots__note h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.shots__note p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; }
+.shots__note ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.shots__note li { font-size: 0.78rem; color: var(--text-dim); padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
+
+.shot { margin: 0; }
+.shot__frame {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  transition: transform 0.5s var(--ease), border-color 0.5s, box-shadow 0.5s;
+}
+/* 玻璃高光：左上到右下的斜向渐变，与站内 .glass 观感一致 */
+.shot__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.10), transparent 42%);
+  pointer-events: none;
+}
+.shot img { width: 100%; height: auto; }
+.shot:hover .shot__frame {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+.shot figcaption {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.shot figcaption span {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+/* 横屏大图（车机 / 电视）：圆角略小，悬停位移也小一点 */
+.shot--wide .shot__frame { border-radius: 18px; }
+.shot--wide:hover .shot__frame { transform: translateY(-6px); }
+
 /* ---------- 更新中心 ---------- */
 .update { padding: 34px; }
 .update__bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
@@ -374,6 +430,12 @@ img, svg { display: block; }
   .grid--platforms { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
   .grid--steps { grid-template-columns: repeat(2, 1fr); }
   .update__table { grid-template-columns: 1fr; }
+  /* 窄屏：三端各占一行，手机竖屏收窄居中，车机/电视横屏照旧占满 */
+  .shots { gap: 30px; }
+  .shots--devices, .shots--pages { grid-template-columns: 1fr; }
+  .shots--pages .shots__note { max-width: none; }
+  .shots--pages .shot { max-width: 300px; margin: 0 auto; }
+  .shots--devices .shot:first-child { max-width: 300px; margin: 0 auto; }
 }
 
 @media (max-width: 600px) {
@@ -388,6 +450,15 @@ img, svg { display: block; }
   .grid--features, .grid--steps { grid-template-columns: 1fr; }
   .hero__stats { gap: 28px; }
   .update { padding: 22px; }
+  /* 手机端截图是竖屏：单列时限制到接近真机宽度，避免拉成一条长条；
+     车机 / 电视两张横屏图照旧占满整行。 */
+  .shots { gap: 26px; }
+  .shots--devices .shot:first-child { max-width: 320px; margin: 0 auto; }
+  .shots--pages .shot { max-width: 320px; margin: 0 auto; }
+  .shot__frame { border-radius: 16px; }
+  .shot figcaption { font-size: 0.86rem; margin-top: 10px; }
+  .shot figcaption span { font-size: 0.72rem; }
+  .shot--wide { margin-top: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
