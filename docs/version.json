@@ -1,76 +1,76 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.0.2",
-      "versionCode": 9,
+      "versionName": "1.0.3",
+      "versionCode": 10,
       "flavor": "phone",
-      "notes": "- 新增界面语言切换：简体中文 / 繁體中文 / English（设置 → 外观 → 语言）。本次覆盖设置相关页面，其余页面陆续跟进\n- 繁體中文补齐字体：主字体加入 Big5 常用繁体字形，繁中界面不再缺字、不再字重跳变\n- 修复 TV 端焦点定位错误：方向键光标与真实焦点错位、左右键被侧边栏抢走\n- 修复 NAS 播放：点开即响更稳，修掉「没播完就跳下一首」\n- 均衡器新增丹拿三档预设：丹拿原音 / 丹拿人声 / 丹拿现场\n- 手机版、车机版新增 32 位（armeabi-v7a）安装包，老设备也能装",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-arm64-v8a.apk",
-      "size": 65512073,
-      "sha256": "aceb0576666ef3bdd89bd6514f541c7cbca9e54d763946e8399c2098960e7fa6",
+      "notes": "- App 内更新新增**国内下载源**：主源（GitHub）连不上时自动改试码云镜像，不用再手动找安装包\n- **第二批多语言**：本地音乐、NAS 设备、日志与诊断、播放页已支持 简体中文 / 繁體中文 / English\n  （词表 170 → 378 条；歌单、歌词、发现等页面仍为中文，会随版本陆续跟进）\n- 繁體中文继续按台灣用語逐条校对，不作机械简繁转换\n- 更新弹窗改版：更新说明窗口加大、安装包大小下移，「稍后 / 忽略此版本」改为描边按钮、\n  与「立即更新」排成一行",
+      "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-phone-arm64-v8a.apk",
+      "size": 65643145,
+      "sha256": "f215c79cfc8ff5a2e8aa5f79a784619b13b9570ddb077a5f2a2b6d81cad941fc",
+      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-arm64-v8a.apk",
-          "size": 65512073,
-          "sha256": "aceb0576666ef3bdd89bd6514f541c7cbca9e54d763946e8399c2098960e7fa6",
+          "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-phone-arm64-v8a.apk",
+          "size": 65643145,
+          "sha256": "f215c79cfc8ff5a2e8aa5f79a784619b13b9570ddb077a5f2a2b6d81cad941fc",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-armeabi-v7a.apk",
-          "size": 77284017,
-          "sha256": "9a706ca8c6c5db8bc943186669aa1848ed332bb642d87436fad5067e68bd23ce",
+          "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-phone-armeabi-v7a.apk",
+          "size": 77333169,
+          "sha256": "75fde74bb3ec46201e8486c1061c996bf0325f6f86ed18282bc46d63fb97fb2a",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
-      },
-      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
+      }
     },
     "hd": {
-      "versionName": "1.0.2",
-      "versionCode": 9,
+      "versionName": "1.0.3",
+      "versionCode": 10,
       "flavor": "hd",
-      "notes": "- 新增界面语言切换：简体中文 / 繁體中文 / English（设置 → 外观 → 语言）。本次覆盖设置相关页面，其余页面陆续跟进\n- 繁體中文补齐字体：主字体加入 Big5 常用繁体字形，繁中界面不再缺字、不再字重跳变\n- 修复 TV 端焦点定位错误：方向键光标与真实焦点错位、左右键被侧边栏抢走\n- 修复 NAS 播放：点开即响更稳，修掉「没播完就跳下一首」\n- 均衡器新增丹拿三档预设：丹拿原音 / 丹拿人声 / 丹拿现场\n- 手机版、车机版新增 32 位（armeabi-v7a）安装包，老设备也能装",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-arm64-v8a.apk",
-      "size": 65515833,
-      "sha256": "ab79bd181bf77e0ba5c67e5a313629746371f4a67f35d92bb5a7b3a299767750",
+      "notes": "- App 内更新新增**国内下载源**：主源（GitHub）连不上时自动改试码云镜像，不用再手动找安装包\n- **第二批多语言**：本地音乐、NAS 设备、日志与诊断、播放页已支持 简体中文 / 繁體中文 / English\n  （词表 170 → 378 条；歌单、歌词、发现等页面仍为中文，会随版本陆续跟进）\n- 繁體中文继续按台灣用語逐条校对，不作机械简繁转换\n- 更新弹窗改版：更新说明窗口加大、安装包大小下移，「稍后 / 忽略此版本」改为描边按钮、\n  与「立即更新」排成一行",
+      "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-hd-arm64-v8a.apk",
+      "size": 65646905,
+      "sha256": "ee0d9f73ddd48b2157b745a541e80bfcda67f65636fbb37e58ca69c9636afad3",
+      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-arm64-v8a.apk",
-          "size": 65515833,
-          "sha256": "ab79bd181bf77e0ba5c67e5a313629746371f4a67f35d92bb5a7b3a299767750",
+          "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-hd-arm64-v8a.apk",
+          "size": 65646905,
+          "sha256": "ee0d9f73ddd48b2157b745a541e80bfcda67f65636fbb37e58ca69c9636afad3",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-armeabi-v7a.apk",
-          "size": 77287777,
-          "sha256": "58034dba3f1f162564bc0265e3365f613039d672179099f5d82a1e0ecfffefa1",
+          "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-hd-armeabi-v7a.apk",
+          "size": 77336929,
+          "sha256": "ad5c3cdbbf20c9a693cb2edad122f7a027fd0d492bb034cea804c3c0dc2b9214",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
-      },
-      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
+      }
     },
     "tv": {
-      "versionName": "1.0.2",
-      "versionCode": 9,
+      "versionName": "1.0.3",
+      "versionCode": 10,
       "flavor": "tv",
-      "notes": "- 新增界面语言切换：简体中文 / 繁體中文 / English（设置 → 外观 → 语言）。本次覆盖设置相关页面，其余页面陆续跟进\n- 繁體中文补齐字体：主字体加入 Big5 常用繁体字形，繁中界面不再缺字、不再字重跳变\n- 修复 TV 端焦点定位错误：方向键光标与真实焦点错位、左右键被侧边栏抢走\n- 修复 NAS 播放：点开即响更稳，修掉「没播完就跳下一首」\n- 均衡器新增丹拿三档预设：丹拿原音 / 丹拿人声 / 丹拿现场\n- 手机版、车机版新增 32 位（armeabi-v7a）安装包，老设备也能装",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-arm64-v8a.apk",
-      "size": 65711137,
-      "sha256": "b5bf477d9627fad50794167254e260f90a7f384301adef206baf8bb4f3c3507f",
+      "notes": "- App 内更新新增**国内下载源**：主源（GitHub）连不上时自动改试码云镜像，不用再手动找安装包\n- **第二批多语言**：本地音乐、NAS 设备、日志与诊断、播放页已支持 简体中文 / 繁體中文 / English\n  （词表 170 → 378 条；歌单、歌词、发现等页面仍为中文，会随版本陆续跟进）\n- 繁體中文继续按台灣用語逐条校对，不作机械简繁转换\n- 更新弹窗改版：更新说明窗口加大、安装包大小下移，「稍后 / 忽略此版本」改为描边按钮、\n  与「立即更新」排成一行",
+      "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-tv-arm64-v8a.apk",
+      "size": 65776669,
+      "sha256": "ecaa7273e3acd3b959b9ac9730fafee5d992b1e1c07110bd3904ead8ed61f721",
+      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-arm64-v8a.apk",
-          "size": 65711137,
-          "sha256": "b5bf477d9627fad50794167254e260f90a7f384301adef206baf8bb4f3c3507f",
+          "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-tv-arm64-v8a.apk",
+          "size": 65776669,
+          "sha256": "ecaa7273e3acd3b959b9ac9730fafee5d992b1e1c07110bd3904ead8ed61f721",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-armeabi-v7a.apk",
-          "size": 77466697,
-          "sha256": "c0c9deca1f9dcdc7853c0369bfdaa19495dfb9d915228b2277a09883e803e963",
+          "url": "https://github.com/<owner>/<repo>/releases/download/v1.0.3/WuAiMusic-1.0.3-build10-tv-armeabi-v7a.apk",
+          "size": 77515845,
+          "sha256": "602c8902f9b20c1fe4a5970d4fbec4088d311cd14c6272a1f781c4d8e127d2cf",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
-      },
-      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
+      }
     }
   },
   "minRequiredCode": {
