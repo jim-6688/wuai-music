@@ -300,8 +300,12 @@ img, svg { display: block; }
 .platform__desc { color: var(--text-dim); font-size: 0.95rem; flex: 1; }
 .platform__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
 .platform__tags li { font-size: 0.78rem; color: var(--text-dim); padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
-.platform__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+/* 版本角标在上、双下载按钮在下（纵向堆叠：版本号独占一行，按钮平分卡片宽度） */
+.platform__foot { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
 .platform__ver { font-size: 0.85rem; color: var(--gold-soft); font-weight: 500; }
+/* 国内（码云）/ 国际（GitHub）双下载入口，等宽并排 */
+.platform__btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.platform__btns .btn { padding: 0.8em 1em; font-size: 0.9rem; }
 /* 按 ABI 分发的独立包链接行（清单带 variants 时才渲染；hidden 属性优先） */
 .platform__alts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 .platform__alts[hidden] { display: none; }
@@ -313,20 +317,21 @@ img, svg { display: block; }
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 .alts__link:hover { color: var(--gold-soft); border-color: var(--border-strong); }
-/* 国内镜像（码云）入口：主按钮下方的次级链接，虚线边框与实心主按钮拉开层级 */
-.platform__mirror { margin: 12px 0 0; font-size: 0.76rem; }
-.mirror-link {
+/* 次级文字链形态（虚线小胶囊）：**只用于非按钮的 mirror-link**。
+   卡片里的「国内下载」现在是金色按钮，外观由 .btn/.btn--gold 接管；
+   这里必须排除 .btn，否则会把它同时压成 0.76rem 的虚线小标签。 */
+a.mirror-link:not(.btn) {
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--text-faint); text-decoration: none;
   padding: 3px 10px; border-radius: 999px;
   border: 1px dashed var(--border); background: var(--surface);
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
-.mirror-link::before {
+a.mirror-link:not(.btn)::before {
   content: ""; width: 6px; height: 6px; border-radius: 50%;
   background: var(--gold); opacity: 0.7; flex: none;
 }
-.mirror-link:hover { color: var(--gold-soft); border-color: var(--border-strong); }
+a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--border-strong); }
 .platforms__note { text-align: center; color: var(--text-faint); font-size: 0.88rem; margin-top: 36px; }
 
 /* ---------- 界面预览 ---------- */

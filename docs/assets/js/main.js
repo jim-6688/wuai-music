@@ -130,7 +130,9 @@
         if (link) {
           if (rel.url) {
             link.setAttribute("href", rel.url);
-            link.textContent = "下载 APK";
+            // 这是「国际下载」（GitHub）按钮的文案，别写成「下载 APK」——
+            // 卡片里国内的码云按钮由 initMirrors 单独填 href，两者并列显示。
+            link.textContent = "国际下载";
             link.classList.remove("is-disabled");
             link.removeAttribute("disabled");
           } else {

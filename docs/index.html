@@ -260,14 +260,17 @@
           <ul class="platform__tags"><li>Android 手机</li><li>手势操控</li><li>锁屏控制</li></ul>
           <div class="platform__foot">
             <span class="platform__ver" data-ver>v—</span>
-            <a class="btn btn--gold download-link" href="#" data-flavor="phone">下载 APK</a>
+            <!-- 国内 / 国际双下载入口。
+                 国内：码云（Gitee），main.js 把 href 换成 /releases/download/latest/ 直链（永远指向最新版）；
+                       这里写死的静态兜底是码云 Releases 页 —— JS 不可用也是可用链接，不会是空链。
+                 国际：GitHub，由 main.js 按 version.json 的 url 填成直链（随版本号变化，故静态兜底给 Releases 最新页）。 -->
+            <div class="platform__btns">
+              <a class="btn btn--gold mirror-link" data-flavor="phone" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+              <a class="btn btn--gold download-link" data-flavor="phone"
+                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+            </div>
           </div>
-          <!-- 国内镜像：走码云 Releases；main.js 会把 href 换成 /download/latest/ 直链（始终指向最新版），
-               JS 不可用时保留下面的静态兜底链接（码云 Releases 页） -->
-          <p class="platform__mirror">
-            <a class="mirror-link" data-flavor="phone" target="_blank" rel="noopener"
-               href="https://gitee.com/jinghe-net/wuai-music/releases">国内镜像 · 码云下载</a>
-          </p>
           <!-- 按 CPU 架构分发的独立包（清单带 variants 时才显示），由 main.js 填充 -->
           <div class="platform__alts" data-alts="phone" hidden></div>
         </article>
@@ -283,12 +286,13 @@
           <ul class="platform__tags"><li>Android 车机</li><li>平板大屏</li><li>横屏分栏</li></ul>
           <div class="platform__foot">
             <span class="platform__ver" data-ver>v—</span>
-            <a class="btn btn--gold download-link" href="#" data-flavor="hd">下载 APK</a>
+            <div class="platform__btns">
+              <a class="btn btn--gold mirror-link" data-flavor="hd" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+              <a class="btn btn--gold download-link" data-flavor="hd"
+                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+            </div>
           </div>
-          <p class="platform__mirror">
-            <a class="mirror-link" data-flavor="hd" target="_blank" rel="noopener"
-               href="https://gitee.com/jinghe-net/wuai-music/releases">国内镜像 · 码云下载</a>
-          </p>
           <div class="platform__alts" data-alts="hd" hidden></div>
         </article>
 
@@ -302,17 +306,18 @@
           <ul class="platform__tags"><li>Android TV</li><li>遥控器导航</li><li>大字号焦点</li></ul>
           <div class="platform__foot">
             <span class="platform__ver" data-ver>v—</span>
-            <a class="btn btn--gold download-link" href="#" data-flavor="tv">下载 APK</a>
+            <div class="platform__btns">
+              <a class="btn btn--gold mirror-link" data-flavor="tv" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+              <a class="btn btn--gold download-link" data-flavor="tv"
+                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+            </div>
           </div>
-          <p class="platform__mirror">
-            <a class="mirror-link" data-flavor="tv" target="_blank" rel="noopener"
-               href="https://gitee.com/jinghe-net/wuai-music/releases">国内镜像 · 码云下载</a>
-          </p>
           <div class="platform__alts" data-alts="tv" hidden></div>
         </article>
       </div>
 
-      <p class="platforms__note reveal">所有安装包发布于 GitHub Releases，站点由 Cloudflare Pages 托管，下载后由客户端校验完整性。国内用户如遇 GitHub 访问缓慢，可使用每张卡片下方的码云镜像（Gitee）下载，与 GitHub 同步同一版本。车机与平板为同一安装包；若拆分架构分发，下方会列出对应的独立包。</p>
+      <p class="platforms__note reveal">每个平台提供两个下载入口：<strong>国内下载</strong>走码云（Gitee）镜像，<strong>国际下载</strong>走 GitHub Releases，两条链路同版本、任选其一即可。站点由 Cloudflare Pages 托管，下载后由客户端校验安装包完整性。车机与平板为同一安装包；若拆分架构分发，下方会列出对应的独立包。</p>
     </section>
 
     <!-- 更新中心 -->
