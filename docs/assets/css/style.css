@@ -4,6 +4,7 @@
    ========================================================= */
 
 :root {
+  color-scheme: dark;
   --bg: #0c0c0f;
   --bg-2: #121216;
   --surface: rgba(255, 255, 255, 0.045);
@@ -23,6 +24,36 @@
   --maxw: 1160px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* ---------- 浅色主题（覆盖变量） ---------- */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f7f5f0;
+  --bg-2: #efece4;
+  --surface: rgba(20, 18, 14, 0.035);
+  --surface-2: rgba(20, 18, 14, 0.06);
+  --border: rgba(20, 18, 14, 0.10);
+  --border-strong: rgba(20, 18, 14, 0.18);
+  --text: #211d16;
+  --text-dim: #5f5749;
+  --text-faint: #9a9081;
+  --gold: #b08a45;
+  --gold-soft: #8a6a32;
+  --gold-deep: #6f5424;
+  --gold-grad: linear-gradient(135deg, #e3c589 0%, #c9a96e 55%, #a8884f 100%);
+  --shadow: 0 20px 60px rgba(60, 50, 25, 0.13);
+}
+
+/* 浅色下减弱光晕、调整导航/移动菜单/进度条底色 */
+[data-theme="light"] .orb { opacity: 0.3; }
+[data-theme="light"] .nav.is-scrolled {
+  background: rgba(247, 245, 240, 0.78);
+}
+[data-theme="light"] .nav__links.is-open {
+  background: rgba(247, 245, 240, 0.98);
+}
+[data-theme="light"] .player__progress { background: rgba(0, 0, 0, 0.1); }
+[data-theme="light"] .btn--ghost:hover { background: rgba(0, 0, 0, 0.05); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -125,6 +156,15 @@ img, svg { display: block; }
   cursor: pointer; padding: 8px; margin-left: auto;
 }
 .nav__toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+.nav__theme {
+  display: inline-grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--surface-2); border: 1px solid var(--border-strong);
+  color: var(--text); cursor: pointer; margin-left: 6px;
+  transition: transform 0.3s var(--ease), background 0.3s, border-color 0.3s;
+}
+.nav__theme:hover { transform: translateY(-2px); background: var(--surface); }
+.nav__theme:active { transform: scale(0.92); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -262,6 +302,17 @@ img, svg { display: block; }
 .platform__tags li { font-size: 0.78rem; color: var(--text-dim); padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
 .platform__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .platform__ver { font-size: 0.85rem; color: var(--gold-soft); font-weight: 500; }
+/* 按 ABI 分发的独立包链接行（清单带 variants 时才渲染；hidden 属性优先） */
+.platform__alts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.platform__alts[hidden] { display: none; }
+.alts__label { font-size: 0.76rem; color: var(--text-faint); letter-spacing: 0.06em; }
+.alts__link {
+  font-size: 0.76rem; color: var(--text-dim); text-decoration: none;
+  padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.alts__link:hover { color: var(--gold-soft); border-color: var(--border-strong); }
 .platforms__note { text-align: center; color: var(--text-faint); font-size: 0.88rem; margin-top: 36px; }
 
 /* ---------- 更新中心 ---------- */

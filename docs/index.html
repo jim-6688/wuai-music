@@ -9,6 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("wuai-theme");
+        if (!t) {
+          t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <!-- 顶部导航 -->
@@ -35,6 +46,7 @@
         <a href="#ota">自动更新</a>
       </nav>
       <a class="btn btn--gold nav__cta" href="#platforms">立即下载</a>
+      <button class="nav__theme" id="themeToggle" type="button" aria-label="切换深浅色主题" title="切换主题"></button>
       <button class="nav__toggle" id="navToggle" aria-label="菜单" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -185,6 +197,8 @@
             <span class="platform__ver" data-ver>v—</span>
             <a class="btn btn--gold download-link" href="#" data-flavor="phone">下载 APK</a>
           </div>
+          <!-- 按 CPU 架构分发的独立包（清单带 variants 时才显示），由 main.js 填充 -->
+          <div class="platform__alts" data-alts="phone" hidden></div>
         </article>
 
         <!-- 车机 / 平板 -->
@@ -200,6 +214,7 @@
             <span class="platform__ver" data-ver>v—</span>
             <a class="btn btn--gold download-link" href="#" data-flavor="hd">下载 APK</a>
           </div>
+          <div class="platform__alts" data-alts="hd" hidden></div>
         </article>
 
         <!-- 电视端 -->
@@ -214,10 +229,11 @@
             <span class="platform__ver" data-ver>v—</span>
             <a class="btn btn--gold download-link" href="#" data-flavor="tv">下载 APK</a>
           </div>
+          <div class="platform__alts" data-alts="tv" hidden></div>
         </article>
       </div>
 
-      <p class="platforms__note reveal">所有安装包均托管于 GitHub Releases，下载后由客户端 SHA-256 校验完整性。车机与平板为同一安装包。</p>
+      <p class="platforms__note reveal">所有安装包发布于 GitHub Releases，站点由 Cloudflare Pages 托管，下载后由客户端校验完整性。车机与平板为同一安装包；若拆分架构分发，下方会列出对应的独立包。</p>
     </section>
 
     <!-- 更新中心 -->
@@ -282,7 +298,7 @@
         <a href="#update">更新中心</a>
         <a href="#ota">自动更新</a>
       </nav>
-      <p class="footer__copy">© <span id="year"></span> 吾爱音乐 WuAiMusic · 本站点静态托管于 Cloudflare Pages，安装包分发于 GitHub Releases</p>
+      <p class="footer__copy">© <span id="year"></span> 吾爱音乐 WuAiMusic · 本站点由 Cloudflare Pages 托管</p>
     </div>
   </footer>
 

@@ -44,6 +44,41 @@
     return (r && r[flavor]) || null;
   }
 
+  // 清单里该渠道的 variants（按 ABI 分组的独立包）→ 有效键数组；无则返回 []
+  function variantKeys(rel) {
+    var v = rel && rel.variants;
+    if (!v || typeof v !== "object") return [];
+    return Object.keys(v).filter(function (k) { return v[k] && v[k].url; });
+  }
+
+  // 属性值转义：URL 来自清单，插入 href 前做最小防护
+  function attr(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  }
+
+  // 主下载按钮下方渲染「其它架构」的独立包链接（仅在清单带 variants 时出现）
+  function renderAlts(manifest, flavor) {
+    var box = document.querySelector('.platform__alts[data-alts="' + flavor + '"]');
+    if (!box) return;
+    var rel = getRelease(manifest, flavor);
+    var variants = (rel && rel.variants) || {};
+    var keys = variantKeys(rel);
+    if (!keys.length) {
+      box.hidden = true;
+      box.innerHTML = "";
+      return;
+    }
+    var html = '<span class="alts__label">其它架构</span>';
+    keys.forEach(function (k) {
+      var v = variants[k];
+      var s = sizeLabel(v.size);
+      html += '<a class="alts__link" href="' + attr(v.url) + '">' +
+              k + (s ? " · " + s : "") + "</a>";
+    });
+    box.innerHTML = html;
+    box.hidden = false;
+  }
+
   // 把清单渲染到页面
   function render(manifest, live) {
     var statusEl = $("#updateStatus");
@@ -84,6 +119,9 @@
       }
     });
 
+    // 各端的「其它架构」独立包链接（清单带 variants 时才显示）
+    SITE_FLAVORS.forEach(function (f) { renderAlts(manifest, f); });
+
     // 顶栏/英雄区下载 CTA 也指向手机端
     var phoneRel = getRelease(manifest, "phone");
     $all('.download-link[data-flavor="phone"]').forEach(function (l) {
@@ -98,6 +136,10 @@
       row.className = "vrow";
       var ver = rel ? (rel.versionName || "—") : "—";
       var meta = rel ? sizeLabel(rel.size) : "尚未发布";
+      // 拆分架构分发时标出「多架构」，避免用户误以为只有这一个体积的包
+      if (rel && variantKeys(rel).length) {
+        meta = (meta ? meta + " · " : "") + "多架构";
+      }
       row.innerHTML =
         '<div class="vrow__name">' + (FLAVOR_LABEL[f] || f) + "</div>" +
         '<div class="vrow__ver">v' + ver + "</div>" +
@@ -214,7 +256,35 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  // 深浅色主题切换（默认跟随系统，选择后记忆）
+  function initTheme() {
+    var KEY = "wuai-theme";
+    var root = document.documentElement;
+    var btn = $("#themeToggle");
+    var SUN = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="2.6" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.4"/><line x1="2.6" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.4" y2="12"/><line x1="4.9" y1="4.9" x2="6.7" y2="6.7"/><line x1="17.3" y1="17.3" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.7" y2="17.3"/><line x1="17.3" y1="6.7" x2="19.1" y2="4.9"/></g></svg>';
+    var MOON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.6A8 8 0 0 1 9.4 4a7 7 0 1 0 10.6 10.6z" fill="currentColor"/></svg>';
+
+    function paint() {
+      var t = root.getAttribute("data-theme") || "dark";
+      if (btn) {
+        // 当前为浅色时显示月亮（点击切到深色），当前深色显示太阳
+        btn.innerHTML = t === "light" ? MOON : SUN;
+      }
+    }
+    paint();
+
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        paint();
+      });
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+    initTheme();
     initNav();
     initReveal();
     initYear();
