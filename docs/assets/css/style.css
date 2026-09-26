@@ -310,6 +310,9 @@ img, svg { display: block; }
 .platform__alts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 .platform__alts[hidden] { display: none; }
 .alts__label { font-size: 0.76rem; color: var(--text-faint); letter-spacing: 0.06em; }
+/* 标签 + 它的链接包成一组：卡片窄到放不下时，整组换行而不是把标签和链接拆开 */
+.alts__group { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.alts__group--mirror { margin-left: 6px; }
 .alts__link {
   font-size: 0.76rem; color: var(--text-dim); text-decoration: none;
   padding: 3px 9px; border-radius: 999px;

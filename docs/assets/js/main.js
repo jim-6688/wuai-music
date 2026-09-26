@@ -1,9 +1,9 @@
 /* =========================================================
    吾爱音乐 官网脚本
    - 同域读取 /version.json（与 App OTA 共用同一份清单）
-   - 同域读取 /stats.json（下载统计快照），再用 GitHub / 计数服务实时刷新
+   - 同域读取 /stats.json（下载统计 + 码云镜像现状快照），统计部分再用实时接口刷新
    - 动态填充各端下载链接 / 版本号 / 更新日志
-   - 清单与统计不可用时优雅降级（不显示假数字）
+   - 清单与快照不可用时优雅降级（不显示假数字、不显示会 404 的链接）
    ========================================================= */
 (function () {
   "use strict";
@@ -34,16 +34,20 @@
   // 用 `/releases/download/latest/<文件名>` 形式指向**最新** Release：
   // 实测码云支持 latest（三渠道均 HTTP 200、体积与 GitHub 资产一致，不存在的文件名返回真 404），
   // 所以这里**不用写死版本号** —— 以后发新版，只要在码云传同样文件名的包，链接自动跟上。
+  //
+  // ⚠️ 附件名是与 scripts/deploy_gitee.py 的**硬契约**（Python 侧是
+  //    ASSET_PRIMARY / ASSET_SECONDARY），两边必须同改，否则按钮 404：
+  //      app-<渠道>-release.apk        主包（arm64-v8a）
+  //      app-<渠道>-release-v7a.apk    32 位包（armeabi-v7a）
   var GITEE_REPO = "https://gitee.com/jinghe-net/wuai-music";
-  var GITEE_ASSETS = {
-    phone: "app-phone-release.apk",
-    hd: "app-hd-release.apk",
-    tv: "app-tv-release.apk",
+  var GITEE_ASSET_TPL = {
+    primary: "app-%s-release.apk",
+    v7a: "app-%s-release-v7a.apk"
   };
-  function giteeUrl(flavor) {
-    var asset = GITEE_ASSETS[flavor];
-    return asset
-      ? GITEE_REPO + "/releases/download/latest/" + asset
+  function giteeUrl(flavor, kind) {
+    var tpl = GITEE_ASSET_TPL[kind || "primary"];
+    return tpl && flavor
+      ? GITEE_REPO + "/releases/download/latest/" + tpl.replace("%s", flavor)
       : GITEE_REPO + "/releases";
   }
 
@@ -74,37 +78,57 @@
     return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
   }
 
-  // 主下载按钮下方渲染「其它架构」的独立包链接（仅在清单带 variants 时出现）
-  function renderAlts(manifest, flavor) {
+  // 主下载按钮下方渲染「其它架构」的独立包链接
+  //   ① 国际（GitHub）：清单 variants 里除顶层兜底包之外的架构
+  //   ② 国内（码云）：32 位包 —— **只在码云上真的有这个附件时才出现**
+  // 码云没有 GitHub 那种"按本机 ABI 自动分发"的 variants，页面只能摆链接让用户自己选；
+  // 而"本地构建出了 v7a" ≠ "已经传到码云"，点了 404 比不显示更糟 ⇒ 由 /stats.json
+  // 里发布时探测的 mirrors（真实存在性与体积）决定，不靠猜。
+  var lastManifest = null;
+  var mirrorState = null;      // { flavor: { primary: {size}, v7a: {size} } }
+
+  function renderAlts(flavor) {
     var box = document.querySelector('.platform__alts[data-alts="' + flavor + '"]');
     if (!box) return;
-    var rel = getRelease(manifest, flavor);
+    var rel = getRelease(lastManifest, flavor);
     var variants = (rel && rel.variants) || {};
     // 主按钮指向的那一份（顶层兜底包，通常是 arm64）不在这里再列一遍：
     // 清单里顶层 url 与 variants 里的 arm64 是同一个文件。
-    // 单 ABI 渠道（手机/车机）只有这一个包，排除后「其它架构」整行就该隐藏；
-    // 双架构渠道（TV）则只剩 armeabi-v7a 一个真正不同的包。
     var keys = variantKeys(rel).filter(function (k) {
       return variants[k].url !== (rel && rel.url);
     });
-    if (!keys.length) {
-      box.hidden = true;
-      box.innerHTML = "";
-      return;
+
+    var html = "";
+    if (keys.length) {
+      // 标签与它的链接包成一组：卡片窄，不包的话「标签留在上一行、链接掉到下一行」
+      html += '<span class="alts__group"><span class="alts__label">其它架构</span>';
+      keys.forEach(function (k) {
+        var v = variants[k];
+        var s = sizeLabel(v.size);
+        html += '<a class="alts__link" href="' + attr(v.url) + '">' +
+                k + (s ? " · " + s : "") + "</a>";
+      });
+      html += "</span>";
     }
-    var html = '<span class="alts__label">其它架构</span>';
-    keys.forEach(function (k) {
-      var v = variants[k];
-      var s = sizeLabel(v.size);
-      html += '<a class="alts__link" href="' + attr(v.url) + '">' +
-              k + (s ? " · " + s : "") + "</a>";
-    });
+
+    var m = mirrorState && mirrorState[flavor] && mirrorState[flavor].v7a;
+    if (m && m.size > 0) {
+      // 故意**不加 data-flavor**：initMirrors() 会挑 .mirror-link[data-flavor] 填主包直链，
+      // 加上就会把这条 32 位包的链接覆盖成主包。
+      html += '<span class="alts__group alts__group--mirror">' +
+              '<span class="alts__label">国内镜像</span>' +
+              '<a class="alts__link mirror-link" href="' +
+              attr(giteeUrl(flavor, "v7a")) + '">32 位包 · ' +
+              sizeLabel(m.size) + "</a></span>";
+    }
+
     box.innerHTML = html;
-    box.hidden = false;
+    box.hidden = !html;
   }
 
   // 把清单渲染到页面
   function render(manifest, live) {
+    lastManifest = manifest;        // renderAlts 要用（快照后到时会再触发一次刷新）
     var statusEl = $("#updateStatus");
     var statusText = $("#updateStatusText");
     var latestEl = $("#updateLatest");
@@ -145,8 +169,8 @@
       }
     });
 
-    // 各端的「其它架构」独立包链接（清单带 variants 时才显示）
-    SITE_FLAVORS.forEach(function (f) { renderAlts(manifest, f); });
+    // 各端的「其它架构 / 国内镜像 32 位包」（分别由清单与快照决定是否显示）
+    SITE_FLAVORS.forEach(function (f) { renderAlts(f); });
 
     // 顶栏/英雄区下载 CTA 也指向手机端
     var phoneRel = getRelease(manifest, "phone");
@@ -373,16 +397,6 @@
     var box = $("#dlStats");
     if (!box) return;
 
-    // ① 快照：让数字立刻可见（实时接口在国内未必每次都能连上）
-    fetchJson("/stats.json")
-      .then(function (s) {
-        if (!s) return;
-        if (typeof s.githubDownloads === "number") dlState.github = s.githubDownloads;
-        if (typeof s.siteClicks === "number") dlState.site = s.siteClicks;
-        paintDownloads();
-      })
-      .catch(function () {});
-
     // ② 实时：GitHub 匿名接口限 60 次/小时/IP，失败就继续用快照
     fetchJson(GH_RELEASES_API)
       .then(function (rels) {
@@ -412,6 +426,25 @@
         /\/releases\/(download|latest)/i.test(href);
       if (isDownload) bumpDownloads();
     });
+  }
+
+  // 快照：一次读 /stats.json，两处消费 —— ① 下载数字垫底 ② 码云镜像现状。
+  // 拿不到就静默放弃：统计块保持隐藏、32 位包入口不显示（都不显示假的）。
+  function initSnapshot() {
+    fetchJson("/stats.json")
+      .then(function (s) {
+        if (!s) return;
+        if (typeof s.githubDownloads === "number") dlState.github = s.githubDownloads;
+        if (typeof s.siteClicks === "number") dlState.site = s.siteClicks;
+        paintDownloads();
+
+        var g = s.mirrors && s.mirrors.gitee;
+        if (g) {
+          mirrorState = g;
+          SITE_FLAVORS.forEach(function (f) { renderAlts(f); });
+        }
+      })
+      .catch(function () {});
   }
 
   // 深浅色主题切换（默认跟随系统，选择后记忆）
@@ -448,6 +481,7 @@
     initYear();
     initMirrors();
     fetchManifest();
+    initSnapshot();
     initDownloads();
   });
 })();
