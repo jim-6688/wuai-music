@@ -12,14 +12,17 @@
         "arm64-v8a": {
           "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-arm64-v8a.apk",
           "size": 65512073,
-          "sha256": "aceb0576666ef3bdd89bd6514f541c7cbca9e54d763946e8399c2098960e7fa6"
+          "sha256": "aceb0576666ef3bdd89bd6514f541c7cbca9e54d763946e8399c2098960e7fa6",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
           "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-phone-armeabi-v7a.apk",
           "size": 77284017,
-          "sha256": "9a706ca8c6c5db8bc943186669aa1848ed332bb642d87436fad5067e68bd23ce"
+          "sha256": "9a706ca8c6c5db8bc943186669aa1848ed332bb642d87436fad5067e68bd23ce",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
-      }
+      },
+      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
     },
     "hd": {
       "versionName": "1.0.2",
@@ -33,14 +36,17 @@
         "arm64-v8a": {
           "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-arm64-v8a.apk",
           "size": 65515833,
-          "sha256": "ab79bd181bf77e0ba5c67e5a313629746371f4a67f35d92bb5a7b3a299767750"
+          "sha256": "ab79bd181bf77e0ba5c67e5a313629746371f4a67f35d92bb5a7b3a299767750",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
           "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-hd-armeabi-v7a.apk",
           "size": 77287777,
-          "sha256": "58034dba3f1f162564bc0265e3365f613039d672179099f5d82a1e0ecfffefa1"
+          "sha256": "58034dba3f1f162564bc0265e3365f613039d672179099f5d82a1e0ecfffefa1",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
-      }
+      },
+      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
     },
     "tv": {
       "versionName": "1.0.2",
@@ -54,14 +60,17 @@
         "arm64-v8a": {
           "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-arm64-v8a.apk",
           "size": 65711137,
-          "sha256": "b5bf477d9627fad50794167254e260f90a7f384301adef206baf8bb4f3c3507f"
+          "sha256": "b5bf477d9627fad50794167254e260f90a7f384301adef206baf8bb4f3c3507f",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
           "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.2/WuAiMusic-1.0.2-build9-tv-armeabi-v7a.apk",
           "size": 77466697,
-          "sha256": "c0c9deca1f9dcdc7853c0369bfdaa19495dfb9d915228b2277a09883e803e963"
+          "sha256": "c0c9deca1f9dcdc7853c0369bfdaa19495dfb9d915228b2277a09883e803e963",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
-      }
+      },
+      "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
     }
   },
   "minRequiredCode": {

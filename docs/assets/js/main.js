@@ -35,8 +35,12 @@
   // 实测码云支持 latest（三渠道均 HTTP 200、体积与 GitHub 资产一致，不存在的文件名返回真 404），
   // 所以这里**不用写死版本号** —— 以后发新版，只要在码云传同样文件名的包，链接自动跟上。
   //
-  // ⚠️ 附件名是与 scripts/deploy_gitee.py 的**硬契约**（Python 侧是
-  //    ASSET_PRIMARY / ASSET_SECONDARY），两边必须同改，否则按钮 404：
+  // ⚠️ 这是一条**三方硬契约**，改任何一处都要同步改另两处：
+  //      ① scripts/deploy_release.py   GITEE_* / gitee_mirror_url()  ← 唯一真源
+  //                                    （清单里的 urlMirror 由它生成，即 App 的回退下载地址）
+  //      ② scripts/deploy_gitee.py     ASSET_PRIMARY / ASSET_SECONDARY（上传名，import 自 ①）
+  //      ③ 本文件                       GITEE_REPO / GITEE_ASSET_TPL（下面这两个）
+  //    一致性由 scripts/deploy_selftest.py 断言；漂移不会报错，只会让按钮静默 404：
   //      app-<渠道>-release.apk        主包（arm64-v8a）
   //      app-<渠道>-release-v7a.apk    32 位包（armeabi-v7a）
   var GITEE_REPO = "https://gitee.com/jinghe-net/wuai-music";
