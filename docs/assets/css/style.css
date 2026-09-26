@@ -425,6 +425,17 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
 .step p { color: var(--text-dim); font-size: 0.92rem; }
 .ota__note { text-align: center; color: var(--text-faint); font-size: 0.9rem; margin-top: 40px; max-width: 44em; margin-left: auto; margin-right: auto; }
 
+/* ---------- 下载统计 ---------- */
+/* 数字未拿到时整块隐藏（.is-pending），避免先闪一个 0 再跳成真实值 */
+.dlstats { text-align: center; margin-top: 30px; }
+.dlstats.is-pending { visibility: hidden; }
+.dlstats__total { color: var(--text-dim); font-size: 1rem; }
+.dlstats__total strong {
+  font-size: 1.75rem; font-weight: 700; color: var(--gold-soft);
+  margin: 0 6px; font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
+}
+.dlstats__break { margin-top: 8px; color: var(--text-faint); font-size: 0.84rem; }
+
 /* ---------- 页脚 ---------- */
 .footer { border-top: 1px solid var(--border); margin-top: 40px; }
 .footer__inner { max-width: var(--maxw); margin: 0 auto; padding: 50px clamp(16px, 4vw, 32px); display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; justify-content: space-between; }

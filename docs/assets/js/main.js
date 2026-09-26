@@ -1,8 +1,9 @@
 /* =========================================================
    吾爱音乐 官网脚本
    - 同域读取 /version.json（与 App OTA 共用同一份清单）
+   - 同域读取 /stats.json（下载统计快照），再用 GitHub / 计数服务实时刷新
    - 动态填充各端下载链接 / 版本号 / 更新日志
-   - 清单不可用时优雅降级
+   - 清单与统计不可用时优雅降级（不显示假数字）
    ========================================================= */
 (function () {
   "use strict";
@@ -295,6 +296,124 @@
     });
   }
 
+  /* =========================================================
+     下载统计：「本站已下载 N 次」
+     两个口径叠加，页面上分开讲清楚，不混成一个含糊的数字：
+       ① GitHub 官方 download_count —— 平台自己统计的，改不了、刷不动，
+          而且 App 内 OTA 更新时的下载也算在里面；但**码云（国内）那条链路不计入**。
+       ② 本站按钮点击计数 —— 码云侧没有公开计数（页面和 API 都不给），只能自己数。
+     数据来源与降级：
+       - `/stats.json`（发布时生成的快照，同域读取）先把数字垫上，页面不空等；
+       - 再用 api.github.com / 计数服务**实时刷新**一次，成功即覆盖；
+       - 两个都拿不到时整块保持隐藏 —— 宁可不显示，也不显示假数字。
+     ========================================================= */
+  var COUNT_API = "https://countapi.mileshilliard.com/api/v1";
+  // 计数键：单层 key（这服务不支持 namespace/key 两级，两级路径会 404）
+  var COUNT_KEY = "wuai-music-site-dl-2026";
+  // 同一浏览器只计一次：否则刷新页面、连点两个按钮都能灌水，数字立刻失去意义
+  var COUNTED_FLAG = "wuai-download-counted";
+  var GH_RELEASES_API =
+    "https://api.github.com/repos/jim-6688/wuai-music/releases?per_page=100";
+
+  var dlState = { github: null, site: null };
+
+  // 只统计安装包：Release 里还挂过截图 png，算进去会让数字虚高
+  function sumGithubDownloads(rels) {
+    if (!rels || !rels.length) return null;
+    var sum = 0, seen = false;
+    rels.forEach(function (rel) {
+      (rel.assets || []).forEach(function (a) {
+        if (/\.apk$/i.test(a.name || "")) {
+          sum += a.download_count || 0;
+          seen = true;
+        }
+      });
+    });
+    return seen ? sum : null;
+  }
+
+  function fmtNum(n) {
+    try { return n.toLocaleString("zh-CN"); } catch (e) { return String(n); }
+  }
+
+  function paintDownloads() {
+    var box = $("#dlStats");
+    if (!box) return;
+    if (dlState.github === null && dlState.site === null) return;
+    var total = (dlState.github || 0) + (dlState.site || 0);
+    $("#dlTotal").textContent = fmtNum(total);
+    var parts = [];
+    if (dlState.github !== null) parts.push("GitHub 官方统计 " + fmtNum(dlState.github) + " 次");
+    if (dlState.site !== null) parts.push("本站按钮点击 " + fmtNum(dlState.site) + " 次");
+    $("#dlBreak").textContent = parts.join(" · ");
+    box.classList.remove("is-pending");
+  }
+
+  function fetchJson(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    });
+  }
+
+  // 点下载按钮 +1。同浏览器只贡献一次；失败则不记标记，下次点击会重试。
+  function bumpDownloads() {
+    try { if (localStorage.getItem(COUNTED_FLAG)) return; } catch (e) {}
+    fetchJson(COUNT_API + "/hit/" + COUNT_KEY)
+      .then(function (d) {
+        if (!d || typeof d.value !== "number") return;
+        dlState.site = d.value;
+        try { localStorage.setItem(COUNTED_FLAG, "1"); } catch (e) {}
+        paintDownloads();
+      })
+      .catch(function () { /* 计数失败不影响下载本身 */ });
+  }
+
+  function initDownloads() {
+    var box = $("#dlStats");
+    if (!box) return;
+
+    // ① 快照：让数字立刻可见（实时接口在国内未必每次都能连上）
+    fetchJson("/stats.json")
+      .then(function (s) {
+        if (!s) return;
+        if (typeof s.githubDownloads === "number") dlState.github = s.githubDownloads;
+        if (typeof s.siteClicks === "number") dlState.site = s.siteClicks;
+        paintDownloads();
+      })
+      .catch(function () {});
+
+    // ② 实时：GitHub 匿名接口限 60 次/小时/IP，失败就继续用快照
+    fetchJson(GH_RELEASES_API)
+      .then(function (rels) {
+        var n = sumGithubDownloads(rels);
+        if (n !== null) { dlState.github = n; paintDownloads(); }
+      })
+      .catch(function () {});
+
+    // ③ 实时：本站点击数（只读，不 +1）
+    fetchJson(COUNT_API + "/get/" + COUNT_KEY)
+      .then(function (d) {
+        if (d && typeof d.value === "number") { dlState.site = d.value; paintDownloads(); }
+      })
+      .catch(function () {});
+
+    // ④ 点击任意下载入口 ⇒ +1（用事件委托，动态渲染的「其它架构」链接也覆盖）
+    document.addEventListener("click", function (e) {
+      var el = e.target;
+      if (!el || !el.closest) return;
+      var a = el.closest("a[href]");
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      var isDownload =
+        a.classList.contains("download-link") ||
+        a.classList.contains("mirror-link") ||
+        a.classList.contains("alts__link") ||
+        /\/releases\/(download|latest)/i.test(href);
+      if (isDownload) bumpDownloads();
+    });
+  }
+
   // 深浅色主题切换（默认跟随系统，选择后记忆）
   function initTheme() {
     var KEY = "wuai-theme";
@@ -329,5 +448,6 @@
     initYear();
     initMirrors();
     fetchManifest();
+    initDownloads();
   });
 })();

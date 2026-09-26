@@ -366,6 +366,13 @@
         <div class="step glass reveal"><span class="step__no">04</span><h3>一键安装</h3><p>通过系统安装器完成覆盖安装，签名一致即可无缝升级。</p></div>
       </div>
       <p class="ota__note reveal">强制更新机制：当你的版本低于最低基线时，必须更新才能继续使用，确保老版本不会因接口变更而无法工作。</p>
+
+      <!-- 下载统计：GitHub 官方计数（平台统计、不可刷）+ 本站按钮点击计数。
+           默认带 is-pending（不可见），拿到真实数字后由 main.js 移除 —— 宁可不显示，也不显示假数字。 -->
+      <div class="dlstats reveal is-pending" id="dlStats">
+        <p class="dlstats__total">本站已下载 <strong id="dlTotal">0</strong> 次</p>
+        <p class="dlstats__break" id="dlBreak"></p>
+      </div>
     </section>
   </main>
 
