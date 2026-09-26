@@ -313,6 +313,20 @@ img, svg { display: block; }
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 .alts__link:hover { color: var(--gold-soft); border-color: var(--border-strong); }
+/* 国内镜像（码云）入口：主按钮下方的次级链接，虚线边框与实心主按钮拉开层级 */
+.platform__mirror { margin: 12px 0 0; font-size: 0.76rem; }
+.mirror-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--text-faint); text-decoration: none;
+  padding: 3px 10px; border-radius: 999px;
+  border: 1px dashed var(--border); background: var(--surface);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.mirror-link::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); opacity: 0.7; flex: none;
+}
+.mirror-link:hover { color: var(--gold-soft); border-color: var(--border-strong); }
 .platforms__note { text-align: center; color: var(--text-faint); font-size: 0.88rem; margin-top: 36px; }
 
 /* ---------- 界面预览 ---------- */

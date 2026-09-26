@@ -29,6 +29,23 @@
     minRequiredCode: { phone: 1, hd: 1, tv: 1 },
   };
 
+  // 码云（Gitee）国内镜像仓库。
+  // 用 `/releases/download/latest/<文件名>` 形式指向**最新** Release：
+  // 实测码云支持 latest（三渠道均 HTTP 200、体积与 GitHub 资产一致，不存在的文件名返回真 404），
+  // 所以这里**不用写死版本号** —— 以后发新版，只要在码云传同样文件名的包，链接自动跟上。
+  var GITEE_REPO = "https://gitee.com/jinghe-net/wuai-music";
+  var GITEE_ASSETS = {
+    phone: "app-phone-release.apk",
+    hd: "app-hd-release.apk",
+    tv: "app-tv-release.apk",
+  };
+  function giteeUrl(flavor) {
+    var asset = GITEE_ASSETS[flavor];
+    return asset
+      ? GITEE_REPO + "/releases/download/latest/" + asset
+      : GITEE_REPO + "/releases";
+  }
+
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
 
@@ -224,6 +241,10 @@
   // 导航：滚动加背景
   function initNav() {
     var nav = $("#nav");
+    // 没有 #nav 就直接跳过。否则下面 onScroll() 在 nav 为 null 时抛 TypeError，
+    // 而 DOMContentLoaded 里 initNav 排在 initMirrors/fetchManifest **之前**，
+    // 一处抛错会让后面所有初始化静默失效（下载链接、版本号全都不填）。
+    if (!nav) return;
     var onScroll = function () {
       if (window.scrollY > 20) nav.classList.add("is-scrolled");
       else nav.classList.remove("is-scrolled");
@@ -264,6 +285,14 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  // 国内镜像直链。**不依赖 version.json**，DOM 就绪即填好 —— 清单加载失败时
+  // 仍指向码云 Releases（HTML 里写死的兜底 href），不会出现空链。
+  function initMirrors() {
+    $all(".mirror-link[data-flavor]").forEach(function (a) {
+      a.setAttribute("href", giteeUrl(a.getAttribute("data-flavor")));
+    });
+  }
+
   // 深浅色主题切换（默认跟随系统，选择后记忆）
   function initTheme() {
     var KEY = "wuai-theme";
@@ -296,6 +325,7 @@
     initNav();
     initReveal();
     initYear();
+    initMirrors();
     fetchManifest();
   });
 })();
