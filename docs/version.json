@@ -1,32 +1,62 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.0.0",
-      "versionCode": 1,
+      "versionName": "1.0.1",
+      "versionCode": 8,
       "flavor": "phone",
-      "notes": "吾爱音乐 1.0.0 首个正式版本发布。",
-      "url": "",
-      "size": 0,
-      "sha256": ""
+      "notes": "吾爱Music 1.0.1 更新",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-phone-arm64-v8a.apk",
+      "size": 63806145,
+      "sha256": "91928d8b3c09a159c07a056ebd3ef92b5e059872f85daac217da74512d3b649c",
+      "variants": {
+        "arm64-v8a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-phone-arm64-v8a.apk",
+          "size": 63806145,
+          "sha256": "91928d8b3c09a159c07a056ebd3ef92b5e059872f85daac217da74512d3b649c"
+        }
+      }
     },
     "hd": {
-      "versionName": "1.0.0",
-      "versionCode": 1,
+      "versionName": "1.0.1",
+      "versionCode": 8,
       "flavor": "hd",
-      "notes": "吾爱音乐 1.0.0 首个正式版本（车机/平板）发布。",
-      "url": "",
-      "size": 0,
-      "sha256": ""
+      "notes": "吾爱Music 1.0.1 更新",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-hd-arm64-v8a.apk",
+      "size": 63809905,
+      "sha256": "2683a0ff5e834a09875647c59af65411d2c283b41d2f7d0ff5436f59baa9b1c4",
+      "variants": {
+        "arm64-v8a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-hd-arm64-v8a.apk",
+          "size": 63809905,
+          "sha256": "2683a0ff5e834a09875647c59af65411d2c283b41d2f7d0ff5436f59baa9b1c4"
+        }
+      }
     },
     "tv": {
-      "versionName": "1.0.0",
-      "versionCode": 1,
+      "versionName": "1.0.1",
+      "versionCode": 8,
       "flavor": "tv",
-      "notes": "吾爱音乐 1.0.0 首个正式版本（电视）发布。",
-      "url": "",
-      "size": 0,
-      "sha256": ""
+      "notes": "吾爱Music 1.0.1 更新",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-tv-arm64-v8a.apk",
+      "size": 63809761,
+      "sha256": "e0401f4760f853123ed90e62af0ad17ac081ea6c63900eb4398cb4de628db838",
+      "variants": {
+        "arm64-v8a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-tv-arm64-v8a.apk",
+          "size": 63809761,
+          "sha256": "e0401f4760f853123ed90e62af0ad17ac081ea6c63900eb4398cb4de628db838"
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.1/WuAiMusic-1.0.1-build8-tv-armeabi-v7a.apk",
+          "size": 75565321,
+          "sha256": "2417454fba70e6b98254048e4d89673943e6d4511ea93ca8c7054686700153c4"
+        }
+      }
     }
   },
-  "minRequiredCode": { "phone": 1, "hd": 1, "tv": 1 }
+  "minRequiredCode": {
+    "phone": 1,
+    "hd": 1,
+    "tv": 1
+  }
 }

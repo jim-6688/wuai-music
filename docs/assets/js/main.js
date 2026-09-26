@@ -62,7 +62,13 @@
     if (!box) return;
     var rel = getRelease(manifest, flavor);
     var variants = (rel && rel.variants) || {};
-    var keys = variantKeys(rel);
+    // 主按钮指向的那一份（顶层兜底包，通常是 arm64）不在这里再列一遍：
+    // 清单里顶层 url 与 variants 里的 arm64 是同一个文件。
+    // 单 ABI 渠道（手机/车机）只有这一个包，排除后「其它架构」整行就该隐藏；
+    // 双架构渠道（TV）则只剩 armeabi-v7a 一个真正不同的包。
+    var keys = variantKeys(rel).filter(function (k) {
+      return variants[k].url !== (rel && rel.url);
+    });
     if (!keys.length) {
       box.hidden = true;
       box.innerHTML = "";
@@ -136,8 +142,10 @@
       row.className = "vrow";
       var ver = rel ? (rel.versionName || "—") : "—";
       var meta = rel ? sizeLabel(rel.size) : "尚未发布";
-      // 拆分架构分发时标出「多架构」，避免用户误以为只有这一个体积的包
-      if (rel && variantKeys(rel).length) {
+      // 只有**真的分了多个架构**才标「多架构」。单 ABI 渠道（手机/车机）虽然
+      // 清单里也带 variants（只有 arm64 一项），但实际只有一个包，标上去会让
+      // 用户以为还有别的可下。
+      if (rel && variantKeys(rel).length > 1) {
         meta = (meta ? meta + " · " : "") + "多架构";
       }
       row.innerHTML =
