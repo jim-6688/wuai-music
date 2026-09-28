@@ -45,6 +45,7 @@
         <a href="#platforms">各端下载</a>
         <a href="#update">更新中心</a>
         <a href="#ota">自动更新</a>
+        <a href="#community">粉丝群</a>
       </nav>
       <a class="btn btn--gold nav__cta" href="#platforms">立即下载</a>
       <button class="nav__theme" id="themeToggle" type="button" aria-label="切换深浅色主题" title="切换主题"></button>
@@ -374,6 +375,49 @@
         <p class="dlstats__break" id="dlBreak"></p>
       </div>
     </section>
+
+    <!-- 加入 QQ 粉丝群 -->
+    <!-- 整张卡片就是一个加群链接，点哪儿都能拉起 QQ，不用瞄准按钮。
+         href 用腾讯官方的 qm.qq.com 加群短链：手机端打开即尝试唤起 QQ 申请入群，
+         桌面端会打开腾讯的加群页（页面内带「打开QQ」按钮与二维码）。
+         该短链由腾讯维护、不含版本号，长期有效。 -->
+    <section class="section" id="community">
+      <div class="section__head reveal">
+        <span class="eyebrow">加入我们</span>
+        <h2>进 QQ 粉丝群</h2>
+        <p class="section__sub">遇到问题、想提需求，或者只是想聊聊无损音乐与器材，都欢迎进群。版本预告、问题排查与使用技巧也会在群里同步。</p>
+      </div>
+
+      <a class="joingroup glass reveal" href="https://qm.qq.com/q/9OqnRwgMD0"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="点击加入 QQ 群聊：吾爱 Music 音乐播放器官方群">
+        <span class="joingroup__avatar" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="34" height="34">
+            <ellipse cx="10.5" cy="28" rx="3.4" ry="8.6" fill="currentColor" transform="rotate(-14 10.5 28)"/>
+            <ellipse cx="37.5" cy="28" rx="3.4" ry="8.6" fill="currentColor" transform="rotate(14 37.5 28)"/>
+            <ellipse cx="24" cy="26" rx="13.4" ry="16.8" fill="currentColor"/>
+            <ellipse cx="24" cy="32.5" rx="8" ry="9" fill="#ffffff"/>
+            <ellipse cx="24" cy="17" rx="8.6" ry="7.2" fill="#ffffff"/>
+            <circle cx="20.2" cy="16.6" r="1.9" fill="#1a1a1e"/>
+            <circle cx="27.8" cy="16.6" r="1.9" fill="#1a1a1e"/>
+            <path d="M21.6 20.2h4.8L24 23.2z" fill="#f2a33c"/>
+          </svg>
+        </span>
+        <span class="joingroup__body">
+          <strong class="joingroup__title">吾爱 Music 音乐播放器官方群</strong>
+          <!-- 文案刻意收短：要能在 360px 窄屏的单行内放下。
+               中文可以逐字断行，一旦换行就会把「申请入群」切成「申请入/群」这类
+               难看的断口 —— text-wrap: balance 只会让断点更平均，不会避开词界。 -->
+          <span class="joingroup__desc">手机端点击自动拉起 QQ 加群，免搜群号</span>
+        </span>
+        <span class="joingroup__cta">
+          一键加群
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z" fill="currentColor"/></svg>
+        </span>
+      </a>
+
+      <p class="joingroup__note reveal">群链接由腾讯 QQ 官方提供（qm.qq.com），本站不会因此获取你的任何账号信息。</p>
+    </section>
   </main>
 
   <!-- 页脚 -->
@@ -388,6 +432,8 @@
         <a href="#platforms">下载</a>
         <a href="#update">更新中心</a>
         <a href="#ota">自动更新</a>
+        <!-- 加群入口在页脚再留一个：用户滚到底部时不必再往上翻 -->
+        <a href="#community">QQ 粉丝群</a>
       </nav>
       <p class="footer__copy">© <span id="year"></span> 吾爱音乐 WuAiMusic · 本站点由 Cloudflare Pages 托管</p>
     </div>

@@ -448,9 +448,71 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
 .footer__links a:hover { color: var(--gold-soft); }
 .footer__copy { width: 100%; color: var(--text-faint); font-size: 0.82rem; border-top: 1px solid var(--border); padding-top: 22px; }
 
+/* ---------- 加入 QQ 粉丝群 ---------- */
+/* 整张卡片是 <a>，所以按钮外观要自己写（不能嵌套 .btn，a 里不能再放 a）。
+   悬停抬升靠 .joingroup:hover —— 见文末 .reveal 的说明，这里用的是 transform 而非 translate。 */
+.joingroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 30px;
+  color: var(--text);
+  transition: transform 0.4s var(--ease), border-color 0.4s,
+    box-shadow 0.4s;
+}
+.joingroup:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 169, 110, 0.55);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+}
+[data-theme="light"] .joingroup:hover { box-shadow: 0 28px 70px rgba(60, 50, 25, 0.18); }
+.joingroup__avatar {
+  flex: none;
+  width: 66px;
+  height: 66px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: border-color 0.4s, transform 0.4s var(--ease);
+}
+.joingroup:hover .joingroup__avatar { border-color: var(--border-strong); transform: scale(1.04); }
+.joingroup__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.joingroup__title { font-size: 1.16rem; font-weight: 700; letter-spacing: 0.01em; }
+.joingroup__desc { color: var(--text-dim); font-size: 0.9rem; }
+/* 金色胶囊按钮：外观对齐 .btn--gold，但不加 .btn 类（保持 <a> 内无嵌套交互元素） */
+.joingroup__cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.85em 1.6em;
+  border-radius: 999px;
+  background: var(--gold-grad);
+  color: #1a140a;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 30px rgba(201, 169, 110, 0.28);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.joingroup:hover .joingroup__cta {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(201, 169, 110, 0.4);
+}
+.joingroup__note { text-align: center; color: var(--text-faint); font-size: 0.84rem; margin-top: 20px; }
+
 /* ---------- 滚动入场 ---------- */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-.reveal.is-visible { opacity: 1; transform: none; }
+/* ⚠️ 入场位移用独立属性 `translate`，**不要用 `transform`**。
+   .reveal 与 .card / .platform / .step / .joingroup 这些「悬停抬升」的元素叠在同一个节点上，
+   而 :hover 规则是 (0,2,0)、.reveal.is-visible 也是 (0,2,0) —— 本块在文件最后，
+   同特异性下后者胜出，会把 transform: none 盖在 hover 上，**悬停抬升全部失效**（且不报错）。
+   改用 translate 后两者互不干扰：入场走 translate，悬停走 transform。 */
+.reveal { opacity: 0; translate: 0 28px; transition: opacity 0.8s var(--ease), translate 0.8s var(--ease); }
+.reveal.is-visible { opacity: 1; translate: none; }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 960px) {
@@ -492,9 +554,13 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
   .shot figcaption { font-size: 0.86rem; margin-top: 10px; }
   .shot figcaption span { font-size: 0.72rem; }
   .shot--wide { margin-top: 24px; }
+  /* 加群卡片：窄屏改纵向堆叠，按钮占满整行（命中区域更大，拇指更好点） */
+  .joingroup { flex-direction: column; text-align: center; gap: 16px; padding: 26px 22px; }
+  .joingroup__body { flex: none; align-items: center; }
+  .joingroup__cta { width: 100%; justify-content: center; padding: 1em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; translate: none; }
 }
