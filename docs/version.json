@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.0.5",
-      "versionCode": 12,
+      "versionName": "1.0.6",
+      "versionCode": 13,
       "flavor": "phone",
-      "notes": "- **音乐美化中心改版**：结果按 **10 条一组**给出，可**手动调整**歌名 / 歌手 / 专辑 / 年份 / 流派\n  后再确认；确认过的曲目在后续优化中**自动跳过**，人工核对过的结果不会被机器再覆盖\n- 美化识别准确率提升：修复「未知艺术家」补不上真实艺术家、文件名「歌名-歌手」顺序误判、\n  以及歌手 A 被误识别成歌手 B 三类问题\n- TV 端音乐美化中心补上「自动应用」开关与落盘入口（此前电视上美化结果永远写不进文件）\n- 音乐列表：**播放时自动收起**以最大化播放页；设置里可开启「始终显示播放列表」保持常显\n- 本地音乐改为**以文件夹为单位**浏览，扫描时按「含音频文件的目录」建立列表",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-phone-arm64-v8a.apk",
-      "size": 65708681,
-      "sha256": "54ff029cc2043448c9a541650a8ad1433ce745e7298558c116e2ceea1fa0789e",
+      "notes": "- 修复**美化 / 改名后重启就恢复原状**：写入结果会回读校验，写完还会通知系统媒体库刷新\n- 美化后**自动刷新所在的音乐列表**：文件夹浏览、文件夹专辑、播放队列一起更新\n- **播放失败的歌曲自动跳到下一首**，不再停在那里\n- 本地音乐列表**不再显示超过 10 分钟的长音频**（整轨、有声书等）\n- **一键美化的顺序跟随音乐列表顺序**\n- 环形脉冲可视化**加大尺寸**，不再被圆形封面遮挡\n- 美化获取的**歌词 / 封面写入源音乐目录**，改名时一并同步；封面同时**内嵌进音乐文件**\n- 美化后**自动清理旧版遗留的封面图**，并让封面缓存立即失效——换了封面不用再重启",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-phone-arm64-v8a.apk",
+      "size": 65905289,
+      "sha256": "635afb2fc86015367237491a847c760128bd16172ebef9def1c107b841e25643",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-phone-arm64-v8a.apk",
-          "size": 65708681,
-          "sha256": "54ff029cc2043448c9a541650a8ad1433ce745e7298558c116e2ceea1fa0789e",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-phone-arm64-v8a.apk",
+          "size": 65905289,
+          "sha256": "635afb2fc86015367237491a847c760128bd16172ebef9def1c107b841e25643",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-phone-armeabi-v7a.apk",
-          "size": 77529777,
-          "sha256": "331ca273d7af72e3bab404fc19294144cd9630c529bdf827eca4d484477ac7cc",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-phone-armeabi-v7a.apk",
+          "size": 77628081,
+          "sha256": "4898fa71edc8d7b4b6b261636892b361d1ea9638323d74133e993a47e795e196",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.0.5",
-      "versionCode": 12,
+      "versionName": "1.0.6",
+      "versionCode": 13,
       "flavor": "hd",
-      "notes": "- **音乐美化中心改版**：结果按 **10 条一组**给出，可**手动调整**歌名 / 歌手 / 专辑 / 年份 / 流派\n  后再确认；确认过的曲目在后续优化中**自动跳过**，人工核对过的结果不会被机器再覆盖\n- 美化识别准确率提升：修复「未知艺术家」补不上真实艺术家、文件名「歌名-歌手」顺序误判、\n  以及歌手 A 被误识别成歌手 B 三类问题\n- TV 端音乐美化中心补上「自动应用」开关与落盘入口（此前电视上美化结果永远写不进文件）\n- 音乐列表：**播放时自动收起**以最大化播放页；设置里可开启「始终显示播放列表」保持常显\n- 本地音乐改为**以文件夹为单位**浏览，扫描时按「含音频文件的目录」建立列表",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-hd-arm64-v8a.apk",
-      "size": 65712441,
-      "sha256": "ac9e94e4139b2ab420485bfa7111be582258997443c69f3daf429dbaf4322500",
+      "notes": "- 修复**美化 / 改名后重启就恢复原状**：写入结果会回读校验，写完还会通知系统媒体库刷新\n- 美化后**自动刷新所在的音乐列表**：文件夹浏览、文件夹专辑、播放队列一起更新\n- **播放失败的歌曲自动跳到下一首**，不再停在那里\n- 本地音乐列表**不再显示超过 10 分钟的长音频**（整轨、有声书等）\n- **一键美化的顺序跟随音乐列表顺序**\n- 环形脉冲可视化**加大尺寸**，不再被圆形封面遮挡\n- 美化获取的**歌词 / 封面写入源音乐目录**，改名时一并同步；封面同时**内嵌进音乐文件**\n- 美化后**自动清理旧版遗留的封面图**，并让封面缓存立即失效——换了封面不用再重启",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-hd-arm64-v8a.apk",
+      "size": 65909049,
+      "sha256": "f6f3f0cbe647017886a9dccc63c38abafedf22f4e22eebfeacce68fd4fe9c470",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-hd-arm64-v8a.apk",
-          "size": 65712441,
-          "sha256": "ac9e94e4139b2ab420485bfa7111be582258997443c69f3daf429dbaf4322500",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-hd-arm64-v8a.apk",
+          "size": 65909049,
+          "sha256": "f6f3f0cbe647017886a9dccc63c38abafedf22f4e22eebfeacce68fd4fe9c470",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-hd-armeabi-v7a.apk",
-          "size": 77533537,
-          "sha256": "c79fd502db4c005a6b5639898ef49b7084c51ba7abfefbdda560de85f8db4a40",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-hd-armeabi-v7a.apk",
+          "size": 77631841,
+          "sha256": "1902f3b0985de881d9a82ac651f65fed66891832f4d5e22f92453016cf215177",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.0.5",
-      "versionCode": 12,
+      "versionName": "1.0.6",
+      "versionCode": 13,
       "flavor": "tv",
-      "notes": "- **音乐美化中心改版**：结果按 **10 条一组**给出，可**手动调整**歌名 / 歌手 / 专辑 / 年份 / 流派\n  后再确认；确认过的曲目在后续优化中**自动跳过**，人工核对过的结果不会被机器再覆盖\n- 美化识别准确率提升：修复「未知艺术家」补不上真实艺术家、文件名「歌名-歌手」顺序误判、\n  以及歌手 A 被误识别成歌手 B 三类问题\n- TV 端音乐美化中心补上「自动应用」开关与落盘入口（此前电视上美化结果永远写不进文件）\n- 音乐列表：**播放时自动收起**以最大化播放页；设置里可开启「始终显示播放列表」保持常显\n- 本地音乐改为**以文件夹为单位**浏览，扫描时按「含音频文件的目录」建立列表",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-tv-arm64-v8a.apk",
-      "size": 65973281,
-      "sha256": "fa5f31ba400c80706816bcf7c944837bdf94288277fb08f04a1d4757fc29f63f",
+      "notes": "- 修复**美化 / 改名后重启就恢复原状**：写入结果会回读校验，写完还会通知系统媒体库刷新\n- 美化后**自动刷新所在的音乐列表**：文件夹浏览、文件夹专辑、播放队列一起更新\n- **播放失败的歌曲自动跳到下一首**，不再停在那里\n- 本地音乐列表**不再显示超过 10 分钟的长音频**（整轨、有声书等）\n- **一键美化的顺序跟随音乐列表顺序**\n- 环形脉冲可视化**加大尺寸**，不再被圆形封面遮挡\n- 美化获取的**歌词 / 封面写入源音乐目录**，改名时一并同步；封面同时**内嵌进音乐文件**\n- 美化后**自动清理旧版遗留的封面图**，并让封面缓存立即失效——换了封面不用再重启",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-tv-arm64-v8a.apk",
+      "size": 66104349,
+      "sha256": "383abb12c787cfb33771778781483f2fe8c813f563c80be9c6e9d6bc6359d5a7",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-tv-arm64-v8a.apk",
-          "size": 65973281,
-          "sha256": "fa5f31ba400c80706816bcf7c944837bdf94288277fb08f04a1d4757fc29f63f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-tv-arm64-v8a.apk",
+          "size": 66104349,
+          "sha256": "383abb12c787cfb33771778781483f2fe8c813f563c80be9c6e9d6bc6359d5a7",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.5/WuAiMusic-1.0.5-build12-tv-armeabi-v7a.apk",
-          "size": 77696073,
-          "sha256": "c2b63ac7b5ac372015d32cd0f89785fe9b994479ce84acb87b7751b477a8e4c5",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-tv-armeabi-v7a.apk",
+          "size": 77827141,
+          "sha256": "3b9fec79cc6348d97da56268624172b7012b39879a05bbbee4d8f0ee02bbeae3",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
