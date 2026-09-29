@@ -1,49 +1,41 @@
 {
-  "githubDownloads": 218,
-  "siteClicks": 8,
+  "githubDownloads": 225,
+  "siteClicks": 9,
   "mirrors": {
-    "checkedAt": "2026-09-28T17:52:14+08:00",
+    "checkedAt": "2026-09-29T13:07:55+08:00",
     "repo": "https://gitee.com/jinghe-net/wuai-music",
     "gitee": {
       "phone": {
         "primary": {
-          "size": 65905289,
-          "attachId": 3284849,
-          "tag": "v1.0.6"
+          "size": 0
         },
         "v7a": {
-          "size": 77628081,
-          "attachId": 3284856,
-          "tag": "v1.0.6"
+          "size": 0
         }
       },
       "hd": {
         "primary": {
-          "size": 65909049,
-          "attachId": 3284858,
-          "tag": "v1.0.6"
+          "size": 0
         },
         "v7a": {
-          "size": 77631841,
-          "attachId": 3284861,
-          "tag": "v1.0.6"
+          "size": 0
         }
       },
       "tv": {
         "primary": {
           "size": 66104349,
-          "attachId": 3284872,
-          "tag": "v1.0.6"
+          "attachId": 3288866,
+          "tag": "v1.0.7"
         },
         "v7a": {
-          "size": 77827141,
-          "attachId": 3284880,
-          "tag": "v1.0.6"
+          "size": 77843525,
+          "attachId": 3288868,
+          "tag": "v1.0.7"
         }
       }
     }
   },
-  "updatedAt": "2026-09-28T17:52:17+08:00",
+  "updatedAt": "2026-09-29T13:07:57+08:00",
   "_note": "githubDownloads = GitHub Release 的 download_count 之和（只算 .apk）；siteClicks = 本站下载按钮点击（同一浏览器只计一次）。页面会用实时接口覆盖这两个值，失败则显示本快照。mirrors = 码云 latest 直链的真实存在性与体积（v7a.size=0 表示没有 32 位包），页面据此决定要不要显示「32 位包」入口。",
-  "total": 226
+  "total": 234
 }

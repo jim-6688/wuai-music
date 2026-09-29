@@ -49,25 +49,25 @@
       }
     },
     "tv": {
-      "versionName": "1.0.6",
-      "versionCode": 13,
+      "versionName": "1.0.7",
+      "versionCode": 14,
       "flavor": "tv",
-      "notes": "- 修复**美化 / 改名后重启就恢复原状**：写入结果会回读校验，写完还会通知系统媒体库刷新\n- 美化后**自动刷新所在的音乐列表**：文件夹浏览、文件夹专辑、播放队列一起更新\n- **播放失败的歌曲自动跳到下一首**，不再停在那里\n- 本地音乐列表**不再显示超过 10 分钟的长音频**（整轨、有声书等）\n- **一键美化的顺序跟随音乐列表顺序**\n- 环形脉冲可视化**加大尺寸**，不再被圆形封面遮挡\n- 美化获取的**歌词 / 封面写入源音乐目录**，改名时一并同步；封面同时**内嵌进音乐文件**\n- 美化后**自动清理旧版遗留的封面图**，并让封面缓存立即失效——换了封面不用再重启",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-tv-arm64-v8a.apk",
+      "notes": "- TV 美化中心：修复焦点定位异常，遥控器可正常选中并启动美化任务\n- TV 均衡器：字体放大到 TV 可读基线（标题 / 正文 / 标签），远距清晰\n- TV：消除 Android TV 原生黄色焦点双横线对选中态的干扰\n- TV：统一字体基线规范（菜单 / 正文 / 设置 / 歌词），提升 2–3 米观看可读性",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.7/WuAiMusic-1.0.7-build14-tv-arm64-v8a.apk",
       "size": 66104349,
-      "sha256": "383abb12c787cfb33771778781483f2fe8c813f563c80be9c6e9d6bc6359d5a7",
+      "sha256": "38115b5125622ba73eec39928d57f1de0671f23dd8990b90c50432088cc648f1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.7/WuAiMusic-1.0.7-build14-tv-arm64-v8a.apk",
           "size": 66104349,
-          "sha256": "383abb12c787cfb33771778781483f2fe8c813f563c80be9c6e9d6bc6359d5a7",
+          "sha256": "38115b5125622ba73eec39928d57f1de0671f23dd8990b90c50432088cc648f1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.6/WuAiMusic-1.0.6-build13-tv-armeabi-v7a.apk",
-          "size": 77827141,
-          "sha256": "3b9fec79cc6348d97da56268624172b7012b39879a05bbbee4d8f0ee02bbeae3",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.7/WuAiMusic-1.0.7-build14-tv-armeabi-v7a.apk",
+          "size": 77843525,
+          "sha256": "af9a2a5f13ffbc0ed5b449f8c4f322c577d18370e3416a34725a7bec0be6ed6e",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
