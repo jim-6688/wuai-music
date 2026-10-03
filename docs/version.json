@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.0.8",
-      "versionCode": 15,
+      "versionName": "1.0.9",
+      "versionCode": 16,
       "flavor": "phone",
-      "notes": "- **手机扫码配对修好了**：电视屏上的二维码以前太密，隔着两三米根本扫不动；现在码面模块数从 49×49 降到 29×29，每个模块大 1.7 倍，拍屏识别明显容易\n- **电视端默认改成深色**：以前装了就被强制成浅色、设置里切了也会被改回去；现在默认深色（也是设计主稿的配色），想要浅色可以在「设置 → 外观」自己切\n- **电视端整体文字放大一档**：按 QQ音乐 TV 版的观感重新定了字号基准，2–3 米外看菜单、列表、设置都不再费眼\n- **电视端歌词重做**：歌词字号放大（当前行 56 / 其它行 30），当前行一眼可辨；未唱的句子偏亮、唱过的偏暗，越远越淡——不再是灰糊糊一片\n- **修复电视端播放页歌词「字很小、两边留白很大」**：字号原来比设计稿小一整档，现已对齐\n- **修复电视端美化中心结果页排版崩坏**：任务完成后按钮太多把标题挤成竖排、页面下半截被顶没\n- **修复电视端页头按钮过多时挤出屏幕**，按钮自动换行\n- **电视端「设置 → 外观 → 文字大小」重定档位**：标准 / 大 / 超大 三档倍率收敛，避免放大后列表行被截断\n- 电视端表单标签加宽，长标签不再折成两行把弹窗撑高",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-phone-arm64-v8a.apk",
-      "size": 66101901,
-      "sha256": "14b11be7402a6cbf45181c345c6a0bceb228a8cb3e3a9c82b970e148c5ba7bb3",
+      "notes": "吾爱Music 1.0.9 更新",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-phone-arm64-v8a.apk",
+      "size": 66101897,
+      "sha256": "af7b71fb378a93b86d228d60dd9826e7443cc7893e5a19306e3d54cff629484a",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-phone-arm64-v8a.apk",
-          "size": 66101901,
-          "sha256": "14b11be7402a6cbf45181c345c6a0bceb228a8cb3e3a9c82b970e148c5ba7bb3",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-phone-arm64-v8a.apk",
+          "size": 66101897,
+          "sha256": "af7b71fb378a93b86d228d60dd9826e7443cc7893e5a19306e3d54cff629484a",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-phone-armeabi-v7a.apk",
-          "size": 77922997,
-          "sha256": "638b805758b6f34ff22ba7805af0e370e87c730fb4d9903e1f47afb7baa72d79",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-phone-armeabi-v7a.apk",
+          "size": 77873841,
+          "sha256": "db44006875587cd22a4672fb2b6ba03b5df235a35065ac6263bcf04f2a6595a9",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.0.8",
-      "versionCode": 15,
+      "versionName": "1.0.9",
+      "versionCode": 16,
       "flavor": "hd",
-      "notes": "- **手机扫码配对修好了**：电视屏上的二维码以前太密，隔着两三米根本扫不动；现在码面模块数从 49×49 降到 29×29，每个模块大 1.7 倍，拍屏识别明显容易\n- **电视端默认改成深色**：以前装了就被强制成浅色、设置里切了也会被改回去；现在默认深色（也是设计主稿的配色），想要浅色可以在「设置 → 外观」自己切\n- **电视端整体文字放大一档**：按 QQ音乐 TV 版的观感重新定了字号基准，2–3 米外看菜单、列表、设置都不再费眼\n- **电视端歌词重做**：歌词字号放大（当前行 56 / 其它行 30），当前行一眼可辨；未唱的句子偏亮、唱过的偏暗，越远越淡——不再是灰糊糊一片\n- **修复电视端播放页歌词「字很小、两边留白很大」**：字号原来比设计稿小一整档，现已对齐\n- **修复电视端美化中心结果页排版崩坏**：任务完成后按钮太多把标题挤成竖排、页面下半截被顶没\n- **修复电视端页头按钮过多时挤出屏幕**，按钮自动换行\n- **电视端「设置 → 外观 → 文字大小」重定档位**：标准 / 大 / 超大 三档倍率收敛，避免放大后列表行被截断\n- 电视端表单标签加宽，长标签不再折成两行把弹窗撑高",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-hd-arm64-v8a.apk",
-      "size": 66105661,
-      "sha256": "d88022765a9184bff661ac54136115cfda842b25e65b1105e60a48335f7cdb24",
+      "notes": "吾爱Music 1.0.9 更新",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-hd-arm64-v8a.apk",
+      "size": 66040121,
+      "sha256": "da3690b69e65f33527057eef968f5c158857b83e9120a9fb8f552dc579ea1297",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-hd-arm64-v8a.apk",
-          "size": 66105661,
-          "sha256": "d88022765a9184bff661ac54136115cfda842b25e65b1105e60a48335f7cdb24",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-hd-arm64-v8a.apk",
+          "size": 66040121,
+          "sha256": "da3690b69e65f33527057eef968f5c158857b83e9120a9fb8f552dc579ea1297",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-hd-armeabi-v7a.apk",
-          "size": 77893989,
-          "sha256": "43b586abab39c0c46a18b5f82e22a6ef67ade65b56171eb372bff8c167717a99",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-hd-armeabi-v7a.apk",
+          "size": 77861217,
+          "sha256": "5510f0d6c9890689c570581aa0e2c748f8650ecbf4b9440ffb5bc50da6655474",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.0.8",
-      "versionCode": 15,
+      "versionName": "1.0.9",
+      "versionCode": 16,
       "flavor": "tv",
-      "notes": "- **手机扫码配对修好了**：电视屏上的二维码以前太密，隔着两三米根本扫不动；现在码面模块数从 49×49 降到 29×29，每个模块大 1.7 倍，拍屏识别明显容易\n- **电视端默认改成深色**：以前装了就被强制成浅色、设置里切了也会被改回去；现在默认深色（也是设计主稿的配色），想要浅色可以在「设置 → 外观」自己切\n- **电视端整体文字放大一档**：按 QQ音乐 TV 版的观感重新定了字号基准，2–3 米外看菜单、列表、设置都不再费眼\n- **电视端歌词重做**：歌词字号放大（当前行 56 / 其它行 30），当前行一眼可辨；未唱的句子偏亮、唱过的偏暗，越远越淡——不再是灰糊糊一片\n- **修复电视端播放页歌词「字很小、两边留白很大」**：字号原来比设计稿小一整档，现已对齐\n- **修复电视端美化中心结果页排版崩坏**：任务完成后按钮太多把标题挤成竖排、页面下半截被顶没\n- **修复电视端页头按钮过多时挤出屏幕**，按钮自动换行\n- **电视端「设置 → 外观 → 文字大小」重定档位**：标准 / 大 / 超大 三档倍率收敛，避免放大后列表行被截断\n- 电视端表单标签加宽，长标签不再折成两行把弹窗撑高",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-tv-arm64-v8a.apk",
-      "size": 66300957,
-      "sha256": "5d83dca7c6069a74c568d89d6a4f3966ed776580a004615566a564b4148344e7",
+      "notes": "吾爱Music 1.0.9 更新",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-tv-arm64-v8a.apk",
+      "size": 66235421,
+      "sha256": "ef458418bc7419386976475ca45dd91f3489e8b5406401a0b36f8a7b52e907f6",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-tv-arm64-v8a.apk",
-          "size": 66300957,
-          "sha256": "5d83dca7c6069a74c568d89d6a4f3966ed776580a004615566a564b4148344e7",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-tv-arm64-v8a.apk",
+          "size": 66235421,
+          "sha256": "ef458418bc7419386976475ca45dd91f3489e8b5406401a0b36f8a7b52e907f6",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.8/WuAiMusic-1.0.8-build15-tv-armeabi-v7a.apk",
-          "size": 78056517,
-          "sha256": "cb07ce654ae1b50bf0fb38457da18c3196d89c7fff33c797a653fd2a4d19661f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.0.9/WuAiMusic-1.0.9-build16-tv-armeabi-v7a.apk",
+          "size": 78023749,
+          "sha256": "546cde2d6a7ce94660f7ff0588bfea4ed9b1b14ff0bbe4774c072ecde66e12de",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
