@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.1.2",
-      "versionCode": 19,
+      "versionName": "1.1.3",
+      "versionCode": 20,
       "flavor": "phone",
-      "notes": "- **TV 播放页新增全屏歌词**：闲置 5 秒自动进入，遥控任意键退出\n- **手机全屏歌词新增播放栏自动隐藏**：闲置几秒后顶栏底栏一起隐去，点屏幕唤回\n- **TV 版视觉体系统一**：字号档位语义、聚焦样式、颜色 token 三套规矩全部收敛并写入源码\n- 新增：歌曲文件夹、暂停状态改用主题语义色，浅色主题下不再「看不见」\n- 优化：TV 各页字号按用途重新归类，副标题与按钮不再混用同一档",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-phone-arm64-v8a.apk",
+      "notes": "- **播放页黑胶唱片化**：环形脉冲改为黑胶唱片，唱针随播放进度由外圈向内圈移动，盘面颜色取自专辑封面主色\n- **修复部分歌曲歌词加载完成后不显示**：解析器兼容无小数秒、冒号分隔、序号后缀等写法，并修正切歌竞态导致的取词丢失\n- **自动取词更准**：专辑名参与匹配打分，歌名搜不到时自动带专辑名重搜第二轮\n- **新增歌词纠错**：自动检测歌词时间轴整体偏移并在 ±5 秒内纠正，按曲目记住\n- **全屏歌词不再压住封面**：封面固定在上方四分之一处，歌词始终显示在其下方\n- 优化：美化链路取词也带上专辑名，与播放页口径一致",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-phone-arm64-v8a.apk",
       "size": 66233137,
-      "sha256": "21036890bc21c4b0a4c5d1ae4f933313a9e770957635f15ba479cbf71d6bc616",
+      "sha256": "275a4b7fb9e204c1e7e4c7ad18cc7c3e0a9b354dc2f04412e5f759edba573742",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-phone-arm64-v8a.apk",
           "size": 66233137,
-          "sha256": "21036890bc21c4b0a4c5d1ae4f933313a9e770957635f15ba479cbf71d6bc616",
+          "sha256": "275a4b7fb9e204c1e7e4c7ad18cc7c3e0a9b354dc2f04412e5f759edba573742",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-phone-armeabi-v7a.apk",
-          "size": 77988697,
-          "sha256": "b0f315c6b506b3ce4c0b1fad296d5b7f582106fa483f6552dfc2c69d81047493",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-phone-armeabi-v7a.apk",
+          "size": 78021465,
+          "sha256": "11cc400052536e9c9571bb7b1e1ad251f3498455ab2033affa6640907b2da7dc",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.1.2",
-      "versionCode": 19,
+      "versionName": "1.1.3",
+      "versionCode": 20,
       "flavor": "hd",
-      "notes": "- **TV 播放页新增全屏歌词**：闲置 5 秒自动进入，遥控任意键退出\n- **手机全屏歌词新增播放栏自动隐藏**：闲置几秒后顶栏底栏一起隐去，点屏幕唤回\n- **TV 版视觉体系统一**：字号档位语义、聚焦样式、颜色 token 三套规矩全部收敛并写入源码\n- 新增：歌曲文件夹、暂停状态改用主题语义色，浅色主题下不再「看不见」\n- 优化：TV 各页字号按用途重新归类，副标题与按钮不再混用同一档",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-hd-arm64-v8a.apk",
-      "size": 66171357,
-      "sha256": "f3717c6b30460fdcaec6b2429b35db836c603bc99949b0fc6c7a9c6a64712297",
+      "notes": "- **播放页黑胶唱片化**：环形脉冲改为黑胶唱片，唱针随播放进度由外圈向内圈移动，盘面颜色取自专辑封面主色\n- **修复部分歌曲歌词加载完成后不显示**：解析器兼容无小数秒、冒号分隔、序号后缀等写法，并修正切歌竞态导致的取词丢失\n- **自动取词更准**：专辑名参与匹配打分，歌名搜不到时自动带专辑名重搜第二轮\n- **新增歌词纠错**：自动检测歌词时间轴整体偏移并在 ±5 秒内纠正，按曲目记住\n- **全屏歌词不再压住封面**：封面固定在上方四分之一处，歌词始终显示在其下方\n- 优化：美化链路取词也带上专辑名，与播放页口径一致",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-hd-arm64-v8a.apk",
+      "size": 66171361,
+      "sha256": "5815ddaf45bd86206decd9afcc7aadc493a0d77e519e116d74fba934aaced220",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-hd-arm64-v8a.apk",
-          "size": 66171357,
-          "sha256": "f3717c6b30460fdcaec6b2429b35db836c603bc99949b0fc6c7a9c6a64712297",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-hd-arm64-v8a.apk",
+          "size": 66171361,
+          "sha256": "5815ddaf45bd86206decd9afcc7aadc493a0d77e519e116d74fba934aaced220",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-hd-armeabi-v7a.apk",
-          "size": 77943301,
-          "sha256": "76c114f2d7e710e61a32909204eab0fd0394810cbd84c7de677e4280752b88ea",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-hd-armeabi-v7a.apk",
+          "size": 77976073,
+          "sha256": "7c88d8d7783dd6da11c0fcd88200bd042907f0d7c0df4a350015fe2e17f88cac",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.1.2",
-      "versionCode": 19,
+      "versionName": "1.1.3",
+      "versionCode": 20,
       "flavor": "tv",
-      "notes": "- **TV 播放页新增全屏歌词**：闲置 5 秒自动进入，遥控任意键退出\n- **手机全屏歌词新增播放栏自动隐藏**：闲置几秒后顶栏底栏一起隐去，点屏幕唤回\n- **TV 版视觉体系统一**：字号档位语义、聚焦样式、颜色 token 三套规矩全部收敛并写入源码\n- 新增：歌曲文件夹、暂停状态改用主题语义色，浅色主题下不再「看不见」\n- 优化：TV 各页字号按用途重新归类，副标题与按钮不再混用同一档",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-tv-arm64-v8a.apk",
-      "size": 66301125,
-      "sha256": "89f577965937469fd0a8e32ccc1a7cc8968c0224a654a8446e51a2ca367190a8",
+      "notes": "- **播放页黑胶唱片化**：环形脉冲改为黑胶唱片，唱针随播放进度由外圈向内圈移动，盘面颜色取自专辑封面主色\n- **修复部分歌曲歌词加载完成后不显示**：解析器兼容无小数秒、冒号分隔、序号后缀等写法，并修正切歌竞态导致的取词丢失\n- **自动取词更准**：专辑名参与匹配打分，歌名搜不到时自动带专辑名重搜第二轮\n- **新增歌词纠错**：自动检测歌词时间轴整体偏移并在 ±5 秒内纠正，按曲目记住\n- **全屏歌词不再压住封面**：封面固定在上方四分之一处，歌词始终显示在其下方\n- 优化：美化链路取词也带上专辑名，与播放页口径一致",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-tv-arm64-v8a.apk",
+      "size": 66366661,
+      "sha256": "e5f6a8da6922eaf341972c7aa3b5eee89e2d873b4cb9a876044dec354c568fc9",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-tv-arm64-v8a.apk",
-          "size": 66301125,
-          "sha256": "89f577965937469fd0a8e32ccc1a7cc8968c0224a654a8446e51a2ca367190a8",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-tv-arm64-v8a.apk",
+          "size": 66366661,
+          "sha256": "e5f6a8da6922eaf341972c7aa3b5eee89e2d873b4cb9a876044dec354c568fc9",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.2/WuAiMusic-1.1.2-build19-tv-armeabi-v7a.apk",
-          "size": 78138605,
-          "sha256": "82afe8bfa87c4eac2d4973e81d0e10304056a21b9a523948368d78c9cb3e7efc",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.3/WuAiMusic-1.1.3-build20-tv-armeabi-v7a.apk",
+          "size": 78171373,
+          "sha256": "0918c03d2df1e6c2b179a6a8ca15dd0312e4243d4fa8b1b47d601904c4d9d576",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
