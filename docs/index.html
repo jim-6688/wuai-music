@@ -5,9 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>吾爱音乐 · 纯粹本地音乐播放器</title>
   <meta name="description" content="吾爱音乐 WuAiMusic —— 跨手机、车机/平板、电视三端的本地无损音乐播放器。液态玻璃界面、专业均衡器、智能歌词、OTA 自动更新。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <!-- ⚠️ 2026-10-10：这里原本有 3 行 Google Fonts（preconnect ×2 +
+       Noto Sans SC 的 <link rel=stylesheet>）。已**整组删除**，原因：
+       ① 中国大陆 `fonts.googleapis.com` 基本不可达；
+       ② 它是 <head> 里的**阻塞渲染**样式表 ⇒ 国内首屏会白屏等超时，
+          这是本站「国内访问慢」的最大单点，比换托管商影响更大；
+       ③ `style.css` 的 body 已带完整系统字体回退栈
+          （system-ui / Segoe UI / PingFang SC / Microsoft YaHei），
+          去掉远程字体只回落系统字体，中文观感差异很小、且首屏立即出字。
+       若以后想恢复（例如只面向海外），把下面 3 行放回来即可 —— 但请改成
+       **非阻塞**写法，别再用裸 <link rel=stylesheet>：
+         <link rel="preconnect" href="https://fonts.googleapis.com" />
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+         <link rel="stylesheet" media="print" onload="this.media='all'"
+               href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" />
+  -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <script>
     (function () {

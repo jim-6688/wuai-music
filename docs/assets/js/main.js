@@ -8,7 +8,11 @@
 (function () {
   "use strict";
 
-  var DOMAIN = "https://music.52ta.top";
+  // ⚠️ 2026-10-10 删除了一个 `var DOMAIN = "https://music.52ta.top"` —— 它
+  // **全文件零使用**（死变量）。本站所有数据都走**相对路径**读取
+  // （`/version.json` / `/stats.json`），所以站点天然与「托管在哪个源」无关：
+  // 以后若做国内镜像（换域名 / 换主机），同一份代码直接可用，不必改这里。
+  // 别把域名写回来 —— 硬编码会让镜像站读错源。
 
   // 渠道展示名（与 App 的 flavor 对应）
   var FLAVOR_LABEL = {
@@ -377,10 +381,28 @@
     box.classList.remove("is-pending");
   }
 
+  // 统一带超时：这几个实时刷新接口都在境外（api.github.com / countapi），
+  // 部分地区会长时间挂起。没有超时的话请求会一直吊着 —— 虽然都不阻塞渲染，
+  // 但会占着连接、让统计块迟迟无法落定。超时后走各自的 .catch 静默降级，
+  // 页面继续用 /stats.json 的快照值（拿不到就隐藏整块，不显示假数字）。
+  var FETCH_TIMEOUT_MS = 6000;
+
   function fetchJson(url) {
-    return fetch(url, { cache: "no-cache" }).then(function (r) {
+    var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
+    var opts = { cache: "no-cache" };
+    var timer = null;
+    if (ctrl) {
+      opts.signal = ctrl.signal;
+      timer = setTimeout(function () { ctrl.abort(); }, FETCH_TIMEOUT_MS);
+    }
+    function done() { if (timer) { clearTimeout(timer); timer = null; } }
+    return fetch(url, opts).then(function (r) {
+      done();
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
+    }, function (e) {
+      done();
+      throw e;
     });
   }
 

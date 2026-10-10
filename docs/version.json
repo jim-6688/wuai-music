@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.1.4",
-      "versionCode": 21,
+      "versionName": "1.1.5",
+      "versionCode": 22,
       "flavor": "phone",
-      "notes": "- **新增「推送到电视」**：手机把当前播放队列整条推给电视，电视只做播放端，列表与控制都在手机\n- 推送过去的曲目在电视上**歌名、封面、歌词都正常显示**（封面由手机直接提供，不再靠联网搜同名歌）\n- 手机遥控器**只在投放播放时出现**：播放/暂停、上下首、进度、音量；点「结束推送」即收起\n- **黑胶唱针重做**：按真实唱盘比例重算尺寸，臂杆与唱头加粗，与唱片比例协调\n- 修复唱针收尾位唱头会切到盘心封面（加宽后唱头比针尖更早碰到封面）",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-phone-arm64-v8a.apk",
-      "size": 66364209,
-      "sha256": "0a5b2b0ee758e3c1c032cfcfea76e961ef07176e329a37db7058422aeefb120f",
+      "notes": "- **新增「桌面图标跟随配色」**：设置 → 主题配色页新增开关（默认关闭），打开后桌面图标换成当前配色（香槟金 / 静谧蓝 / 湖海青 / 苔原绿 / 珊瑚粉 / 紫罗兰）\n- **图标改为自适应形状**：贴合各家桌面的圆角与遮罩；Android 13+ 开启系统「主题图标」后，还能跟随壁纸取色\n- **新增「在线服务」设置**：歌词与封面服务器改为可配置（手机 / 车机 / 电视都有），可逐条启用、停用、删除，也能自己添加源\n- **修复「点播放按钮不播」**：冷启动就点播放、以及播完之后再点播放，此前都会变成死按钮\n- **修复「播完不自动切下一首」**\n- **修复连续播放多首后歌词不再滚动**\n- **修复推送到电视不能播放**：拉流鉴权方向搞反，电视每次取流都被拒\n- **修复推送到电视只有 IP、没有用户名密码**：重复推送 NAS 配置此前被静默跳过\n- **修复 TV 返回键**：到顶层菜单不再一按就退出软件，也不再「按一下触发两次」\n- **修复 TV 本地音乐只有第一个文件夹能进入**\n- 修复 TV 同步页二维码过小、说明文字挤出布局\n- 修复 TV 全屏歌词左上角标题（改为当前歌曲名）\n- 修复手机端点播放按钮会悄悄把播放模式改成随机\n- 修复旧图标半透明（深色桌面上发暗）、车机版「HD」角标在自适应图标下被裁\n- 清理约 1200 行零引用代码",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-phone-arm64-v8a.apk",
+      "size": 66449875,
+      "sha256": "7a5531cabf9b5b5cddaacfeef152ee93594b7c091a46f9d3aa4089cbd5865fc8",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-phone-arm64-v8a.apk",
-          "size": 66364209,
-          "sha256": "0a5b2b0ee758e3c1c032cfcfea76e961ef07176e329a37db7058422aeefb120f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-phone-arm64-v8a.apk",
+          "size": 66449875,
+          "sha256": "7a5531cabf9b5b5cddaacfeef152ee93594b7c091a46f9d3aa4089cbd5865fc8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-phone-armeabi-v7a.apk",
-          "size": 78201689,
-          "sha256": "3cfea4dbf2b6e472590488d0838c81d18c0da9a00ea91fd8e9d557e527aaab7f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-phone-armeabi-v7a.apk",
+          "size": 78320123,
+          "sha256": "5331a048e3f9adfeff20b6287f2c1fc8313b4f62163c390cb2d53ce7c3e6c7c5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.1.4",
-      "versionCode": 21,
+      "versionName": "1.1.5",
+      "versionCode": 22,
       "flavor": "hd",
-      "notes": "- **新增「推送到电视」**：手机把当前播放队列整条推给电视，电视只做播放端，列表与控制都在手机\n- 推送过去的曲目在电视上**歌名、封面、歌词都正常显示**（封面由手机直接提供，不再靠联网搜同名歌）\n- 手机遥控器**只在投放播放时出现**：播放/暂停、上下首、进度、音量；点「结束推送」即收起\n- **黑胶唱针重做**：按真实唱盘比例重算尺寸，臂杆与唱头加粗，与唱片比例协调\n- 修复唱针收尾位唱头会切到盘心封面（加宽后唱头比针尖更早碰到封面）",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-hd-arm64-v8a.apk",
-      "size": 66367965,
-      "sha256": "eabead2447e1c773a04e9fdceb7d754242653a2d5b55c8b114498e160086bb18",
+      "notes": "- **新增「桌面图标跟随配色」**：设置 → 主题配色页新增开关（默认关闭），打开后桌面图标换成当前配色（香槟金 / 静谧蓝 / 湖海青 / 苔原绿 / 珊瑚粉 / 紫罗兰）\n- **图标改为自适应形状**：贴合各家桌面的圆角与遮罩；Android 13+ 开启系统「主题图标」后，还能跟随壁纸取色\n- **新增「在线服务」设置**：歌词与封面服务器改为可配置（手机 / 车机 / 电视都有），可逐条启用、停用、删除，也能自己添加源\n- **修复「点播放按钮不播」**：冷启动就点播放、以及播完之后再点播放，此前都会变成死按钮\n- **修复「播完不自动切下一首」**\n- **修复连续播放多首后歌词不再滚动**\n- **修复推送到电视不能播放**：拉流鉴权方向搞反，电视每次取流都被拒\n- **修复推送到电视只有 IP、没有用户名密码**：重复推送 NAS 配置此前被静默跳过\n- **修复 TV 返回键**：到顶层菜单不再一按就退出软件，也不再「按一下触发两次」\n- **修复 TV 本地音乐只有第一个文件夹能进入**\n- 修复 TV 同步页二维码过小、说明文字挤出布局\n- 修复 TV 全屏歌词左上角标题（改为当前歌曲名）\n- 修复手机端点播放按钮会悄悄把播放模式改成随机\n- 修复旧图标半透明（深色桌面上发暗）、车机版「HD」角标在自适应图标下被裁\n- 清理约 1200 行零引用代码",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-hd-arm64-v8a.apk",
+      "size": 66455843,
+      "sha256": "55df519d175b8cdcb565999383a14b08dd5f53c7f9c4e40e22a124b72b485b01",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-hd-arm64-v8a.apk",
-          "size": 66367965,
-          "sha256": "eabead2447e1c773a04e9fdceb7d754242653a2d5b55c8b114498e160086bb18",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-hd-arm64-v8a.apk",
+          "size": 66455843,
+          "sha256": "55df519d175b8cdcb565999383a14b08dd5f53c7f9c4e40e22a124b72b485b01",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-hd-armeabi-v7a.apk",
-          "size": 78139909,
-          "sha256": "366a67f5b578e3d3fdd8b07f5a805a6cf364d9825ae8ab4ccfabd46da9a79cfb",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-hd-armeabi-v7a.apk",
+          "size": 78276939,
+          "sha256": "0c0d72012019c5e150c860cd2d3649d11b498829814241edeba4251ff21dae7e",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.1.4",
-      "versionCode": 21,
+      "versionName": "1.1.5",
+      "versionCode": 22,
       "flavor": "tv",
-      "notes": "- **新增「推送到电视」**：手机把当前播放队列整条推给电视，电视只做播放端，列表与控制都在手机\n- 推送过去的曲目在电视上**歌名、封面、歌词都正常显示**（封面由手机直接提供，不再靠联网搜同名歌）\n- 手机遥控器**只在投放播放时出现**：播放/暂停、上下首、进度、音量；点「结束推送」即收起\n- **黑胶唱针重做**：按真实唱盘比例重算尺寸，臂杆与唱头加粗，与唱片比例协调\n- 修复唱针收尾位唱头会切到盘心封面（加宽后唱头比针尖更早碰到封面）",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-tv-arm64-v8a.apk",
-      "size": 66432197,
-      "sha256": "d3a681f03fbcda2c9444f80888724fa707a3f5b1a652e771b41f9a5f4b73eda6",
+      "notes": "- **新增「桌面图标跟随配色」**：设置 → 主题配色页新增开关（默认关闭），打开后桌面图标换成当前配色（香槟金 / 静谧蓝 / 湖海青 / 苔原绿 / 珊瑚粉 / 紫罗兰）\n- **图标改为自适应形状**：贴合各家桌面的圆角与遮罩；Android 13+ 开启系统「主题图标」后，还能跟随壁纸取色\n- **新增「在线服务」设置**：歌词与封面服务器改为可配置（手机 / 车机 / 电视都有），可逐条启用、停用、删除，也能自己添加源\n- **修复「点播放按钮不播」**：冷启动就点播放、以及播完之后再点播放，此前都会变成死按钮\n- **修复「播完不自动切下一首」**\n- **修复连续播放多首后歌词不再滚动**\n- **修复推送到电视不能播放**：拉流鉴权方向搞反，电视每次取流都被拒\n- **修复推送到电视只有 IP、没有用户名密码**：重复推送 NAS 配置此前被静默跳过\n- **修复 TV 返回键**：到顶层菜单不再一按就退出软件，也不再「按一下触发两次」\n- **修复 TV 本地音乐只有第一个文件夹能进入**\n- 修复 TV 同步页二维码过小、说明文字挤出布局\n- 修复 TV 全屏歌词左上角标题（改为当前歌曲名）\n- 修复手机端点播放按钮会悄悄把播放模式改成随机\n- 修复旧图标半透明（深色桌面上发暗）、车机版「HD」角标在自适应图标下被裁\n- 清理约 1200 行零引用代码",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-tv-arm64-v8a.apk",
+      "size": 66517451,
+      "sha256": "b46436017f53bdc0e12ef3c4836e502eb1e52baa78db610b4427867422e51fdf",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-tv-arm64-v8a.apk",
-          "size": 66432197,
-          "sha256": "d3a681f03fbcda2c9444f80888724fa707a3f5b1a652e771b41f9a5f4b73eda6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-tv-arm64-v8a.apk",
+          "size": 66517451,
+          "sha256": "b46436017f53bdc0e12ef3c4836e502eb1e52baa78db610b4427867422e51fdf",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.4/WuAiMusic-1.1.4-build21-tv-armeabi-v7a.apk",
-          "size": 78220525,
-          "sha256": "088d642a710c5429c0444d9927d443c20120859e9a08e4a582b24e73866d7b65",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.5/WuAiMusic-1.1.5-build22-tv-armeabi-v7a.apk",
+          "size": 78354931,
+          "sha256": "16cba39e1784a08666ec543ab6ecdbc6590507b73e70ed4dcb4d614bb18f2f09",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
