@@ -32,6 +32,14 @@
       tv: { versionName: "1.0.0", versionCode: 1, flavor: "tv", notes: "吾爱音乐 1.0.0 首个正式版本（电视）。", url: "", size: 0, sha256: "" },
     },
     minRequiredCode: { phone: 1, hd: 1, tv: 1 },
+    // 与线上清单顶层 `changelog` **同形状**（真源见 `scripts/deploy_release.py`
+    // 的 `load_changelog_history()`）。有它，预览态（清单未部署 / 拉取失败）
+    // 也能看到新版更新日志的真实排版与筛选效果；只放两条 —— 这是兜底数据，
+    // 不该伪装成完整历史。
+    changelog: [
+      { versionName: "1.0.0", date: "", notes: "吾爱音乐 1.0.0 首个正式版本。" },
+      { versionName: "0.9.0", date: "", notes: "预览数据：清单未部署时显示这两条，用于确认排版。" },
+    ],
   };
 
   // 码云（Gitee）国内镜像仓库。
@@ -84,6 +92,187 @@
   // 属性值转义：URL 来自清单，插入 href 前做最小防护
   function attr(s) {
     return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  }
+
+  // 文本转义：清单里的更新说明是 Markdown 风格的多行文本，插进 innerHTML 前必须转义。
+  // 只转义不解析 —— 官网刻意不引入 Markdown 解析器，说明里本来就是纯文本 + `**粗体**`。
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // ── 更新日志：全量历史 + 按设备类型筛选 ──────────────────────────────────
+  //
+  // 【为什么要筛】
+  // `CHANGELOG.md` 是**全项目一份**（三端共用同一份版本记录），而清单里每个
+  // 渠道各有一条 `notes`。改前这里直接「按渠道列三块最新说明」—— 三块内容
+  // 一模一样，看起来像页面坏了。
+  //
+  // 现在改成一份**按版本排列**的历史列表（清单顶层 `changelog`，由
+  // `scripts/deploy_release.py` 从 CHANGELOG.md 全量解析产出），上面加一排
+  // 设备类型筛选项。选中某端时：只显示「不晚于该端当前版本」的条目，
+  // 并标出**该端的构建号**（三端构建号各自递增，这是筛选项真正带来的信息）。
+  //
+  // ⚠️ 清单没有 `changelog`（老清单 / 老服务器）时**退回改前的行为**
+  //    （按渠道列 notes），保证这一块永远不会变空。
+
+  /** 当前选中的设备类型：`"all"` 或渠道名 */
+  var logFilter = "all";
+
+  /** 筛选项（顺序即展示顺序） */
+  var LOG_FILTERS = [
+    { key: "all", label: "全部" },
+    { key: "phone", label: "手机" },
+    { key: "hd", label: "HD · 车机" },
+    { key: "tv", label: "电视" }
+  ];
+
+  /** 版本号 → 数字段数组；解析不出来返回 [] */
+  function parseVer(v) {
+    var s = String(v == null ? "" : v).trim().replace(/^v/i, "");
+    if (!s) return [];
+    var out = [];
+    var segs = s.split(".");
+    for (var i = 0; i < segs.length; i++) {
+      var m = /^\d+/.exec(segs[i]);
+      if (!m) break;              // 某段没有数字 ⇒ 到此为止，不猜
+      out.push(parseInt(m[0], 10));
+    }
+    return out;
+  }
+
+  /** 数字段逐个比较：<0 / 0 / >0。缺的段按 0 补（`1.1` == `1.1.0`）。
+   *  ⚠️ 绝不能用字符串比较 —— `"1.0.10" < "1.0.9"` 在字符串序里成立，
+   *     会把真正的升级判成降级，整段历史被裁掉。 */
+  function cmpVer(a, b) {
+    var n = Math.max(a.length, b.length);
+    for (var i = 0; i < n; i++) {
+      var x = i < a.length ? a[i] : 0;
+      var y = i < b.length ? b[i] : 0;
+      if (x !== y) return x < y ? -1 : 1;
+    }
+    return 0;
+  }
+
+  /** 清单顶层 `changelog` → 规范化条目（新 → 旧）。
+   *  形状不对 / 某条缺版本号或缺说明一律跳过：老清单没有这个键，
+   *  **不能**因此让整个「更新中心」挂掉。 */
+  function changelogEntries(manifest) {
+    var raw = manifest && manifest.changelog;
+    if (!Array.isArray(raw)) return [];
+    var out = [];
+    raw.forEach(function (e) {
+      if (!e || typeof e !== "object") return;
+      var v = String(e.versionName || "").trim();
+      var notes = String(e.notes || "").trim();
+      if (!v || !notes) return;
+      out.push({ versionName: v, date: String(e.date || "").trim(), notes: notes });
+    });
+    out.sort(function (a, b) { return cmpVer(parseVer(b.versionName), parseVer(a.versionName)); });
+    return out;
+  }
+
+  /** 某渠道在该版本上的构建号；不是该渠道的当前版本则返回 null */
+  function buildOf(manifest, flavor, versionName) {
+    var rel = getRelease(manifest, flavor);
+    if (!rel || String(rel.versionName || "") !== String(versionName)) return null;
+    return rel.versionCode || null;
+  }
+
+  /** 渲染筛选按钮行 */
+  function renderLogFilter(manifest) {
+    var box = $("#changelogFilter");
+    if (!box) return;
+    box.innerHTML = "";
+    LOG_FILTERS.forEach(function (opt) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "logfilter__chip" + (logFilter === opt.key ? " is-active" : "");
+      b.textContent = opt.label;
+      b.setAttribute("aria-pressed", logFilter === opt.key ? "true" : "false");
+      b.addEventListener("click", function () {
+        if (logFilter === opt.key) return;
+        logFilter = opt.key;
+        renderLogFilter(manifest);
+        renderChangelog(manifest);
+      });
+      box.appendChild(b);
+    });
+  }
+
+  /** 渲染更新日志列表（已按当前筛选项过滤） */
+  function renderChangelog(manifest) {
+    var logEl = $("#changelog");
+    if (!logEl) return;
+
+    var entries = changelogEntries(manifest);
+    if (!entries.length) {
+      // 兜底：老清单没有 `changelog` ⇒ 退回「按渠道列 notes」（改前的行为）。
+      // 条目自带渠道，过滤时按渠道筛。
+      SITE_FLAVORS.forEach(function (f) {
+        var rel = getRelease(manifest, f);
+        if (!rel) return;
+        var notes = String(rel.notes || "").trim();
+        if (!notes) return;
+        entries.push({
+          versionName: String(rel.versionName || ""),
+          date: "",
+          notes: notes,
+          legacyFlavor: f
+        });
+      });
+      if (!entries.length) {
+        logEl.innerHTML = '<p class="changelog__empty">暂无更新记录。</p>';
+        return;
+      }
+    }
+
+    var shown = entries;
+    if (logFilter !== "all") {
+      var rel = getRelease(manifest, logFilter);
+      var cur = rel ? parseVer(rel.versionName) : [];
+      var filtered = entries.filter(function (e) {
+        // 兜底路径的条目自带渠道，直接按渠道筛
+        if (e.legacyFlavor) return e.legacyFlavor === logFilter;
+        // 历史条目是全项目共用的：只留「不晚于该端当前版本」的
+        if (!cur.length) return true;
+        var v = parseVer(e.versionName);
+        return v.length === 0 || cmpVer(v, cur) <= 0;
+      });
+      // 一条都没留下时不硬筛（版本号解析不出来 / 清单版本比历史都新）——
+      // 空列表比「多显示几条」糟得多。
+      if (filtered.length) shown = filtered;
+    }
+
+    logEl.innerHTML = "";
+    shown.forEach(function (e) {
+      var item = document.createElement("div");
+      item.className = "changelog__item";
+
+      var chips = [];
+      if (e.legacyFlavor) {
+        chips.push('<span class="ci-chip">' + esc(FLAVOR_LABEL[e.legacyFlavor] || e.legacyFlavor) + "</span>");
+      } else {
+        var targets = logFilter === "all" ? SITE_FLAVORS : [logFilter];
+        targets.forEach(function (f) {
+          var code = buildOf(manifest, f, e.versionName);
+          if (code) {
+            chips.push('<span class="ci-chip">' + esc(FLAVOR_LABEL[f] || f) + " build " + code + "</span>");
+          }
+        });
+      }
+
+      item.innerHTML =
+        '<div class="ci-head">' +
+          '<span class="ci-ver">v' + esc(e.versionName) + "</span>" +
+          '<span class="ci-meta">' +
+            (e.date ? '<span class="ci-date">' + esc(e.date) + "</span>" : "") +
+            chips.join("") +
+          "</span>" +
+        "</div>" +
+        "<p>" + esc(e.notes) + "</p>";
+      logEl.appendChild(item);
+    });
   }
 
   // 主下载按钮下方渲染「其它架构」的独立包链接
@@ -141,7 +330,8 @@
     var statusText = $("#updateStatusText");
     var latestEl = $("#updateLatest");
     var tableEl = $("#versionTable");
-    var logEl = $("#changelog");
+    // 注意：`#changelog` 由 renderChangelog() 自己取，这里不要再留一个局部变量 ——
+    // 那是改前遗留的，删掉逻辑后就成了没人读的死变量。
 
     // 最新版本号（取三端最高 versionCode 对应的 versionName）
     var maxCode = 0, maxName = "—";
@@ -207,26 +397,9 @@
       tableEl.appendChild(row);
     });
 
-    // 更新日志（按 flavor 列出最新说明）
-    logEl.innerHTML = "";
-    var hasLog = false;
-    SITE_FLAVORS.forEach(function (f) {
-      var rel = getRelease(manifest, f);
-      if (!rel) return;
-      var notes = (rel.notes || "").trim();
-      if (!notes) return;
-      hasLog = true;
-      var item = document.createElement("div");
-      item.className = "changelog__item";
-      item.innerHTML =
-        '<div class="ci-head"><span class="ci-flavor">' + (FLAVOR_LABEL[f] || f) +
-        '</span><span class="ci-ver">v' + (rel.versionName || "") + "</span></div>" +
-        "<p>" + notes.replace(/</g, "&lt;") + "</p>";
-      logEl.appendChild(item);
-    });
-    if (!hasLog) {
-      logEl.innerHTML = '<p class="changelog__empty">暂无更新记录。</p>';
-    }
+    // 更新日志（全量历史 + 按设备类型筛选，见 renderChangelog）
+    renderLogFilter(manifest);
+    renderChangelog(manifest);
 
     // 状态
     if (statusEl) statusEl.classList.add(live ? "is-ok" : "is-err");
@@ -263,6 +436,12 @@
         else if (typeof mr === "number") {
           SITE_FLAVORS.forEach(function (f) { manifest.minRequiredCode[f] = mr; });
         }
+        // ⚠️ 顶层 changelog（全量更新历史）**必须显式透传**：上面是从零新建的
+        // 规整对象，只认 releases / minRequiredCode。漏了这一句，`changelog`
+        // 就在这一层被静默丢掉 —— 症状是更新日志永远退回「按渠道列三条相同
+        // 的 notes」兜底分支，看起来像筛选功能没做（页面不报任何错）。
+        // 形状校验交给 changelogEntries()，这里原样透传即可。
+        if (json.changelog != null) manifest.changelog = json.changelog;
         render(manifest, true);
       })
       .catch(function () {

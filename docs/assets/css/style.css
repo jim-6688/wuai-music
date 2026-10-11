@@ -411,11 +411,36 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
 .vrow__meta { font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; }
 
 .update__log h3 { font-size: 1.05rem; margin-bottom: 14px; color: var(--gold-soft); }
+.update__log-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.update__log-head h3 { margin-bottom: 0; }
+
+/* 设备类型筛选（手机 / HD·车机 / 电视）
+   —— 三端是三个独立应用、构建号各自递增，更新日志需要能分开看。
+   选中态用「金字 + 金边」而不是实底金：实底金上的文字在浅色主题下
+   无论填黑还是填白都只有 2~3:1，达不到正文可读线。 */
+.logfilter { display: flex; gap: 8px; flex-wrap: wrap; }
+.logfilter__chip {
+  font: inherit; font-size: 0.8rem; line-height: 1;
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  color: var(--text-dim); background: var(--surface); border: 1px solid var(--border);
+  transition: color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+}
+.logfilter__chip:hover { color: var(--text); border-color: var(--border-strong); }
+.logfilter__chip.is-active {
+  color: var(--gold-soft); background: var(--surface-2);
+  border-color: var(--gold); font-weight: 600;
+}
+
 .changelog { display: flex; flex-direction: column; gap: 12px; }
 .changelog__item { padding: 14px 18px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); }
 .changelog__item .ci-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
-.changelog__item .ci-flavor { font-size: 0.75rem; color: var(--gold); font-weight: 600; letter-spacing: 0.05em; }
-.changelog__item .ci-ver { font-size: 0.8rem; color: var(--text-faint); }
+.changelog__item .ci-ver { font-size: 0.85rem; font-weight: 600; color: var(--gold-soft); }
+.changelog__item .ci-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.changelog__item .ci-date { font-size: 0.78rem; color: var(--text-faint); }
+.changelog__item .ci-chip {
+  font-size: 0.72rem; line-height: 1; padding: 4px 9px; border-radius: 999px;
+  color: var(--gold); background: var(--surface-2); border: 1px solid var(--border);
+}
 .changelog__item p { color: var(--text-dim); font-size: 0.92rem; white-space: pre-line; }
 .changelog__empty { color: var(--text-faint); font-size: 0.9rem; }
 

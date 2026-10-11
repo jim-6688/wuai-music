@@ -357,7 +357,12 @@
         </div>
 
         <div class="update__log">
-          <h3>更新日志</h3>
+          <div class="update__log-head">
+            <h3>更新日志</h3>
+            <!-- 设备类型筛选：三端（手机 / HD·车机 / 电视）是三个独立应用，
+                 构建号各自递增。筛选项由 JS 注入（见 main.js 的 renderLogFilter）。 -->
+            <div class="logfilter" id="changelogFilter" role="group" aria-label="按设备类型筛选更新日志"></div>
+          </div>
           <div id="changelog" class="changelog">
             <p class="changelog__empty">暂无更新记录。</p>
           </div>
