@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.1.7",
-      "versionCode": 24,
+      "versionName": "1.1.8",
+      "versionCode": 25,
       "flavor": "phone",
-      "notes": "- **新增 WebDAV 支持**：可直接添加 WebDAV 协议的音乐源 / 网盘，浏览并播放其中的音乐\n- **系统更新日志跟随版本显示**：客户端更新弹窗与系统更新中心现在按已安装的版本展示对应的更新说明\n- **官网更新中心支持按设备类型过滤**：手机 / 平板 / 电视各自的更新说明分开展示，不再混在一起\n- **新增「默认播放模式」**：打开 App 默认即为随机播放，点播放直接随机播；设置页可改回列表循环 / 单曲循环，选择会被记住",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-phone-arm64-v8a.apk",
+      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环、随机播放下，一首放完都会正常接上下一首，不再停在原地\n- **新增播放完成兜底检测**：个别音源不上报「播放完成」时，用倒计时兜底自动接上，避免进度条走到结尾却没有反应\n- **修复无法播放的专辑陷入报错循环**：整张专辑都放不出来时会停下并给出提示，不再反复重试\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，用遥控器调进度也不再往回跳",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-phone-arm64-v8a.apk",
       "size": 66777943,
-      "sha256": "4f72a84d0761308c2ceecc37ecdf97abfdd027d5b8f701e04a08bbf747d4b296",
+      "sha256": "b8e49e622f779421a524f55973e9fe93ede9c2629dc573ee2beef3bfeeb215a7",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-phone-arm64-v8a.apk",
           "size": 66777943,
-          "sha256": "4f72a84d0761308c2ceecc37ecdf97abfdd027d5b8f701e04a08bbf747d4b296",
+          "sha256": "b8e49e622f779421a524f55973e9fe93ede9c2629dc573ee2beef3bfeeb215a7",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-phone-armeabi-v7a.apk",
-          "size": 78615423,
-          "sha256": "91a69be8bc307cf3445a3723271efa28bc2c027f7b94efdd8528b8bc91654c41",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-phone-armeabi-v7a.apk",
+          "size": 78648191,
+          "sha256": "a55952a1322506a1718d7f2da6b4f513edd5c1bc8cb1446c23078abea89a0352",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.1.7",
-      "versionCode": 24,
+      "versionName": "1.1.8",
+      "versionCode": 25,
       "flavor": "hd",
-      "notes": "- **新增 WebDAV 支持**：可直接添加 WebDAV 协议的音乐源 / 网盘，浏览并播放其中的音乐\n- **系统更新日志跟随版本显示**：客户端更新弹窗与系统更新中心现在按已安装的版本展示对应的更新说明\n- **官网更新中心支持按设备类型过滤**：手机 / 平板 / 电视各自的更新说明分开展示，不再混在一起\n- **新增「默认播放模式」**：打开 App 默认即为随机播放，点播放直接随机播；设置页可改回列表循环 / 单曲循环，选择会被记住",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-hd-arm64-v8a.apk",
+      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环、随机播放下，一首放完都会正常接上下一首，不再停在原地\n- **新增播放完成兜底检测**：个别音源不上报「播放完成」时，用倒计时兜底自动接上，避免进度条走到结尾却没有反应\n- **修复无法播放的专辑陷入报错循环**：整张专辑都放不出来时会停下并给出提示，不再反复重试\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，用遥控器调进度也不再往回跳",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-hd-arm64-v8a.apk",
       "size": 66783903,
-      "sha256": "2964fb142e440fd202566a7ca008f2a3382ed045eca649905e5a8abc037d9a27",
+      "sha256": "40bdc324867e5e9c8d0b0c00f27783f842e8530072943145474845166bc72d20",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-hd-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-hd-arm64-v8a.apk",
           "size": 66783903,
-          "sha256": "2964fb142e440fd202566a7ca008f2a3382ed045eca649905e5a8abc037d9a27",
+          "sha256": "40bdc324867e5e9c8d0b0c00f27783f842e8530072943145474845166bc72d20",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-hd-armeabi-v7a.apk",
-          "size": 78588615,
-          "sha256": "591653df3e4d433fa2ac8328503f8f57185979a0b4240c42cd967c0d34d00e7a",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-hd-armeabi-v7a.apk",
+          "size": 78604999,
+          "sha256": "52b2cc674151c50f5e18624f75373efabb3ea95e2cdb8ba9bb076c23b590b0ed",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.1.7",
-      "versionCode": 24,
+      "versionName": "1.1.8",
+      "versionCode": 25,
       "flavor": "tv",
-      "notes": "- **新增 WebDAV 支持**：可直接添加 WebDAV 协议的音乐源 / 网盘，浏览并播放其中的音乐\n- **系统更新日志跟随版本显示**：客户端更新弹窗与系统更新中心现在按已安装的版本展示对应的更新说明\n- **官网更新中心支持按设备类型过滤**：手机 / 平板 / 电视各自的更新说明分开展示，不再混在一起\n- **新增「默认播放模式」**：打开 App 默认即为随机播放，点播放直接随机播；设置页可改回列表循环 / 单曲循环，选择会被记住",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-tv-arm64-v8a.apk",
-      "size": 66759873,
-      "sha256": "a5fb01a01c594e6ec344da1f415ff517d588340690c5fdf4bee17afa506252e0",
+      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环、随机播放下，一首放完都会正常接上下一首，不再停在原地\n- **新增播放完成兜底检测**：个别音源不上报「播放完成」时，用倒计时兜底自动接上，避免进度条走到结尾却没有反应\n- **修复无法播放的专辑陷入报错循环**：整张专辑都放不出来时会停下并给出提示，不再反复重试\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，用遥控器调进度也不再往回跳",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-tv-arm64-v8a.apk",
+      "size": 66825409,
+      "sha256": "1b01f2b6831b7854a8bd3ea4eddc067f564391bdabf8b65d04746fe4b8703b46",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-tv-arm64-v8a.apk",
-          "size": 66759873,
-          "sha256": "a5fb01a01c594e6ec344da1f415ff517d588340690c5fdf4bee17afa506252e0",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-tv-arm64-v8a.apk",
+          "size": 66825409,
+          "sha256": "1b01f2b6831b7854a8bd3ea4eddc067f564391bdabf8b65d04746fe4b8703b46",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.7/WuAiMusic-1.1.7-build24-tv-armeabi-v7a.apk",
-          "size": 78646505,
-          "sha256": "eb284a27ea964ac9d3ce4258a3c0f372edcb9427de74cad99f888347b6d44b28",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-tv-armeabi-v7a.apk",
+          "size": 78662889,
+          "sha256": "8961190dd3fcbc1f912fd0f264198cebfb53499f3d143fed11971818acaed14f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.1.8",
+      "date": "2026-10-12",
+      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环、随机播放下，一首放完都会正常接上下一首，不再停在原地\n- **新增播放完成兜底检测**：个别音源不上报「播放完成」时，用倒计时兜底自动接上，避免进度条走到结尾却没有反应\n- **修复无法播放的专辑陷入报错循环**：整张专辑都放不出来时会停下并给出提示，不再反复重试\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，用遥控器调进度也不再往回跳"
+    },
     {
       "versionName": "1.1.7",
       "date": "2026-10-11",
