@@ -67,7 +67,10 @@
        SoftwareApplication + WebSite 让搜索引擎知道这是什么东西、装在哪；
        FAQPage 让它有机会把常见问题直接铺在搜索结果里。
        ⚠️ FAQPage 的问答必须与页面 #faq 那一段**逐字一致**（这里去掉 HTML 标签后的
-          纯文本），两边对不上会被判定为无效结构化数据，反而浪费一次抓取。 -->
+          纯文本），两边对不上会被判定为无效结构化数据，反而浪费一次抓取。
+          这条约束由 `scripts/check_site_faq_parity.py` 强制：改完两处跑一遍。
+          另注意**别在正文写绝对话**（如「绝无任何联网」）—— 出错诊断上报是一条
+          真实存在的外呼通道，脚本会扫出来。 -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -610,7 +613,7 @@
              「匿名上报」真源 = lib/core/logging/log_uploader.dart（默认开、可关、可清队列）
              + log_sanitizer.dart / worker/index.js 两边脱敏（凭据、路径折叠）。
              别再写「绝无任何联网行为」这种绝对话 —— 出错上报是一条真实存在的外呼通道。
-             改完跑 temp/_faq_parity_check.py 验一遍与 ld+json 是否逐字一致。 -->
+             改完跑 python scripts/check_site_faq_parity.py 验一遍与 ld+json 是否逐字一致。 -->
         <details class="faq__item glass reveal">
           <summary>会偷偷上报我的使用数据吗？</summary>
           <div class="faq__body">
