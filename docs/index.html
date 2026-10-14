@@ -337,7 +337,12 @@
         </section>
 
         <!-- 歌词系统：lib/features/lyrics + lib/core/config/lyric_source.dart
-             （内置 6 源：lrc_cx / qq / netease / kugou / kuwo / apple_music）
+             （内置源条目数与各平台协议见该文件；自定义源入口见
+               features/settings/.../lyric_sources_page.dart）
+             ⚠️ 合规：页面文案**不得点名任何第三方音乐平台**，也不得出现其品牌名 ——
+               把「某平台歌词源」写进官网等于公开宣称聚合了该平台内容。
+               同理别写「N 大歌词源」这种点名式枚举。改完跑
+               scripts/check_site_faq_parity.py（第 5 节会扫平台名）。
              + lyric_match_scorer.dart（歌名 100 / 时长 45 / 艺术家 35）
              + lyric_offset_learner.dart / lyric_offset_store.dart -->
         <section class="fgroup glass reveal">
@@ -349,7 +354,7 @@
             <p>六路歌词源交叉比对，尽量给你对得上的那一份。</p>
           </header>
           <ul class="fgroup__list">
-            <li><strong>6 大在线歌词源</strong><span>lrc.cx / QQ音乐 / 网易云 / 酷狗 / 酷我 / Apple Music，某一家查不到会自动换下一家。</span></li>
+            <li><strong>自定义歌词源</strong><span>支持添加自己的歌词服务器，实时获取在线歌词。</span></li>
             <li><strong>歌名 + 时长 + 艺术家打分</strong><span>按毫秒级时长逐首核对，同名的翻唱、Live 版不会张冠李戴。</span></li>
             <li><strong>歌词偏移自动学习</strong><span>整体早半秒？手动微调一次，应用会记住这首歌，下次不用再调。</span></li>
             <li><strong>侧车与内嵌双支持</strong><span>同目录 <code>.lrc</code> 优先，也能读写音频文件里的内嵌歌词。</span></li>
