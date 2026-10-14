@@ -337,14 +337,11 @@
         </section>
 
         <!-- 歌词系统：lib/features/lyrics + lib/core/config/lyric_source.dart
-             （内置源条目数与各平台协议见该文件；自定义源入口见
+             （内置源条目数与各源协议见该文件；自定义源入口见
                features/settings/.../lyric_sources_page.dart）
-             ⚠️ 合规：页面文案**不得点名任何第三方音乐平台**，也不得出现其品牌名 ——
-               把「某平台歌词源」写进官网等于公开宣称聚合了该平台内容。
-               同理别写「N 大歌词源」这种点名式枚举。改完跑
-               scripts/check_site_faq_parity.py（第 5 节会扫平台名）。
              + lyric_match_scorer.dart（歌名 100 / 时长 45 / 艺术家 35）
-             + lyric_offset_learner.dart / lyric_offset_store.dart -->
+             + lyric_offset_learner.dart / lyric_offset_store.dart
+             ⚠️ 文案不得点名第三方音乐平台，改完跑 scripts/check_site_faq_parity.py -->
         <section class="fgroup glass reveal">
           <header class="fgroup__head">
             <span class="fgroup__icon">
