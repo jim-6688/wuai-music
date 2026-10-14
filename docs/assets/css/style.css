@@ -140,7 +140,20 @@ img, svg { display: block; }
   gap: 24px;
 }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand__mark { display: grid; place-items: center; filter: drop-shadow(0 4px 10px rgba(201,169,110,.4)); }
+/* 标识 = App 内置图标（favicon.svg / favicon-dark.svg），不再是手写的金色音符。
+   —— 深浅双版，按站内主题切换，分工见 scripts/build_site_icons.py 的文件头：
+      · 深色主题 -> 香槟金（favicon-dark.svg），因为站点基调就是金
+      · 浅色主题 -> 品牌紫（favicon.svg），与手机桌面上的 App 图标同色
+   ⚠️ 不能用 prefers-color-scheme 来切这一处：系统偏好与站内主题是两件事，
+      用户完全可能用深色系统看浅色页面。站点主题已经落在 html[data-theme]，
+      直接用它，不要绕过它去问系统。两枚都写进 DOM、用 display 切，
+      这样主题切换时零网络请求、零闪烁（浏览器会一起预取）。 */
+.brand__mark { display: block; width: 30px; height: 30px; }
+.brand__mark--dark { display: none; filter: drop-shadow(0 4px 10px rgba(201, 169, 110, 0.45)); }
+html:not([data-theme="light"]) .brand__mark--dark { display: block; }
+html:not([data-theme="light"]) .brand__mark--light { display: none; }
+.brand__mark--light { filter: drop-shadow(0 4px 10px rgba(160, 112, 208, 0.45)); }
+.brand__mark--sm { width: 22px; height: 22px; }
 .brand__name { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.04em; }
 .nav__links { display: flex; gap: 30px; margin-left: auto; }
 .nav__links a { color: var(--text-dim); font-size: 0.95rem; transition: color 0.3s; position: relative; }
@@ -284,6 +297,64 @@ img, svg { display: block; }
 }
 .card h3 { font-size: 1.18rem; margin-bottom: 10px; }
 .card p { color: var(--text-dim); font-size: 0.95rem; }
+
+/* ---------- 功能分组矩阵 ---------- */
+/* 2 列而不是 4 列：每一组是一份「能力清单」，条目要能一行读完；
+   压成 4 列会把每张卡挤成细长条，标题与正文互相打架。 */
+.fgroups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.fgroup { padding: 30px 28px; transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s; }
+.fgroup:hover { transform: translateY(-6px); border-color: var(--border-strong); box-shadow: 0 28px 70px rgba(0,0,0,0.55); }
+/* 标题区用显式 grid 落位，不靠自动排版：图标要跨「标题 + 副标题」两行居中，
+   自动流会把副标题丢到第一列去。 */
+.fgroup__head {
+  display: grid; grid-template-columns: 52px 1fr; column-gap: 16px;
+  align-content: center; margin-bottom: 22px;
+}
+.fgroup__icon {
+  grid-column: 1; grid-row: 1 / span 2; align-self: center;
+  width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+  background: var(--surface-2); color: var(--gold); border: 1px solid var(--border);
+}
+.fgroup__head h3 { grid-column: 2; grid-row: 1; font-size: 1.24rem; }
+.fgroup__head p { grid-column: 2; grid-row: 2; color: var(--text-faint); font-size: 0.9rem; margin-top: 5px; }
+.fgroup__list { display: grid; gap: 15px; }
+.fgroup__list li { position: relative; padding-left: 16px; }
+.fgroup__list li::before {
+  content: ""; position: absolute; left: 0; top: 0.58em; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--gold); opacity: 0.7;
+}
+.fgroup__list strong { display: block; font-size: 0.99rem; font-weight: 600; }
+.fgroup__list span { display: block; color: var(--text-dim); font-size: 0.89rem; line-height: 1.66; margin-top: 4px; }
+
+/* 行内代码：功能清单里用来点出「这条能力的出处文件 / 扩展名」 */
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em; padding: 1px 6px; border-radius: 6px;
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--gold-soft);
+}
+
+/* ---------- 常见问题 ---------- */
+/* 用原生 <details>：不依赖 JS 就能展开，浏览器页内查找（Ctrl+F）也会
+   自动把命中的答案展开 —— 手写 JS 手风琴做不到这一点。 */
+.faq { display: grid; gap: 14px; max-width: 880px; }
+.faq__item { padding: 0; overflow: hidden; transition: border-color 0.4s; }
+.faq__item:hover { border-color: var(--border-strong); }
+.faq__item summary {
+  cursor: pointer; list-style: none; padding: 22px 26px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 1.04rem; font-weight: 600; color: var(--text);
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: ""; margin-left: auto; flex: none;
+  width: 9px; height: 9px; margin-right: 4px;
+  border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+  transform: rotate(45deg); transition: transform 0.3s var(--ease);
+}
+.faq__item[open] summary::after { transform: rotate(-135deg); }
+.faq__item[open] summary { color: var(--gold-soft); }
+.faq__body { padding: 0 26px 24px; color: var(--text-dim); font-size: 0.95rem; line-height: 1.82; }
+.faq__body p { max-width: 60em; }
 
 /* ---------- 平台卡 ---------- */
 .grid--platforms { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
@@ -546,7 +617,7 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
   .hero__visual { order: 1; }
   .hero__lead { margin-left: auto; margin-right: auto; }
   .hero__actions, .hero__stats { justify-content: center; }
-  .grid--features { grid-template-columns: repeat(2, 1fr); }
+  /* 功能矩阵不在这里收列 —— 两列在平板上还并得开，到 760 才收成单列 */
   .grid--platforms { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
   .grid--steps { grid-template-columns: repeat(2, 1fr); }
   .update__table { grid-template-columns: 1fr; }
@@ -558,6 +629,11 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
   .shots--devices .shot:first-child { max-width: 300px; margin: 0 auto; }
 }
 
+/* 功能矩阵与常见问题：窄屏收成单列 / 收紧内边距 */
+@media (max-width: 760px) {
+  .fgroups { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 600px) {
   .nav__links { display: none; }
   .nav__cta { display: none; }
@@ -567,7 +643,15 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
     top: 68px; left: 0; right: 0; padding: 24px 32px;
     background: rgba(12,12,15,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
   }
-  .grid--features, .grid--steps { grid-template-columns: 1fr; }
+  [data-theme="light"] .nav__links.is-open { background: rgba(247,245,240,0.97); }
+  /* 移动菜单的浅色底已有全局规则（见文件头的 [data-theme="light"] 段），此处不重复声明 */
+  .grid--steps { grid-template-columns: 1fr; }
+  .fgroup { padding: 26px 22px; }
+  .fgroup__head { grid-template-columns: 46px 1fr; column-gap: 14px; }
+  .fgroup__icon { width: 46px; height: 46px; border-radius: 12px; }
+  .fgroup__list strong { font-size: 0.96rem; }
+  .faq__item summary { padding: 20px 20px; font-size: 0.99rem; gap: 12px; }
+  .faq__body { padding: 0 20px 22px; }
   .hero__stats { gap: 28px; }
   .update { padding: 22px; }
   /* 手机端截图是竖屏：单列时限制到接近真机宽度，避免拉成一条长条；

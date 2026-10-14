@@ -21,6 +21,131 @@
                href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" />
   -->
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- ── 站点图标 ───────────────────────────────────────────────────────
+       全部由 scripts/build_site_icons.py 从 **App 内置图标**（assets/logo_512.png）
+       派生：同一份字形提取函数，色板取 App 配色真源里的两个。
+
+       深浅**双版**，分工是「按语境明暗」而不是按喜好：
+         · favicon.svg       品牌紫 #A070D0 —— 浅色标签栏 / 站内浅色主题
+         · favicon-dark.svg  香槟金 #A28857 —— 深色标签栏 / 站内深色主题
+       标签栏用系统偏好挑（下面这两行的 media），站内标识用站内主题挑
+       （CSS 的 [data-theme]，见 .brand__mark--light / --dark）——
+       两者必须分开：用户完全可能用深色系统看浅色页面。
+       ⇒ 桌面上的 App 图标、标签页图标、分享卡图标是同一份几何，
+         以后换 App 图标只需替换 logo_512.png 再重跑脚本。
+
+       favicon.ico 只能有一份色板（ICO 没有媒体查询），交给品牌紫兜底 ——
+       它只在「不支持 SVG 图标」的旧浏览器里生效，要与手机桌面上的图标一致。
+       favicon.svg 排在 .ico 前面：现代浏览器优先用矢量版，缩放不糊。 -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon-dark.svg"
+        media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+  <link rel="canonical" href="https://music.52ta.top/" />
+
+  <!-- ── 分享卡 ───────────────────────────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="吾爱音乐 WuAiMusic" />
+  <meta property="og:title" content="吾爱音乐 · 纯粹本地音乐播放器" />
+  <meta property="og:description" content="跨手机、车机/平板、电视三端的本地无损音乐播放器。16 种音频格式、22 套主题配色、6 大歌词源、4 款可视化，全部离线可用。" />
+  <meta property="og:url" content="https://music.52ta.top/" />
+  <meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="吾爱音乐 · 纯粹本地音乐播放器" />
+  <meta name="twitter:description" content="跨手机、车机/平板、电视三端的本地无损音乐播放器，全部离线可用。" />
+  <meta name="twitter:image" content="https://music.52ta.top/assets/icon/og-image.png" />
+
+  <!-- ── 结构化数据 ───────────────────────────────────────────────────────
+       SoftwareApplication + WebSite 让搜索引擎知道这是什么东西、装在哪；
+       FAQPage 让它有机会把常见问题直接铺在搜索结果里。
+       ⚠️ FAQPage 的问答必须与页面 #faq 那一段**逐字一致**（这里去掉 HTML 标签后的
+          纯文本），两边对不上会被判定为无效结构化数据，反而浪费一次抓取。 -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "吾爱音乐",
+          "alternateName": "WuAiMusic",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Android",
+          "url": "https://music.52ta.top/",
+          "image": "https://music.52ta.top/assets/icon/icon-512.png",
+          "description": "跨手机、车机/平板、电视三端的本地无损音乐播放器。",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+        },
+        {
+          "@type": "WebSite",
+          "name": "吾爱音乐",
+          "url": "https://music.52ta.top/",
+          "inLanguage": "zh-CN"
+        },
+        {
+          "@type": "FAQPage",
+          "inLanguage": "zh-CN",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "收费吗？有没有广告或内购？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "完全免费，没有广告、没有内购、没有会员，也不需要注册或登录。应用内没有账号体系，不采集手机号、邮箱等任何个人信息。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "我的音乐文件会不会被上传到服务器？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "不会。曲库扫描、标签与封面读取、播放解码全部在本机完成，音频文件本身永远不会离开你的设备。只有「在线找歌词 / 找封面」这类你主动触发的联网操作，才会把歌名、歌手、时长这些检索用的信息发给你选择的那家歌词源。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "支持哪些音频格式？APE 和 DSD 能放吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "直接播放的格式有 16 种，覆盖 FLAC、WAV、MP3、M4A、AAC、OGG、Opus、WMA、ALAC、AIFF 等常见与冷门格式。APE、WavPack、TTA 与 DSD（.dsf）会先转码成 FLAC 缓存再播放，第一次稍慢，之后与普通歌曲无异；转码缓存可以在设置里一键清理。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "电视和车机上怎么操作？只有遥控器能用吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "电视端整套界面都能用遥控器方向键完成，焦点状态与字号专门为远距离观看放大过；车机与平板是宽屏三栏布局，导航常驻、队列可见。也可以让手机扫码与电视或车机配对，用手机当遥控器控制播放。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "不联网还能正常听歌吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "能。除了「在线找歌词」「在线找封面」与「检查更新」这三处需要联网，其余功能全部离线可用。已经下载或内嵌的歌词在断网时照常滚动，NAS 上的目录也可以提前缓存到本地，出门没网继续听。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "CUE 整轨专辑支持吗？会不会被改坏？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "支持。一张碟的整轨镜像会按 CUE 分出多首显示，但底层共用同一个音频文件，因此应用对 CUE 曲目做了专门保护：它们不参与改标签、改名的写盘，批量美化也会自动跳过，避免把一张专辑拆坏。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
   <script>
     (function () {
       try {
@@ -38,17 +163,14 @@
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a class="brand" href="#top" aria-label="吾爱音乐首页">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="28" height="28">
-            <defs>
-              <linearGradient id="g-mark" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#e8d4a8" />
-                <stop offset="1" stop-color="#c9a96e" />
-              </linearGradient>
-            </defs>
-            <path d="M22 6.5l-9 2.1A2.4 2.4 0 0 0 10.5 11v9.2a4.6 4.6 0 1 0 2.4 4V13.4l7.1-1.6v6.3a4.6 4.6 0 1 0 2.4 4V6.5z" fill="url(#g-mark)"/>
-          </svg>
-        </span>
+        <!-- 与 App 启动图标同源（见 scripts/build_site_icons.py）。
+             以前这里是一枚手写的金色音符 SVG，与手机上的 App 图标对不上；
+             换成内置图标后，站内站外是同一个标识。
+             深浅两份，由 CSS 按站内主题切换（见 .brand__mark--dark/--light）。 -->
+        <img class="brand__mark brand__mark--dark" src="favicon-dark.svg" alt=""
+             width="30" height="30" decoding="async" />
+        <img class="brand__mark brand__mark--light" src="favicon.svg" alt=""
+             width="30" height="30" decoding="async" />
         <span class="brand__name">吾爱音乐</span>
       </a>
       <nav class="nav__links" aria-label="主导航">
@@ -56,7 +178,9 @@
         <a href="#screens">界面预览</a>
         <a href="#platforms">各端下载</a>
         <a href="#update">更新中心</a>
-        <a href="#ota">自动更新</a>
+        <!-- 「自动更新」不占导航位：它与「更新中心」指向同一段内容，
+             #ota 锚点保留给页脚与外链深链。常见问题更值得进导航。 -->
+        <a href="#faq">常见问题</a>
         <a href="#community">粉丝群</a>
       </nav>
       <a class="btn btn--gold nav__cta" href="#platforms">立即下载</a>
@@ -87,10 +211,16 @@
             <a class="btn btn--gold" href="#platforms">下载客户端</a>
             <a class="btn btn--ghost" href="#features">了解功能</a>
           </div>
+          <!-- 数字全部取自代码真源，改功能时要跟着改（出处见各条注释）：
+                 formats = lib/core/constants/audio_formats.dart 的 AudioFormats.exts
+                 schemes = lib/core/theme/custom_color_schemes.dart 的配色条目数
+                 lyrics  = lib/core/config/lyric_source.dart 的内置源条目数
+                 platforms = android/app/build.gradle.kts 的 productFlavors（phone/hd/tv） -->
           <div class="hero__stats">
-            <div><strong data-stat="platforms">3</strong><span>覆盖终端</span></div>
-            <div><strong data-stat="formats">14</strong><span>音频格式</span></div>
-            <div><strong data-stat="schemes">14</strong><span>主题配色</span></div>
+            <div><strong data-stat="formats">16</strong><span>种音频格式</span></div>
+            <div><strong data-stat="schemes">22</strong><span>套主题配色</span></div>
+            <div><strong data-stat="lyrics">6</strong><span>大歌词源</span></div>
+            <div><strong data-stat="platforms">3</strong><span>端同源适配</span></div>
           </div>
         </div>
 
@@ -128,65 +258,114 @@
       <div class="section__head reveal">
         <span class="eyebrow">核心能力</span>
         <h2>为热爱音乐的人而造</h2>
-        <p class="section__sub">不靠云端曲库，只把你的本地收藏打磨到极致。</p>
+        <p class="section__sub">不靠云端曲库，只把你的本地收藏打磨到极致。下面五组能力在手机、车机与电视上完全一致。</p>
       </div>
-      <div class="grid grid--features">
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-          </div>
-          <h3>本地无损播放</h3>
-          <p>原生解码 FLAC / WAV / MP3 / M4A 等主流格式，完整保留动态与细节，离线也能享受高保真。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg>
-          </div>
-          <h3>智能歌词</h3>
-          <p>桌面歌词、锁屏歌词与流体云歌词联动，双语对照、逐字滚动，让每句词都恰到好处。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 12h2l2-7 4 14 3-9 2 4h5"/></svg>
-          </div>
-          <h3>专业均衡器</h3>
-          <p>10 段参量均衡 + 预设与自定义，按耳机与曲目个性调音，重低音或清亮人声随手切换。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
-          </div>
-          <h3>主题配色</h3>
-          <p>14 套精心调配的配色与背景笔法，明/暗一体适配，界面随你的审美焕然一新。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 17l5-6 4 4 3-4 6 6H3z"/></svg>
-          </div>
-          <h3>音频可视化</h3>
-          <p>频谱随节拍跃动，把声音变成看得见的画面，沉浸感拉满。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 4h16v3H4zm2 5h12v3H6zm2 5h8v3H8z"/></svg>
-          </div>
-          <h3>ReplayGain 音量归一</h3>
-          <p>自动平衡专辑间响度差异，告别切歌忽大忽小，连续播放更顺耳。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.8 5.7 21l2.3-7.2-6-4.4h7.6z"/></svg>
-          </div>
-          <h3>音乐美化中心</h3>
-          <p>补全标签、封面与歌词，批量重命名整理曲库，让收藏井井有条。</p>
-        </article>
-        <article class="card glass reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 12a9 9 0 1 1 18 0 9 9 0 0 1-18 0zm9-5v5l4 2"/></svg>
-          </div>
-          <h3>OTA 自动更新</h3>
-          <p>启动自动静默检查版本，下载后校验安装一体化，始终用上最新体验。</p>
-        </article>
+
+      <!-- 按「你会怎么用它」分五组，不按技术分层分。
+           每条都能在 lib/ 里找到实现，不写没做的功能；数字与文件名写在注释里，
+           以后改功能时能顺着注释回去改，不会留下对不上的宣传文案。 -->
+      <div class="fgroups">
+
+        <!-- 播放内核：lib/features/player/service/audio_player_service.dart
+             + transcode_config.dart / transcode_service.dart + replay_gain_provider.dart -->
+        <section class="fgroup glass reveal">
+          <header class="fgroup__head">
+            <span class="fgroup__icon">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+            </span>
+            <h3>播放内核</h3>
+            <p>把文件丢进去就能放，冷门格式也不放弃。</p>
+          </header>
+          <ul class="fgroup__list">
+            <li><strong>16 种音频格式直通</strong><span>FLAC / WAV / MP3 / M4A / AAC / OGG / Opus / WMA / ALAC / AIFF 等原生解码，完整保留动态与细节。列表真源：<code>lib/core/constants/audio_formats.dart</code>。</span></li>
+            <li><strong>冷门格式自动转码</strong><span>APE / WavPack / TTA 首次播放转成 FLAC 缓存，第二次秒开，缓存可一键清理。</span></li>
+            <li><strong>DSD 也能播</strong><span>整轨 <code>.dsf</code> 按 1bit / 2.8MHz → 24bit / 176.4kHz 转码播放，DSD 收藏不再只能干看。</span></li>
+            <li><strong>ReplayGain 音量归一</strong><span>自动平衡专辑之间的响度差，另有前置增益，切歌不再忽大忽小。</span></li>
+            <li><strong>播放速度 0.5×–2.0×</strong><span>听播客、跟唱、扒谱都用得上。</span></li>
+            <li><strong>放不出来也不装死</strong><span>解码失败先尝试转码重试，确实不行才顺延下一首 —— 不会卡在一个坏文件上。</span></li>
+          </ul>
+        </section>
+
+        <!-- 音效与可视化：lib/features/player/service/audio_equalizer_service.dart
+             （bandCount = 10，frequencies 32Hz–16kHz，15 组预设 + 自定义）
+             + lib/features/player/widgets/audio_visualizer.dart（VisualizerStyle 4 款） -->
+        <section class="fgroup glass reveal">
+          <header class="fgroup__head">
+            <span class="fgroup__icon">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 12h2l2-7 4 14 3-9 2 4h5"/></svg>
+            </span>
+            <h3>音效与可视化</h3>
+            <p>调出真正属于自己的声音，也看得见声音。</p>
+          </header>
+          <ul class="fgroup__list">
+            <li><strong>10 段参量均衡器</strong><span>32Hz–16kHz 逐段 ±12dB，带实时频响曲线，另有虚拟低音增强、环绕声与混响。</span></li>
+            <li><strong>15 组内置预设</strong><span>平坦 / 低音增强 / 高音增强 / 摇滚 / 流行 / 爵士 / 古典 / 舞曲 / 电子 / 人声 / 嘻哈 / 原声，外加 3 组丹拿曲线。</span></li>
+            <li><strong>自定义预设可存可删</strong><span>调好的曲线存下来，换耳机、换设备都能一键调回。</span></li>
+            <li><strong>4 款可视化风格</strong><span>液态极光 / 黑胶唱片 / 星云律动 / 音乐喷泉，随频谱实时律动。</span></li>
+          </ul>
+        </section>
+
+        <!-- 曲库与整理：lib/features/files + lib/features/beautify + lib/features/nas
+             （NasProtocol = smb / webdav） -->
+        <section class="fgroup glass reveal">
+          <header class="fgroup__head">
+            <span class="fgroup__icon">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg>
+            </span>
+            <h3>曲库与整理</h3>
+            <p>整轨镜像、错乱的标签、散落的文件，都能收拾干净。</p>
+          </header>
+          <ul class="fgroup__list">
+            <li><strong>CUE 整轨专辑</strong><span>一张碟的镜像文件按 CUE 分出多首，改标签、改歌名都不会碰坏原始音频。</span></li>
+            <li><strong>M3U / M3U8 播放列表</strong><span>外部歌单直接识别导入，不用手工重排。</span></li>
+            <li><strong>本地 + NAS 统一入库</strong><span>手机存储、外置卡、SMB 与 WebDAV 共享目录，在同一个曲库里一起检索。</span></li>
+            <li><strong>NAS 目录离线缓存</strong><span>把家里 NAS 上的音乐整目录缓存到本地，出门没网也能听。</span></li>
+            <li><strong>批量音乐美化</strong><span>补全标签与封面、内嵌歌词、批量重命名，支持勾选范围与一键撤销；每次写入都有日志可查。</span></li>
+            <li><strong>收藏与播放统计</strong><span>听歌习惯只留在本机，不上传任何服务器。</span></li>
+          </ul>
+        </section>
+
+        <!-- 歌词系统：lib/features/lyrics + lib/core/config/lyric_source.dart
+             （内置 6 源：lrc_cx / qq / netease / kugou / kuwo / apple_music）
+             + lyric_match_scorer.dart（歌名 100 / 时长 45 / 艺术家 35）
+             + lyric_offset_learner.dart / lyric_offset_store.dart -->
+        <section class="fgroup glass reveal">
+          <header class="fgroup__head">
+            <span class="fgroup__icon">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 6h16v2H4zm0 5h10v2H4zm0 5h13v2H4zM17 4l4 2v9a2.5 2.5 0 1 1-2-2.45V7.2L17 6.5z"/></svg>
+            </span>
+            <h3>歌词系统</h3>
+            <p>六路歌词源交叉比对，尽量给你对得上的那一份。</p>
+          </header>
+          <ul class="fgroup__list">
+            <li><strong>6 大在线歌词源</strong><span>lrc.cx / QQ音乐 / 网易云 / 酷狗 / 酷我 / Apple Music，某一家查不到会自动换下一家。</span></li>
+            <li><strong>歌名 + 时长 + 艺术家打分</strong><span>按毫秒级时长逐首核对，同名的翻唱、Live 版不会张冠李戴。</span></li>
+            <li><strong>歌词偏移自动学习</strong><span>整体早半秒？手动微调一次，应用会记住这首歌，下次不用再调。</span></li>
+            <li><strong>侧车与内嵌双支持</strong><span>同目录 <code>.lrc</code> 优先，也能读写音频文件里的内嵌歌词。</span></li>
+            <li><strong>播放页与锁屏歌词</strong><span>手机端播放页、锁屏与桌面歌词的位置与样式都可调。</span></li>
+          </ul>
+        </section>
+
+        <!-- 跨端与更新：lib/features/tv + lib/features/hd（phone/hd/tv 三 flavor）
+             + lib/features/sync（配对 / 遥控）+ lib/core/theme（22 配色）
+             + lib/core/i18n（zh-Hans / zh-Hant / en）+ lib/features/update -->
+        <section class="fgroup glass reveal">
+          <header class="fgroup__head">
+            <span class="fgroup__icon">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M2 5h20v11H2zm7 13h6v2H9z"/></svg>
+            </span>
+            <h3>跨端与更新</h3>
+            <p>一台手机、一块平板、一台电视，共用同一套体验。</p>
+          </header>
+          <ul class="fgroup__list">
+            <li><strong>手机 / 车机·平板 / 电视三端同源</strong><span>同一份设计语言；电视端整套遥控器方向键操作，焦点与字号按十尺外观看重做。</span></li>
+            <li><strong>设备配对与遥控播放</strong><span>手机扫码与车机、电视配对，把播放状态与队列同步过去。</span></li>
+            <li><strong>22 套主题配色</strong><span>明暗双模式、背景笔法、字号与字体都能换，界面随你的审美来。</span></li>
+            <li><strong>简体 / 繁體 / English</strong><span>三套完整词表，繁体按台湾用语单独翻译，不是机器转写。</span></li>
+            <li><strong>内置 OTA 自动更新</strong><span>启动静默查版本、下载后 SHA-256 校验再安装，不需要应用商店。</span></li>
+          </ul>
+        </section>
+
       </div>
     </section>
 
@@ -393,6 +572,62 @@
       </div>
     </section>
 
+    <!-- 常见问题 -->
+    <!-- 用 <details> 而不是 JS 手风琴：不需要脚本就能展开、能被浏览器「页内查找」展开、
+         也天然可访问。答案里的说法都必须能在应用里对上，别在这里写做不到的承诺。
+         ⚠️ 这里的问答与 head 里 FAQPage 结构化数据必须逐字一致，改一处要改两处。 -->
+    <section class="section section--alt" id="faq">
+      <div class="section__head reveal">
+        <span class="eyebrow">常见问题</span>
+        <h2>你可能想先问清楚的事</h2>
+        <p class="section__sub">每一条都能在应用里自己验证 —— 我们没有后台账号，也没有需要藏着的行为。</p>
+      </div>
+
+      <div class="faq">
+        <details class="faq__item glass reveal">
+          <summary>收费吗？有没有广告或内购？</summary>
+          <div class="faq__body">
+            <p>完全免费，没有广告、没有内购、没有会员，也不需要注册或登录。应用内没有账号体系，不采集手机号、邮箱等任何个人信息。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>我的音乐文件会不会被上传到服务器？</summary>
+          <div class="faq__body">
+            <p>不会。曲库扫描、标签与封面读取、播放解码全部在本机完成，音频文件本身永远不会离开你的设备。只有「在线找歌词 / 找封面」这类你主动触发的联网操作，才会把歌名、歌手、时长这些检索用的信息发给你选择的那家歌词源。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>支持哪些音频格式？APE 和 DSD 能放吗？</summary>
+          <div class="faq__body">
+            <p>直接播放的格式有 16 种，覆盖 FLAC、WAV、MP3、M4A、AAC、OGG、Opus、WMA、ALAC、AIFF 等常见与冷门格式。APE、WavPack、TTA 与 DSD（<code>.dsf</code>）会先转码成 FLAC 缓存再播放，第一次稍慢，之后与普通歌曲无异；转码缓存可以在设置里一键清理。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>电视和车机上怎么操作？只有遥控器能用吗？</summary>
+          <div class="faq__body">
+            <p>电视端整套界面都能用遥控器方向键完成，焦点状态与字号专门为远距离观看放大过；车机与平板是宽屏三栏布局，导航常驻、队列可见。也可以让手机扫码与电视或车机配对，用手机当遥控器控制播放。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>不联网还能正常听歌吗？</summary>
+          <div class="faq__body">
+            <p>能。除了「在线找歌词」「在线找封面」与「检查更新」这三处需要联网，其余功能全部离线可用。已经下载或内嵌的歌词在断网时照常滚动，NAS 上的目录也可以提前缓存到本地，出门没网继续听。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>CUE 整轨专辑支持吗？会不会被改坏？</summary>
+          <div class="faq__body">
+            <p>支持。一张碟的整轨镜像会按 CUE 分出多首显示，但底层共用同一个音频文件，因此应用对 CUE 曲目做了专门保护：它们不参与改标签、改名的写盘，批量美化也会自动跳过，避免把一张专辑拆坏。</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- 加入 QQ 粉丝群 -->
     <!-- 整张卡片就是一个加群链接，点哪儿都能拉起 QQ，不用瞄准按钮。
          href 用腾讯官方的 qm.qq.com 加群短链：手机端打开即尝试唤起 QQ 申请入群，
@@ -441,7 +676,16 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="brand__name">吾爱音乐</span>
+        <span class="brand">
+          <!-- 双色板标识：深色主题用香槟金（favicon-dark.svg），浅色主题用品牌紫（favicon.svg）。
+               切换交给 CSS 的 [data-theme] —— 不能用 <img media> 或 SVG 内的
+               prefers-color-scheme，因为站内主题是用户自己选的，跟系统偏好可以不一致。 -->
+          <img class="brand__mark brand__mark--sm brand__mark--dark" src="favicon-dark.svg"
+               alt="" width="22" height="22" decoding="async" />
+          <img class="brand__mark brand__mark--sm brand__mark--light" src="favicon.svg"
+               alt="" width="22" height="22" decoding="async" />
+          <span class="brand__name">吾爱音乐</span>
+        </span>
         <p>纯粹本地音乐，听见每一处细节。</p>
       </div>
       <nav class="footer__links" aria-label="页脚导航">
@@ -449,6 +693,7 @@
         <a href="#platforms">下载</a>
         <a href="#update">更新中心</a>
         <a href="#ota">自动更新</a>
+        <a href="#faq">常见问题</a>
         <!-- 加群入口在页脚再留一个：用户滚到底部时不必再往上翻 -->
         <a href="#community">QQ 粉丝群</a>
       </nav>

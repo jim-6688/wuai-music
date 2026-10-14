@@ -1,0 +1,9 @@
+# 吾爱音乐官网 —— 由 scripts/build_site_icons.py 生成。
+#
+# 全站放行：没有后台、没有用户数据、没有需要隐藏的目录。
+# 下载包（APK）不在本站，指向各代码托管平台的 Release。
+
+User-agent: *
+Allow: /
+
+Sitemap: https://music.52ta.top/sitemap.xml
