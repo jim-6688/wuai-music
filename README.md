@@ -39,7 +39,7 @@
 
 ### UI 设计
 - 毛玻璃 (Glassmorphism) 风格 UI
-- 20+ 预设配色方案
+- 22 款预设配色（纯色 / 简约线条 / 手绘 / 渐变 / 节日），明暗模式共用一套
 - 浅色/深色/跟随系统主题
 - 手机端 + TV 端自适应（自动检测设备类型）
 - TV 端遥控器 D-pad 焦点导航
@@ -103,39 +103,6 @@ flutter build apk --release
 ```
 
 构建产物位于 `build/app/outputs/flutter-apk/app-release.apk`
-
-## 项目结构
-
-```
-lib/
-├── main.dart                          # 应用入口
-├── core/
-│   ├── providers/                     # 全局 Provider
-│   │   ├── unified_tracks_provider.dart   # 统一音乐列表（本地+NAS）
-│   │   └── player_integration_provider.dart
-│   ├── theme/                         # 主题系统
-│   └── utils/                         # 工具类
-├── features/
-│   ├── player/                        # 播放器功能
-│   ├── files/                         # 本地音乐管理
-│   ├── nas/                           # NAS 连接与管理
-│   ├── playlist/                      # 歌单 & 在线音源
-│   │   ├── services/
-│   │   │   ├── meting_api_client.dart     # Meting API
-│   │   │   ├── netease_api_service.dart   # 网易云 API
-│   │   │   ├── netease_leaderboard_service.dart  # 榜单服务
-│   │   │   └── qq_music_leaderboard_service.dart  # QQ音乐榜单
-│   │   └── providers/
-│   ├── settings/                      # 设置页面
-│   ├── beautify/                      # 元数据修复
-│   ├── extension_manager/             # 扩展功能管理
-│   └── tv/                            # TV 端适配页面
-│       ├── presentation/pages/
-│       └── widgets/
-└── shared/
-    ├── navigation/                    # 导航控制
-    └── widgets/                       # 共享组件（毛玻璃等）
-```
 
 ## 贡献
 
