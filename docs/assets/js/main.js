@@ -179,6 +179,29 @@
     return rel.versionCode || null;
   }
 
+  /** 把一条更新说明渲染成列表。
+   *
+   *  `notes` 的真源是 `CHANGELOG.md` 里 `notes:begin/end` 之间那段 —— 逐行
+   *  `- **标题**：说明`。改前整段 `esc()` 后塞进一个 `<p>`：行首的 `-` 与
+   *  包标题的 `**` 都会**原样显示**，一屏看下来像没渲染完的源码。
+   *  现在按行拆成 `<li>`，并还原标题加粗。
+   *
+   *  ⚠️ 顺序不能反：先 `esc()` 整行，再把 `**…**` 换成 `<strong>`。
+   *  反过来等于把清单里的内容（它来自仓库文件与远端 JSON）当 HTML 执行。
+   */
+  function notesHtml(notes) {
+    var items = [];
+    String(notes || "").split("\n").forEach(function (ln) {
+      var t = ln.trim().replace(/^[-*]\s+/, "");
+      if (!t) return;
+      items.push(
+        "<li>" + esc(t).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>") + "</li>"
+      );
+    });
+    if (!items.length) return "";
+    return '<ul class="ci-list">' + items.join("") + "</ul>";
+  }
+
   /** 渲染筛选按钮行 */
   function renderLogFilter(manifest) {
     var box = $("#changelogFilter");
@@ -270,7 +293,7 @@
             chips.join("") +
           "</span>" +
         "</div>" +
-        "<p>" + esc(e.notes) + "</p>";
+        notesHtml(e.notes);
       logEl.appendChild(item);
     });
   }

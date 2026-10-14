@@ -513,6 +513,17 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
   color: var(--gold); background: var(--surface-2); border: 1px solid var(--border);
 }
 .changelog__item p { color: var(--text-dim); font-size: 0.92rem; white-space: pre-line; }
+/* 更新说明是逐行拆开渲染的列表（见 main.js 的 notesHtml()）。
+   改前整段塞进一个 <p>：行首的 `-` 与包标题的 `**` 都是字面字符，
+   一屏看下来像没渲染完的源码 ⇒ 这里补上真正的项目符号与标题层级。 */
+.changelog__item .ci-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.changelog__item .ci-list li { position: relative; padding-left: 15px; color: var(--text-dim); font-size: 0.92rem; line-height: 1.6; }
+.changelog__item .ci-list li::before {
+  content: ""; position: absolute; left: 3px; top: 0.62em;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold-soft); opacity: 0.6;
+}
+.changelog__item .ci-list strong { color: var(--text); font-weight: 600; }
 .changelog__empty { color: var(--text-faint); font-size: 0.9rem; }
 
 /* ---------- OTA 步骤 ---------- */
