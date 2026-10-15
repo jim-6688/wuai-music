@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.1.9",
-      "versionCode": 26,
+      "versionName": "1.2.0",
+      "versionCode": 27,
       "flavor": "phone",
-      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据识别更准**：歌名、歌手、专辑、年份的匹配顺序重新排过，换源时更不容易认错\n- **美化歌词走同一套歌词源设置**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-phone-arm64-v8a.apk",
+      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-phone-arm64-v8a.apk",
       "size": 66777943,
-      "sha256": "ed17c7b00371eabda00de29d97a89d08f4742e7cb10cfbb417083f67d42afe7c",
+      "sha256": "fb5351dc1021e0054781f1f27e049139da0504f16bb0b147246d6d25b6970152",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-phone-arm64-v8a.apk",
           "size": 66777943,
-          "sha256": "ed17c7b00371eabda00de29d97a89d08f4742e7cb10cfbb417083f67d42afe7c",
+          "sha256": "fb5351dc1021e0054781f1f27e049139da0504f16bb0b147246d6d25b6970152",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-phone-armeabi-v7a.apk",
-          "size": 78648191,
-          "sha256": "4aefd399c5bdcdcf352d136637aa6f3029e6752ec87fb05da30b122c9ec6cd76",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-phone-armeabi-v7a.apk",
+          "size": 78664575,
+          "sha256": "15523f7ba94ce311f49b9c0f663db3a4ea1201a020d0ef7bb3acb5d42e131309",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.1.9",
-      "versionCode": 26,
+      "versionName": "1.2.0",
+      "versionCode": 27,
       "flavor": "hd",
-      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据识别更准**：歌名、歌手、专辑、年份的匹配顺序重新排过，换源时更不容易认错\n- **美化歌词走同一套歌词源设置**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-hd-arm64-v8a.apk",
-      "size": 66783903,
-      "sha256": "3fa688227c3f80000b89b781b0e2c7da8c1cea8c60061974e6a5ba50d51f1e12",
+      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-hd-arm64-v8a.apk",
+      "size": 66783907,
+      "sha256": "e6a021cf872bd47e9e478b7eda4371e922c0fd6b578a0eb107fb733417af5409",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-hd-arm64-v8a.apk",
-          "size": 66783903,
-          "sha256": "3fa688227c3f80000b89b781b0e2c7da8c1cea8c60061974e6a5ba50d51f1e12",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-hd-arm64-v8a.apk",
+          "size": 66783907,
+          "sha256": "e6a021cf872bd47e9e478b7eda4371e922c0fd6b578a0eb107fb733417af5409",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-hd-armeabi-v7a.apk",
-          "size": 78604999,
-          "sha256": "079bd287234269ecd4173bccd7294d5cd36ccece725a7a907473598228aad03a",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-hd-armeabi-v7a.apk",
+          "size": 78637771,
+          "sha256": "ce01b56ba7c8f0e1898864e864ea4579b954716aa19267587e1d54d6eb15a9e7",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.1.9",
-      "versionCode": 26,
+      "versionName": "1.2.0",
+      "versionCode": 27,
       "flavor": "tv",
-      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据识别更准**：歌名、歌手、专辑、年份的匹配顺序重新排过，换源时更不容易认错\n- **美化歌词走同一套歌词源设置**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-tv-arm64-v8a.apk",
-      "size": 66825409,
-      "sha256": "1e48c3da9844ebf0d59b14420e08320efdfba6b3eb3d3217123892757b0ae4bc",
+      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-tv-arm64-v8a.apk",
+      "size": 66825413,
+      "sha256": "3be0f5884ea731d3ef2b9bab86bd6be7c0ccc9c5e756127333fa3edd01444dc1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-tv-arm64-v8a.apk",
-          "size": 66825409,
-          "sha256": "1e48c3da9844ebf0d59b14420e08320efdfba6b3eb3d3217123892757b0ae4bc",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-tv-arm64-v8a.apk",
+          "size": 66825413,
+          "sha256": "3be0f5884ea731d3ef2b9bab86bd6be7c0ccc9c5e756127333fa3edd01444dc1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-tv-armeabi-v7a.apk",
-          "size": 78679273,
-          "sha256": "b9de1cb219803330d11880fac4387fb3b31a52b4ec90b7e71bcd660b57e601f9",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-tv-armeabi-v7a.apk",
+          "size": 78695661,
+          "sha256": "1cc73fc23854233a3563cb21d1ac9ff80c1d5be2ed3304859312a8ac861e34d6",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -80,9 +80,19 @@
   },
   "changelog": [
     {
+      "versionName": "1.2.0",
+      "date": "2026-10-15",
+      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**"
+    },
+    {
       "versionName": "1.1.9",
       "date": "2026-10-15",
       "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据识别更准**：歌名、歌手、专辑、年份的匹配顺序重新排过，换源时更不容易认错\n- **美化歌词走同一套歌词源设置**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决"
+    },
+    {
+      "versionName": "1.1.8",
+      "date": "2026-10-12",
+      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环与随机播放下均已正常接续\n- **新增播放完成兜底检测**：个别文件不上报「播放完成」时用倒计时兜底接上，不再走到结尾却没有反应\n- **修复无法播放的专辑陷入报错循环**：整张专辑不可播放时会停止重试，并给出明确提示\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，遥控器调节进度不再回跳"
     },
     {
       "versionName": "1.1.7",
