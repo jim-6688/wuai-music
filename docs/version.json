@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.1.8",
-      "versionCode": 25,
+      "versionName": "1.1.9",
+      "versionCode": 26,
       "flavor": "phone",
-      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环与随机播放下均已正常接续\n- **修复无法播放的专辑陷入报错循环**：整张专辑不可播放时会停止重试，并给出明确提示\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，遥控器调节进度不再回跳",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-phone-arm64-v8a.apk",
+      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据改用 QQ 音乐优先**：歌名、歌手、专辑、年份的识别更准，网易云作为兜底\n- **美化歌词改用统一歌词源**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-phone-arm64-v8a.apk",
       "size": 66777943,
-      "sha256": "b8e49e622f779421a524f55973e9fe93ede9c2629dc573ee2beef3bfeeb215a7",
+      "sha256": "ed17c7b00371eabda00de29d97a89d08f4742e7cb10cfbb417083f67d42afe7c",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-phone-arm64-v8a.apk",
           "size": 66777943,
-          "sha256": "b8e49e622f779421a524f55973e9fe93ede9c2629dc573ee2beef3bfeeb215a7",
+          "sha256": "ed17c7b00371eabda00de29d97a89d08f4742e7cb10cfbb417083f67d42afe7c",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-phone-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-phone-armeabi-v7a.apk",
           "size": 78648191,
-          "sha256": "a55952a1322506a1718d7f2da6b4f513edd5c1bc8cb1446c23078abea89a0352",
+          "sha256": "4aefd399c5bdcdcf352d136637aa6f3029e6752ec87fb05da30b122c9ec6cd76",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.1.8",
-      "versionCode": 25,
+      "versionName": "1.1.9",
+      "versionCode": 26,
       "flavor": "hd",
-      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环与随机播放下均已正常接续\n- **修复无法播放的专辑陷入报错循环**：整张专辑不可播放时会停止重试，并给出明确提示\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，遥控器调节进度不再回跳",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-hd-arm64-v8a.apk",
+      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据改用 QQ 音乐优先**：歌名、歌手、专辑、年份的识别更准，网易云作为兜底\n- **美化歌词改用统一歌词源**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-hd-arm64-v8a.apk",
       "size": 66783903,
-      "sha256": "40bdc324867e5e9c8d0b0c00f27783f842e8530072943145474845166bc72d20",
+      "sha256": "3fa688227c3f80000b89b781b0e2c7da8c1cea8c60061974e6a5ba50d51f1e12",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-hd-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-hd-arm64-v8a.apk",
           "size": 66783903,
-          "sha256": "40bdc324867e5e9c8d0b0c00f27783f842e8530072943145474845166bc72d20",
+          "sha256": "3fa688227c3f80000b89b781b0e2c7da8c1cea8c60061974e6a5ba50d51f1e12",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-hd-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-hd-armeabi-v7a.apk",
           "size": 78604999,
-          "sha256": "52b2cc674151c50f5e18624f75373efabb3ea95e2cdb8ba9bb076c23b590b0ed",
+          "sha256": "079bd287234269ecd4173bccd7294d5cd36ccece725a7a907473598228aad03a",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.1.8",
-      "versionCode": 25,
+      "versionName": "1.1.9",
+      "versionCode": 26,
       "flavor": "tv",
-      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环与随机播放下均已正常接续\n- **修复无法播放的专辑陷入报错循环**：整张专辑不可播放时会停止重试，并给出明确提示\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，遥控器调节进度不再回跳",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-tv-arm64-v8a.apk",
+      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据改用 QQ 音乐优先**：歌名、歌手、专辑、年份的识别更准，网易云作为兜底\n- **美化歌词改用统一歌词源**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-tv-arm64-v8a.apk",
       "size": 66825409,
-      "sha256": "1b01f2b6831b7854a8bd3ea4eddc067f564391bdabf8b65d04746fe4b8703b46",
+      "sha256": "1e48c3da9844ebf0d59b14420e08320efdfba6b3eb3d3217123892757b0ae4bc",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-tv-arm64-v8a.apk",
           "size": 66825409,
-          "sha256": "1b01f2b6831b7854a8bd3ea4eddc067f564391bdabf8b65d04746fe4b8703b46",
+          "sha256": "1e48c3da9844ebf0d59b14420e08320efdfba6b3eb3d3217123892757b0ae4bc",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.8/WuAiMusic-1.1.8-build25-tv-armeabi-v7a.apk",
-          "size": 78662889,
-          "sha256": "8961190dd3fcbc1f912fd0f264198cebfb53499f3d143fed11971818acaed14f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.1.9/WuAiMusic-1.1.9-build26-tv-armeabi-v7a.apk",
+          "size": 78679273,
+          "sha256": "b9de1cb219803330d11880fac4387fb3b31a52b4ec90b7e71bcd660b57e601f9",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -80,9 +80,9 @@
   },
   "changelog": [
     {
-      "versionName": "1.1.8",
-      "date": "2026-10-12",
-      "notes": "- **修复播完不自动播放下一首**：专辑、列表循环与随机播放下均已正常接续\n- **修复无法播放的专辑陷入报错循环**：整张专辑不可播放时会停止重试，并给出明确提示\n- **修复电视端进度条与时间码不一致**：进度条两端与「当前 / 总时长」对齐，遥控器调节进度不再回跳"
+      "versionName": "1.1.9",
+      "date": "2026-10-15",
+      "notes": "- **修复「有时候点了歌放不出来、再打开就正常」**：切歌过快时起播被误判为文件损坏，现已正确让位给最新一次起播\n- **音乐美化不再产生 `_edited` 副本**：以前每美化一首会在下载目录留一份同等大小的重复文件，现已从源头消除\n- **美化元数据改用 QQ 音乐优先**：歌名、歌手、专辑、年份的识别更准，网易云作为兜底\n- **美化歌词改用统一歌词源**：设置页里对歌词源的开关与自定义源现在对美化同样生效\n- **修复切歌时偶发闪退**：快速切歌或退出播放页时的崩溃已解决"
     },
     {
       "versionName": "1.1.7",
