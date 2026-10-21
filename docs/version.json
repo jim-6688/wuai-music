@@ -49,25 +49,25 @@
       }
     },
     "tv": {
-      "versionName": "1.2.0",
-      "versionCode": 27,
+      "versionName": "1.2.1",
+      "versionCode": 28,
       "flavor": "tv",
-      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-tv-arm64-v8a.apk",
-      "size": 66825413,
-      "sha256": "3be0f5884ea731d3ef2b9bab86bd6be7c0ccc9c5e756127333fa3edd01444dc1",
+      "notes": "- **全屏歌词升级为「音乐相册」**：3D 封面流（中间大、左右小），可选显示音乐封面或本机相册，2/4/6 秒自动切换，歌词显示在相册下方\n- **自动全屏先选模式**：闲置后先弹「全屏歌词 / 音乐相册」二选一，不选默认相册；相册未绑定目录则 5 秒后回落到全屏歌词\n- **虚拟背景开关移入设置**：默认关闭，可分别控制「播放页 / 全屏播放页」是否启用封面模糊背景\n- **本地音乐界面升级**：新增「随机推荐」，音乐与专辑统一一行 4 个；有封面的歌优先显示、无封面用软件图标占位\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **修复「播放最多」为空**：播放计次此前被逐帧重建、始终记不上；现已修复，播放过的歌会正常出现在「播放最多」\n- **无歌词曲目显示在线雅句**：轻音乐或取不到歌词时，显示「本首音乐暂无歌词」并填充诗词雅句\n- **修复卡拉OK开关无效**：关闭后当前行不再扫光\n- **音乐美化更省心**：进入页面自动分析并美化（默认直接写入文件），最新记录在前，未完成的可下次继续\n- **同步端口自动避让**：默认端口被占用时自动顺延，不再启动失败",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.1/WuAiMusic-1.2.1-build28-tv-arm64-v8a.apk",
+      "size": 67209314,
+      "sha256": "8ceacae995e2a7eafe3e408bbf26fa112444f41494ab2c01def53c667f374a81",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-tv-arm64-v8a.apk",
-          "size": 66825413,
-          "sha256": "3be0f5884ea731d3ef2b9bab86bd6be7c0ccc9c5e756127333fa3edd01444dc1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.1/WuAiMusic-1.2.1-build28-tv-arm64-v8a.apk",
+          "size": 67209314,
+          "sha256": "8ceacae995e2a7eafe3e408bbf26fa112444f41494ab2c01def53c667f374a81",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-tv-armeabi-v7a.apk",
-          "size": 78695661,
-          "sha256": "1cc73fc23854233a3563cb21d1ac9ff80c1d5be2ed3304859312a8ac861e34d6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.1/WuAiMusic-1.2.1-build28-tv-armeabi-v7a.apk",
+          "size": 79112330,
+          "sha256": "5cb6684b49f66568e475dd1c1b7d0591431ed3f9364eb0964e2ff115934a5f59",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.1",
+      "date": "2026-10-21",
+      "notes": "- **全屏歌词升级为「音乐相册」**：3D 封面流（中间大、左右小），可选显示音乐封面或本机相册，2/4/6 秒自动切换，歌词显示在相册下方\n- **自动全屏先选模式**：闲置后先弹「全屏歌词 / 音乐相册」二选一，不选默认相册；相册未绑定目录则 5 秒后回落到全屏歌词\n- **虚拟背景开关移入设置**：默认关闭，可分别控制「播放页 / 全屏播放页」是否启用封面模糊背景\n- **本地音乐界面升级**：新增「随机推荐」，音乐与专辑统一一行 4 个；有封面的歌优先显示、无封面用软件图标占位\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **修复「播放最多」为空**：播放计次此前被逐帧重建、始终记不上；现已修复，播放过的歌会正常出现在「播放最多」\n- **无歌词曲目显示在线雅句**：轻音乐或取不到歌词时，显示「本首音乐暂无歌词」并填充诗词雅句\n- **修复卡拉OK开关无效**：关闭后当前行不再扫光\n- **音乐美化更省心**：进入页面自动分析并美化（默认直接写入文件），最新记录在前，未完成的可下次继续\n- **同步端口自动避让**：默认端口被占用时自动顺延，不再启动失败"
+    },
     {
       "versionName": "1.2.0",
       "date": "2026-10-15",
