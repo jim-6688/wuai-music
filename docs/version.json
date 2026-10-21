@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.0",
-      "versionCode": 27,
+      "versionName": "1.2.2",
+      "versionCode": 29,
       "flavor": "phone",
-      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-phone-arm64-v8a.apk",
-      "size": 66777943,
-      "sha256": "fb5351dc1021e0054781f1f27e049139da0504f16bb0b147246d6d25b6970152",
+      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-phone-arm64-v8a.apk",
+      "size": 67199664,
+      "sha256": "146334b28ab5ea14ef08637747cda5357ec565a8811d28eda1e981f78d26b071",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-phone-arm64-v8a.apk",
-          "size": 66777943,
-          "sha256": "fb5351dc1021e0054781f1f27e049139da0504f16bb0b147246d6d25b6970152",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-phone-arm64-v8a.apk",
+          "size": 67199664,
+          "sha256": "146334b28ab5ea14ef08637747cda5357ec565a8811d28eda1e981f78d26b071",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-phone-armeabi-v7a.apk",
-          "size": 78664575,
-          "sha256": "15523f7ba94ce311f49b9c0f663db3a4ea1201a020d0ef7bb3acb5d42e131309",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-phone-armeabi-v7a.apk",
+          "size": 79086296,
+          "sha256": "d59c6f7c840a80b48851b8ad1993542aa90efe2bd8480cd1c13489d7ebb078c6",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.0",
-      "versionCode": 27,
+      "versionName": "1.2.2",
+      "versionCode": 29,
       "flavor": "hd",
-      "notes": "- **新增「恢复仅存副本」**：美化在下载目录留下的重复文件，可在「音乐美化 → 右上角菜单 → 清理重复副本」一键恢复成正常歌曲；能查到原路径的按原目录原名放回，不会覆盖任何现有文件\n- **不再产生带 `_edited` 后缀的文件**：美化只在源文件上写标签，下载目录不会再多出重复文件\n- **修复「点了歌没反应、也没有提示」**：文件被删除或移动后，曲库会清掉失效条目并给出明确提示，不再静默失败\n- **修复部分 FLAC 起播失败**：直读打不开时会按需转码兜底，不再被误判成文件损坏\n- **播放失败会自动记录**：起播与解码阶段的失败会写进「日志与诊断」，反馈问题时可一并导出\n- **修复电视端返回键、设置项焦点等问题**",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-hd-arm64-v8a.apk",
-      "size": 66783907,
-      "sha256": "e6a021cf872bd47e9e478b7eda4371e922c0fd6b578a0eb107fb733417af5409",
+      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-hd-arm64-v8a.apk",
+      "size": 67204412,
+      "sha256": "2e75ba02ed0fc548bfd3f0e967d5d0273947d8357bb1da5989fa02b2991a87ea",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-hd-arm64-v8a.apk",
-          "size": 66783907,
-          "sha256": "e6a021cf872bd47e9e478b7eda4371e922c0fd6b578a0eb107fb733417af5409",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-hd-arm64-v8a.apk",
+          "size": 67204412,
+          "sha256": "2e75ba02ed0fc548bfd3f0e967d5d0273947d8357bb1da5989fa02b2991a87ea",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.0/WuAiMusic-1.2.0-build27-hd-armeabi-v7a.apk",
-          "size": 78637771,
-          "sha256": "ce01b56ba7c8f0e1898864e864ea4579b954716aa19267587e1d54d6eb15a9e7",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-hd-armeabi-v7a.apk",
+          "size": 79041892,
+          "sha256": "812907f138529de1dcd52f2c1fde8108555ba9e1d7808aedba58425eb41cf294",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.1",
-      "versionCode": 28,
+      "versionName": "1.2.2",
+      "versionCode": 29,
       "flavor": "tv",
-      "notes": "- **全屏歌词升级为「音乐相册」**：3D 封面流（中间大、左右小），可选显示音乐封面或本机相册，2/4/6 秒自动切换，歌词显示在相册下方\n- **自动全屏先选模式**：闲置后先弹「全屏歌词 / 音乐相册」二选一，不选默认相册；相册未绑定目录则 5 秒后回落到全屏歌词\n- **虚拟背景开关移入设置**：默认关闭，可分别控制「播放页 / 全屏播放页」是否启用封面模糊背景\n- **本地音乐界面升级**：新增「随机推荐」，音乐与专辑统一一行 4 个；有封面的歌优先显示、无封面用软件图标占位\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **修复「播放最多」为空**：播放计次此前被逐帧重建、始终记不上；现已修复，播放过的歌会正常出现在「播放最多」\n- **无歌词曲目显示在线雅句**：轻音乐或取不到歌词时，显示「本首音乐暂无歌词」并填充诗词雅句\n- **修复卡拉OK开关无效**：关闭后当前行不再扫光\n- **音乐美化更省心**：进入页面自动分析并美化（默认直接写入文件），最新记录在前，未完成的可下次继续\n- **同步端口自动避让**：默认端口被占用时自动顺延，不再启动失败",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.1/WuAiMusic-1.2.1-build28-tv-arm64-v8a.apk",
-      "size": 67209314,
-      "sha256": "8ceacae995e2a7eafe3e408bbf26fa112444f41494ab2c01def53c667f374a81",
+      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-tv-arm64-v8a.apk",
+      "size": 67274850,
+      "sha256": "f9968362a5fe4f8d33c166a73b70d3874a673107f2cd9086796e09401ee22b8b",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.1/WuAiMusic-1.2.1-build28-tv-arm64-v8a.apk",
-          "size": 67209314,
-          "sha256": "8ceacae995e2a7eafe3e408bbf26fa112444f41494ab2c01def53c667f374a81",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-tv-arm64-v8a.apk",
+          "size": 67274850,
+          "sha256": "f9968362a5fe4f8d33c166a73b70d3874a673107f2cd9086796e09401ee22b8b",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.1/WuAiMusic-1.2.1-build28-tv-armeabi-v7a.apk",
-          "size": 79112330,
-          "sha256": "5cb6684b49f66568e475dd1c1b7d0591431ed3f9364eb0964e2ff115934a5f59",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-tv-armeabi-v7a.apk",
+          "size": 79128714,
+          "sha256": "d5ddbc7186b62b3799521957b7422eae3cdd4d2851fa278c885f525e9ef8833f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.2",
+      "date": "2026-10-21",
+      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等"
+    },
     {
       "versionName": "1.2.1",
       "date": "2026-10-21",
