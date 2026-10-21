@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.2",
-      "versionCode": 29,
+      "versionName": "1.2.3",
+      "versionCode": 30,
       "flavor": "phone",
-      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-phone-arm64-v8a.apk",
-      "size": 67199664,
-      "sha256": "146334b28ab5ea14ef08637747cda5357ec565a8811d28eda1e981f78d26b071",
+      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-phone-arm64-v8a.apk",
+      "size": 67216973,
+      "sha256": "9a6a97c8ef0b9f07a5f27a28931c3b1da530e5ef4a0ae6b1bc5f0f34b4d03e2c",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-phone-arm64-v8a.apk",
-          "size": 67199664,
-          "sha256": "146334b28ab5ea14ef08637747cda5357ec565a8811d28eda1e981f78d26b071",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-phone-arm64-v8a.apk",
+          "size": 67216973,
+          "sha256": "9a6a97c8ef0b9f07a5f27a28931c3b1da530e5ef4a0ae6b1bc5f0f34b4d03e2c",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-phone-armeabi-v7a.apk",
-          "size": 79086296,
-          "sha256": "d59c6f7c840a80b48851b8ad1993542aa90efe2bd8480cd1c13489d7ebb078c6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-phone-armeabi-v7a.apk",
+          "size": 79103605,
+          "sha256": "12a3abc0fff567b83e0a8609901e0e89a03bc4d62de2993107e8b2f9497c0350",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.2",
-      "versionCode": 29,
+      "versionName": "1.2.3",
+      "versionCode": 30,
       "flavor": "hd",
-      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-hd-arm64-v8a.apk",
-      "size": 67204412,
-      "sha256": "2e75ba02ed0fc548bfd3f0e967d5d0273947d8357bb1da5989fa02b2991a87ea",
+      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-hd-arm64-v8a.apk",
+      "size": 67227809,
+      "sha256": "51ea6ba627d65cad41de218f41ee9cbd996c3a64b33a15cf1bad8a71dab5a271",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-hd-arm64-v8a.apk",
-          "size": 67204412,
-          "sha256": "2e75ba02ed0fc548bfd3f0e967d5d0273947d8357bb1da5989fa02b2991a87ea",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-hd-arm64-v8a.apk",
+          "size": 67227809,
+          "sha256": "51ea6ba627d65cad41de218f41ee9cbd996c3a64b33a15cf1bad8a71dab5a271",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-hd-armeabi-v7a.apk",
-          "size": 79041892,
-          "sha256": "812907f138529de1dcd52f2c1fde8108555ba9e1d7808aedba58425eb41cf294",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-hd-armeabi-v7a.apk",
+          "size": 79081673,
+          "sha256": "3c4755d16c528f591ed590ed8b96643f6cce8a6fe8ac17b23202d7d929a9f7cb",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.2",
-      "versionCode": 29,
+      "versionName": "1.2.3",
+      "versionCode": 30,
       "flavor": "tv",
-      "notes": "- **手机播放页升级**：黑胶唱片加上木质唱机底座、整体缩小唱片；歌词由三行增至五行（上两句 / 当前 / 下两句）\n- **心情音乐改版**：不再依赖天气与定位，改为下拉直接选 7 种心情；支持「换一批」与弹窗内切换场景；修复中文曲库筛选不准\n- **修复「艺术字」不生效**：歌词艺术字（辉光 / 纤细疏朗）此前设置无效，现已真正生效\n- **设置页风格统一**：各分区与子页背景统一为同一张主题配色渐变（切换主题时同步变化），内容行高抬高、音效页配色对齐\n- **同步包含 1.2.1 的全部改动**：音乐相册 3D 轮播、自动全屏选模式、虚拟背景开关、随机推荐、播放最多修复、在线雅句等",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-tv-arm64-v8a.apk",
+      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-tv-arm64-v8a.apk",
       "size": 67274850,
-      "sha256": "f9968362a5fe4f8d33c166a73b70d3874a673107f2cd9086796e09401ee22b8b",
+      "sha256": "73ff49ab107667a622e4f420bc88272e977c93524c7be7aeec6e51b26b908399",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-tv-arm64-v8a.apk",
           "size": 67274850,
-          "sha256": "f9968362a5fe4f8d33c166a73b70d3874a673107f2cd9086796e09401ee22b8b",
+          "sha256": "73ff49ab107667a622e4f420bc88272e977c93524c7be7aeec6e51b26b908399",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.2/WuAiMusic-1.2.2-build29-tv-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-tv-armeabi-v7a.apk",
           "size": 79128714,
-          "sha256": "d5ddbc7186b62b3799521957b7422eae3cdd4d2851fa278c885f525e9ef8833f",
+          "sha256": "ee3cdf5139d0eefaca9f49ead74b3df23feba388d8bd6d5f635e7033f8cd15bf",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.3",
+      "date": "2026-10-21",
+      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区"
+    },
     {
       "versionName": "1.2.2",
       "date": "2026-10-21",
