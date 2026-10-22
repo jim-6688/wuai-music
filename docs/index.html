@@ -414,6 +414,7 @@
                  alt="电视端「正在播放」页：左侧侧边栏导航、环形频谱封面、右侧三行歌词与底部控制条" />
           </div>
           <figcaption>电视端 · 正在播放<span>遥控器方向键操作 · 大字号焦点 · 横屏分栏</span></figcaption>
+          <p class="shot__hint">电视端怎么安装与更新，见<a href="#tv-install">下方「电视端怎么装」</a>。</p>
         </figure>
       </div>
 
@@ -444,6 +445,66 @@
           </div>
           <figcaption>均衡器 · 10 段调节<span>频响曲线 · 音效增强 · 调整实时生效</span></figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- 电视安装教程 -->
+    <!-- 为什么单独一块：电视生态的**真实摩擦点**不在功能，而在「装不上」。
+         不少厂商固件默认禁止安装第三方应用（创维/酷开等），用户下载完 APK
+         却卡在系统提示上，客服问题大多来自这里。
+         ⚠️ 各品牌的设置路径随固件版本变化，文案一律带「以实际系统为准」，
+            不写死某型号的绝对路径 —— 写错了比不写更糟。 -->
+    <section class="section" id="tv-install">
+      <div class="section__head reveal">
+        <span class="eyebrow">电视安装指南</span>
+        <h2>电视端怎么装</h2>
+        <p class="section__sub">不少电视默认不允许安装第三方应用。按下面四步操作，绝大多数机型都能装上；装不上的原因与对策也列在下面。</p>
+      </div>
+
+      <div class="grid grid--steps">
+        <div class="step glass reveal"><span class="step__no">01</span><h3>下载电视版</h3><p>在上方「电视端」卡片点「国内下载」拿到 APK，拷到 U 盘根目录（FAT32 格式兼容性最好）。</p></div>
+        <div class="step glass reveal"><span class="step__no">02</span><h3>插到电视</h3><p>U 盘插到电视 USB 口，打开电视自带的「文件管理 / 媒体中心 / 电视卫士」，找到那个 APK。</p></div>
+        <div class="step glass reveal"><span class="step__no">03</span><h3>允许安装</h3><p>首次会提示「未知来源」。选「允许」，或到系统设置里把「安装未知应用」打开。</p></div>
+        <div class="step glass reveal"><span class="step__no">04</span><h3>完成</h3><p>确认安装，回到桌面就能看到「吾爱音乐」。遥控器方向键操作，确认键进入。</p></div>
+      </div>
+
+      <div class="faq" style="margin-top: 34px;">
+        <details class="faq__item glass reveal">
+          <summary>各品牌「允许未知来源」在哪开？</summary>
+          <div class="faq__body">
+            <p><strong>小米 / Redmi：</strong>设置 → 账号与安全 → 允许安装未知来源应用。</p>
+            <p><strong>创维 / 酷开：</strong>多数机型走「电视卫士 → U 盘安装」；部分型号在「应用圈」里搜不到第三方应用，只能用电视卫士手动选 APK。若提示「禁止安装」，说明该机型已封锁外部安装，见下一条。</p>
+            <p><strong>海信 / VIDAA：</strong>设置 → 更多设置 → 通用 → 允许未知来源。</p>
+            <p><strong>TCL / 雷鸟：</strong>电视卫士 → 应用恢复 → U 盘安装。</p>
+            <p><strong>索尼：</strong>设置 → 应用 → 安全和限制 → 未知来源。</p>
+            <p><strong>华为智慧屏：</strong>设置 → 系统和更新 → 允许安装未知应用（部分型号需先开启开发者模式）。</p>
+            <p>各品牌固件版本差异较大，以上路径以实际系统为准；找不到时可在电视设置里直接搜「未知来源」。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>提示「禁止安装第三方应用」怎么办？</summary>
+          <div class="faq__body">
+            <p>这是厂商固件层面的限制（创维、部分海信/长虹定制机型比较常见），不是安装包的问题，重试或换 U 盘都不会有用。</p>
+            <p>可行的出路有三条：① 到该品牌官方应用商店搜索「吾爱音乐」（若已上架）；② 联系厂商客服，询问如何解除第三方应用安装限制；③ 用电视盒子（如支持自由安装的 Android TV 盒子）代替电视内置系统。</p>
+            <p>应用内的「检查更新」在这种设备上也会被系统拦下，我们会在提示里明确告知，不会让你反复重试。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>U 盘插上没反应 / 找不到安装包？</summary>
+          <div class="faq__body">
+            <p>先确认 U 盘是 <strong>FAT32</strong> 格式（NTFS / exFAT 部分电视不认）。其次换一个 USB 口——不少电视只有其中一个口支持读取存储设备。若仍不显示，把 APK 放在 U 盘根目录，不要放在多层文件夹里。</p>
+          </div>
+        </details>
+
+        <details class="faq__item glass reveal">
+          <summary>装好了，以后怎么更新？</summary>
+          <div class="faq__body">
+            <p>在电视上进入「设置 → 关于 → 检查更新」，发现新版本后按确认即可下载安装，不需要再动 U 盘。</p>
+            <p>如果那台电视禁止第三方应用安装，应用内更新同样会被系统拦下——这种情况下只能等应用上架该品牌的官方商店，或用 U 盘覆盖安装（前提是系统已允许未知来源）。</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -611,66 +672,6 @@
       <div class="dlstats reveal is-pending" id="dlStats">
         <p class="dlstats__total">本站已下载 <strong id="dlTotal">0</strong> 次</p>
         <p class="dlstats__break" id="dlBreak"></p>
-      </div>
-    </section>
-
-    <!-- 电视安装教程 -->
-    <!-- 为什么单独一块：电视生态的**真实摩擦点**不在功能，而在「装不上」。
-         不少厂商固件默认禁止安装第三方应用（创维/酷开等），用户下载完 APK
-         却卡在系统提示上，客服问题大多来自这里。
-         ⚠️ 各品牌的设置路径随固件版本变化，文案一律带「以实际系统为准」，
-            不写死某型号的绝对路径 —— 写错了比不写更糟。 -->
-    <section class="section" id="tv-install">
-      <div class="section__head reveal">
-        <span class="eyebrow">电视安装指南</span>
-        <h2>电视端怎么装</h2>
-        <p class="section__sub">不少电视默认不允许安装第三方应用。按下面四步操作，绝大多数机型都能装上；装不上的原因与对策也列在下面。</p>
-      </div>
-
-      <div class="grid grid--steps">
-        <div class="step glass reveal"><span class="step__no">01</span><h3>下载电视版</h3><p>在上方「电视端」卡片点「国内下载」拿到 APK，拷到 U 盘根目录（FAT32 格式兼容性最好）。</p></div>
-        <div class="step glass reveal"><span class="step__no">02</span><h3>插到电视</h3><p>U 盘插到电视 USB 口，打开电视自带的「文件管理 / 媒体中心 / 电视卫士」，找到那个 APK。</p></div>
-        <div class="step glass reveal"><span class="step__no">03</span><h3>允许安装</h3><p>首次会提示「未知来源」。选「允许」，或到系统设置里把「安装未知应用」打开。</p></div>
-        <div class="step glass reveal"><span class="step__no">04</span><h3>完成</h3><p>确认安装，回到桌面就能看到「吾爱音乐」。遥控器方向键操作，确认键进入。</p></div>
-      </div>
-
-      <div class="faq" style="margin-top: 34px;">
-        <details class="faq__item glass reveal">
-          <summary>各品牌「允许未知来源」在哪开？</summary>
-          <div class="faq__body">
-            <p><strong>小米 / Redmi：</strong>设置 → 账号与安全 → 允许安装未知来源应用。</p>
-            <p><strong>创维 / 酷开：</strong>多数机型走「电视卫士 → U 盘安装」；部分型号在「应用圈」里搜不到第三方应用，只能用电视卫士手动选 APK。若提示「禁止安装」，说明该机型已封锁外部安装，见下一条。</p>
-            <p><strong>海信 / VIDAA：</strong>设置 → 更多设置 → 通用 → 允许未知来源。</p>
-            <p><strong>TCL / 雷鸟：</strong>电视卫士 → 应用恢复 → U 盘安装。</p>
-            <p><strong>索尼：</strong>设置 → 应用 → 安全和限制 → 未知来源。</p>
-            <p><strong>华为智慧屏：</strong>设置 → 系统和更新 → 允许安装未知应用（部分型号需先开启开发者模式）。</p>
-            <p>各品牌固件版本差异较大，以上路径以实际系统为准；找不到时可在电视设置里直接搜「未知来源」。</p>
-          </div>
-        </details>
-
-        <details class="faq__item glass reveal">
-          <summary>提示「禁止安装第三方应用」怎么办？</summary>
-          <div class="faq__body">
-            <p>这是厂商固件层面的限制（创维、部分海信/长虹定制机型比较常见），不是安装包的问题，重试或换 U 盘都不会有用。</p>
-            <p>可行的出路有三条：① 到该品牌官方应用商店搜索「吾爱音乐」（若已上架）；② 联系厂商客服，询问如何解除第三方应用安装限制；③ 用电视盒子（如支持自由安装的 Android TV 盒子）代替电视内置系统。</p>
-            <p>应用内的「检查更新」在这种设备上也会被系统拦下，我们会在提示里明确告知，不会让你反复重试。</p>
-          </div>
-        </details>
-
-        <details class="faq__item glass reveal">
-          <summary>U 盘插上没反应 / 找不到安装包？</summary>
-          <div class="faq__body">
-            <p>先确认 U 盘是 <strong>FAT32</strong> 格式（NTFS / exFAT 部分电视不认）。其次换一个 USB 口——不少电视只有其中一个口支持读取存储设备。若仍不显示，把 APK 放在 U 盘根目录，不要放在多层文件夹里。</p>
-          </div>
-        </details>
-
-        <details class="faq__item glass reveal">
-          <summary>装好了，以后怎么更新？</summary>
-          <div class="faq__body">
-            <p>在电视上进入「设置 → 关于 → 检查更新」，发现新版本后按确认即可下载安装，不需要再动 U 盘。</p>
-            <p>如果那台电视禁止第三方应用安装，应用内更新同样会被系统拦下——这种情况下只能等应用上架该品牌的官方商店，或用 U 盘覆盖安装（前提是系统已允许未知来源）。</p>
-          </div>
-        </details>
       </div>
     </section>
 

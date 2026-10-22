@@ -460,6 +460,18 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
   font-weight: 400;
   color: var(--text-faint);
 }
+/* 截图下方的安装引导（电视端那张图专属）：比 caption 弱一档，但要看得见、点得着 */
+.shot__hint {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--gold-soft);
+}
+.shot__hint a {
+  color: var(--gold-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 /* 横屏大图（车机 / 电视）：圆角略小，悬停位移也小一点 */
 .shot--wide .shot__frame { border-radius: 18px; }
 .shot--wide:hover .shot__frame { transform: translateY(-6px); }
