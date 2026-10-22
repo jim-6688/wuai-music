@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.3",
-      "versionCode": 30,
+      "versionName": "1.2.4",
+      "versionCode": 31,
       "flavor": "phone",
-      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-phone-arm64-v8a.apk",
-      "size": 67216973,
-      "sha256": "9a6a97c8ef0b9f07a5f27a28931c3b1da530e5ef4a0ae6b1bc5f0f34b4d03e2c",
+      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-phone-arm64-v8a.apk",
+      "size": 67216969,
+      "sha256": "58627f7798ca8828b084a7a2ab9b3c58169641f9118601d6ab7d10afb5e37cee",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-phone-arm64-v8a.apk",
-          "size": 67216973,
-          "sha256": "9a6a97c8ef0b9f07a5f27a28931c3b1da530e5ef4a0ae6b1bc5f0f34b4d03e2c",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-phone-arm64-v8a.apk",
+          "size": 67216969,
+          "sha256": "58627f7798ca8828b084a7a2ab9b3c58169641f9118601d6ab7d10afb5e37cee",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-phone-armeabi-v7a.apk",
-          "size": 79103605,
-          "sha256": "12a3abc0fff567b83e0a8609901e0e89a03bc4d62de2993107e8b2f9497c0350",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-phone-armeabi-v7a.apk",
+          "size": 79103601,
+          "sha256": "6a1274f4d8e3351c1e26a3bb8ab278333480b97d238c7cb5538db32d622bb7b9",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.3",
-      "versionCode": 30,
+      "versionName": "1.2.4",
+      "versionCode": 31,
       "flavor": "hd",
-      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-hd-arm64-v8a.apk",
+      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-hd-arm64-v8a.apk",
       "size": 67227809,
-      "sha256": "51ea6ba627d65cad41de218f41ee9cbd996c3a64b33a15cf1bad8a71dab5a271",
+      "sha256": "2459c42e4e3b1fa31b9ac11f805317bd33610d159ada4d708929be7de42359f8",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-hd-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-hd-arm64-v8a.apk",
           "size": 67227809,
-          "sha256": "51ea6ba627d65cad41de218f41ee9cbd996c3a64b33a15cf1bad8a71dab5a271",
+          "sha256": "2459c42e4e3b1fa31b9ac11f805317bd33610d159ada4d708929be7de42359f8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-hd-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-hd-armeabi-v7a.apk",
           "size": 79081673,
-          "sha256": "3c4755d16c528f591ed590ed8b96643f6cce8a6fe8ac17b23202d7d929a9f7cb",
+          "sha256": "170341a379cd9e6ecff56bba77331c0883fa029dd25d51e9ff7c5d5d710682a7",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.3",
-      "versionCode": 30,
+      "versionName": "1.2.4",
+      "versionCode": 31,
       "flavor": "tv",
-      "notes": "- **桌面图标换成玻璃质感**：图标底色由纯色改为径向渐变 + 顶部高光弧，字形加投影，立体通透；7 套配色同步更新\n- **修复「图标跟随配色」从未生效**：旧版本遗留的关闭状态被误当成用户选择，导致切换配色时图标一直不变；现已纠正，并在设置页显示「系统实际生效的图标」，对不上可一键重新应用\n- **播放页唱机更有质感**：木质底座加了厚度侧壁、顶面木纹与金属转盘；唱臂底座放大并外移，加高光弧\n- **修复折叠控制栏后唱片变大跳位**：折叠时唱片大小与位置保持不变，多出的空间留给歌词区",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-tv-arm64-v8a.apk",
+      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-tv-arm64-v8a.apk",
       "size": 67274850,
-      "sha256": "73ff49ab107667a622e4f420bc88272e977c93524c7be7aeec6e51b26b908399",
+      "sha256": "d444bc673e77c8569954d662b9e0f074921ad6c207118ffbe9422d0a8f01ccc8",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-tv-arm64-v8a.apk",
           "size": 67274850,
-          "sha256": "73ff49ab107667a622e4f420bc88272e977c93524c7be7aeec6e51b26b908399",
+          "sha256": "d444bc673e77c8569954d662b9e0f074921ad6c207118ffbe9422d0a8f01ccc8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.3/WuAiMusic-1.2.3-build30-tv-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-tv-armeabi-v7a.apk",
           "size": 79128714,
-          "sha256": "ee3cdf5139d0eefaca9f49ead74b3df23feba388d8bd6d5f635e7033f8cd15bf",
+          "sha256": "2b568c8414dd6a6c57563df6d41e73e040148d5b76e9e88fba9846f1714355f6",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.4",
+      "date": "2026-10-22",
+      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现"
+    },
     {
       "versionName": "1.2.3",
       "date": "2026-10-21",

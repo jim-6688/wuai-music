@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>吾爱音乐 · 纯粹本地音乐播放器</title>
-  <meta name="description" content="吾爱音乐 WuAiMusic —— 跨手机、车机/平板、电视三端的本地无损音乐播放器。液态玻璃界面、专业均衡器、智能歌词、OTA 自动更新。" />
+  <meta name="description" content="吾爱音乐 WuAiMusic —— 跨手机、车机/平板、电视与 Windows 桌面的本地无损音乐播放器。液态玻璃界面、专业均衡器、智能歌词、OTA 自动更新。" />
   <!-- ⚠️ 2026-10-10：这里原本有 3 行 Google Fonts（preconnect ×2 +
        Noto Sans SC 的 <link rel=stylesheet>）。已**整组删除**，原因：
        ① 中国大陆 `fonts.googleapis.com` 基本不可达；
@@ -52,7 +52,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="吾爱音乐 WuAiMusic" />
   <meta property="og:title" content="吾爱音乐 · 纯粹本地音乐播放器" />
-  <meta property="og:description" content="跨手机、车机/平板、电视三端的本地无损音乐播放器。16 种音频格式、22 套主题配色、自定义歌词源、4 款可视化，全部离线可用。" />
+  <meta property="og:description" content="跨手机、车机/平板、电视与 Windows 桌面的本地无损音乐播放器。16 种音频格式、22 套主题配色、自定义歌词源、4 款可视化，全部离线可用。" />
   <meta property="og:url" content="https://music.52ta.top/" />
   <meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -60,7 +60,7 @@
   <meta property="og:locale" content="zh_CN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="吾爱音乐 · 纯粹本地音乐播放器" />
-  <meta name="twitter:description" content="跨手机、车机/平板、电视三端的本地无损音乐播放器，全部离线可用。" />
+  <meta name="twitter:description" content="跨手机、车机/平板、电视与 Windows 桌面的本地无损音乐播放器，全部离线可用。" />
   <meta name="twitter:image" content="https://music.52ta.top/assets/icon/og-image.png" />
 
   <!-- ── 结构化数据 ───────────────────────────────────────────────────────
@@ -83,7 +83,7 @@
           "operatingSystem": "Android",
           "url": "https://music.52ta.top/",
           "image": "https://music.52ta.top/assets/icon/icon-512.png",
-          "description": "跨手机、车机/平板、电视三端的本地无损音乐播放器。",
+          "description": "跨手机、车机/平板、电视与 Windows 桌面的本地无损音乐播放器。",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
         },
         {
@@ -372,7 +372,7 @@
             <p>一台手机、一块平板、一台电视，共用同一套体验。</p>
           </header>
           <ul class="fgroup__list">
-            <li><strong>手机 / 车机·平板 / 电视三端同源</strong><span>同一份设计语言；电视端整套遥控器方向键操作，焦点与字号按十尺外观看重做。</span></li>
+            <li><strong>手机 / 车机·平板 / 电视 / 桌面四端同源</strong><span>同一份设计语言；电视端整套遥控器方向键操作、焦点与字号按十尺外观看重做，Windows 端键鼠与大屏歌词。</span></li>
             <li><strong>设备配对与遥控播放</strong><span>手机扫码与车机、电视配对，把播放状态与队列同步过去。</span></li>
             <li><strong>22 套主题配色</strong><span>明暗双模式、背景笔法、字号与字体都能换，界面随你的审美来。</span></li>
             <li><strong>简体 / 繁體 / English</strong><span>三套完整词表，繁体按台湾用语单独翻译，不是机器转写。</span></li>
@@ -450,7 +450,7 @@
     <!-- 各端下载 -->
     <section class="section section--alt" id="platforms">
       <div class="section__head reveal">
-        <span class="eyebrow">一个应用 · 三端适配</span>
+        <span class="eyebrow">一个应用 · 四端适配</span>
         <h2>选择你的设备</h2>
         <p class="section__sub">同一份设计语言，为不同屏幕量身打造。点击即可下载对应安装包。</p>
       </div>
@@ -521,9 +521,37 @@
           </div>
           <div class="platform__alts" data-alts="tv" hidden></div>
         </article>
+
+        <!-- Windows 桌面端
+             ⚠️ 这里**故意不用** data-flavor="phone|hd|tv"：
+                 · `initMirrors()` 会把所有 `.mirror-link[data-flavor]` 填成
+                   `app-<flavor>-release.apk` —— Windows 的包是 `WuAiMusic-<ver>-setup.exe`，
+                   套进去就是一个 404 直链。
+                 · 版本号与 hd **同源**（同一次 pubspec 构建），文件名带版本号 ⇒
+                   不能用码云 latest 的「固定文件名」机制，必须由 main.js
+                   读清单里的 hd 版本号现拼（见 initPlatforms 的 windows 分支）。
+                 静态 href 兜底指向 Releases 页面：JS 不可用时仍可点进来自行下载。 -->
+        <article class="platform glass reveal" data-flavor="windows">
+          <span class="platform__badge">桌面版</span>
+          <div class="platform__icon">
+            <svg viewBox="0 0 24 24" width="40" height="40"><rect x="3" y="3" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </div>
+          <h3>Windows 桌面</h3>
+          <p class="platform__desc">PC 上的完整播放器。键鼠操控、宽屏歌词与可视化，界面与移动端同一套玻璃语言；exe 安装包双击即装。</p>
+          <ul class="platform__tags"><li>Windows 10 / 11</li><li>键鼠操控</li><li>exe 安装</li></ul>
+          <div class="platform__foot">
+            <span class="platform__ver" data-ver>v—</span>
+            <div class="platform__btns">
+              <a class="btn btn--gold win-mirror" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+              <a class="btn btn--gold win-download"
+                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+            </div>
+          </div>
+        </article>
       </div>
 
-      <p class="platforms__note reveal">每个平台提供两个下载入口：<strong>国内下载</strong>走码云（Gitee）镜像，<strong>国际下载</strong>走 GitHub Releases，两条链路同版本、任选其一即可。下载后由客户端校验安装包完整性。车机与平板为同一安装包。绝大多数设备直接用主包即可；若是较早的纯 32 位设备，卡片下方还会列出对应的「32 位包」（走国内镜像）。</p>
+      <p class="platforms__note reveal">每个平台提供两个下载入口：<strong>国内下载</strong>走码云（Gitee）镜像，<strong>国际下载</strong>走 GitHub Releases，两条链路同版本、任选其一即可。下载后由客户端校验安装包完整性。车机与平板为同一安装包。绝大多数设备直接用主包即可；若是较早的纯 32 位设备，卡片下方还会列出对应的「32 位包」（走国内镜像）。<strong>Windows 桌面版</strong>是 exe 安装包，双击后解压到当前用户目录并创建桌面快捷方式，<strong>不需要管理员权限</strong>，也不会写入系统目录；卸载直接删掉安装目录即可。</p>
     </section>
 
     <!-- 更新中心 -->

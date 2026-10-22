@@ -393,6 +393,29 @@
     // 各端的「其它架构 / 国内镜像 32 位包」（分别由清单与快照决定是否显示）
     SITE_FLAVORS.forEach(function (f) { renderAlts(f); });
 
+    // ── Windows 桌面版 ──────────────────────────────────────────────
+    // 安装包是 `WuAiMusic-<ver>-setup.exe`，**文件名带版本号**，所以套不进
+    // `releases/download/latest/<固定文件名>` 那套机制 —— 版本号必须现拼。
+    // 版本号取 hd：两者是同一次 pubspec 构建出的产物（见 scripts/build_all.sh），
+    // 清单里没有独立的 windows 渠道，也不该有（它不参与 APK 的 OTA 分发）。
+    (function fillWindows() {
+      var card = $('.platform[data-flavor="windows"]');
+      if (!card) return;
+      var hdRel = getRelease(manifest, "hd");
+      var ver = hdRel && hdRel.versionName;
+      var verEl = $("[data-ver]", card);
+      if (verEl) verEl.textContent = "v" + (ver || "—");
+      if (!ver) return;
+      var file = "WuAiMusic-" + ver + "-setup.exe";
+      var dl = $(".win-download", card);
+      if (dl) {
+        dl.setAttribute("href", "https://github.com/jim-6688/wuai-music/releases/download/v" +
+          ver + "/" + file);
+      }
+      var mirror = $(".win-mirror", card);
+      if (mirror) mirror.setAttribute("href", GITEE_REPO + "/releases/download/latest/" + file);
+    })();
+
     // 顶栏/英雄区下载 CTA 也指向手机端
     var phoneRel = getRelease(manifest, "phone");
     $all('.download-link[data-flavor="phone"]').forEach(function (l) {

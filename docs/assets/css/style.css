@@ -357,7 +357,7 @@ code {
 .faq__body p { max-width: 60em; }
 
 /* ---------- 平台卡 ---------- */
-.grid--platforms { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+.grid--platforms { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); align-items: stretch; }
 .platform { padding: 36px 30px; display: flex; flex-direction: column; position: relative; transition: transform 0.4s var(--ease), border-color 0.4s; }
 .platform:hover { transform: translateY(-8px); border-color: var(--border-strong); }
 .platform--feature { border-color: rgba(201,169,110,0.35); background: linear-gradient(180deg, rgba(201,169,110,0.08), var(--surface)); }
