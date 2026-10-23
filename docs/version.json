@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.4",
-      "versionCode": 31,
+      "versionName": "1.2.7",
+      "versionCode": 34,
       "flavor": "phone",
-      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-phone-arm64-v8a.apk",
-      "size": 67216969,
-      "sha256": "58627f7798ca8828b084a7a2ab9b3c58169641f9118601d6ab7d10afb5e37cee",
+      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-phone-arm64-v8a.apk",
+      "size": 67303417,
+      "sha256": "f199c7e59420d5d48c3d83dfe015c9ad7803ff2679acff74fb89505976787cf1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-phone-arm64-v8a.apk",
-          "size": 67216969,
-          "sha256": "58627f7798ca8828b084a7a2ab9b3c58169641f9118601d6ab7d10afb5e37cee",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-phone-arm64-v8a.apk",
+          "size": 67303417,
+          "sha256": "f199c7e59420d5d48c3d83dfe015c9ad7803ff2679acff74fb89505976787cf1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-phone-armeabi-v7a.apk",
-          "size": 79103601,
-          "sha256": "6a1274f4d8e3351c1e26a3bb8ab278333480b97d238c7cb5538db32d622bb7b9",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-phone-armeabi-v7a.apk",
+          "size": 79190049,
+          "sha256": "6c9639335198f7586ff617c8e9c40a95cdddc23bdc69e143beeed314a5cdde0e",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.4",
-      "versionCode": 31,
+      "versionName": "1.2.7",
+      "versionCode": 34,
       "flavor": "hd",
-      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-hd-arm64-v8a.apk",
-      "size": 67227809,
-      "sha256": "2459c42e4e3b1fa31b9ac11f805317bd33610d159ada4d708929be7de42359f8",
+      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-hd-arm64-v8a.apk",
+      "size": 67248753,
+      "sha256": "18c775a6585ec1cf703d95ecaa9a5ec97dd5e6e1937b555d977a837eb35170e1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-hd-arm64-v8a.apk",
-          "size": 67227809,
-          "sha256": "2459c42e4e3b1fa31b9ac11f805317bd33610d159ada4d708929be7de42359f8",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-hd-arm64-v8a.apk",
+          "size": 67248753,
+          "sha256": "18c775a6585ec1cf703d95ecaa9a5ec97dd5e6e1937b555d977a837eb35170e1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-hd-armeabi-v7a.apk",
-          "size": 79081673,
-          "sha256": "170341a379cd9e6ecff56bba77331c0883fa029dd25d51e9ff7c5d5d710682a7",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-hd-armeabi-v7a.apk",
+          "size": 79168153,
+          "sha256": "4a012b8a3fd3b318776a011362ea352b189320c53f2927fedf2559c19881b77b",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.4",
-      "versionCode": 31,
+      "versionName": "1.2.7",
+      "versionCode": 34,
       "flavor": "tv",
-      "notes": "- **Windows 桌面版支持自动更新**：启动时静默检查、也可在「设置 → 关于 → 检查更新」手动触发；下载安装包后自动启动安装并重启，无需手动找新版本\n- **官网新增 Windows 桌面版下载入口**：手机 / 车机平板 / 电视 / 桌面四端并列，可直接下载 exe 安装包\n- **修复「超过 40 首的专辑仍显示」**：曲目数超限的目录本不该当成专辑，但已有专辑的刷新路径漏了这道判断，导致加歌超过 40 首后仍留在列表里\n- **修复：文件夹专辑删除后不落盘**：目录被清空时专辑虽从内存移除，却没写入本地，重启后又出现",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-tv-arm64-v8a.apk",
-      "size": 67274850,
-      "sha256": "d444bc673e77c8569954d662b9e0f074921ad6c207118ffbe9422d0a8f01ccc8",
+      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-tv-arm64-v8a.apk",
+      "size": 67340386,
+      "sha256": "023f612241be281464ef5e7c00c24b715475ab218c4d25284887b379778bb704",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-tv-arm64-v8a.apk",
-          "size": 67274850,
-          "sha256": "d444bc673e77c8569954d662b9e0f074921ad6c207118ffbe9422d0a8f01ccc8",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-tv-arm64-v8a.apk",
+          "size": 67340386,
+          "sha256": "023f612241be281464ef5e7c00c24b715475ab218c4d25284887b379778bb704",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.4/WuAiMusic-1.2.4-build31-tv-armeabi-v7a.apk",
-          "size": 79128714,
-          "sha256": "2b568c8414dd6a6c57563df6d41e73e040148d5b76e9e88fba9846f1714355f6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-tv-armeabi-v7a.apk",
+          "size": 79276170,
+          "sha256": "0b7e10a7071f79669ea6d90b2d2565022cf38ff8f6340ec5c3087923095326fe",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,21 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.7",
+      "date": "2026-10-23",
+      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量"
+    },
+    {
+      "versionName": "1.2.6",
+      "date": "2026-10-23",
+      "notes": "- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」，导致安装失败。现已可正常安装到「用户目录 → AppData → Local → WuAiMusic」并自动创建桌面快捷方式\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片的比例重新调整，唱片周围留出更充裕的木边余量，不再几乎填满唱机\n- **安装失败现在会有明确提示**：安装过程改为可见的错误弹窗（磁盘空间不足、程序正在运行、被安全软件拦截等），不再「双击一下什么都没发生」"
+    },
+    {
+      "versionName": "1.2.5",
+      "date": "2026-10-22",
+      "notes": "- **电视端安装引导**：被系统策略拦截安装时给出明确提示，并引导到「设置 → 应用 → 安装未知应用」开启权限；电视端新增更新安装入口（之前只能看到更新却装不了）\n- **官网新增电视安装教程**：各品牌「允许未知来源」路径、被拦截时的三条出路等\n- **手机播放页黑胶唱片修复**：唱片不再撑出唱机木框、不再被裁成平顶\n- **手机桌面图标改用官网图标**：白色双八分音符按比例复刻，各配色玻璃渐变底保留「图标跟随主题变色」\n- **电视音乐相册**：新增遥控器可用的目录选择器（旧选择器在电视上不可用）；默认自动发现本机相册；优先扫描 U 盘 / SD 卡（相册数据通常在 U 盘里）\n- **电视虚拟背景模糊程度可调**：轻柔 / 标准 / 较强 / 最强 四档\n- **电视显示与输出修正**：读取面板真实物理分辨率、补像素密度(dpi)与点距(mm)，尺寸不可信时不显示错误数字\n- **电视音效页重做**：预设可横向滑动选择，10 段均衡器改为竖向推子、显示不全可左右滑动\n- **电视主题配色一行 6 个**：卡片缩小，22 个配色由 8 行压到 4 行\n- **电视播放控制栏按钮加大**\n- **电视均衡器改为中线向上下调**：正负增益更直观\n- **电视模式选择浮层背景改不透明**：不再与下层播放页文字重叠"
+    },
     {
       "versionName": "1.2.4",
       "date": "2026-10-22",
