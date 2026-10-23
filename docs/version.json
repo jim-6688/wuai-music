@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.7",
-      "versionCode": 34,
+      "versionName": "1.2.8",
+      "versionCode": 35,
       "flavor": "phone",
-      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-phone-arm64-v8a.apk",
-      "size": 67303417,
-      "sha256": "f199c7e59420d5d48c3d83dfe015c9ad7803ff2679acff74fb89505976787cf1",
+      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-phone-arm64-v8a.apk",
+      "size": 67302897,
+      "sha256": "2a74af5b5a0e5198ce21afe4cac1034861cc240e2938e5f51b7497e024fad6a1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-phone-arm64-v8a.apk",
-          "size": 67303417,
-          "sha256": "f199c7e59420d5d48c3d83dfe015c9ad7803ff2679acff74fb89505976787cf1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-phone-arm64-v8a.apk",
+          "size": 67302897,
+          "sha256": "2a74af5b5a0e5198ce21afe4cac1034861cc240e2938e5f51b7497e024fad6a1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-phone-armeabi-v7a.apk",
-          "size": 79190049,
-          "sha256": "6c9639335198f7586ff617c8e9c40a95cdddc23bdc69e143beeed314a5cdde0e",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-phone-armeabi-v7a.apk",
+          "size": 79189529,
+          "sha256": "540e22d9d107e0eb189f52ddfe4a60def48bc767aa8212c7972a4f5da260d746",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.7",
-      "versionCode": 34,
+      "versionName": "1.2.8",
+      "versionCode": 35,
       "flavor": "hd",
-      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-hd-arm64-v8a.apk",
-      "size": 67248753,
-      "sha256": "18c775a6585ec1cf703d95ecaa9a5ec97dd5e6e1937b555d977a837eb35170e1",
+      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-hd-arm64-v8a.apk",
+      "size": 67249241,
+      "sha256": "5420fddec5e106d8d3aa3be9d7f2bc02cc10c497d3368da0005372d16b08d211",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-hd-arm64-v8a.apk",
-          "size": 67248753,
-          "sha256": "18c775a6585ec1cf703d95ecaa9a5ec97dd5e6e1937b555d977a837eb35170e1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-hd-arm64-v8a.apk",
+          "size": 67249241,
+          "sha256": "5420fddec5e106d8d3aa3be9d7f2bc02cc10c497d3368da0005372d16b08d211",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-hd-armeabi-v7a.apk",
-          "size": 79168153,
-          "sha256": "4a012b8a3fd3b318776a011362ea352b189320c53f2927fedf2559c19881b77b",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-hd-armeabi-v7a.apk",
+          "size": 79168641,
+          "sha256": "f2b807cdab03cbec0be5d2967dfc10aa492d29946461a5608c343fcfb589f533",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.7",
-      "versionCode": 34,
+      "versionName": "1.2.8",
+      "versionCode": 35,
       "flavor": "tv",
-      "notes": "- **电视端 / 车机端新增授权功能**：设置里新增「授权」入口。电视端显示 6 位配对码与二维码，用手机扫码填邮箱即可完成激活，不必用遥控器逐个输入 19 位授权码；车机 / 平板端可直接输入授权码（粘贴不带横杠也会自动补齐）\n- **免费版可绑定 2 台设备**（电视 + 车机各一），邮箱自助领取，永久有效\n- **本版本不限制任何功能**：所有功能照常直接使用，授权页仅用于查看与激活\n- **修复 Windows 客户端无法安装**：之前双击安装包会弹「创建进程 Command.com 时出错，系统找不到指定的文件」。现已可正常安装并自动创建桌面快捷方式；安装失败时也会给出明确提示，不再「双击一下什么都没发生」\n- **修复黑胶唱片相对唱机过大**：唱机底座与唱片比例重新调整，唱片周围留出更充裕的木边余量",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-tv-arm64-v8a.apk",
+      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-tv-arm64-v8a.apk",
       "size": 67340386,
-      "sha256": "023f612241be281464ef5e7c00c24b715475ab218c4d25284887b379778bb704",
+      "sha256": "d51fa17ef3c5f4b7ca07571a501347728e48657b59981d08ace453afee08e6e6",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-tv-arm64-v8a.apk",
           "size": 67340386,
-          "sha256": "023f612241be281464ef5e7c00c24b715475ab218c4d25284887b379778bb704",
+          "sha256": "d51fa17ef3c5f4b7ca07571a501347728e48657b59981d08ace453afee08e6e6",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.7/WuAiMusic-1.2.7-build34-tv-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-tv-armeabi-v7a.apk",
           "size": 79276170,
-          "sha256": "0b7e10a7071f79669ea6d90b2d2565022cf38ff8f6340ec5c3087923095326fe",
+          "sha256": "d0de84869b9aa6dfa0ec6949949400de55bdfd8a9c88530576c90d1053053df8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.8",
+      "date": "2026-10-23",
+      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一"
+    },
     {
       "versionName": "1.2.7",
       "date": "2026-10-23",
