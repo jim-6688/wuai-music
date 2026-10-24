@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.9",
-      "versionCode": 36,
+      "versionName": "1.3.0",
+      "versionCode": 37,
       "flavor": "phone",
-      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-phone-arm64-v8a.apk",
-      "size": 67302893,
-      "sha256": "150f8f1eb4ed658bc6ca4f2d081bb7f9c2a8a88e65364ba0c74fcac6f23b007a",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《终南别业》· 王维\n中岁颇好道，晚家南山陲。\n兴来每独往，胜事空自知。\n行到水穷处，坐看云起时。\n偶然值林叟，谈笑无还期。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-phone-arm64-v8a.apk",
+      "size": 67371149,
+      "sha256": "6e6582ed6a8ffb912321ee902c2133a4f99212862e939ea1144db41faab48de5",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-phone-arm64-v8a.apk",
-          "size": 67302893,
-          "sha256": "150f8f1eb4ed658bc6ca4f2d081bb7f9c2a8a88e65364ba0c74fcac6f23b007a",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-phone-arm64-v8a.apk",
+          "size": 67371149,
+          "sha256": "6e6582ed6a8ffb912321ee902c2133a4f99212862e939ea1144db41faab48de5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-phone-armeabi-v7a.apk",
-          "size": 79205909,
-          "sha256": "449154f2c4dc82959d1252302daae7d32114395ba59156bbeabc47b57fbd60e5",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-phone-armeabi-v7a.apk",
+          "size": 79241397,
+          "sha256": "b5183ea697d6d5640ceb0c389461daa85ef240945e65dfac85031e90f48f7c7c",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.9",
-      "versionCode": 36,
+      "versionName": "1.3.0",
+      "versionCode": 37,
       "flavor": "hd",
-      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-hd-arm64-v8a.apk",
-      "size": 67249237,
-      "sha256": "4e996edf9ac5b25d0d275aa55377b6b5b0c75067cc1e119c1ea0081547eda0f8",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《终南别业》· 王维\n中岁颇好道，晚家南山陲。\n兴来每独往，胜事空自知。\n行到水穷处，坐看云起时。\n偶然值林叟，谈笑无还期。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-hd-arm64-v8a.apk",
+      "size": 67318369,
+      "sha256": "8d0d89dc9299b2a5470d8aaba0535e8cabfe5337d0405668b073d3f1246b8f38",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-hd-arm64-v8a.apk",
-          "size": 67249237,
-          "sha256": "4e996edf9ac5b25d0d275aa55377b6b5b0c75067cc1e119c1ea0081547eda0f8",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-hd-arm64-v8a.apk",
+          "size": 67318369,
+          "sha256": "8d0d89dc9299b2a5470d8aaba0535e8cabfe5337d0405668b073d3f1246b8f38",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-hd-armeabi-v7a.apk",
-          "size": 79201405,
-          "sha256": "61faae4c5e485a9c9ce01789b9839069527d357277d6b5b16298ce479d5fb675",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-hd-armeabi-v7a.apk",
+          "size": 79221385,
+          "sha256": "9e4c1f965291bf18220563c997feea48b836c4e0483e23ffe2faa2599736d4aa",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.9",
-      "versionCode": 36,
+      "versionName": "1.3.0",
+      "versionCode": 37,
       "flavor": "tv",
-      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-tv-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《终南别业》· 王维\n中岁颇好道，晚家南山陲。\n兴来每独往，胜事空自知。\n行到水穷处，坐看云起时。\n偶然值林叟，谈笑无还期。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-tv-arm64-v8a.apk",
       "size": 67405922,
-      "sha256": "08138955e1407a27000444720c260e5b1641538ba48e962f3e79d170dffb4501",
+      "sha256": "ba602b2ac8de9b44f361b70dc4c91870cc74322010965aec017ba5a92d41f56f",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-tv-arm64-v8a.apk",
           "size": 67405922,
-          "sha256": "08138955e1407a27000444720c260e5b1641538ba48e962f3e79d170dffb4501",
+          "sha256": "ba602b2ac8de9b44f361b70dc4c91870cc74322010965aec017ba5a92d41f56f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-tv-armeabi-v7a.apk",
-          "size": 79276170,
-          "sha256": "851c63662a840e52c9180786560b1d60649033bdd19880d2b7ffc0156bcc080b",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.0/WuAiMusic-1.3.0-build37-tv-armeabi-v7a.apk",
+          "size": 79308938,
+          "sha256": "bd0550f6f4ff06f40ff49381d51d42825e0daa6351e527aadce3a30a2200aa83",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.3.0",
+      "date": "2026-10-24",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《终南别业》· 王维\n中岁颇好道，晚家南山陲。\n兴来每独往，胜事空自知。\n行到水穷处，坐看云起时。\n偶然值林叟，谈笑无还期。"
+    },
     {
       "versionName": "1.2.9",
       "date": "2026-10-24",
