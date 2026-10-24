@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.3.1",
-      "versionCode": 38,
+      "versionName": "1.3.2",
+      "versionCode": 39,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《枫桥夜泊》· 张继\n月落乌啼霜满天，江枫渔火对愁眠。\n姑苏城外寒山寺，夜半钟声到客船。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-phone-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-phone-arm64-v8a.apk",
       "size": 67429225,
-      "sha256": "8cac59ebadff352f37a2f0cdeb743c27185aa46047915a3d5380f8948c2502ea",
+      "sha256": "dfa2cc57e438c37598eae6ef15217ef1f5b15fa10b09f7150492825e3a0891c8",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-phone-arm64-v8a.apk",
           "size": 67429225,
-          "sha256": "8cac59ebadff352f37a2f0cdeb743c27185aa46047915a3d5380f8948c2502ea",
+          "sha256": "dfa2cc57e438c37598eae6ef15217ef1f5b15fa10b09f7150492825e3a0891c8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-phone-armeabi-v7a.apk",
-          "size": 79299473,
-          "sha256": "cf2e74c125ea50f156145598730b6fe5bccec4a747c57b25cf7e8b9959cbb3a5",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-phone-armeabi-v7a.apk",
+          "size": 79315857,
+          "sha256": "5e3fb7ce53c8e9e1ba6642345942b81f10ef3accf52908b2e17549199b332a9e",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.3.1",
-      "versionCode": 38,
+      "versionName": "1.3.2",
+      "versionCode": 39,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《枫桥夜泊》· 张继\n月落乌啼霜满天，江枫渔火对愁眠。\n姑苏城外寒山寺，夜半钟声到客船。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-hd-arm64-v8a.apk",
-      "size": 67398001,
-      "sha256": "68748b3946bd584949248e439daeebde7a68f64817370bbdbfb58afeb99deb67",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-hd-arm64-v8a.apk",
+      "size": 67463537,
+      "sha256": "6a3fe41d514e5a0981819456f3bc67797cde5ab68074c6649f646ce343c16f58",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-hd-arm64-v8a.apk",
-          "size": 67398001,
-          "sha256": "68748b3946bd584949248e439daeebde7a68f64817370bbdbfb58afeb99deb67",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-hd-arm64-v8a.apk",
+          "size": 67463537,
+          "sha256": "6a3fe41d514e5a0981819456f3bc67797cde5ab68074c6649f646ce343c16f58",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-hd-armeabi-v7a.apk",
-          "size": 79301017,
-          "sha256": "31e02ad6c1d5ca0ca52b4ff70d8a08fe32b8b1e753ea2992364681100bff8400",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-hd-armeabi-v7a.apk",
+          "size": 79333785,
+          "sha256": "ac94ba3851a315f62ae8b226ecfd5b969c6ef673a5cb54e462e3dc7352e2941e",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.3.1",
-      "versionCode": 38,
+      "versionName": "1.3.2",
+      "versionCode": 39,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《枫桥夜泊》· 张继\n月落乌啼霜满天，江枫渔火对愁眠。\n姑苏城外寒山寺，夜半钟声到客船。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-tv-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-tv-arm64-v8a.apk",
       "size": 67405922,
-      "sha256": "c616eb9586667d7d52639f4c142b2dbaa85bc5b195d776888c79a8f0c5ab16f6",
+      "sha256": "13bd9c33f640522c45f3e4ac922d069cc457c8495c766a32faec0720c53f97d8",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-tv-arm64-v8a.apk",
           "size": 67405922,
-          "sha256": "c616eb9586667d7d52639f4c142b2dbaa85bc5b195d776888c79a8f0c5ab16f6",
+          "sha256": "13bd9c33f640522c45f3e4ac922d069cc457c8495c766a32faec0720c53f97d8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.1/WuAiMusic-1.3.1-build38-tv-armeabi-v7a.apk",
-          "size": 79325322,
-          "sha256": "d6755bb426e86923099dd45da706aed56fe622aa23e32a5caf8161a0cb412fa4",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-tv-armeabi-v7a.apk",
+          "size": 79341706,
+          "sha256": "fb5d22d04b9f7332f5b450444b77a291d4c36eae47b456f27e40da9eba6ab6e1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.3.2",
+      "date": "2026-10-24",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。"
+    },
     {
       "versionName": "1.3.1",
       "date": "2026-10-24",
