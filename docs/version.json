@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.2.8",
-      "versionCode": 35,
+      "versionName": "1.2.9",
+      "versionCode": 36,
       "flavor": "phone",
-      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-phone-arm64-v8a.apk",
-      "size": 67302897,
-      "sha256": "2a74af5b5a0e5198ce21afe4cac1034861cc240e2938e5f51b7497e024fad6a1",
+      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-phone-arm64-v8a.apk",
+      "size": 67302893,
+      "sha256": "150f8f1eb4ed658bc6ca4f2d081bb7f9c2a8a88e65364ba0c74fcac6f23b007a",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-phone-arm64-v8a.apk",
-          "size": 67302897,
-          "sha256": "2a74af5b5a0e5198ce21afe4cac1034861cc240e2938e5f51b7497e024fad6a1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-phone-arm64-v8a.apk",
+          "size": 67302893,
+          "sha256": "150f8f1eb4ed658bc6ca4f2d081bb7f9c2a8a88e65364ba0c74fcac6f23b007a",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-phone-armeabi-v7a.apk",
-          "size": 79189529,
-          "sha256": "540e22d9d107e0eb189f52ddfe4a60def48bc767aa8212c7972a4f5da260d746",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-phone-armeabi-v7a.apk",
+          "size": 79205909,
+          "sha256": "449154f2c4dc82959d1252302daae7d32114395ba59156bbeabc47b57fbd60e5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.2.8",
-      "versionCode": 35,
+      "versionName": "1.2.9",
+      "versionCode": 36,
       "flavor": "hd",
-      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-hd-arm64-v8a.apk",
-      "size": 67249241,
-      "sha256": "5420fddec5e106d8d3aa3be9d7f2bc02cc10c497d3368da0005372d16b08d211",
+      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-hd-arm64-v8a.apk",
+      "size": 67249237,
+      "sha256": "4e996edf9ac5b25d0d275aa55377b6b5b0c75067cc1e119c1ea0081547eda0f8",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-hd-arm64-v8a.apk",
-          "size": 67249241,
-          "sha256": "5420fddec5e106d8d3aa3be9d7f2bc02cc10c497d3368da0005372d16b08d211",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-hd-arm64-v8a.apk",
+          "size": 67249237,
+          "sha256": "4e996edf9ac5b25d0d275aa55377b6b5b0c75067cc1e119c1ea0081547eda0f8",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-hd-armeabi-v7a.apk",
-          "size": 79168641,
-          "sha256": "f2b807cdab03cbec0be5d2967dfc10aa492d29946461a5608c343fcfb589f533",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-hd-armeabi-v7a.apk",
+          "size": 79201405,
+          "sha256": "61faae4c5e485a9c9ce01789b9839069527d357277d6b5b16298ce479d5fb675",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.2.8",
-      "versionCode": 35,
+      "versionName": "1.2.9",
+      "versionCode": 36,
       "flavor": "tv",
-      "notes": "- **手机 / 车机桌面图标加上「耳机」四点**：图标底部新增四个白色小竖条（外侧两根矮、内侧两根高），与官网图标和电视端图标风格统一\n- **修复电视端「专辑分类」点不开**：之前只有磁盘上存在 CUE/M3U 文件才能打开专辑页，普通用户点它没有任何反应。现在没有 CUE 文件时也会按歌曲专辑标签列出专辑，永远能打开\n- **修复电视端本地音乐页面背景不跟随主题**：切到「全部歌曲」「按文件夹浏览」时背景色是固定的，不随设置里的主题配色变化。现在两页背景跟随主题实时切换\n- **电视端音乐相册优化**：切换更顺滑，相册边框加粗，卡片带阴影从背景浮起\n- **修复电视端授权页出现异常黄线**：授权页底部不再出现两道黄边，按钮与文字样式已统一",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-tv-arm64-v8a.apk",
-      "size": 67340386,
-      "sha256": "d51fa17ef3c5f4b7ca07571a501347728e48657b59981d08ace453afee08e6e6",
+      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-tv-arm64-v8a.apk",
+      "size": 67405922,
+      "sha256": "08138955e1407a27000444720c260e5b1641538ba48e962f3e79d170dffb4501",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-tv-arm64-v8a.apk",
-          "size": 67340386,
-          "sha256": "d51fa17ef3c5f4b7ca07571a501347728e48657b59981d08ace453afee08e6e6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-tv-arm64-v8a.apk",
+          "size": 67405922,
+          "sha256": "08138955e1407a27000444720c260e5b1641538ba48e962f3e79d170dffb4501",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.8/WuAiMusic-1.2.8-build35-tv-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.2.9/WuAiMusic-1.2.9-build36-tv-armeabi-v7a.apk",
           "size": 79276170,
-          "sha256": "d0de84869b9aa6dfa0ec6949949400de55bdfd8a9c88530576c90d1053053df8",
+          "sha256": "851c63662a840e52c9180786560b1d60649033bdd19880d2b7ffc0156bcc080b",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.2.9",
+      "date": "2026-10-24",
+      "notes": "- **主题配色精简为 8 款**：把 4 款「简约图案」并入同色经典（一笔波纹→静谧蓝、远山线→石墨灰、叶脉速写→苔原绿、星芒涂鸦→香槟金），再把 4 组近色经典合并（古典青铜→香槟金、冰川灰→石墨灰、紫罗兰→静谧蓝、湖海青→苔原绿）。图案照常显示；已选的旧配色会自动迁移到最接近的新配色，不会丢\n- **深中国红主题优化**：深色模式改为整片极淡红铺底，不再是纯炭黑，节日氛围更浓，深夜听歌也不刺眼\n- **修复手机「主题配色」页背景变纯黑**：该页背景现在跟随主题配色渐变，不再是一整片黑\n- **电视端音乐相册无歌词时更雅致**：无歌词时自动显示诗词雅句，字号放大到歌词高亮档，每 6 秒随机淡入淡出换一句，不再闪一下就消失"
+    },
     {
       "versionName": "1.2.8",
       "date": "2026-10-23",

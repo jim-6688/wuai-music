@@ -187,6 +187,7 @@
       <nav class="nav__links" aria-label="主导航">
         <a href="#features">功能</a>
         <a href="#screens">界面预览</a>
+        <a href="#design">设计语言</a>
         <a href="#platforms">各端下载</a>
         <a href="#update">更新中心</a>
         <!-- 「自动更新」不占导航位：它与「更新中心」指向同一段内容，
@@ -445,6 +446,81 @@
           </div>
           <figcaption>均衡器 · 10 段调节<span>频响曲线 · 音效增强 · 调整实时生效</span></figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- 设计语言：液态玻璃交互（与 App 内同一套交互语言；弹簧参数见 assets/js/design.js） -->
+    <section class="section" id="design">
+      <div class="section__head reveal">
+        <span class="eyebrow">设计语言</span>
+        <h2>液态玻璃 · 弹性交互</h2>
+        <p class="section__sub">同一套玻璃质感贯穿手机、车机、电视与桌面：水光纹理、流动扫光，配弹簧回弹的按压与切换。下面五组交互都可以在页面里直接点 / 拖。</p>
+      </div>
+
+      <div class="design-grid">
+        <!-- ① 玻璃按钮 水效果 + 弹性 -->
+        <div class="design-card glass reveal">
+          <div class="design-card__head"><h3>玻璃按钮 · 水光 + 弹性</h3><p>按压下沉、松手弹簧回弹，水光纹理随交互流动。</p></div>
+          <div class="d-stage">
+            <div class="d-glass d-flow" id="dBtn">
+              <div class="d-water"><span class="band"></span><span class="rim"></span><span class="refract"></span></div>
+              <div class="d-sheen"></div>
+              <div class="d-ico"><svg viewBox="0 0 24 24" fill="#fff"><path d="M9 8v8l7-4z"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ② 图标切换 ▶ / ⏸ -->
+        <div class="design-card glass reveal">
+          <div class="design-card__head"><h3>图标切换 · 左右滑动</h3><p>播放 / 暂停切换时，旧图标左滑出、新图标右滑入。</p></div>
+          <div class="d-stage">
+            <div class="d-glass d-flow" id="dSwap">
+              <div class="d-water"><span class="band"></span><span class="rim"></span></div>
+              <div class="d-sheen"></div>
+              <div class="d-ico" id="dSwapIco"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ③ 可拖拽开关 -->
+        <div class="design-card glass reveal">
+          <div class="design-card__head"><h3>开关 · 可拖拽 + 弹起</h3><p>可拖动旋钮，松手弹簧吸附到开 / 关，并轻微弹起。</p></div>
+          <div class="d-stage">
+            <div class="d-switch" id="dToggle">
+              <div class="d-water"><span class="band"></span><span class="rim"></span></div>
+              <div class="d-knob" id="dKnob"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ④ 两图标联动切换 -->
+        <div class="design-card glass reveal">
+          <div class="design-card__head"><h3>两图标联动 · 收藏 ⇄ 星标</h3><p>一次切换，两个图标同步反向滑动。</p></div>
+          <div class="d-stage">
+            <div class="d-glass d-flow" id="dLink">
+              <div class="d-water"><span class="band"></span><span class="rim"></span></div>
+              <div class="d-sheen"></div>
+              <div class="d-ico-wrap">
+                <div class="d-ico layer" id="dLinkA"></div>
+                <div class="d-ico layer" id="dLinkB"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⑤ 菜单切换（整宽） -->
+        <div class="design-card design-card--wide glass reveal">
+          <div class="design-card__head"><h3>菜单 · 玻璃指示条</h3><p>分段导航的玻璃指示条用弹簧滑到选中项，当前项同步高亮。</p></div>
+          <div class="d-stage d-stage--col">
+            <div class="d-menu" id="dMenu">
+              <div class="d-indicator d-flow" id="dInd"><div class="d-water"><span class="band"></span><span class="rim"></span></div><div class="d-sheen"></div></div>
+              <div class="d-mitem active">歌曲</div>
+              <div class="d-mitem">专辑</div>
+              <div class="d-mitem">歌手</div>
+              <div class="d-mitem">收藏</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -805,6 +881,7 @@
       </div>
       <nav class="footer__links" aria-label="页脚导航">
         <a href="#features">功能</a>
+        <a href="#design">设计语言</a>
         <a href="#platforms">下载</a>
         <a href="#update">更新中心</a>
         <a href="#ota">自动更新</a>
@@ -817,5 +894,6 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/design.js"></script>
 </body>
 </html>
