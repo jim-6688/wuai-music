@@ -4,7 +4,7 @@
 
 它不是电视桌面，**不会替换系统桌面、不动任何系统设置** —— 只是一个普通音乐 App，装完在「我的应用」里打开即可。
 
-当前版本以官网清单为准：`https://music.52ta.top/version.json`（本说明写作时为 **1.3.3 / build 40**）。
+当前版本以官网清单为准：`https://music.52ta.top/version.json`（具体版本号随发版变化，下面所有命令都从这份清单动态读取，不在此写死）。
 
 ## 规则
 
@@ -77,11 +77,10 @@ adb shell getprop ro.product.cpu.abi
 
 ### macOS / Linux：一条命令
 
-把 `<IP>` 换成第 2 步的电视 IP，<ARCH> 换成 `arm64` 或 `v7a`（见第 3 步）：
+把 `<IP>` 换成第 2 步的电视 IP；32 位电视把文件名里的 `app-tv-release.apk` 改成 `app-tv-release-v7a.apk`（见第 3 步）：
 
 ```bash
-```bash
-PKG=app-tv-release.apk          # 32 位电视改成 app-tv-release-v7a.apk（见第 3 步）
+PKG=app-tv-release.apk
 curl -fL -o "$PKG" "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/$PKG"
 adb install -r "$PKG"
 ```
