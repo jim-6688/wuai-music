@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.3.2",
-      "versionCode": 39,
+      "versionName": "1.3.3",
+      "versionCode": 40,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-phone-arm64-v8a.apk",
-      "size": 67429225,
-      "sha256": "dfa2cc57e438c37598eae6ef15217ef1f5b15fa10b09f7150492825e3a0891c8",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-phone-arm64-v8a.apk",
+      "size": 67494757,
+      "sha256": "a37e6e6b06514c5c0d2000f4dc4b11d8fd9ebc5ab0d69bcc99f4a5205ef356ca",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-phone-arm64-v8a.apk",
-          "size": 67429225,
-          "sha256": "dfa2cc57e438c37598eae6ef15217ef1f5b15fa10b09f7150492825e3a0891c8",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-phone-arm64-v8a.apk",
+          "size": 67494757,
+          "sha256": "a37e6e6b06514c5c0d2000f4dc4b11d8fd9ebc5ab0d69bcc99f4a5205ef356ca",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-phone-armeabi-v7a.apk",
-          "size": 79315857,
-          "sha256": "5e3fb7ce53c8e9e1ba6642345942b81f10ef3accf52908b2e17549199b332a9e",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-phone-armeabi-v7a.apk",
+          "size": 79365005,
+          "sha256": "1d084f38bcd3830e6a504043536160fad06057cb9fdd88c7455d15ab6394c737",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.3.2",
-      "versionCode": 39,
+      "versionName": "1.3.3",
+      "versionCode": 40,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-hd-arm64-v8a.apk",
-      "size": 67463537,
-      "sha256": "6a3fe41d514e5a0981819456f3bc67797cde5ab68074c6649f646ce343c16f58",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-hd-arm64-v8a.apk",
+      "size": 67463533,
+      "sha256": "6a12fb598c9f2afa53afb7ced4fb3702e2392d5e88c01c41353edb033471003c",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-hd-arm64-v8a.apk",
-          "size": 67463537,
-          "sha256": "6a3fe41d514e5a0981819456f3bc67797cde5ab68074c6649f646ce343c16f58",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-hd-arm64-v8a.apk",
+          "size": 67463533,
+          "sha256": "6a12fb598c9f2afa53afb7ced4fb3702e2392d5e88c01c41353edb033471003c",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-hd-armeabi-v7a.apk",
-          "size": 79333785,
-          "sha256": "ac94ba3851a315f62ae8b226ecfd5b969c6ef673a5cb54e462e3dc7352e2941e",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-hd-armeabi-v7a.apk",
+          "size": 79382933,
+          "sha256": "d06da9054e5db6927e63f4269a9b7c083ae63d5393d9ab02b382d3c864fe0b15",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.3.2",
-      "versionCode": 39,
+      "versionName": "1.3.3",
+      "versionCode": 40,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《山居秋暝》· 王维\n空山新雨后，天气晚来秋。\n明月松间照，清泉石上流。\n竹喧归浣女，莲动下渔舟。\n随意春芳歇，王孙自可留。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-tv-arm64-v8a.apk",
-      "size": 67405922,
-      "sha256": "13bd9c33f640522c45f3e4ac922d069cc457c8495c766a32faec0720c53f97d8",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk",
+      "size": 67471458,
+      "sha256": "0942df5fd2c6d292a13b92096c76005f9a27cd36b2ba4b0d2917a54f45a0042d",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-tv-arm64-v8a.apk",
-          "size": 67405922,
-          "sha256": "13bd9c33f640522c45f3e4ac922d069cc457c8495c766a32faec0720c53f97d8",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk",
+          "size": 67471458,
+          "sha256": "0942df5fd2c6d292a13b92096c76005f9a27cd36b2ba4b0d2917a54f45a0042d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.2/WuAiMusic-1.3.2-build39-tv-armeabi-v7a.apk",
-          "size": 79341706,
-          "sha256": "fb5d22d04b9f7332f5b450444b77a291d4c36eae47b456f27e40da9eba6ab6e1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-tv-armeabi-v7a.apk",
+          "size": 79390858,
+          "sha256": "37ec50a7a28eada7ca9234eae20757fa5757f7d70c94b18d52e07ad165a4379d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.3.3",
+      "date": "2026-10-25",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。"
+    },
     {
       "versionName": "1.3.2",
       "date": "2026-10-24",

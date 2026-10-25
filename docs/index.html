@@ -534,7 +534,7 @@
       <div class="section__head reveal">
         <span class="eyebrow">电视安装指南</span>
         <h2>电视端怎么装</h2>
-        <p class="section__sub">不少电视默认不允许安装第三方应用。按下面四步操作，绝大多数机型都能装上；装不上的原因与对策也列在下面。</p>
+        <p class="section__sub">不少电视默认不允许安装第三方应用。会电脑的话，最省事的是<a href="#ai-install">让 AI 用 ADB 直装</a>；只用遥控器的话，按下面四步用 U 盘装。装不上的原因与对策也列在下面。</p>
       </div>
 
       <div class="grid grid--steps">
@@ -542,6 +542,89 @@
         <div class="step glass reveal"><span class="step__no">02</span><h3>插到电视</h3><p>U 盘插到电视 USB 口，打开电视自带的「文件管理 / 媒体中心 / 电视卫士」，找到那个 APK。</p></div>
         <div class="step glass reveal"><span class="step__no">03</span><h3>允许安装</h3><p>首次会提示「未知来源」。选「允许」，或到系统设置里把「安装未知应用」打开。</p></div>
         <div class="step glass reveal"><span class="step__no">04</span><h3>完成</h3><p>确认安装，回到桌面就能看到「吾爱音乐」。遥控器方向键操作，确认键进入。</p></div>
+      </div>
+
+      <!-- 让 AI 装：ADB 直装教程（2026-10-25 用户要求）
+           为什么单独一块：U 盘安装要「找 APK → 拷盘 → 插电视 → 用电视自带的
+           文件管理器点」四步，而且不少电视的文件管理器会把 APK 藏起来；
+           而 ADB 直装只要「电脑一条命令」，电视端不用点任何东西 ——
+           对会用电脑的人来说这是最省事的路径。
+           ⚠️ 命令里的包名 com.wuaimusic.app.tv 是 TV 风味真实的 applicationId，
+              与 phone / hd 不同，别照抄成 com.wuaimusic.app。 -->
+      <div class="aiinstall glass reveal">
+        <h3 id="ai-install">让 AI 帮你装：ADB 直装（不用 U 盘）</h3>
+        <p class="aiinstall__lead">如果你手边有电脑，可以不碰 U 盘、也不在电视上用遥控器翻文件管理器。
+          把下面这段需求直接丢给 <strong>WorkBuddy</strong>（能自己执行命令）或<strong>豆包</strong>这类助手，
+          它会帮你把安装包下好、连上电视、推送安装；豆包不能执行命令时，把命令复制到终端逐条运行即可。</p>
+
+        <ol class="aiinstall__steps">
+          <li>
+            <span class="aiinstall__no">01</span>
+            <div class="aiinstall__body">
+              <strong>让 AI 取安装包</strong>
+              <p>一句话就够：「帮我装吾爱音乐 TV 版到电视上：先下最新的 TV 安装包（优先 arm64，装不上再换 32 位），再用 adb 推过去。」</p>
+              <p>安装包有两个来源，国内优先码云（快）：</p>
+              <pre class="cmd"># 版本清单（含各渠道、各架构的下载地址与 sha256）
+https://music.52ta.top/version.json
+
+# 电视版 · arm64（大多数电视盒子 / 智能电视）
+https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk
+
+# 电视版 · 32 位（老机顶盒，arm64 包装不上时用它）
+https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk</pre>
+              <p>下完可以对一下 <code>sha256</code>，与清单里 <code>releases.tv.variants</code> 的值一致就说明包完整。</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="aiinstall__no">02</span>
+            <div class="aiinstall__body">
+              <strong>电视打开 ADB 调试</strong>
+              <p>电视上：<strong>设置 → 关于 → 版本号</strong>连点 7 次，出现「开发者选项」；进去打开 <strong>USB 调试</strong>，并打开 <strong>网络调试 / ADB over network</strong>（不同品牌叫法略有差异）。</p>
+              <p>再到 <strong>设置 → 网络</strong> 记下电视的 IP 地址，例如 <code>192.168.1.23</code>。电脑要和电视连同一个路由器。</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="aiinstall__no">03</span>
+            <div class="aiinstall__body">
+              <strong>连接电视</strong>
+              <p>电脑上执行（没装 adb 的话，让 AI 帮你下载 Android platform-tools 并解压）：</p>
+              <pre class="cmd">adb connect 192.168.1.23:5555
+adb devices
+<span class="cmt"># 第二行应列出 192.168.1.23:5555  device</span></pre>
+              <p>首次连接电视会弹出「允许 USB 调试吗」，勾选<strong>一律允许</strong>再确定。若 <code>adb devices</code> 显示 <code>unauthorized</code>，就是这一步没点确认。</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="aiinstall__no">04</span>
+            <div class="aiinstall__body">
+              <strong>推送安装</strong>
+              <pre class="cmd">adb install -r app-tv-release.apk
+<span class="cmt"># -r 覆盖安装：已装过旧版本时保留数据</span></pre>
+              <p>看到 <code>Success</code> 就装好了。装完可以直接让 AI 顺手启动它：</p>
+              <pre class="cmd">adb shell am start -n com.wuaimusic.app.tv/com.wuaimusic.app.MainActivity</pre>
+            </div>
+          </li>
+
+          <li>
+            <span class="aiinstall__no">05</span>
+            <div class="aiinstall__body">
+              <strong>装不上时看返回码</strong>
+              <p><code>INSTALL_FAILED_NO_MATCHING_ABIS</code> → 换 32 位包（<code>app-tv-release-v7a.apk</code>）。</p>
+              <p><code>INSTALL_FAILED_UPDATE_INCOMPATIBLE</code> → 电视上装过别的来源的同名应用，签名不同；先 <code>adb uninstall com.wuaimusic.app.tv</code> 再装（会清掉应用内数据）。</p>
+              <p><code>INSTALL_FAILED_USER_RESTRICTED</code> → 开发者选项里还有一项「通过 USB 安装应用」，打开它再重试。</p>
+              <p><code>connection refused</code> → 电视的网络调试没开，或端口不是 5555；部分机型重启后会自动关闭网络调试，需要重新打开。</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="aiinstall__tip">
+          <strong>这条路的最大好处：</strong>绕开电视自带的文件管理器，也不用在电视上点「允许未知来源」。
+          但如果系统提示「禁止安装第三方应用」（创维 / 部分定制固件），ADB 一样会被拦 —— 那是厂商层面的封锁，
+          这种情况只能换电视盒子，或用应用商店版本。装好之后，后续更新直接在电视上「设置 → 关于 → 检查更新」即可。
+        </div>
       </div>
 
       <div class="faq" style="margin-top: 34px;">
@@ -657,6 +740,7 @@
             </div>
           </div>
           <div class="platform__alts" data-alts="tv" hidden></div>
+          <p class="platform__hint">有电脑？可以<a href="#ai-install">让 AI 用 ADB 直装</a>，不用 U 盘。</p>
         </article>
 
         <!-- Windows 桌面端
