@@ -1,25 +1,25 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.3.4",
-      "versionCode": 41,
+      "versionName": "1.3.5",
+      "versionCode": 42,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-phone-arm64-v8a.apk",
-      "size": 67494757,
-      "sha256": "6378b001a5a491614491f47516508bdb5bec4824e68220cc10da1f53e26f5016",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《题西林壁》· 苏轼\n横看成岭侧成峰，远近高低各不同。\n不识庐山真面目，只缘身在此山中。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-phone-arm64-v8a.apk",
+      "size": 67494761,
+      "sha256": "09149e27b4302536c227bff39ec6393ab269a1fbf89a98ff16a03646e37a00fd",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-phone-arm64-v8a.apk",
-          "size": 67494757,
-          "sha256": "6378b001a5a491614491f47516508bdb5bec4824e68220cc10da1f53e26f5016",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-phone-arm64-v8a.apk",
+          "size": 67494761,
+          "sha256": "09149e27b4302536c227bff39ec6393ab269a1fbf89a98ff16a03646e37a00fd",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-phone-armeabi-v7a.apk",
-          "size": 79414157,
-          "sha256": "43f0360138e4992d6651bf32b856a68489f05a381ff79286a7d40f3d82eeb005",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-phone-armeabi-v7a.apk",
+          "size": 79446929,
+          "sha256": "e91e686775c6d7fd435162220af465a09140358755f16f249a6630e288d1d900",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
@@ -49,25 +49,25 @@
       }
     },
     "tv": {
-      "versionName": "1.3.4",
-      "versionCode": 41,
+      "versionName": "1.3.5",
+      "versionCode": 42,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-tv-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《题西林壁》· 苏轼\n横看成岭侧成峰，远近高低各不同。\n不识庐山真面目，只缘身在此山中。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-tv-arm64-v8a.apk",
       "size": 67536994,
-      "sha256": "80a62bd0daac3f821badb25d66cd59706cbdd06c31884d719d823c5798848172",
+      "sha256": "9b7852ef1bace1811c441f60bfff2851029e807af5ce7873ec81db047aa4995b",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-tv-arm64-v8a.apk",
           "size": 67536994,
-          "sha256": "80a62bd0daac3f821badb25d66cd59706cbdd06c31884d719d823c5798848172",
+          "sha256": "9b7852ef1bace1811c441f60bfff2851029e807af5ce7873ec81db047aa4995b",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-tv-armeabi-v7a.apk",
-          "size": 79423626,
-          "sha256": "3ff7e6284a11ee88622562eb7883d4ae4959eb88cb7b054032180fad664a8101",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-tv-armeabi-v7a.apk",
+          "size": 79456394,
+          "sha256": "dbb4e39b0c32d99fa1a709f46e13bfb4dd4c751e5ae61dee3ba2817d4882b837",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.3.5",
+      "date": "2026-10-25",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《题西林壁》· 苏轼\n横看成岭侧成峰，远近高低各不同。\n不识庐山真面目，只缘身在此山中。"
+    },
     {
       "versionName": "1.3.4",
       "date": "2026-10-25",
