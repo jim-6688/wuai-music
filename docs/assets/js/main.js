@@ -725,6 +725,60 @@
     }
   }
 
+  function initTvGallery() {
+    var root = document.querySelector("[data-tv-gallery]");
+    if (!root) return;
+    var slides = Array.prototype.slice.call(root.querySelectorAll(".tv-gallery__slide"));
+    if (slides.length < 2) return;
+    var dotsWrap = root.querySelector(".tv-gallery__dots");
+    var prevBtn = root.querySelector(".tv-gallery__nav--prev");
+    var nextBtn = root.querySelector(".tv-gallery__nav--next");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var DELAY = 4500;
+    var idx = 0, timer = null;
+
+    var dots = slides.map(function (s, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "tv-gallery__dot" + (i === 0 ? " is-active" : "");
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", "第 " + (i + 1) + " 张，共 " + slides.length + " 张");
+      b.addEventListener("click", function () { show(i); restart(); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function show(n) {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach(function (s, i) {
+        var on = i === idx;
+        s.classList.toggle("is-active", on);
+        s.setAttribute("aria-hidden", on ? "false" : "true");
+      });
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
+    }
+    function next() { show(idx + 1); }
+    function prev() { show(idx - 1); }
+    function start() { if (!reduce && !timer) timer = window.setInterval(next, DELAY); }
+    function stop() { if (timer) { window.clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restart(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+    root.setAttribute("tabindex", "0");
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { prev(); restart(); }
+      else if (e.key === "ArrowRight") { next(); restart(); }
+    });
+
+    show(0);
+    start();
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initTheme();
     initNav();
@@ -734,5 +788,6 @@
     fetchManifest();
     initSnapshot();
     initDownloads();
+    initTvGallery();
   });
 })();

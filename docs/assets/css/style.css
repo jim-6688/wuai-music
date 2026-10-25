@@ -481,6 +481,108 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
 .shot--wide .shot__frame { border-radius: 18px; }
 .shot--wide:hover .shot__frame { transform: translateY(-6px); }
 
+/* ---------- 电视端界面相册（循环轮播） ---------- */
+/* 相册版关闭通用玻璃高光，避免与截图叠两次 */
+.shot--gallery .shot__frame::after { content: none; }
+
+.tv-gallery {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.tv-gallery__track { position: absolute; inset: 0; }
+
+.tv-gallery__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  pointer-events: none;
+  z-index: 1;
+}
+.tv-gallery__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+.tv-gallery .tv-gallery__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* 单张标题：底部渐变条，压在截图下方，z-index 高于导航 */
+.tv-gallery .tv-gallery__cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  margin: 0;
+  padding: 30px 22px 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+/* 左右切换按钮：悬停 / 聚焦时浮现 */
+.tv-gallery__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(18, 18, 24, 0.42);
+  color: #fff;
+  font-size: 1.7rem; line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), background 0.3s var(--ease);
+  z-index: 3;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.tv-gallery__nav--prev { left: 14px; }
+.tv-gallery__nav--next { right: 14px; }
+.tv-gallery:hover .tv-gallery__nav,
+.tv-gallery:focus-within .tv-gallery__nav { opacity: 1; }
+.tv-gallery__nav:hover,
+.tv-gallery__nav:focus-visible { background: rgba(18, 18, 24, 0.7); outline: none; }
+/* 底部圆点指示器 */
+.tv-gallery__dots {
+  position: absolute;
+  left: 0; right: 0; bottom: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.tv-gallery:hover .tv-gallery__dots,
+.tv-gallery:focus-within .tv-gallery__dots { opacity: 1; }
+.tv-gallery__dot {
+  width: 8px; height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), width 0.3s var(--ease);
+}
+.tv-gallery__dot.is-active { background: var(--gold); width: 22px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tv-gallery__slide { transform: none; transition: opacity 0.3s linear; }
+  .tv-gallery__slide.is-active { transform: none; }
+}
+
 /* ---------- 更新中心 ---------- */
 .update { padding: 34px; }
 .update__bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
