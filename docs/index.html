@@ -271,7 +271,7 @@
       <div class="section__head reveal">
         <span class="eyebrow">核心能力</span>
         <h2>为热爱音乐的人而造</h2>
-        <p class="section__sub">不靠云端曲库，只把你的本地收藏打磨到极致。下面五组能力在手机、车机与电视上完全一致。</p>
+        <p class="section__sub">不靠云端曲库，只把你的本地收藏打磨到极致。下面六组能力在手机、车机与电视上完全一致。</p>
       </div>
 
       <!-- 按「你会怎么用它」分五组，不按技术分层分。
@@ -381,6 +381,23 @@
           </ul>
         </section>
 
+        <!-- 电视专属：音乐相册 + 全屏歌词（大屏才有的沉浸体验；真源见 lib/features/tv） -->
+        <section class="fgroup glass reveal">
+          <header class="fgroup__head">
+            <span class="fgroup__icon">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 4h16v12H4zm2 14h12v2H6zm4 0h4"/></svg>
+            </span>
+            <h3>电视专属 · 音乐相册与全屏歌词</h3>
+            <p>大屏才有的沉浸体验：封面墙随歌流转，歌词铺满整面墙。</p>
+          </header>
+          <ul class="fgroup__list">
+            <li><strong>音乐相册</strong><span>3D 封面流中间大、左右小，可选显示音乐封面或本机相册，2 / 4 / 6 秒自动切换；无歌词时自动显示诗词雅句，不再闪一下就消失。</span></li>
+            <li><strong>全屏歌词</strong><span>闲置数秒自动进入全屏歌词，按遥控器任意键退出；当前行字号明显放大，未唱偏亮、已唱偏暗，层次一眼可辨。</span></li>
+            <li><strong>大字号与焦点</strong><span>菜单、列表、歌词整体按两到三米观看距离重定字号，遥控器焦点清晰可辨，远距离也不费眼。</span></li>
+            <li><strong>遥控器全程可达</strong><span>整套界面都能用方向键完成，无需鼠标；返回键分级退出，不会一按就退到桌面。</span></li>
+          </ul>
+        </section>
+
       </div>
     </section>
 
@@ -438,12 +455,46 @@
           <figcaption>手机端 · 界面相册<span>实拍 · 自动轮播</span></figcaption>
         </figure>
 
-        <figure class="shot shot--wide">
+        <figure class="shot shot--wide shot--gallery">
           <div class="shot__frame">
-            <img src="assets/img/car-player.webp" width="1400" height="788" loading="lazy" decoding="async"
-                 alt="车机端「正在播放」页：左侧常驻导航、中间播放队列、右侧封面与播放控制" />
+            <div class="tv-gallery" data-car-gallery>
+              <div class="tv-gallery__track">
+                <figure class="tv-gallery__slide is-active">
+                  <img src="assets/img/tv/tv-04-nowplaying.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端「正在播放」页：环形频谱封面与歌词" />
+                  <figcaption class="tv-gallery__cap">正在播放</figcaption>
+                </figure>
+                <figure class="tv-gallery__slide">
+                  <img src="assets/img/tv/tv-01-folders.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端按文件夹浏览音乐" />
+                  <figcaption class="tv-gallery__cap">按文件夹浏览</figcaption>
+                </figure>
+                <figure class="tv-gallery__slide">
+                  <img src="assets/img/tv/tv-02-albums.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端专辑分类浏览" />
+                  <figcaption class="tv-gallery__cap">专辑分类</figcaption>
+                </figure>
+                <figure class="tv-gallery__slide">
+                  <img src="assets/img/tv/tv-06-lyrics.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端全屏歌词播放" />
+                  <figcaption class="tv-gallery__cap">全屏歌词</figcaption>
+                </figure>
+                <figure class="tv-gallery__slide">
+                  <img src="assets/img/tv/tv-07-audiofx.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端音效设置" />
+                  <figcaption class="tv-gallery__cap">音效设置</figcaption>
+                </figure>
+                <figure class="tv-gallery__slide">
+                  <img src="assets/img/tv/tv-05-settings.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端设置首页" />
+                  <figcaption class="tv-gallery__cap">设置</figcaption>
+                </figure>
+                <figure class="tv-gallery__slide">
+                  <img src="assets/img/tv/tv-13-themes.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端主题配色选择" />
+                  <figcaption class="tv-gallery__cap">主题配色</figcaption>
+                </figure>
+              </div>
+              <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
+              <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
+              <div class="tv-gallery__dots" role="tablist" aria-label="车机界面截图导航"></div>
+            </div>
           </div>
-          <figcaption>车机端 · 正在播放<span>三栏同屏 · 导航常驻 · 队列可见</span></figcaption>
+          <figcaption>车机端 · 界面相册<span>横屏三栏 · 导航常驻 · 自动轮播</span></figcaption>
+          <p class="shot__hint">车机与平板为同一构建（hd flavor），界面与电视端同源；以下截图取自电视端，待补充车机实拍。</p>
         </figure>
 
         <figure class="shot shot--wide shot--gallery">
@@ -1073,5 +1124,18 @@ adb devices
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/design.js"></script>
+
+  <!-- 界面截图灯箱：点击手机 / 车机 / 电视相册放大查看，并继续自动轮播 -->
+  <div id="shotLightbox" class="shot-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="界面截图大图">
+    <button class="shot-lightbox__close" type="button" aria-label="关闭">×</button>
+    <button class="shot-lightbox__nav shot-lightbox__nav--prev" type="button" aria-label="上一张">‹</button>
+    <div class="shot-lightbox__stage">
+      <div class="tv-gallery shot-lightbox__gallery" id="shotLightboxGallery">
+        <div class="tv-gallery__track" id="shotLightboxTrack"></div>
+        <div class="tv-gallery__dots" id="shotLightboxDots" role="tablist" aria-label="截图导航"></div>
+      </div>
+    </div>
+    <button class="shot-lightbox__nav shot-lightbox__nav--next" type="button" aria-label="下一张">›</button>
+  </div>
 </body>
 </html>

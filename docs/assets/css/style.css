@@ -419,7 +419,8 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
    行二 手机端「可视化 / 均衡器」—— 左侧一段说明，右侧两张竖屏图。
    三张横屏图（车机/电视）用 .shot--wide：圆角略小、悬停位移也小一点。 */
 .shots { display: grid; gap: 34px; }
-.shots--devices { grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+#screens { max-width: 1320px; }
+.shots--devices { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.15fr) minmax(0, 1.15fr); align-items: center; }
 .shots--pages { grid-template-columns: minmax(0, 1fr) minmax(0, 258px) minmax(0, 258px); align-items: center; }
 .shots__note { max-width: 32em; }
 .shots__note h3 { font-size: 1.3rem; margin-bottom: 10px; }
@@ -582,6 +583,117 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
 @media (prefers-reduced-motion: reduce) {
   .tv-gallery__slide { transform: none; transition: opacity 0.3s linear; }
   .tv-gallery__slide.is-active { transform: none; }
+}
+
+/* ---------- 界面截图灯箱（点击相册放大查看并继续轮播） ---------- */
+.shot--gallery { cursor: zoom-in; }
+.shot--gallery .shot__frame::before {
+  content: "点击放大";
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 4;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(18, 18, 24, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  pointer-events: none;
+}
+.shot--gallery:hover .shot__frame::before,
+.shot--gallery:focus-within .shot__frame::before { opacity: 1; }
+
+.shot-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 10, 16, 0.94);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+}
+.shot-lightbox.is-open { opacity: 1; visibility: visible; }
+.shot-lightbox__stage {
+  position: relative;
+  width: min(94vw, 1280px);
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shot-lightbox__gallery {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0c0e14;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.shot-lightbox.is-portrait .shot-lightbox__gallery {
+  aspect-ratio: 1080 / 2376;
+  width: auto;
+  height: 88vh;
+  max-width: 94vw;
+}
+.shot-lightbox .shot-lightbox__gallery .tv-gallery__slide img {
+  object-fit: contain;
+  background: #0c0e14;
+}
+.shot-lightbox .tv-gallery__dots { opacity: 1; bottom: 16px; }
+.shot-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  background: rgba(18, 18, 24, 0.5);
+  color: #fff;
+  font-size: 2rem; line-height: 1;
+  cursor: pointer;
+  z-index: 5;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background 0.3s var(--ease);
+}
+.shot-lightbox__nav:hover,
+.shot-lightbox__nav:focus-visible { background: rgba(18, 18, 24, 0.82); outline: none; }
+.shot-lightbox__nav--prev { left: max(14px, calc(50% - min(94vw, 1280px) / 2 - 64px)); }
+.shot-lightbox__nav--next { right: max(14px, calc(50% - min(94vw, 1280px) / 2 - 64px)); }
+.shot-lightbox__close {
+  position: absolute;
+  top: 20px; right: 24px;
+  z-index: 6;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  background: rgba(18, 18, 24, 0.5);
+  color: #fff;
+  font-size: 1.8rem; line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background 0.3s var(--ease);
+}
+.shot-lightbox__close:hover { background: rgba(18, 18, 24, 0.82); }
+@media (max-width: 720px) {
+  .shot-lightbox__nav { width: 42px; height: 42px; font-size: 1.6rem; }
+  .shot-lightbox__close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shot-lightbox { transition: none; }
 }
 
 /* ---------- 更新中心 ---------- */

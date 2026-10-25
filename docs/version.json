@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.3.3",
-      "versionCode": 40,
+      "versionName": "1.3.4",
+      "versionCode": 41,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-phone-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-phone-arm64-v8a.apk",
       "size": 67494757,
-      "sha256": "a37e6e6b06514c5c0d2000f4dc4b11d8fd9ebc5ab0d69bcc99f4a5205ef356ca",
+      "sha256": "6378b001a5a491614491f47516508bdb5bec4824e68220cc10da1f53e26f5016",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-phone-arm64-v8a.apk",
           "size": 67494757,
-          "sha256": "a37e6e6b06514c5c0d2000f4dc4b11d8fd9ebc5ab0d69bcc99f4a5205ef356ca",
+          "sha256": "6378b001a5a491614491f47516508bdb5bec4824e68220cc10da1f53e26f5016",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-phone-armeabi-v7a.apk",
-          "size": 79365005,
-          "sha256": "1d084f38bcd3830e6a504043536160fad06057cb9fdd88c7455d15ab6394c737",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-phone-armeabi-v7a.apk",
+          "size": 79414157,
+          "sha256": "43f0360138e4992d6651bf32b856a68489f05a381ff79286a7d40f3d82eeb005",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.3.3",
-      "versionCode": 40,
+      "versionName": "1.3.4",
+      "versionCode": 41,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-hd-arm64-v8a.apk",
-      "size": 67463533,
-      "sha256": "6a12fb598c9f2afa53afb7ced4fb3702e2392d5e88c01c41353edb033471003c",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-hd-arm64-v8a.apk",
+      "size": 67529073,
+      "sha256": "1c80e9680a7605ec4bf94f24bbc6ce35921a1ddf095eb301b764de55d6090e3f",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-hd-arm64-v8a.apk",
-          "size": 67463533,
-          "sha256": "6a12fb598c9f2afa53afb7ced4fb3702e2392d5e88c01c41353edb033471003c",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-hd-arm64-v8a.apk",
+          "size": 67529073,
+          "sha256": "1c80e9680a7605ec4bf94f24bbc6ce35921a1ddf095eb301b764de55d6090e3f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-hd-armeabi-v7a.apk",
-          "size": 79382933,
-          "sha256": "d06da9054e5db6927e63f4269a9b7c083ae63d5393d9ab02b382d3c864fe0b15",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-hd-armeabi-v7a.apk",
+          "size": 79415705,
+          "sha256": "ab9aabd9aecc96b582548533005c5506d52d1a247f1b25e043de809dc778af7c",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.3.3",
-      "versionCode": 40,
+      "versionName": "1.3.4",
+      "versionCode": 41,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《饮酒·其五》· 陶渊明\n结庐在人境，而无车马喧。\n问君何能尔？心远地自偏。\n采菊东篱下，悠然见南山。\n山气日夕佳，飞鸟相与还。\n此中有真意，欲辨已忘言。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk",
-      "size": 67471458,
-      "sha256": "0942df5fd2c6d292a13b92096c76005f9a27cd36b2ba4b0d2917a54f45a0042d",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-tv-arm64-v8a.apk",
+      "size": 67536994,
+      "sha256": "80a62bd0daac3f821badb25d66cd59706cbdd06c31884d719d823c5798848172",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk",
-          "size": 67471458,
-          "sha256": "0942df5fd2c6d292a13b92096c76005f9a27cd36b2ba4b0d2917a54f45a0042d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-tv-arm64-v8a.apk",
+          "size": 67536994,
+          "sha256": "80a62bd0daac3f821badb25d66cd59706cbdd06c31884d719d823c5798848172",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.3/WuAiMusic-1.3.3-build40-tv-armeabi-v7a.apk",
-          "size": 79390858,
-          "sha256": "37ec50a7a28eada7ca9234eae20757fa5757f7d70c94b18d52e07ad165a4379d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-tv-armeabi-v7a.apk",
+          "size": 79423626,
+          "sha256": "3ff7e6284a11ee88622562eb7883d4ae4959eb88cb7b054032180fad664a8101",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.3.4",
+      "date": "2026-10-25",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。"
+    },
     {
       "versionName": "1.3.3",
       "date": "2026-10-25",
