@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 由 scripts/build_site_icons.py 生成。全站只有一个页面，
-     功能区/下载区都是锚点（#features…），不单独收录。 -->
+<!-- 由 scripts/build_site_icons.py 生成。主页一个页面，功能区/下载区都是锚点
+     （#features…）不单独收录；agent.md 是**给 AI Agent 看的安装说明**，
+     独立成页、要能被检索到，所以单独列一条。 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://music.52ta.top/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://music.52ta.top/agent.md</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

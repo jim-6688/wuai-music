@@ -492,6 +492,7 @@ a.mirror-link:not(.btn):hover { color: var(--gold-soft); border-color: var(--bor
   background: var(--surface-2);
   overflow: hidden;
 }
+.tv-gallery--portrait { aspect-ratio: 1080 / 2376; }
 .tv-gallery__track { position: absolute; inset: 0; }
 
 .tv-gallery__slide {

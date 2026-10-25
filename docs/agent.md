@@ -80,16 +80,21 @@ adb shell getprop ro.product.cpu.abi
 把 `<IP>` 换成第 2 步的电视 IP，<ARCH> 换成 `arm64` 或 `v7a`（见第 3 步）：
 
 ```bash
-adb install -r "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
+```bash
+PKG=app-tv-release.apk          # 32 位电视改成 app-tv-release-v7a.apk（见第 3 步）
+curl -fL -o "$PKG" "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/$PKG"
+adb install -r "$PKG"
 ```
 
-Gitee 是国内镜像，**地址固定、不随版本变化**，永远是最新版。国际网络可以改用 GitHub：
+Gitee 是国内镜像，**地址固定、不随版本变化**，永远是最新版。国际网络可以改用 GitHub（资产名带版本号，升级后会变）：
 
 ```bash
-adb install -r "https://github.com/jim-6688/wuai-music/releases/latest/download/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk"
+curl -fL -o wuai-tv.apk "https://github.com/jim-6688/wuai-music/releases/latest/download/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk"
+adb install -r wuai-tv.apk
 ```
 
-> GitHub 的资产名带版本号，升级后会变；不确定当前版本时先读 `https://music.52ta.top/version.json` 里的 `releases.tv.url`。
+> ⚠️ `adb install` **只能装本地文件，不接受 URL**。必须先下载再安装。
+> GitHub 的资产名带版本号；不确定当前版本时先读 `https://music.52ta.top/version.json` 里的 `releases.tv.url`。
 
 输出 `Success` 继续。失败时看「常见情况」。
 
@@ -202,7 +207,7 @@ adb uninstall com.wuaimusic.app.tv
 >
 > 我的电视 IP 是 `<IP>`。请你**亲自在电脑上运行命令**，不要把步骤列给我。每一步都要看真实输出，最后必须跑完「验收」那四条并把原始输出贴给我，没看到输出就不要说装好了。
 >
-- 不要卸载或停用电视上的任何系统应用，不要删电视上的文件，不要恢复出厂。
-- 重启电视前先问我。
+> - 不要卸载或停用电视上的任何系统应用，不要删电视上的文件，不要恢复出厂。
+> - 重启电视前先问我。
 > - 装完记得授予存储权限并确认扫描得到本地音乐，这是能不能听到歌的关键。
 > - 卡在哪一步就把命令和输出原样发我。
