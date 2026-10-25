@@ -85,15 +85,17 @@ curl -fL -o "$PKG" "https://gitee.com/jinghe-net/wuai-music/releases/download/la
 adb install -r "$PKG"
 ```
 
-Gitee 是国内镜像，**地址固定、不随版本变化**，永远是最新版。国际网络可以改用 GitHub（资产名带版本号，升级后会变）：
+Gitee 是国内镜像，**地址固定、不随版本变化**，永远是最新版，无需写版本号。国际网络可以改用 GitHub，但 GitHub 资产名带版本号，所以**从官网清单动态读取当前地址**（升级不会失效）：
 
 ```bash
-curl -fL -o wuai-tv.apk "https://github.com/jim-6688/wuai-music/releases/latest/download/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk"
+TV_URL=$(curl -fsSL https://music.52ta.top/version.json | python3 -c "import sys,json;print(json.load(sys.stdin)['releases']['tv']['url'])")
+# 32 位电视：把上一行的 ['tv']['url'] 换成 ['tv']['variants']['armeabi-v7a']['url']
+curl -fL -o wuai-tv.apk "$TV_URL"
 adb install -r wuai-tv.apk
 ```
 
 > ⚠️ `adb install` **只能装本地文件，不接受 URL**。必须先下载再安装。
-> GitHub 的资产名带版本号；不确定当前版本时先读 `https://music.52ta.top/version.json` 里的 `releases.tv.url`。
+> 任意渠道的当前下载地址都在 `https://music.52ta.top/version.json` 里（`releases.tv.url` 为 GitHub 直链，`releases.tv.urlMirror` 为 Gitee 镜像），随发版自动更新，本说明不再写死版本号。
 
 输出 `Success` 继续。失败时看「常见情况」。
 
@@ -104,7 +106,13 @@ adb install -r wuai-tv.apk
    curl.exe -fL -o wuai-tv.apk https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk
    ```
    32 位电视把上面地址里的 `app-tv-release.apk` 换成 `app-tv-release-v7a.apk`。
-   国际网络可改用 GitHub：`https://github.com/jim-6688/wuai-music/releases/latest/download/WuAiMusic-1.3.3-build40-tv-arm64-v8a.apk`
+   国际网络可改用 GitHub，**从官网清单动态读取当前地址**（PowerShell 自带 JSON 解析，升级不会失效）：
+   ```powershell
+   $TV_URL = (Invoke-RestMethod https://music.52ta.top/version.json).releases.tv.url
+   # 32 位电视：把 .releases.tv.url 改成 .releases.tv.variants.'armeabi-v7a'.url
+   curl.exe -fL -o wuai-tv.apk $TV_URL
+   ```
+   （不想用 PowerShell 的 JSON 解析时，也可直接打开 `https://music.52ta.top/version.json`，复制 `releases.tv.url` 字段的值。）
 
 2. 安装：
    ```
@@ -204,9 +212,11 @@ adb uninstall com.wuaimusic.app.tv
 
 > 请帮我把吾爱Music TV 版装到我的 Android 电视上。完整说明在 https://music.52ta.top/agent.md （GitHub 镜像：https://raw.githubusercontent.com/jim-6688/wuai-music/main/docs/agent.md ），请先读它再动手。
 >
-> 我的电视 IP 是 `<IP>`。请你**亲自在电脑上运行命令**，不要把步骤列给我。每一步都要看真实输出，最后必须跑完「验收」那四条并把原始输出贴给我，没看到输出就不要说装好了。
+> 我的电视 IP 是 `<IP>`。请你**亲自在电脑上运行命令**，不要把步骤列给我。**整体顺序必须按下面来**：
 >
-> - 不要卸载或停用电视上的任何系统应用，不要删电视上的文件，不要恢复出厂。
-> - 重启电视前先问我。
-> - 装完记得授予存储权限并确认扫描得到本地音乐，这是能不能听到歌的关键。
-> - 卡在哪一步就把命令和输出原样发我。
+> 1. **第一步：读取设备端信息，判断架构**。连上电视后用 `adb shell getprop ro.product.cpu.abi` 看输出：`arm64-v8a` 用 arm64 包，`armeabi-v7a` / `armeabi` 用 32 位包，其它（如 x86）直接告诉我不支持、别硬装。
+> 2. **第二步：按判断出的架构下载对应的安装包**。arm64 用 `app-tv-release.apk`，32 位用 `app-tv-release-v7a.apk`；地址从 `https://music.52ta.top/version.json` 的 `releases.tv.url`（GitHub 直链）/ `urlMirror`（Gitee 镜像）动态取，不要写死版本号。
+> 3. **第三步：推送安装**。`adb install -r <刚下载的包>` 看到 `Success` 再继续；装错架构会报 `INSTALL_FAILED_NO_MATCHING_ABIS`，回第一步重判。
+> 4. **第四步：授权与验收**。装完授予存储权限并确认能扫到本地音乐（能不能听到歌的关键），再跑「验收」四条把原始输出贴给我。
+>
+> 每一步都要看真实输出，没看到输出就不要说装好了。不要卸载或停用电视上的任何系统应用，不要删电视上的文件，不要恢复出厂；重启电视前先问我；卡在哪一步就把命令和输出原样发我。
