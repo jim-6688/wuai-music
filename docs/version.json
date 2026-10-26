@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.3.5",
-      "versionCode": 42,
+      "versionName": "1.3.6",
+      "versionCode": 43,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《题西林壁》· 苏轼\n横看成岭侧成峰，远近高低各不同。\n不识庐山真面目，只缘身在此山中。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-phone-arm64-v8a.apk",
-      "size": 67494761,
-      "sha256": "09149e27b4302536c227bff39ec6393ab269a1fbf89a98ff16a03646e37a00fd",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《江雪》· 柳宗元\n千山鸟飞绝，万径人踪灭。\n孤舟蓑笠翁，独钓寒江雪。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-phone-arm64-v8a.apk",
+      "size": 67625829,
+      "sha256": "b275a351a7d29544ff60ad941063b867f4df175d53591ceacf10f1d5609d7b14",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-phone-arm64-v8a.apk",
-          "size": 67494761,
-          "sha256": "09149e27b4302536c227bff39ec6393ab269a1fbf89a98ff16a03646e37a00fd",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-phone-arm64-v8a.apk",
+          "size": 67625829,
+          "sha256": "b275a351a7d29544ff60ad941063b867f4df175d53591ceacf10f1d5609d7b14",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-phone-armeabi-v7a.apk",
-          "size": 79446929,
-          "sha256": "e91e686775c6d7fd435162220af465a09140358755f16f249a6630e288d1d900",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-phone-armeabi-v7a.apk",
+          "size": 79512461,
+          "sha256": "cfaa8c325dd0f30e070b9aaf28052f42808120336194fb1e2155b8d17bf2acba",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.3.4",
-      "versionCode": 41,
+      "versionName": "1.3.6",
+      "versionCode": 43,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《水调歌头·明月几时有》· 苏轼\n明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-hd-arm64-v8a.apk",
-      "size": 67529073,
-      "sha256": "1c80e9680a7605ec4bf94f24bbc6ce35921a1ddf095eb301b764de55d6090e3f",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《江雪》· 柳宗元\n千山鸟飞绝，万径人踪灭。\n孤舟蓑笠翁，独钓寒江雪。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-hd-arm64-v8a.apk",
+      "size": 67594605,
+      "sha256": "2bc0c7321cd4efe80b153bc07e214bacff53a93c7273b40af03385e2ef7aa9fe",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-hd-arm64-v8a.apk",
-          "size": 67529073,
-          "sha256": "1c80e9680a7605ec4bf94f24bbc6ce35921a1ddf095eb301b764de55d6090e3f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-hd-arm64-v8a.apk",
+          "size": 67594605,
+          "sha256": "2bc0c7321cd4efe80b153bc07e214bacff53a93c7273b40af03385e2ef7aa9fe",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.4/WuAiMusic-1.3.4-build41-hd-armeabi-v7a.apk",
-          "size": 79415705,
-          "sha256": "ab9aabd9aecc96b582548533005c5506d52d1a247f1b25e043de809dc778af7c",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-hd-armeabi-v7a.apk",
+          "size": 79530389,
+          "sha256": "eca61323c876dc6c57563d026edbaa66659f59a6d28ce8e324d9114b99c9d0cd",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.3.5",
-      "versionCode": 42,
+      "versionName": "1.3.6",
+      "versionCode": 43,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《题西林壁》· 苏轼\n横看成岭侧成峰，远近高低各不同。\n不识庐山真面目，只缘身在此山中。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-tv-arm64-v8a.apk",
-      "size": 67536994,
-      "sha256": "9b7852ef1bace1811c441f60bfff2851029e807af5ce7873ec81db047aa4995b",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《江雪》· 柳宗元\n千山鸟飞绝，万径人踪灭。\n孤舟蓑笠翁，独钓寒江雪。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-tv-arm64-v8a.apk",
+      "size": 67602530,
+      "sha256": "5e374521cb2f6b6ef5b4f381cd062c03e0487d7d7d3590e8b55ce1ef7eccf2af",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-tv-arm64-v8a.apk",
-          "size": 67536994,
-          "sha256": "9b7852ef1bace1811c441f60bfff2851029e807af5ce7873ec81db047aa4995b",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-tv-arm64-v8a.apk",
+          "size": 67602530,
+          "sha256": "5e374521cb2f6b6ef5b4f381cd062c03e0487d7d7d3590e8b55ce1ef7eccf2af",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.5/WuAiMusic-1.3.5-build42-tv-armeabi-v7a.apk",
-          "size": 79456394,
-          "sha256": "dbb4e39b0c32d99fa1a709f46e13bfb4dd4c751e5ae61dee3ba2817d4882b837",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.3.6/WuAiMusic-1.3.6-build43-tv-armeabi-v7a.apk",
+          "size": 79521930,
+          "sha256": "168d4d44f7cdbed7bb5803d1288ceace3cec329506d504a782b9044eae99e748",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.3.6",
+      "date": "2026-10-26",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《江雪》· 柳宗元\n千山鸟飞绝，万径人踪灭。\n孤舟蓑笠翁，独钓寒江雪。"
+    },
     {
       "versionName": "1.3.5",
       "date": "2026-10-25",
