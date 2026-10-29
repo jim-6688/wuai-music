@@ -840,6 +840,11 @@ adb devices
                  href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
               <a class="btn btn--gold download-link" data-flavor="phone"
                  href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              <!-- 第三条链路：多吉云（云存储 + 国内加速）。
+                   ⚠️ 默认 hidden —— 前缀由 main.js 的 DUOJI_BASE 提供，为空时
+                     整条链路不启用（宁可不显示，也不出死链）。 -->
+              <a class="btn btn--ghost duoji-link" data-flavor="phone" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
             </div>
           </div>
           <!-- 按 CPU 架构分发的独立包（清单带 variants 时才显示），由 main.js 填充 -->
@@ -862,6 +867,8 @@ adb devices
                  href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
               <a class="btn btn--gold download-link" data-flavor="hd"
                  href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              <a class="btn btn--ghost duoji-link" data-flavor="hd" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
             </div>
           </div>
           <div class="platform__alts" data-alts="hd" hidden></div>
@@ -882,6 +889,8 @@ adb devices
                  href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
               <a class="btn btn--gold download-link" data-flavor="tv"
                  href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              <a class="btn btn--ghost duoji-link" data-flavor="tv" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
             </div>
           </div>
           <div class="platform__alts" data-alts="tv" hidden></div>
@@ -912,12 +921,15 @@ adb devices
                  href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
               <a class="btn btn--gold win-download"
                  href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              <!-- Windows 的 exe 文件名带版本号 ⇒ href 由 main.js 的 fillWindows 现拼 -->
+              <a class="btn btn--ghost duoji-win" target="_blank" rel="noopener"
+                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
             </div>
           </div>
         </article>
       </div>
 
-      <p class="platforms__note reveal">每个平台提供两个下载入口：<strong>国内下载</strong>走码云（Gitee）镜像，<strong>国际下载</strong>走 GitHub Releases，两条链路同版本、任选其一即可。下载后由客户端校验安装包完整性。车机与平板为同一安装包。绝大多数设备直接用主包即可；若是较早的纯 32 位设备，卡片下方还会列出对应的「32 位包」（走国内镜像）。<strong>Windows 桌面版</strong>是 exe 安装包，双击后解压到当前用户目录并创建桌面快捷方式，<strong>不需要管理员权限</strong>，也不会写入系统目录；卸载直接删掉安装目录即可。</p>
+      <p class="platforms__note reveal">每个平台提供两条基础下载链路：<strong>国内下载</strong>走码云（Gitee）镜像，<strong>国际下载</strong>走 GitHub Releases，两条同版本、任选其一即可。<span data-duoji-note hidden>另有<strong>多吉云</strong>加速链路（云存储 + 国内直连）：已上传的端会多出一个「多吉云高速下载」入口，同样与最新版同步。</span>下载后由客户端校验安装包完整性。车机与平板为同一安装包。绝大多数设备直接用主包即可；若是较早的纯 32 位设备，卡片下方还会列出对应的「32 位包」（走国内镜像）。<strong>Windows 桌面版</strong>是 exe 安装包，双击后解压到当前用户目录并创建桌面快捷方式，<strong>不需要管理员权限</strong>，也不会写入系统目录；卸载直接删掉安装目录即可。</p>
     </section>
 
     <!-- 更新中心 -->

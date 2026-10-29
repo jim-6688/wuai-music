@@ -382,6 +382,14 @@ code {
 /* 国内（码云）/ 国际（GitHub）双下载入口，等宽并排 */
 .platform__btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .platform__btns .btn { padding: 0.8em 1em; font-size: 0.9rem; }
+/* 第三条链路（多吉云）：**独占一行**，不跟上面两个主按钮挤成三栏 ——
+   卡片最窄只有 190px 内容宽，三栏会让「多吉云高速下载」折行成两截。
+   ⚠️ `[hidden]` 必须显式写：UA 的 `[hidden]{display:none}` 特异性低于
+      .btn 的 inline-flex，不写这条，未配置前缀时按钮会明晃晃地露出来。 */
+.platform__btns .duoji-link,
+.platform__btns .duoji-win { grid-column: 1 / -1; }
+.platform__btns .duoji-link[hidden],
+.platform__btns .duoji-win[hidden] { display: none; }
 /* 按 ABI 分发的独立包链接行（清单带 variants 时才渲染；hidden 属性优先） */
 .platform__alts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 .platform__alts[hidden] { display: none; }

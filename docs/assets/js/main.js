@@ -67,6 +67,89 @@
       : GITEE_REPO + "/releases";
   }
 
+  // ── 多吉云（https://download.52ta.top）第三条下载链路 ──────────────────
+  //
+  // 与另两条链路最大的不同：**文件名就是 dist/ 里的产物原名**，不是
+  // `app-<渠道>-release.apk` 那种固定名 —— 多吉云上是按构建产物原名上传的：
+  //     Android  wuai-music-<版本>+<构建号>-<渠道>-<ABI>-release.apk
+  //     Windows  WuAiMusic-<版本>-setup.exe
+  // 名字里带版本号与构建号 ⇒ **没法用 latest 之类免版本号的形式**，只能逐版写死。
+  // 所以这里按渠道列一张表：表里有哪个渠道，那个渠道才显示按钮。
+  //
+  // ⚠️ 发新版时必须回来改这张表（每端换文件名）—— 这是整条链路唯一的手工步骤。
+  //    漏改的症状是「按钮还在、点开 404」，所以每次改完跑一遍：
+  //        python scripts/probe_duoji_assets.py
+  //    它会真的 HEAD 一遍每个已配置的地址（表里写了但文件没传，立刻报红）。
+  //
+  // ⚠️ 另一个坑：文件名里的 `+` 必须编码成 `%2B`。所以 URL 一律用
+  //    encodeURIComponent 拼，不能字符串直接相加（`+` 在部分网关会被解成空格 ⇒ 404）。
+  var DUOJI_BASE = "https://download.52ta.top/";
+
+  // 已上传到多吉云的包（只有列在这里的渠道才会显示「多吉云高速下载」）。
+  // 每端可放**主包**一个字符串，或 [主包, 32位包, ...] 数组（主包之外的会
+  // 克隆出「32 位」按钮）。文件名里的 `+` 在 duojiUrlFor 里被 encodeURIComponent
+  // 编成 %2B（部分网关把裸 `+` 解成空格 ⇒ 404）。
+  var DUOJI_FILES = {
+    phone: "wuai-music-1.4.3+50-phone-arm64-v8a-release.apk",
+    windows: "WuAiMusic-1.4.3-setup.exe",
+    hd: [
+      "wuai-music-1.4.3+50-hd-arm64-v8a-release.apk",
+      "wuai-music-1.4.3+50-hd-armeabi-v7a-release.apk",
+    ],
+    tv: [
+      "wuai-music-1.4.3+50-tv-arm64-v8a-release.apk",
+      "wuai-music-1.4.3+50-tv-armeabi-v7a-release.apk",
+    ],
+  };
+
+  /** 某渠道在 DUOJI_FILES 里的文件列表（统一成数组便于处理） */
+  function duojiFiles(flavor) {
+    var f = DUOJI_FILES[flavor];
+    if (!f) return [];
+    return Array.isArray(f) ? f : [f];
+  }
+
+  /** 单个文件名 → 多吉云直链（空串或没配时返回 ""） */
+  function duojiUrlFor(file) {
+    if (!DUOJI_BASE || !file) return "";
+    return DUOJI_BASE.replace(/\/+$/, "") + "/" + encodeURIComponent(file);
+  }
+
+  /** 揭开**已配置**渠道的按钮与说明文字；一个都没配时全部保持收起 */
+  function initDuoji() {
+    var shown = 0;
+    $all(".duoji-link[data-flavor]").forEach(function (a) {
+      var flavor = a.getAttribute("data-flavor");
+      var files = duojiFiles(flavor);
+      if (!files.length) return;          // 没传 = 不显示，绝不留死链
+      // 主包：填进原按钮
+      a.setAttribute("href", duojiUrlFor(files[0]));
+      a.hidden = false;
+      shown++;
+      // 主包之外还有（如 32 位包）→ 克隆出额外按钮，标签加「32 位」
+      for (var i = 1; i < files.length; i++) {
+        var extra = a.cloneNode(true);
+        extra.removeAttribute("data-flavor");   // 防止被再次选中
+        var label = (extra.textContent || "").replace(/\s*（.*）\s*$/, "");
+        extra.textContent = label + "（32 位）";
+        extra.setAttribute("href", duojiUrlFor(files[i]));
+        extra.hidden = false;
+        a.parentNode.insertBefore(extra, a.nextSibling);
+        shown++;
+      }
+    });
+    // Windows 卡没挂 data-flavor（它跟 APK 不是同一套版本规则），单独取主包
+    var win = $(".duoji-win");
+    if (win) {
+      var winUrl = duojiUrlFor(DUOJI_FILES.windows);
+      if (winUrl) { win.setAttribute("href", winUrl); win.hidden = false; shown++; }
+    }
+    if (shown) {
+      var note = $("[data-duoji-note]");
+      if (note) note.hidden = false;
+    }
+  }
+
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
 
@@ -414,6 +497,10 @@
       }
       var mirror = $(".win-mirror", card);
       if (mirror) mirror.setAttribute("href", GITEE_REPO + "/releases/download/latest/" + file);
+      // ⚠️ 多吉云那颗按钮**不在这里填** —— 它的文件名是多吉云上的实际上传名
+      //    （`WuAiMusic-<版本>-setup.exe`，版本号以发布时为准，未必等于清单里的
+      //    hd 版本），统一由 initDuoji() 按 DUOJI_FILES 表处理。
+      //    两边都写会互相覆盖，谁后跑谁生效 —— 那是排查起来最费劲的一类 bug。
     })();
 
     // 顶栏/英雄区下载 CTA 也指向手机端
@@ -674,6 +761,10 @@
         a.classList.contains("download-link") ||
         a.classList.contains("mirror-link") ||
         a.classList.contains("alts__link") ||
+        // 多吉云两个类名：href 指向第三方云存储，不匹配下面的 /releases/ 正则，
+        // 只能靠类名认 —— 否则这条链路点了不计入「本站下载」。
+        a.classList.contains("duoji-link") ||
+        a.classList.contains("duoji-win") ||
         /\/releases\/(download|latest)/i.test(href);
       if (isDownload) bumpDownloads();
     });
@@ -888,6 +979,7 @@
     initReveal();
     initYear();
     initMirrors();
+    initDuoji();   // 多吉云是配置驱动：前缀为空时这里什么都不做（按钮保持 hidden）
     fetchManifest();
     initSnapshot();
     initDownloads();
