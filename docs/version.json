@@ -1,67 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.4.3",
-      "versionCode": 50,
+      "versionName": "1.4.4",
+      "versionCode": 51,
       "flavor": "phone",
-      "notes": "本次更新统一了应用名称与图标，并优化了桌面端窗口。\n\n《望岳》· 杜甫\n岱宗夫如何？齐鲁青未了。\n会当凌绝顶，一览众山小。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-phone-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题。\n\n《登鹳雀楼》· 王之涣\n白日依山尽，黄河入海流。\n欲穷千里目，更上一层楼。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-phone-arm64-v8a.apk",
       "size": 68100683,
-      "sha256": "9b492c626af95ac892790569c3e613ee85253d5efed17ec311b52ecec0e7352f",
+      "sha256": "8fb50a5848b492b9b4f676ecb51899e5082ec74a808846aa3d2b0411d6cb7efa",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-phone-arm64-v8a.apk",
           "size": 68100683,
-          "sha256": "9b492c626af95ac892790569c3e613ee85253d5efed17ec311b52ecec0e7352f",
+          "sha256": "8fb50a5848b492b9b4f676ecb51899e5082ec74a808846aa3d2b0411d6cb7efa",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-phone-armeabi-v7a.apk",
+          "size": 80085621,
+          "sha256": "ce38cbfa17c57a7e88f941b8f9cdd2d00250fbeb8c5e0903b0f4dfcb63fcfd2e",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.4.3",
-      "versionCode": 50,
+      "versionName": "1.4.4",
+      "versionCode": 51,
       "flavor": "hd",
-      "notes": "本次更新统一了应用名称与图标，并优化了桌面端窗口。\n\n《望岳》· 杜甫\n岱宗夫如何？齐鲁青未了。\n会当凌绝顶，一览众山小。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-hd-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题。\n\n《登鹳雀楼》· 王之涣\n白日依山尽，黄河入海流。\n欲穷千里目，更上一层楼。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-hd-arm64-v8a.apk",
       "size": 68107591,
-      "sha256": "e2485c60c72e25fe7994a156807fb395c6f6ab93d19f535e139dfc6ea0e197ef",
+      "sha256": "9361b4b2eab2c836b565cfd23601be77ca58952629c7d575e128752fb344eafc",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-hd-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-hd-arm64-v8a.apk",
           "size": 68107591,
-          "sha256": "e2485c60c72e25fe7994a156807fb395c6f6ab93d19f535e139dfc6ea0e197ef",
+          "sha256": "9361b4b2eab2c836b565cfd23601be77ca58952629c7d575e128752fb344eafc",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-hd-armeabi-v7a.apk",
-          "size": 80026993,
-          "sha256": "ce5d92d35b075d655247355c0c0165e0f440e3bcb3f6342965f384958b11a3b3",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-hd-armeabi-v7a.apk",
+          "size": 80043377,
+          "sha256": "559e1a5f240c5abd2f2970a6b1c53f6108f695e0bac92545ce677dc99e5a6fb0",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.4.3",
-      "versionCode": 50,
+      "versionName": "1.4.4",
+      "versionCode": 51,
       "flavor": "tv",
-      "notes": "本次更新统一了应用名称与图标，并优化了桌面端窗口。\n\n《望岳》· 杜甫\n岱宗夫如何？齐鲁青未了。\n会当凌绝顶，一览众山小。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-tv-arm64-v8a.apk",
-      "size": 68154964,
-      "sha256": "67854ba078996fa68fdc5ac57ed4384ded39aa185f4e97f2af2000c12ddf92f1",
+      "notes": "本次更新修复了一些问题。\n\n《登鹳雀楼》· 王之涣\n白日依山尽，黄河入海流。\n欲穷千里目，更上一层楼。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-tv-arm64-v8a.apk",
+      "size": 68220500,
+      "sha256": "17719139635147188e8bac6893471400d7a802de6c2f87259e47be522dac6e72",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-tv-arm64-v8a.apk",
-          "size": 68154964,
-          "sha256": "67854ba078996fa68fdc5ac57ed4384ded39aa185f4e97f2af2000c12ddf92f1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-tv-arm64-v8a.apk",
+          "size": 68220500,
+          "sha256": "17719139635147188e8bac6893471400d7a802de6c2f87259e47be522dac6e72",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.3/WuAiMusic-1.4.3-build50-tv-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.4/WuAiMusic-1.4.4-build51-tv-armeabi-v7a.apk",
           "size": 80107134,
-          "sha256": "748ec895b89a2acd330a74ee7e1c75c7fc1dcfef9093b54fe455ae2c4bd776b3",
+          "sha256": "1e578446fd3e2d9422472975ec0fc2e29aa61ec8221f566f254b09a6ad76e621",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -73,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.4.4",
+      "date": "2026-10-29",
+      "notes": "本次更新修复了一些问题。\n\n《登鹳雀楼》· 王之涣\n白日依山尽，黄河入海流。\n欲穷千里目，更上一层楼。"
+    },
     {
       "versionName": "1.4.3",
       "date": "2026-10-29",
