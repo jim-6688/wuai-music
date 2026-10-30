@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.4.5",
-      "versionCode": 52,
+      "versionName": "1.4.6",
+      "versionCode": 53,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题。\n\n《望庐山瀑布》· 李白\n日照香炉生紫烟，遥看瀑布挂前川。\n飞流直下三千尺，疑是银河落九天。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-phone-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，并默认关闭了自动日志上报（减少手机端的隐私提示）。\n\n《晓出净慈寺送林子方》· 杨万里\n毕竟西湖六月中，风光不与四时同。\n接天莲叶无穷碧，映日荷花别样红。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-phone-arm64-v8a.apk",
       "size": 68100683,
-      "sha256": "35db057497b679fac4b60af0dd65105cb44e107ac50091d549f8f2aa50709248",
+      "sha256": "eeaaa21f8215f2429d43d49c0e3e0e728bde486e9e158c85f145c3721a788563",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-phone-arm64-v8a.apk",
           "size": 68100683,
-          "sha256": "35db057497b679fac4b60af0dd65105cb44e107ac50091d549f8f2aa50709248",
+          "sha256": "eeaaa21f8215f2429d43d49c0e3e0e728bde486e9e158c85f145c3721a788563",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-phone-armeabi-v7a.apk",
-          "size": 80085621,
-          "sha256": "e595e7cd6b151e8bf981d25b0172e48e21e878f7de7115b13ea400198ec49a37",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-phone-armeabi-v7a.apk",
+          "size": 80102005,
+          "sha256": "686985ab47efca8ad0ed123f60b0ea8b640a8b44f3819a9064085198d6706a9a",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.4.5",
-      "versionCode": 52,
+      "versionName": "1.4.6",
+      "versionCode": 53,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题。\n\n《望庐山瀑布》· 李白\n日照香炉生紫烟，遥看瀑布挂前川。\n飞流直下三千尺，疑是银河落九天。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-hd-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，并默认关闭了自动日志上报（减少手机端的隐私提示）。\n\n《晓出净慈寺送林子方》· 杨万里\n毕竟西湖六月中，风光不与四时同。\n接天莲叶无穷碧，映日荷花别样红。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-hd-arm64-v8a.apk",
       "size": 68107591,
-      "sha256": "0ae0e2f75ae51f400aee85a8893bcc5bdefb3d617157bd8ce55015329012ffed",
+      "sha256": "77e91cd891300fbfbd9077c8699451b54bad3b037c653e39a24088e5e466c7e5",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-hd-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-hd-arm64-v8a.apk",
           "size": 68107591,
-          "sha256": "0ae0e2f75ae51f400aee85a8893bcc5bdefb3d617157bd8ce55015329012ffed",
+          "sha256": "77e91cd891300fbfbd9077c8699451b54bad3b037c653e39a24088e5e466c7e5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-hd-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-hd-armeabi-v7a.apk",
           "size": 80043377,
-          "sha256": "ebf6ebca8c1855addd4cb8ae11b00af7d9b8b33ab9a2ff78448d766b6c6493b0",
+          "sha256": "0730b351698e57330a6175923093f627a86bd6e72da481010d6195f76123a016",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.4.5",
-      "versionCode": 52,
+      "versionName": "1.4.6",
+      "versionCode": 53,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题。\n\n《望庐山瀑布》· 李白\n日照香炉生紫烟，遥看瀑布挂前川。\n飞流直下三千尺，疑是银河落九天。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-tv-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，并默认关闭了自动日志上报（减少手机端的隐私提示）。\n\n《晓出净慈寺送林子方》· 杨万里\n毕竟西湖六月中，风光不与四时同。\n接天莲叶无穷碧，映日荷花别样红。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-tv-arm64-v8a.apk",
       "size": 68220500,
-      "sha256": "e332e64292e8946076932104360b43cb2dae482ba0beaec50a693693ae75bf64",
+      "sha256": "687bf82ad22c17c149d29f562dc5e4ccd478d8f89988f979b08d9da7021b7a0d",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-tv-arm64-v8a.apk",
           "size": 68220500,
-          "sha256": "e332e64292e8946076932104360b43cb2dae482ba0beaec50a693693ae75bf64",
+          "sha256": "687bf82ad22c17c149d29f562dc5e4ccd478d8f89988f979b08d9da7021b7a0d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.5/WuAiMusic-1.4.5-build52-tv-armeabi-v7a.apk",
-          "size": 80107134,
-          "sha256": "2bac8345b79a26da12672ce79482c8a66e5dc6e724bb1c9ff5824c1b3c97be13",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.4.6/WuAiMusic-1.4.6-build53-tv-armeabi-v7a.apk",
+          "size": 80123518,
+          "sha256": "65ea0b1f1e20b6875da0996079c947a06a2202f5df24317608cf49cde8c06427",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "1.4.6",
+      "date": "2026-10-29",
+      "notes": "本次更新修复了一些问题，并默认关闭了自动日志上报（减少手机端的隐私提示）。\n\n《晓出净慈寺送林子方》· 杨万里\n毕竟西湖六月中，风光不与四时同。\n接天莲叶无穷碧，映日荷花别样红。"
+    },
     {
       "versionName": "1.4.5",
       "date": "2026-10-29",
