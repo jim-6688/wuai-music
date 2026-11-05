@@ -672,11 +672,17 @@
       els.forEach(function (el) { el.classList.add("is-visible"); });
       return;
     }
+    // ⚠️ 阈值必须是 0，不能用比例阈值。原本写的是 threshold: 0.12，
+    // 但「更新中心」这类容器会随更新日志增长 —— 52 个版本把面板撑到 11000px 高，
+    // 在 1080px 视口里最多只能露出 9.7% < 12% ⇒ 永远不触发，
+    // 整块停在 opacity: 0，用户看到的就是「更新中心是空的」。
+    // 用 rootMargin 把视口下沿抬高 10% 来达到「进来一点再淡入」的效果，
+    // 这个判据与元素自身高度无关，再高的容器也能触发。
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
     els.forEach(function (el) { io.observe(el); });
   }
 
