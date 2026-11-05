@@ -44,8 +44,10 @@
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+  <!-- 地址栏底色跟**站内主题**走（下面的首屏脚本会改它），不跟系统偏好走 ——
+       用户完全可能用深色系统看白站，两者不能混。这里写白色是默认值，
+       也是 JS 没跑起来时的兜底。 -->
+  <meta name="theme-color" content="#f9f4f0" />
   <link rel="canonical" href="https://music.52ta.top/" />
 
   <!-- ── 分享卡 ───────────────────────────────────────────────────────── -->
@@ -158,70 +160,82 @@
     }
   </script>
   <script>
+    /* 主题启动：**默认高级白**，只有用户自己点过切换才用记忆值。
+       刻意不读 prefers-color-scheme —— 官网的门面配色是设计决策，
+       不交给系统偏好决定；白站是默认，深墨是用户主动选的备选。 */
     (function () {
+      var root = document.documentElement;
+      var t = "light";
       try {
-        var t = localStorage.getItem("wuai-theme");
-        if (!t) {
-          t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
-        }
-        document.documentElement.setAttribute("data-theme", t);
+        var saved = localStorage.getItem("wuai-theme");
+        if (saved === "dark" || saved === "light") t = saved;
       } catch (e) {}
+      root.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "dark" ? "#08090b" : "#f9f4f0");
     })();
   </script>
 </head>
 <body>
-  <!-- 顶部导航 -->
+  <!-- ══════════════════════════════════════════════════════════════════
+       顶部导航
+       结构契约：main.js 的 initNav 依赖 #nav / #navToggle / .nav__links，
+       .is-scrolled 由滚动派发，.nav__links.is-open 控制移动端展开。
+       ══════════════════════════════════════════════════════════════════ -->
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a class="brand" href="#top" aria-label="吾爱音乐首页">
         <!-- 与 App 启动图标同源（见 scripts/build_site_icons.py）。
-             以前这里是一枚手写的金色音符 SVG，与手机上的 App 图标对不上；
-             换成内置图标后，站内站外是同一个标识。
              深浅两份，由 CSS 按站内主题切换（见 .brand__mark--dark/--light）。 -->
         <img class="brand__mark brand__mark--dark" src="favicon-dark.svg" alt=""
-             width="30" height="30" decoding="async" />
+             width="28" height="28" decoding="async" />
         <img class="brand__mark brand__mark--light" src="favicon.svg" alt=""
-             width="30" height="30" decoding="async" />
-        <span class="brand__name">吾爱音乐</span>
+             width="28" height="28" decoding="async" />
+        <span class="brand__text">
+          <span class="brand__name">吾爱音乐</span>
+          <span class="brand__en">WuAiMusic</span>
+        </span>
       </a>
       <nav class="nav__links" aria-label="主导航">
         <a href="#features">功能</a>
-        <a href="#screens">界面预览</a>
+        <a href="#screens">界面</a>
+        <a href="#platforms">下载</a>
+        <a href="#tv-install">电视安装</a>
         <a href="#design">设计语言</a>
-        <a href="#platforms">各端下载</a>
-        <a href="#update">更新中心</a>
-        <!-- 「自动更新」不占导航位：它与「更新中心」指向同一段内容，
-             #ota 锚点保留给页脚与外链深链。常见问题更值得进导航。 -->
+        <a href="#update">更新</a>
         <a href="#faq">常见问题</a>
-        <a href="#community">粉丝群</a>
       </nav>
-      <a class="btn btn--gold nav__cta" href="#platforms">立即下载</a>
-      <button class="nav__theme" id="themeToggle" type="button" aria-label="切换深浅色主题" title="切换主题"></button>
-      <button class="nav__toggle" id="navToggle" aria-label="菜单" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <a class="btn btn--gold nav__cta" href="#platforms">立即下载</a>
+        <button class="nav__theme" id="themeToggle" type="button" aria-label="切换深浅色主题" title="切换主题"></button>
+        <button class="nav__toggle" id="navToggle" aria-label="菜单" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- Hero -->
+    <!-- ══════════════════════════════════════════════════════════════════
+         首屏
+         ⚠️ 主图 / 下载条 / 设备文案三处都由 main.js 的 applyDeviceHighlight()
+            按 UA 改写，改结构时必须保留这些 id 与 class：
+              #heroShot[data-flavor] / #heroShotImg / #heroShotTitle
+              #heroDeviceLabel / #heroDevices / .hdev[data-flavor]
+         ══════════════════════════════════════════════════════════════════ -->
     <section class="hero">
-      <div class="hero__bg" aria-hidden="true">
-        <span class="orb orb--1"></span>
-        <span class="orb orb--2"></span>
-        <span class="orb orb--3"></span>
-      </div>
-      <div class="hero__inner">
+      <div class="hero__rule" aria-hidden="true"></div>
+      <div class="container">
         <div class="hero__copy reveal">
           <span class="eyebrow">跨端 · 本地无损 · 纯粹聆听</span>
-          <h1 class="hero__title">听见每一处<span class="gold">细节</span></h1>
+          <h1 class="hero__title">听见每一处<span class="hero__title-em">细节</span></h1>
           <p class="hero__lead">
             吾爱音乐是一款专注本地的音乐播放器，覆盖手机、车机/平板与电视。
             液态玻璃界面、专业均衡器、智能歌词与可视化，让收藏的每一张专辑都物尽其用。
           </p>
           <div class="hero__actions">
-            <a class="btn btn--gold" href="#platforms">下载客户端</a>
-            <a class="btn btn--ghost" href="#features">了解功能</a>
+            <a class="btn btn--gold btn--lg" href="#platforms">下载客户端</a>
+            <a class="btn btn--ghost btn--lg" href="#features">了解功能</a>
           </div>
           <!-- 数字全部取自代码真源，改功能时要跟着改（出处见各条注释）：
                  formats = lib/core/constants/audio_formats.dart 的 AudioFormats.exts
@@ -229,487 +243,629 @@
                  platforms = android/app/build.gradle.kts 的 productFlavors（phone/hd/tv）
                  lyrics  = ⚠️ 这一格**不报源的数量**（合规：见歌词系统卡的注释）——
                            只表达「自定义歌词源」。真源 lib/core/config/lyric_source.dart -->
-          <div class="hero__stats">
-            <div><strong data-stat="formats">16</strong><span>种音频格式</span></div>
-            <div><strong data-stat="schemes">22</strong><span>套主题配色</span></div>
-            <div><strong data-stat="lyrics">∞</strong><span>自定义歌词源</span></div>
-            <div><strong data-stat="platforms">3</strong><span>端同源适配</span></div>
-          </div>
-        </div>
-
-        <!-- 播放器玻璃拟态展示 -->
-        <div class="hero__visual reveal" aria-hidden="true">
-          <div class="player glass">
-            <div class="player__art">
-              <div class="player__disc">
-                <span class="player__hole"></span>
-              </div>
-              <div class="player__sheen"></div>
-            </div>
-            <div class="player__meta">
-              <p class="player__title">夜空中最亮的星</p>
-              <p class="player__artist">逃跑计划 · 世界</p>
-            </div>
-            <div class="player__bars">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <div class="player__progress"><i style="width:42%"></i></div>
-            <div class="player__controls">
-              <span class="ic">‹‹</span>
-              <span class="ic ic--play">▶</span>
-              <span class="ic">››</span>
-            </div>
-          </div>
+          <dl class="hero__stats">
+            <div><dt>音频格式</dt><dd><strong data-stat="formats">16</strong><span>种</span></dd></div>
+            <div><dt>主题配色</dt><dd><strong data-stat="schemes">22</strong><span>套</span></dd></div>
+            <div><dt>歌词源</dt><dd><strong data-stat="lyrics">∞</strong><span>自定义</span></dd></div>
+            <div><dt>同源适配</dt><dd><strong data-stat="platforms">3</strong><span>端</span></dd></div>
+          </dl>
         </div>
       </div>
-      <a class="hero__scroll" href="#features" aria-label="向下滚动">向下探索</a>
-    </section>
 
-    <!-- 功能 -->
-    <section class="section" id="features">
-      <div class="section__head reveal">
-        <span class="eyebrow">核心能力</span>
-        <h2>为热爱音乐的人而造</h2>
-        <p class="section__sub">不靠云端曲库，只把你的本地收藏打磨到极致。下面六组能力在手机、车机与电视上完全一致。</p>
-      </div>
-
-      <!-- 按「你会怎么用它」分五组，不按技术分层分。
-           每条都能在 lib/ 里找到实现，不写没做的功能；数字与文件名写在注释里，
-           以后改功能时能顺着注释回去改，不会留下对不上的宣传文案。 -->
-      <div class="fgroups">
-
-        <!-- 播放内核：lib/features/player/service/audio_player_service.dart
-             + transcode_config.dart / transcode_service.dart + replay_gain_provider.dart -->
-        <section class="fgroup glass reveal">
-          <header class="fgroup__head">
-            <span class="fgroup__icon">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-            </span>
-            <h3>播放内核</h3>
-            <p>把文件丢进去就能放，冷门格式也不放弃。</p>
-          </header>
-          <ul class="fgroup__list">
-            <li><strong>16 种音频格式直通</strong><span>FLAC / WAV / MP3 / M4A / AAC / OGG / Opus / WMA / ALAC / AIFF 等原生解码，完整保留动态与细节。列表真源：<code>lib/core/constants/audio_formats.dart</code>。</span></li>
-            <li><strong>冷门格式自动转码</strong><span>APE / WavPack / TTA 首次播放转成 FLAC 缓存，第二次秒开，缓存可一键清理。</span></li>
-            <li><strong>DSD 也能播</strong><span>整轨 <code>.dsf</code> 按 1bit / 2.8MHz → 24bit / 176.4kHz 转码播放，DSD 收藏不再只能干看。</span></li>
-            <li><strong>ReplayGain 音量归一</strong><span>自动平衡专辑之间的响度差，另有前置增益，切歌不再忽大忽小。</span></li>
-            <li><strong>播放速度 0.5×–2.0×</strong><span>听播客、跟唱、扒谱都用得上。</span></li>
-            <li><strong>放不出来也不装死</strong><span>解码失败先尝试转码重试，确实不行才顺延下一首 —— 不会卡在一个坏文件上。</span></li>
-          </ul>
-        </section>
-
-        <!-- 音效与可视化：lib/features/player/service/audio_equalizer_service.dart
-             （bandCount = 10，frequencies 32Hz–16kHz，15 组预设 + 自定义）
-             + lib/features/player/widgets/audio_visualizer.dart（VisualizerStyle 4 款） -->
-        <section class="fgroup glass reveal">
-          <header class="fgroup__head">
-            <span class="fgroup__icon">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 12h2l2-7 4 14 3-9 2 4h5"/></svg>
-            </span>
-            <h3>音效与可视化</h3>
-            <p>调出真正属于自己的声音，也看得见声音。</p>
-          </header>
-          <ul class="fgroup__list">
-            <li><strong>10 段参量均衡器</strong><span>32Hz–16kHz 逐段 ±12dB，带实时频响曲线，另有虚拟低音增强、环绕声与混响。</span></li>
-            <li><strong>15 组内置预设</strong><span>平坦 / 低音增强 / 高音增强 / 摇滚 / 流行 / 爵士 / 古典 / 舞曲 / 电子 / 人声 / 嘻哈 / 原声，外加 3 组丹拿曲线。</span></li>
-            <li><strong>自定义预设可存可删</strong><span>调好的曲线存下来，换耳机、换设备都能一键调回。</span></li>
-            <li><strong>4 款可视化风格</strong><span>液态极光 / 黑胶唱片 / 星云律动 / 音乐喷泉，随频谱实时律动。</span></li>
-          </ul>
-        </section>
-
-        <!-- 曲库与整理：lib/features/files + lib/features/beautify + lib/features/nas
-             （NasProtocol = smb / webdav） -->
-        <section class="fgroup glass reveal">
-          <header class="fgroup__head">
-            <span class="fgroup__icon">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 5h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg>
-            </span>
-            <h3>曲库与整理</h3>
-            <p>整轨镜像、错乱的标签、散落的文件，都能收拾干净。</p>
-          </header>
-          <ul class="fgroup__list">
-            <li><strong>CUE 整轨专辑</strong><span>一张碟的镜像文件按 CUE 分出多首，改标签、改歌名都不会碰坏原始音频。</span></li>
-            <li><strong>M3U / M3U8 播放列表</strong><span>外部歌单直接识别导入，不用手工重排。</span></li>
-            <li><strong>本地 + NAS 统一入库</strong><span>手机存储、外置卡、SMB 与 WebDAV 共享目录，在同一个曲库里一起检索。</span></li>
-            <li><strong>NAS 目录离线缓存</strong><span>把家里 NAS 上的音乐整目录缓存到本地，出门没网也能听。</span></li>
-            <li><strong>批量音乐美化</strong><span>补全标签与封面、内嵌歌词、批量重命名，支持勾选范围与一键撤销；每次写入都有日志可查。</span></li>
-            <li><strong>收藏与播放统计</strong><span>听歌习惯只留在本机，不上传任何服务器。</span></li>
-          </ul>
-        </section>
-
-        <!-- 歌词系统：lib/features/lyrics + lib/core/config/lyric_source.dart
-             （内置源条目数与各源协议见该文件；自定义源入口见
-               features/settings/.../lyric_sources_page.dart）
-             + lyric_match_scorer.dart（歌名 100 / 时长 45 / 艺术家 35）
-             + lyric_offset_learner.dart / lyric_offset_store.dart
-             ⚠️ 文案不得点名第三方音乐平台、也不报源的数量，改完跑 scripts/check_site_faq_parity.py -->
-        <section class="fgroup glass reveal">
-          <header class="fgroup__head">
-            <span class="fgroup__icon">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 6h16v2H4zm0 5h10v2H4zm0 5h13v2H4zM17 4l4 2v9a2.5 2.5 0 1 1-2-2.45V7.2L17 6.5z"/></svg>
-            </span>
-            <h3>歌词系统</h3>
-            <p>多路歌词源交叉比对，尽量给你对得上的那一份。</p>
-          </header>
-          <ul class="fgroup__list">
-            <li><strong>自定义歌词源</strong><span>支持自行添加多个歌词服务器，实时获取在线歌词。</span></li>
-            <li><strong>歌名 + 时长 + 艺术家打分</strong><span>按毫秒级时长逐首核对，同名的翻唱、Live 版不会张冠李戴。</span></li>
-            <li><strong>歌词偏移自动学习</strong><span>整体早半秒？手动微调一次，应用会记住这首歌，下次不用再调。</span></li>
-            <li><strong>侧车与内嵌双支持</strong><span>同目录 <code>.lrc</code> 优先，也能读写音频文件里的内嵌歌词。</span></li>
-            <li><strong>播放页与锁屏歌词</strong><span>手机端播放页、锁屏与桌面歌词的位置与样式都可调。</span></li>
-          </ul>
-        </section>
-
-        <!-- 跨端与更新：lib/features/tv + lib/features/hd（phone/hd/tv 三 flavor）
-             + lib/features/sync（配对 / 遥控）+ lib/core/theme（22 配色）
-             + lib/core/i18n（zh-Hans / zh-Hant / en）+ lib/features/update -->
-        <section class="fgroup glass reveal">
-          <header class="fgroup__head">
-            <span class="fgroup__icon">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M2 5h20v11H2zm7 13h6v2H9z"/></svg>
-            </span>
-            <h3>跨端与更新</h3>
-            <p>一台手机、一块平板、一台电视，共用同一套体验。</p>
-          </header>
-          <ul class="fgroup__list">
-            <li><strong>手机 / 车机·平板 / 电视 / 桌面四端同源</strong><span>同一份设计语言；电视端整套遥控器方向键操作、焦点与字号按十尺外观看重做，Windows 端键鼠与大屏歌词。</span></li>
-            <li><strong>设备配对与遥控播放</strong><span>手机扫码与车机、电视配对，把播放状态与队列同步过去。</span></li>
-            <li><strong>22 套主题配色</strong><span>明暗双模式、背景笔法、字号与字体都能换，界面随你的审美来。</span></li>
-            <li><strong>简体 / 繁體 / English</strong><span>三套完整词表，繁体按台湾用语单独翻译，不是机器转写。</span></li>
-            <li><strong>内置 OTA 自动更新</strong><span>启动静默查版本、下载后 SHA-256 校验再安装，不需要应用商店。</span></li>
-          </ul>
-        </section>
-
-        <!-- 电视专属：音乐相册 + 全屏歌词（大屏才有的沉浸体验；真源见 lib/features/tv） -->
-        <section class="fgroup glass reveal">
-          <header class="fgroup__head">
-            <span class="fgroup__icon">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 4h16v12H4zm2 14h12v2H6zm4 0h4"/></svg>
-            </span>
-            <h3>电视专属 · 音乐相册与全屏歌词</h3>
-            <p>大屏才有的沉浸体验：封面墙随歌流转，歌词铺满整面墙。</p>
-          </header>
-          <ul class="fgroup__list">
-            <li><strong>音乐相册</strong><span>3D 封面流中间大、左右小，可选显示音乐封面或本机相册，2 / 4 / 6 秒自动切换；无歌词时自动显示诗词雅句，不再闪一下就消失。</span></li>
-            <li><strong>全屏歌词</strong><span>闲置数秒自动进入全屏歌词，按遥控器任意键退出；当前行字号明显放大，未唱偏亮、已唱偏暗，层次一眼可辨。</span></li>
-            <li><strong>大字号与焦点</strong><span>菜单、列表、歌词整体按两到三米观看距离重定字号，遥控器焦点清晰可辨，远距离也不费眼。</span></li>
-            <li><strong>遥控器全程可达</strong><span>整套界面都能用方向键完成，无需鼠标；返回键分级退出，不会一按就退到桌面。</span></li>
-          </ul>
-        </section>
-
-      </div>
-    </section>
-
-    <!-- 界面预览 -->
-    <section class="section" id="screens">
-      <div class="section__head reveal">
-        <span class="eyebrow">界面预览</span>
-        <h2>看清每一处细节</h2>
-        <p class="section__sub">液态玻璃界面随主题配色焕新，手机、车机、电视共用一套设计语言。先看三端的「正在播放」，再看可视化与均衡器。</p>
-      </div>
-
-      <div class="shots shots--devices reveal">
-        <figure class="shot shot--gallery">
-          <div class="shot__frame">
-            <div class="tv-gallery tv-gallery--portrait" data-phone-gallery>
-              <div class="tv-gallery__track">
-                <figure class="tv-gallery__slide is-active">
-                  <img src="assets/img/phone/phone-01.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 1" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 1</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-02.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 2" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 2</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-03.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 3" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 3</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-04.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 4" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 4</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-05.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 5" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 5</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-06.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 6" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 6</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-07.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 7" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 7</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/phone/phone-08.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 8" />
-                  <figcaption class="tv-gallery__cap">手机端实拍 8</figcaption>
-                </figure>
-              </div>
-              <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
-              <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
-              <div class="tv-gallery__dots" role="tablist" aria-label="手机界面截图导航"></div>
-            </div>
+      <!-- 首屏主图：按识别到的平台切换（手机 / 车机·平板 / 电视 / Windows）。
+           静态兜底是 Windows 桌面版（JS 不可用时也能看到图）；
+           main.js 的 applyHeroShot() 会按 UA 换成当前端的「当前版本」实拍。
+           ⚠️ 手机是竖图（1080×2376），框体形态由 CSS 按 [data-flavor] 决定，
+              不要直接塞进 16:9 窗口框里。 -->
+      <div class="container hero__stage">
+        <figure class="hero__shot reveal" id="heroShot" data-flavor="windows">
+          <div class="hero__shot-bar" aria-hidden="true">
+            <span class="hero__shot-dots"><i></i><i></i><i></i></span>
+            <span class="hero__shot-title" id="heroShotTitle">吾爱Music · Windows 桌面版</span>
+            <span class="hero__shot-tag">当前版本界面</span>
           </div>
-          <figcaption>手机端 · 界面相册<span>实拍 · 自动轮播</span></figcaption>
-        </figure>
-
-        <figure class="shot shot--wide shot--gallery">
-          <div class="shot__frame">
-            <div class="tv-gallery" data-car-gallery>
-              <div class="tv-gallery__track">
-                <figure class="tv-gallery__slide is-active">
-                  <img src="assets/img/tv/tv-04-nowplaying.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端「正在播放」页：环形频谱封面与歌词" />
-                  <figcaption class="tv-gallery__cap">正在播放</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-01-folders.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端按文件夹浏览音乐" />
-                  <figcaption class="tv-gallery__cap">按文件夹浏览</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-02-albums.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端专辑分类浏览" />
-                  <figcaption class="tv-gallery__cap">专辑分类</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-06-lyrics.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端全屏歌词播放" />
-                  <figcaption class="tv-gallery__cap">全屏歌词</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-07-audiofx.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端音效设置" />
-                  <figcaption class="tv-gallery__cap">音效设置</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-05-settings.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端设置首页" />
-                  <figcaption class="tv-gallery__cap">设置</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-13-themes.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="车机端主题配色选择" />
-                  <figcaption class="tv-gallery__cap">主题配色</figcaption>
-                </figure>
-              </div>
-              <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
-              <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
-              <div class="tv-gallery__dots" role="tablist" aria-label="车机界面截图导航"></div>
-            </div>
+          <div class="hero__shot-screen">
+            <img id="heroShotImg" src="assets/img/windows/win-02.webp" width="1600" height="900"
+                 loading="eager" decoding="async"
+                 alt="吾爱音乐 Windows 桌面版界面：正在播放、实时歌词与可视化" />
           </div>
-          <figcaption>车机端 · 界面相册<span>横屏三栏 · 导航常驻 · 自动轮播</span></figcaption>
-          <p class="shot__hint">车机与平板为同一构建（hd flavor），界面与电视端同源；以下截图取自电视端，待补充车机实拍。</p>
-        </figure>
-
-        <figure class="shot shot--wide shot--gallery">
-          <div class="shot__frame">
-            <div class="tv-gallery" data-tv-gallery>
-              <div class="tv-gallery__track">
-                <figure class="tv-gallery__slide is-active">
-                  <img src="assets/img/tv/tv-01-folders.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：按文件夹浏览音乐" />
-                  <figcaption class="tv-gallery__cap">按文件夹浏览</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-02-albums.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：专辑分类浏览" />
-                  <figcaption class="tv-gallery__cap">专辑分类</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-03-nas.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：添加与浏览 NAS 设备" />
-                  <figcaption class="tv-gallery__cap">NAS 设备</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-04-nowplaying.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：正在播放页，环形频谱封面与歌词" />
-                  <figcaption class="tv-gallery__cap">正在播放</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-05-settings.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：设置首页" />
-                  <figcaption class="tv-gallery__cap">设置</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-06-lyrics.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：全屏歌词播放" />
-                  <figcaption class="tv-gallery__cap">全屏歌词</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-07-audiofx.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：音效设置" />
-                  <figcaption class="tv-gallery__cap">音效设置</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-08-lyricset.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：歌词设置" />
-                  <figcaption class="tv-gallery__cap">歌词设置</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-09-sync.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：同步设置" />
-                  <figcaption class="tv-gallery__cap">同步设置</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-10-about.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：关于页面" />
-                  <figcaption class="tv-gallery__cap">关于</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-11-scan.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：扫描音乐" />
-                  <figcaption class="tv-gallery__cap">扫描音乐</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-12-metafix.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：元数据修复" />
-                  <figcaption class="tv-gallery__cap">元数据修复</figcaption>
-                </figure>
-                <figure class="tv-gallery__slide">
-                  <img src="assets/img/tv/tv-13-themes.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：主题配色选择" />
-                  <figcaption class="tv-gallery__cap">主题配色</figcaption>
-                </figure>
-              </div>
-              <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
-              <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
-              <div class="tv-gallery__dots" role="tablist" aria-label="电视界面截图导航"></div>
-            </div>
-          </div>
-          <figcaption>电视端 · 界面相册<span>遥控器方向键操作 · 大字号焦点 · 横屏分栏 · 自动轮播</span></figcaption>
-          <p class="shot__hint">电视端怎么安装与更新，见<a href="#tv-install">下方「电视端怎么装」</a>。</p>
         </figure>
       </div>
 
-      <div class="shots shots--pages reveal">
-        <div class="shots__note">
-          <h3>可视化与均衡器</h3>
-          <p>播放页不只是封面和进度条：四款可视化风格随频谱实时律动，均衡器里可以调出真正属于自己的声音。</p>
-          <ul>
-            <li>4 款可视化风格</li>
-            <li>14 组内置预设</li>
-            <li>10 段频率调节 · ±12dB</li>
-            <li>自定义预设可存可删</li>
-          </ul>
+      <!-- 首屏下载条：按浏览器 UA 识别当前设备，高亮对应端并给出推荐。
+           href 由 main.js 按版本号/镜像填充，此处静态兜底指向 #platforms。 -->
+      <div class="container hero__download" id="heroDownload">
+        <div class="hero__download-top">
+          <p class="hero__download-label" id="heroDeviceLabel">选择你的平台下载</p>
+          <span class="hero__download-note">免费 · 无广告 · 无需注册</span>
         </div>
-
-        <figure class="shot">
-          <div class="shot__frame">
-            <img src="assets/img/phone-visualizer.webp" width="390" height="844" loading="lazy" decoding="async"
-                 alt="手机端可视化「液态极光」：多层流体光带随频谱起伏，下方是播放控制栏" />
-          </div>
-          <figcaption>可视化 · 液态极光<span>四种风格可切换 · 随频谱实时律动</span></figcaption>
-        </figure>
-
-        <figure class="shot">
-          <div class="shot__frame">
-            <img src="assets/img/phone-equalizer.webp" width="390" height="844" loading="lazy" decoding="async"
-                 alt="手机端均衡器页：预设选择、我的预设、10 段频率调节滑杆与频响曲线、音效增强" />
-          </div>
-          <figcaption>均衡器 · 10 段调节<span>频响曲线 · 音效增强 · 调整实时生效</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- 设计语言：液态玻璃交互（与 App 内同一套交互语言；弹簧参数见 assets/js/design.js） -->
-    <section class="section" id="design">
-      <div class="section__head reveal">
-        <span class="eyebrow">设计语言</span>
-        <h2>液态玻璃 · 弹性交互</h2>
-        <p class="section__sub">同一套玻璃质感贯穿手机、车机、电视与桌面：水光纹理、流动扫光，配弹簧回弹的按压与切换。下面五组交互都可以在页面里直接点 / 拖。</p>
-      </div>
-
-      <div class="design-grid">
-        <!-- ① 玻璃按钮 水效果 + 弹性 -->
-        <div class="design-card glass reveal">
-          <div class="design-card__head"><h3>玻璃按钮 · 水光 + 弹性</h3><p>按压下沉、松手弹簧回弹，水光纹理随交互流动。</p></div>
-          <div class="d-stage">
-            <div class="d-glass d-flow" id="dBtn">
-              <div class="d-water"><span class="band"></span><span class="rim"></span><span class="refract"></span></div>
-              <div class="d-sheen"></div>
-              <div class="d-ico"><svg viewBox="0 0 24 24" fill="#fff"><path d="M9 8v8l7-4z"/></svg></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ② 图标切换 ▶ / ⏸ -->
-        <div class="design-card glass reveal">
-          <div class="design-card__head"><h3>图标切换 · 左右滑动</h3><p>播放 / 暂停切换时，旧图标左滑出、新图标右滑入。</p></div>
-          <div class="d-stage">
-            <div class="d-glass d-flow" id="dSwap">
-              <div class="d-water"><span class="band"></span><span class="rim"></span></div>
-              <div class="d-sheen"></div>
-              <div class="d-ico" id="dSwapIco"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ③ 可拖拽开关 -->
-        <div class="design-card glass reveal">
-          <div class="design-card__head"><h3>开关 · 可拖拽 + 弹起</h3><p>可拖动旋钮，松手弹簧吸附到开 / 关，并轻微弹起。</p></div>
-          <div class="d-stage">
-            <div class="d-switch" id="dToggle">
-              <div class="d-water"><span class="band"></span><span class="rim"></span></div>
-              <div class="d-knob" id="dKnob"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ④ 两图标联动切换 -->
-        <div class="design-card glass reveal">
-          <div class="design-card__head"><h3>两图标联动 · 收藏 ⇄ 星标</h3><p>一次切换，两个图标同步反向滑动。</p></div>
-          <div class="d-stage">
-            <div class="d-glass d-flow" id="dLink">
-              <div class="d-water"><span class="band"></span><span class="rim"></span></div>
-              <div class="d-sheen"></div>
-              <div class="d-ico-wrap">
-                <div class="d-ico layer" id="dLinkA"></div>
-                <div class="d-ico layer" id="dLinkB"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ⑤ 菜单切换（整宽） -->
-        <div class="design-card design-card--wide glass reveal">
-          <div class="design-card__head"><h3>菜单 · 玻璃指示条</h3><p>分段导航的玻璃指示条用弹簧滑到选中项，当前项同步高亮。</p></div>
-          <div class="d-stage d-stage--col">
-            <div class="d-menu" id="dMenu">
-              <div class="d-indicator d-flow" id="dInd"><div class="d-water"><span class="band"></span><span class="rim"></span></div><div class="d-sheen"></div></div>
-              <div class="d-mitem active">歌曲</div>
-              <div class="d-mitem">专辑</div>
-              <div class="d-mitem">歌手</div>
-              <div class="d-mitem">收藏</div>
-            </div>
-          </div>
+        <div class="hero__devices" id="heroDevices">
+          <a class="hdev" data-flavor="phone" href="#platforms" target="_blank" rel="noopener" aria-label="下载手机端">
+            <span class="hdev__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="10.5" y1="18.4" x2="13.5" y2="18.4" stroke-linecap="round"/></svg></span>
+            <span class="hdev__body">
+              <span class="hdev__name">手机端</span>
+              <span class="hdev__ver" data-ver>v—</span>
+            </span>
+            <span class="hdev__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v12m0 0l-4.5-4.5M12 16l4.5-4.5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a class="hdev" data-flavor="hd" href="#platforms" target="_blank" rel="noopener" aria-label="下载车机/平板">
+            <span class="hdev__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4" stroke-linecap="round"/></svg></span>
+            <span class="hdev__body">
+              <span class="hdev__name">车机 / 平板</span>
+              <span class="hdev__ver" data-ver>v—</span>
+            </span>
+            <span class="hdev__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v12m0 0l-4.5-4.5M12 16l4.5-4.5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a class="hdev" data-flavor="tv" href="#platforms" target="_blank" rel="noopener" aria-label="下载电视端">
+            <span class="hdev__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></span>
+            <span class="hdev__body">
+              <span class="hdev__name">电视端</span>
+              <span class="hdev__ver" data-ver>v—</span>
+            </span>
+            <span class="hdev__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v12m0 0l-4.5-4.5M12 16l4.5-4.5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a class="hdev" data-flavor="windows" href="#platforms" target="_blank" rel="noopener" aria-label="下载 Windows 版">
+            <span class="hdev__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="8" rx="1.4"/><rect x="13" y="3" width="8" height="8" rx="1.4"/><rect x="3" y="13" width="8" height="8" rx="1.4"/><rect x="13" y="13" width="8" height="8" rx="1.4"/></svg></span>
+            <span class="hdev__body">
+              <span class="hdev__name">Windows 版</span>
+              <span class="hdev__ver" data-ver>v—</span>
+            </span>
+            <span class="hdev__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v12m0 0l-4.5-4.5M12 16l4.5-4.5M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 电视安装教程 -->
-    <!-- 为什么单独一块：电视生态的**真实摩擦点**不在功能，而在「装不上」。
+    <!-- ══════════════════════════════════════════════════════════════════
+         01 核心能力
+         按「你会怎么用它」分六组，不按技术分层分。
+         每条都能在 lib/ 里找到实现，不写没做的功能；数字与文件名写在注释里，
+         以后改功能时能顺着注释回去改，不会留下对不上的宣传文案。
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--line" id="features">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">01</span><span class="shead__label">核心能力</span></div>
+          <h2 class="shead__title">为热爱音乐的人而造</h2>
+          <p class="shead__sub">不靠云端曲库，只把你的本地收藏打磨到极致。下面六组能力在手机、车机与电视上完全一致。</p>
+        </header>
+
+        <div class="fgrid">
+
+          <!-- 播放内核：lib/features/player/service/audio_player_service.dart
+               + transcode_config.dart / transcode_service.dart + replay_gain_provider.dart -->
+          <section class="fcard reveal">
+            <div class="fcard__head">
+              <span class="fcard__icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 12h2.2l1.6-5.4L10.4 18l1.9-7.4L14 15h1.6l1.2-4.6L18.4 12H20"/></svg>
+              </span>
+              <h3>播放内核</h3>
+              <p>把文件丢进去就能放，冷门格式也不放弃。</p>
+            </div>
+            <ul class="fcard__list">
+              <li><strong>16 种音频格式直通</strong><span>FLAC / WAV / MP3 / M4A / AAC / OGG / Opus / WMA / ALAC / AIFF 等原生解码，完整保留动态与细节。</span></li>
+              <li><strong>冷门格式自动转码</strong><span>APE / WavPack / TTA 首次播放转成 FLAC 缓存，第二次秒开，缓存可一键清理。</span></li>
+              <li><strong>DSD 也能播</strong><span>整轨 <code>.dsf</code> 按 1bit / 2.8MHz → 24bit / 176.4kHz 转码播放，DSD 收藏不再只能干看。</span></li>
+              <li><strong>ReplayGain 音量归一</strong><span>自动平衡专辑之间的响度差，另有前置增益，切歌不再忽大忽小。</span></li>
+              <li><strong>播放速度 0.5×–2.0×</strong><span>听播客、跟唱、扒谱都用得上。</span></li>
+              <li><strong>放不出来也不装死</strong><span>解码失败先尝试转码重试，确实不行才顺延下一首 —— 不会卡在一个坏文件上。</span></li>
+            </ul>
+          </section>
+
+          <!-- 音效与可视化：lib/features/player/service/audio_equalizer_service.dart
+               （bandCount = 10，frequencies 32Hz–16kHz，15 组预设 + 自定义）
+               + lib/features/player/widgets/audio_visualizer.dart（VisualizerStyle 4 款） -->
+          <section class="fcard reveal">
+            <div class="fcard__head">
+              <span class="fcard__icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="7" r="2" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <h3>音效与可视化</h3>
+              <p>调出真正属于自己的声音，也看得见声音。</p>
+            </div>
+            <ul class="fcard__list">
+              <li><strong>10 段参量均衡器</strong><span>32Hz–16kHz 逐段 ±12dB，带实时频响曲线，另有虚拟低音增强、环绕声与混响。</span></li>
+              <li><strong>15 组内置预设</strong><span>平坦 / 低音增强 / 高音增强 / 摇滚 / 流行 / 爵士 / 古典 / 舞曲 / 电子 / 人声 / 嘻哈 / 原声，外加 3 组丹拿曲线。</span></li>
+              <li><strong>自定义预设可存可删</strong><span>调好的曲线存下来，换耳机、换设备都能一键调回。</span></li>
+              <li><strong>4 款可视化风格</strong><span>液态极光 / 黑胶唱片 / 星云律动 / 音乐喷泉，随频谱实时律动。</span></li>
+            </ul>
+          </section>
+
+          <!-- 曲库与整理：lib/features/files + lib/features/beautify + lib/features/nas
+               （NasProtocol = smb / webdav） -->
+          <section class="fcard reveal">
+            <div class="fcard__head">
+              <span class="fcard__icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2.5h8.5A1.5 1.5 0 0 1 21 10v7.5A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><path d="M3 11h18"/></svg>
+              </span>
+              <h3>曲库与整理</h3>
+              <p>整轨镜像、错乱的标签、散落的文件，都能收拾干净。</p>
+            </div>
+            <ul class="fcard__list">
+              <li><strong>CUE 整轨专辑</strong><span>一张碟的镜像文件按 CUE 分出多首，改标签、改歌名都不会碰坏原始音频。</span></li>
+              <li><strong>M3U / M3U8 播放列表</strong><span>外部歌单直接识别导入，不用手工重排。</span></li>
+              <li><strong>本地 + NAS 统一入库</strong><span>手机存储、外置卡、SMB 与 WebDAV 共享目录，在同一个曲库里一起检索。</span></li>
+              <li><strong>NAS 目录离线缓存</strong><span>把家里 NAS 上的音乐整目录缓存到本地，出门没网也能听。</span></li>
+              <li><strong>批量音乐美化</strong><span>补全标签与封面、内嵌歌词、批量重命名，支持勾选范围与一键撤销；每次写入都有日志可查。</span></li>
+              <li><strong>收藏与播放统计</strong><span>听歌习惯只留在本机，不上传任何服务器。</span></li>
+            </ul>
+          </section>
+
+          <!-- 歌词系统：lib/features/lyrics + lib/core/config/lyric_source.dart
+               （内置源条目数与各源协议见该文件；自定义源入口见
+                 features/settings/.../lyric_sources_page.dart）
+               + lyric_match_scorer.dart（歌名 100 / 时长 45 / 艺术家 35）
+               + lyric_offset_learner.dart / lyric_offset_store.dart
+               ⚠️ 文案不得点名第三方音乐平台、也不报源的数量，改完跑 scripts/check_site_faq_parity.py -->
+          <section class="fcard reveal">
+            <div class="fcard__head">
+              <span class="fcard__icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h11M4 11h8M4 16h10"/><path d="M18 4.5l2.5 1v7.6"/><circle cx="17.2" cy="15.6" r="2.6"/></svg>
+              </span>
+              <h3>歌词系统</h3>
+              <p>多路歌词源交叉比对，尽量给你对得上的那一份。</p>
+            </div>
+            <ul class="fcard__list">
+              <li><strong>自定义歌词源</strong><span>支持自行添加多个歌词服务器，实时获取在线歌词。</span></li>
+              <li><strong>歌名 + 时长 + 艺术家打分</strong><span>按毫秒级时长逐首核对，同名的翻唱、Live 版不会张冠李戴。</span></li>
+              <li><strong>歌词偏移自动学习</strong><span>整体早半秒？手动微调一次，应用会记住这首歌，下次不用再调。</span></li>
+              <li><strong>侧车与内嵌双支持</strong><span>同目录 <code>.lrc</code> 优先，也能读写音频文件里的内嵌歌词。</span></li>
+              <li><strong>播放页与锁屏歌词</strong><span>手机端播放页、锁屏与桌面歌词的位置与样式都可调。</span></li>
+            </ul>
+          </section>
+
+          <!-- 跨端与更新：lib/features/tv + lib/features/hd（phone/hd/tv 三 flavor）
+               + lib/features/sync（配对 / 遥控）+ lib/core/theme（22 配色）
+               + lib/core/i18n（zh-Hans / zh-Hant / en）+ lib/features/update -->
+          <section class="fcard reveal">
+            <div class="fcard__head">
+              <span class="fcard__icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="12" height="9" rx="1.5"/><rect x="15.5" y="10" width="6" height="9" rx="1.5"/><path d="M5.5 19h6"/></svg>
+              </span>
+              <h3>跨端与更新</h3>
+              <p>一台手机、一块平板、一台电视，共用同一套体验。</p>
+            </div>
+            <ul class="fcard__list">
+              <li><strong>手机 / 车机·平板 / 电视 / 桌面四端同源</strong><span>同一份设计语言；电视端整套遥控器方向键操作、焦点与字号按十尺外观看重做，Windows 端键鼠与大屏歌词。</span></li>
+              <li><strong>设备配对与遥控播放</strong><span>手机扫码与车机、电视配对，把播放状态与队列同步过去。</span></li>
+              <li><strong>22 套主题配色</strong><span>明暗双模式、背景笔法、字号与字体都能换，界面随你的审美来。</span></li>
+              <li><strong>简体 / 繁體 / English</strong><span>三套完整词表，繁体按台湾用语单独翻译，不是机器转写。</span></li>
+              <li><strong>内置 OTA 自动更新</strong><span>启动静默查版本、下载后 SHA-256 校验再安装，不需要应用商店。</span></li>
+            </ul>
+          </section>
+
+          <!-- 电视专属：音乐相册 + 全屏歌词（大屏才有的沉浸体验；真源见 lib/features/tv） -->
+          <section class="fcard reveal">
+            <div class="fcard__head">
+              <span class="fcard__icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.6"/><path d="M8 20h8M12 16.5V20"/><path d="M9.6 8.4l3 1.8-3 1.8z" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <h3>电视专属 · 音乐相册与全屏歌词</h3>
+              <p>大屏才有的沉浸体验：封面墙随歌流转，歌词铺满整面墙。</p>
+            </div>
+            <ul class="fcard__list">
+              <li><strong>音乐相册</strong><span>3D 封面流中间大、左右小，可选显示音乐封面或本机相册，2 / 4 / 6 秒自动切换；无歌词时自动显示诗词雅句，不再闪一下就消失。</span></li>
+              <li><strong>全屏歌词</strong><span>闲置数秒自动进入全屏歌词，按遥控器任意键退出；当前行字号明显放大，未唱偏亮、已唱偏暗，层次一眼可辨。</span></li>
+              <li><strong>大字号与焦点</strong><span>菜单、列表、歌词整体按两到三米观看距离重定字号，遥控器焦点清晰可辨，远距离也不费眼。</span></li>
+              <li><strong>遥控器全程可达</strong><span>整套界面都能用方向键完成，无需鼠标；返回键分级退出，不会一按就退到桌面。</span></li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         02 界面预览
+         四端各自独立成卡，截图与对应设备一一对应。
+         相册机制由 main.js 的 initTvGallery 驱动：.tv-gallery__slide 叠放，
+         JS 切 .is-active；点击 .shot--gallery 由 initLightbox 开灯箱。
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--alt" id="screens">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">02</span><span class="shead__label">界面预览</span></div>
+          <h2 class="shead__title">看清每一处细节</h2>
+          <p class="shead__sub">液态玻璃界面随主题配色焕新，手机、车机·平板、电视与 Windows 桌面四端共用一套设计语言。</p>
+        </header>
+
+        <div class="sgrid">
+
+          <!-- 手机端：三屏平铺，一次看清主要界面（不轮播） -->
+          <figure class="shot shot--card reveal">
+            <figcaption class="shot__head">
+              <span class="shot__badge">手机端</span>
+              <span class="shot__tag">竖屏 · 单手操控 · 三屏平铺</span>
+            </figcaption>
+            <div class="shot__frame">
+              <div class="tv-gallery tv-gallery--triple tv-gallery--portrait">
+                <div class="tv-gallery__track">
+                  <figure class="tv-gallery__slide is-active">
+                    <img src="assets/img/phone/phone-01.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 1" />
+                    <figcaption class="tv-gallery__cap">手机端实拍 1</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/phone/phone-02.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 2" />
+                    <figcaption class="tv-gallery__cap">手机端实拍 2</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/phone/phone-03.webp" width="1080" height="2376" loading="lazy" decoding="async" alt="手机端实拍截图 3" />
+                    <figcaption class="tv-gallery__cap">手机端实拍 3</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <p class="shot__hint">手机端为竖屏单手布局，播放页、曲库与设置三屏平铺展示。</p>
+          </figure>
+
+          <!-- 车机 · 平板（hdcar 工程板三屏实拍，三屏轮播） -->
+          <figure class="shot shot--card shot--gallery reveal">
+            <figcaption class="shot__head">
+              <span class="shot__badge">车机 · 平板</span>
+              <span class="shot__tag">hd 构建 · 横屏大字号 · 三屏轮播</span>
+            </figcaption>
+            <div class="shot__frame">
+              <div class="tv-gallery tv-gallery--car" data-car-gallery>
+                <div class="tv-gallery__track">
+                  <figure class="tv-gallery__slide is-active">
+                    <img src="assets/img/car/car-01.webp" width="1591" height="1439" loading="lazy" decoding="async" alt="车机·平板界面：本地音乐与歌曲列表" />
+                    <figcaption class="tv-gallery__cap">本地音乐</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/car/car-02.webp" width="1591" height="1439" loading="lazy" decoding="async" alt="车机·平板界面：设置页（主题配色与分类）" />
+                    <figcaption class="tv-gallery__cap">设置</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/car/car-03.webp" width="2559" height="1439" loading="lazy" decoding="async" alt="车机·平板界面：正在播放页（封面、队列、歌词）" />
+                    <figcaption class="tv-gallery__cap">正在播放</figcaption>
+                  </figure>
+                </div>
+                <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
+                <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
+                <div class="tv-gallery__dots" role="tablist" aria-label="车机界面截图导航"></div>
+              </div>
+            </div>
+            <p class="shot__hint">车机与平板为同一 hd 构建，界面与电视端同源；上图为车机播放器工程板三屏实拍（本地音乐 / 设置 / 正在播放）。</p>
+          </figure>
+
+          <!-- 电视端 -->
+          <figure class="shot shot--card shot--gallery reveal">
+            <figcaption class="shot__head">
+              <span class="shot__badge">电视端</span>
+              <span class="shot__tag">遥控器方向键 · 大字号焦点 · 自动轮播</span>
+            </figcaption>
+            <div class="shot__frame">
+              <div class="tv-gallery" data-tv-gallery>
+                <div class="tv-gallery__track">
+                  <figure class="tv-gallery__slide is-active">
+                    <img src="assets/img/tv/tv-01-folders.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：按文件夹浏览音乐" />
+                    <figcaption class="tv-gallery__cap">按文件夹浏览</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-02-albums.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：专辑分类浏览" />
+                    <figcaption class="tv-gallery__cap">专辑分类</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-03-nas.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：添加与浏览 NAS 设备" />
+                    <figcaption class="tv-gallery__cap">NAS 设备</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-04-nowplaying.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：正在播放页，环形频谱封面与歌词" />
+                    <figcaption class="tv-gallery__cap">正在播放</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-05-settings.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：设置首页" />
+                    <figcaption class="tv-gallery__cap">设置</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-06-lyrics.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：全屏歌词播放" />
+                    <figcaption class="tv-gallery__cap">全屏歌词</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-07-audiofx.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：音效设置" />
+                    <figcaption class="tv-gallery__cap">音效设置</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-08-lyricset.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：歌词设置" />
+                    <figcaption class="tv-gallery__cap">歌词设置</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-09-sync.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：同步设置" />
+                    <figcaption class="tv-gallery__cap">同步设置</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-10-about.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：关于页面" />
+                    <figcaption class="tv-gallery__cap">关于</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-11-scan.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：扫描音乐" />
+                    <figcaption class="tv-gallery__cap">扫描音乐</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-12-metafix.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：元数据修复" />
+                    <figcaption class="tv-gallery__cap">元数据修复</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/tv/tv-13-themes.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="电视端界面：主题配色选择" />
+                    <figcaption class="tv-gallery__cap">主题配色</figcaption>
+                  </figure>
+                </div>
+                <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
+                <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
+                <div class="tv-gallery__dots" role="tablist" aria-label="电视界面截图导航"></div>
+              </div>
+            </div>
+            <p class="shot__hint">电视端怎么安装与更新，见<a href="#tv-install">「电视端怎么装」</a>。</p>
+          </figure>
+
+          <!-- Windows 版 -->
+          <figure class="shot shot--card shot--gallery reveal">
+            <figcaption class="shot__head">
+              <span class="shot__badge">Windows 版</span>
+              <span class="shot__tag">键鼠操控 · 宽屏歌词与可视化 · 自动轮播</span>
+            </figcaption>
+            <div class="shot__frame">
+              <div class="tv-gallery" data-win-gallery>
+                <div class="tv-gallery__track">
+                  <figure class="tv-gallery__slide is-active">
+                    <img src="assets/img/windows/win-01.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Windows 桌面版：本地音乐库、专辑墙与全部歌曲列表" />
+                    <figcaption class="tv-gallery__cap">本地音乐库</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/windows/win-02.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Windows 桌面版：正在播放、实时歌词与可视化" />
+                    <figcaption class="tv-gallery__cap">正在播放 · 歌词</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/windows/win-03.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Windows 桌面版：正在播放竖幅封面与可视化" />
+                    <figcaption class="tv-gallery__cap">可视化</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/windows/win-04.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Windows 桌面版：正在播放书情封面与歌词" />
+                    <figcaption class="tv-gallery__cap">歌词同步</figcaption>
+                  </figure>
+                  <figure class="tv-gallery__slide">
+                    <img src="assets/img/windows/win-05.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Windows 桌面版：主题配色，11 套配色实时切换" />
+                    <figcaption class="tv-gallery__cap">主题配色</figcaption>
+                  </figure>
+                </div>
+                <button class="tv-gallery__nav tv-gallery__nav--prev" type="button" aria-label="上一张">‹</button>
+                <button class="tv-gallery__nav tv-gallery__nav--next" type="button" aria-label="下一张">›</button>
+                <div class="tv-gallery__dots" role="tablist" aria-label="Windows 界面截图导航"></div>
+              </div>
+            </div>
+            <p class="shot__hint">Windows 桌面版为 exe 安装包，双击即装，不需要管理员权限；界面与移动端共用同一套玻璃设计语言。</p>
+          </figure>
+
+        </div>
+
+        <div class="shots shots--pages reveal">
+          <div class="shots__note">
+            <h3>可视化与均衡器</h3>
+            <p>播放页不只是封面和进度条：四款可视化风格随频谱实时律动，均衡器里可以调出真正属于自己的声音。</p>
+            <ul>
+              <li>4 款可视化风格</li>
+              <li>14 组内置预设</li>
+              <li>10 段频率调节 · ±12dB</li>
+              <li>自定义预设可存可删</li>
+            </ul>
+          </div>
+
+          <figure class="shot">
+            <div class="shot__frame">
+              <img src="assets/img/phone-visualizer.webp" width="390" height="844" loading="lazy" decoding="async"
+                   alt="手机端可视化「液态极光」：多层流体光带随频谱起伏，下方是播放控制栏" />
+            </div>
+            <figcaption>可视化 · 液态极光<span>四种风格可切换 · 随频谱实时律动</span></figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="shot__frame">
+              <img src="assets/img/phone-equalizer.webp" width="390" height="844" loading="lazy" decoding="async"
+                   alt="手机端均衡器页：预设选择、我的预设、10 段频率调节滑杆与频响曲线、音效增强" />
+            </div>
+            <figcaption>均衡器 · 10 段调节<span>频响曲线 · 音效增强 · 调整实时生效</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         03 各端下载
+         ⚠️ 结构契约（scripts/check_site_dom.js 会逐条断言）：
+            .platform[data-flavor]  四张卡，各含 [data-ver]
+            .mirror-link.btn[data-flavor]  国内（码云 latest 直链，initMirrors 填）
+            .download-link[data-flavor]    国际（GitHub，render 填）
+            .duoji-link[data-flavor]       多吉云占位按钮（每卡**只写一个**，
+                                           JS 按 DUOJI_FILES 克隆出 32 位那颗）
+            .platform__alts[data-alts]     其它架构（JS 注入）
+            .duoji-win / .win-mirror / .win-download  Windows 卡专用（无 data-flavor）
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="platforms">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">03</span><span class="shead__label">一个应用 · 四端适配</span></div>
+          <h2 class="shead__title">选择你的设备</h2>
+          <p class="shead__sub">同一份设计语言，为不同屏幕量身打造。点击即可下载对应安装包。</p>
+        </header>
+
+        <div class="pgrid">
+
+          <!-- 手机端 -->
+          <article class="platform reveal" data-flavor="phone">
+            <span class="platform__current" hidden>适合当前设备</span>
+            <div class="platform__top">
+              <span class="platform__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="10.5" y1="18.4" x2="13.5" y2="18.4" stroke-linecap="round"/></svg>
+              </span>
+              <span class="platform__ver" data-ver>v—</span>
+            </div>
+            <h3>手机端</h3>
+            <p class="platform__desc">随身聆听，单手操控。完整功能浓缩于掌心，通勤路上随时切歌。</p>
+            <ul class="platform__tags"><li>Android 手机</li><li>手势操控</li><li>锁屏控制</li></ul>
+            <div class="platform__foot">
+              <!-- 三条链路：
+                   多吉云（云存储 + 国内加速，主推，配置驱动）→ 国内（码云 latest）→ 国际（GitHub）。
+                   静态 href 都是可用兜底：JS 不可用时也能点进 Releases 页，不会是空链。 -->
+              <div class="platform__btns">
+                <a class="btn btn--gold duoji-link" data-flavor="phone" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+                <a class="btn btn--ghost mirror-link" data-flavor="phone" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+                <a class="btn btn--ghost download-link" data-flavor="phone"
+                   href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              </div>
+            </div>
+            <div class="platform__alts" data-alts="phone" hidden></div>
+          </article>
+
+          <!-- 车机 / 平板 -->
+          <article class="platform platform--feature reveal" data-flavor="hd">
+            <span class="platform__badge">大屏优选</span>
+            <span class="platform__current" hidden>适合当前设备</span>
+            <div class="platform__top">
+              <span class="platform__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4" stroke-linecap="round"/></svg>
+              </span>
+              <span class="platform__ver" data-ver>v—</span>
+            </div>
+            <h3>车机 / 平板</h3>
+            <p class="platform__desc">横屏大视野，车机与平板同一构建。触控目标放大、布局分栏，驾驶或休闲都得心应手。</p>
+            <ul class="platform__tags"><li>Android 车机</li><li>平板大屏</li><li>横屏分栏</li></ul>
+            <div class="platform__foot">
+              <div class="platform__btns">
+                <a class="btn btn--gold duoji-link" data-flavor="hd" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+                <a class="btn btn--ghost mirror-link" data-flavor="hd" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+                <a class="btn btn--ghost download-link" data-flavor="hd"
+                   href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              </div>
+            </div>
+            <div class="platform__alts" data-alts="hd" hidden></div>
+          </article>
+
+          <!-- 电视端 -->
+          <article class="platform reveal" data-flavor="tv">
+            <span class="platform__current" hidden>适合当前设备</span>
+            <div class="platform__top">
+              <span class="platform__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+              </span>
+              <span class="platform__ver" data-ver>v—</span>
+            </div>
+            <h3>电视端</h3>
+            <p class="platform__desc">客厅里的音乐中心。遥控器方向键操作，超大焦点与字号，沙发上轻松选曲。</p>
+            <ul class="platform__tags"><li>Android TV</li><li>遥控器导航</li><li>大字号焦点</li></ul>
+            <div class="platform__foot">
+              <div class="platform__btns">
+                <a class="btn btn--gold duoji-link" data-flavor="tv" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+                <a class="btn btn--ghost mirror-link" data-flavor="tv" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+                <a class="btn btn--ghost download-link" data-flavor="tv"
+                   href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              </div>
+            </div>
+            <div class="platform__alts" data-alts="tv" hidden></div>
+            <p class="platform__hint">有电脑？可以<a href="#ai-install">让 AI 用 ADB 直装</a>，不用 U 盘。</p>
+          </article>
+
+          <!-- Windows 桌面端
+               ⚠️ 这里**故意不用** data-flavor="phone|hd|tv"：
+                   · `initMirrors()` 会把所有 `.mirror-link[data-flavor]` 填成
+                     `app-<flavor>-release.apk` —— Windows 的包是 `WuAiMusic-<ver>-setup.exe`，
+                     套进去就是一个 404 直链。
+                   · 版本号与 hd **同源**（同一次 pubspec 构建），文件名带版本号 ⇒
+                     不能用码云 latest 的「固定文件名」机制，必须由 main.js
+                     读清单里的 hd 版本号现拼（见 render 的 fillWindows 分支）。
+                   静态 href 兜底指向 Releases 页面：JS 不可用时仍可点进来自行下载。 -->
+          <article class="platform reveal" data-flavor="windows">
+            <span class="platform__badge">桌面端</span>
+            <span class="platform__current" hidden>适合当前设备</span>
+            <div class="platform__top">
+              <span class="platform__icon">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="8" height="8" rx="1.4"/><rect x="13" y="3" width="8" height="8" rx="1.4"/><rect x="3" y="13" width="8" height="8" rx="1.4"/><rect x="13" y="13" width="8" height="8" rx="1.4"/></svg>
+              </span>
+              <span class="platform__ver" data-ver>v—</span>
+            </div>
+            <h3>Windows 版</h3>
+            <p class="platform__desc">PC 上的完整播放器。键鼠操控、宽屏歌词与可视化，界面与移动端同一套玻璃语言；exe 安装包双击即装。</p>
+            <ul class="platform__tags"><li>Windows 10 / 11</li><li>键鼠操控</li><li>exe 安装</li></ul>
+            <div class="platform__foot">
+              <div class="platform__btns">
+                <a class="btn btn--gold duoji-win" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+                <a class="btn btn--ghost win-mirror" target="_blank" rel="noopener"
+                   href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
+                <a class="btn btn--ghost win-download"
+                   href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="pgrid__note reveal">每个平台提供下载链路：推荐优先走 <strong>多吉云</strong>加速（云存储 + 国内直连），入口按 CPU 架构分成<strong>「多吉云 · 64 位」</strong>（arm64-v8a，适配绝大多数机型）与<strong>「多吉云 · 32 位」</strong>（armeabi-v7a，仅供较早的纯 32 位设备），两个包同版本、任选其一即可；若某条入口未列出，可改用 <strong>国内下载</strong>（码云 Gitee 镜像）或 <strong>国际下载</strong>（GitHub Releases）。<span data-duoji-note hidden>多吉云入口与最新版本同步，64 位 / 32 位 均已上传，国内 / 国际 两条为备选。</span>车机与平板为同一安装包，均有 64 位与 32 位两个包。<strong>Windows 桌面版</strong>是 exe 安装包，双击后解压到当前用户目录并创建桌面快捷方式，<strong>不需要管理员权限</strong>，也不会写入系统目录；卸载直接删掉安装目录即可。</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         04 电视安装
+         为什么单独一块：电视生态的**真实摩擦点**不在功能，而在「装不上」。
          不少厂商固件默认禁止安装第三方应用（创维/酷开等），用户下载完 APK
          却卡在系统提示上，客服问题大多来自这里。
          ⚠️ 各品牌的设置路径随固件版本变化，文案一律带「以实际系统为准」，
-            不写死某型号的绝对路径 —— 写错了比不写更糟。 -->
-    <section class="section" id="tv-install">
-      <div class="section__head reveal">
-        <span class="eyebrow">电视安装指南</span>
-        <h2>电视端怎么装</h2>
-        <p class="section__sub">不少电视默认不允许安装第三方应用。会电脑的话，最省事的是<a href="#ai-install">让 AI 用 ADB 直装</a>；只用遥控器的话，按下面四步用 U 盘装。装不上的原因与对策也列在下面。</p>
-      </div>
+            不写死某型号的绝对路径 —— 写错了比不写更糟。
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--alt" id="tv-install">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">04</span><span class="shead__label">电视安装指南</span></div>
+          <h2 class="shead__title">电视端怎么装</h2>
+          <p class="shead__sub">不少电视默认不允许安装第三方应用。会电脑的话，最省事的是<a href="#ai-install">让 AI 用 ADB 直装</a>；只用遥控器的话，按下面四步用 U 盘装。</p>
+        </header>
 
-      <div class="grid grid--steps">
-        <div class="step glass reveal"><span class="step__no">01</span><h3>下载电视版</h3><p>在上方「电视端」卡片点「国内下载」拿到 APK，拷到 U 盘根目录（FAT32 格式兼容性最好）。</p></div>
-        <div class="step glass reveal"><span class="step__no">02</span><h3>插到电视</h3><p>U 盘插到电视 USB 口，打开电视自带的「文件管理 / 媒体中心 / 电视卫士」，找到那个 APK。</p></div>
-        <div class="step glass reveal"><span class="step__no">03</span><h3>允许安装</h3><p>首次会提示「未知来源」。选「允许」，或到系统设置里把「安装未知应用」打开。</p></div>
-        <div class="step glass reveal"><span class="step__no">04</span><h3>完成</h3><p>确认安装，回到桌面就能看到「吾爱音乐」。遥控器方向键操作，确认键进入。</p></div>
-      </div>
+        <div class="steps">
+          <div class="step reveal"><span class="step__no">01</span><h3>下载电视版</h3><p>在上方「电视端」卡片点「国内下载」拿到 APK，拷到 U 盘根目录（FAT32 格式兼容性最好）。</p></div>
+          <div class="step reveal"><span class="step__no">02</span><h3>插到电视</h3><p>U 盘插到电视 USB 口，打开电视自带的「文件管理 / 媒体中心 / 电视卫士」，找到那个 APK。</p></div>
+          <div class="step reveal"><span class="step__no">03</span><h3>允许安装</h3><p>首次会提示「未知来源」。选「允许」，或到系统设置里把「安装未知应用」打开。</p></div>
+          <div class="step reveal"><span class="step__no">04</span><h3>完成</h3><p>确认安装，回到桌面就能看到「吾爱音乐」。遥控器方向键操作，确认键进入。</p></div>
+        </div>
 
-      <!-- 让 AI 装：ADB 直装教程（2026-10-25 用户要求）
-           为什么单独一块：U 盘安装要「找 APK → 拷盘 → 插电视 → 用电视自带的
-           文件管理器点」四步，而且不少电视的文件管理器会把 APK 藏起来；
-           而 ADB 直装只要「电脑一条命令」，电视端不用点任何东西 ——
-           对会用电脑的人来说这是最省事的路径。
-           ⚠️ 命令里的包名 com.wuaimusic.app.tv 是 TV 风味真实的 applicationId，
-              与 phone / hd 不同，别照抄成 com.wuaimusic.app。 -->
-      <div class="aiinstall glass reveal">
-        <h3 id="ai-install">让 AI 帮你装：ADB 直装（不用 U 盘）</h3>
-        <p class="aiinstall__lead">如果你手边有电脑，可以不碰 U 盘、也不在电视上用遥控器翻文件管理器。
-          把下面这段需求直接丢给 <strong>WorkBuddy</strong>（能自己执行命令）或<strong>豆包</strong>这类助手，
-          它会帮你把安装包下好、连上电视、推送安装；豆包不能执行命令时，把命令复制到终端逐条运行即可。</p>
+        <!-- 让 AI 装：ADB 直装教程
+             为什么单独一块：U 盘安装要「找 APK → 拷盘 → 插电视 → 用电视自带的
+             文件管理器点」四步，而且不少电视的文件管理器会把 APK 藏起来；
+             而 ADB 直装只要「电脑一条命令」，电视端不用点任何东西 ——
+             对会用电脑的人来说这是最省事的路径。
+             ⚠️ 命令里的包名 com.wuaimusic.app.tv 是 TV 风味真实的 applicationId，
+                与 phone / hd 不同，别照抄成 com.wuaimusic.app。 -->
+        <div class="aiinstall reveal">
+          <div class="aiinstall__aside">
+            <h3 id="ai-install">让 AI 帮你装<br />ADB 直装，不用 U 盘</h3>
+            <p>如果你手边有电脑，可以不碰 U 盘、也不在电视上用遥控器翻文件管理器。把下面这段需求直接丢给 <strong>WorkBuddy</strong>（能自己执行命令）或<strong>豆包</strong>这类助手，它会帮你把安装包下好、连上电视、推送安装；豆包不能执行命令时，把命令复制到终端逐条运行即可。</p>
+            <div class="aiinstall__tip">
+              <strong>这条路的最大好处：</strong>绕开电视自带的文件管理器，也不用在电视上点「允许未知来源」。
+              但如果系统提示「禁止安装第三方应用」（创维 / 部分定制固件），ADB 一样会被拦 —— 那是厂商层面的封锁，
+              这种情况只能换电视盒子，或用应用商店版本。装好之后，后续更新直接在电视上「设置 → 关于 → 检查更新」即可。
+            </div>
+          </div>
 
-        <ol class="aiinstall__steps">
-          <li>
-            <span class="aiinstall__no">01</span>
-            <div class="aiinstall__body">
-              <strong>让 AI 取安装包</strong>
-              <p>一句话就够：「帮我装吾爱音乐 TV 版到电视上：先下最新的 TV 安装包（优先 arm64，装不上再换 32 位），再用 adb 推过去。」</p>
-              <p>安装包有两个来源，国内优先码云（快）：</p>
-              <pre class="cmd"># 版本清单（含各渠道、各架构的下载地址与 sha256）
+          <ol class="aiinstall__steps">
+            <li>
+              <span class="aiinstall__no">01</span>
+              <div class="aiinstall__body">
+                <strong>让 AI 取安装包</strong>
+                <p>一句话就够：「帮我装吾爱音乐 TV 版到电视上：先下最新的 TV 安装包（优先 arm64，装不上再换 32 位），再用 adb 推过去。」</p>
+                <p>安装包有两个来源，国内优先码云（快）：</p>
+                <pre class="cmd"># 版本清单（含各渠道、各架构的下载地址与 sha256）
 https://music.52ta.top/version.json
 
 # 电视版 · arm64（大多数电视盒子 / 智能电视）
@@ -717,396 +873,360 @@ https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.
 
 # 电视版 · 32 位（老机顶盒，arm64 包装不上时用它）
 https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk</pre>
-              <p>下完可以对一下 <code>sha256</code>，与清单里 <code>releases.tv.variants</code> 的值一致就说明包完整。</p>
-            </div>
-          </li>
+                <p>下完可以对一下 <code>sha256</code>，与清单里 <code>releases.tv.variants</code> 的值一致就说明包完整。</p>
+              </div>
+            </li>
 
-          <li>
-            <span class="aiinstall__no">02</span>
-            <div class="aiinstall__body">
-              <strong>电视打开 ADB 调试</strong>
-              <p>电视上：<strong>设置 → 关于 → 版本号</strong>连点 7 次，出现「开发者选项」；进去打开 <strong>USB 调试</strong>，并打开 <strong>网络调试 / ADB over network</strong>（不同品牌叫法略有差异）。</p>
-              <p>再到 <strong>设置 → 网络</strong> 记下电视的 IP 地址，例如 <code>192.168.1.23</code>。电脑要和电视连同一个路由器。</p>
-            </div>
-          </li>
+            <li>
+              <span class="aiinstall__no">02</span>
+              <div class="aiinstall__body">
+                <strong>电视打开 ADB 调试</strong>
+                <p>电视上：<strong>设置 → 关于 → 版本号</strong>连点 7 次，出现「开发者选项」；进去打开 <strong>USB 调试</strong>，并打开 <strong>网络调试 / ADB over network</strong>（不同品牌叫法略有差异）。</p>
+                <p>再到 <strong>设置 → 网络</strong> 记下电视的 IP 地址，例如 <code>192.168.1.23</code>。电脑要和电视连同一个路由器。</p>
+              </div>
+            </li>
 
-          <li>
-            <span class="aiinstall__no">03</span>
-            <div class="aiinstall__body">
-              <strong>连接电视</strong>
-              <p>电脑上执行（没装 adb 的话，让 AI 帮你下载 Android platform-tools 并解压）：</p>
-              <pre class="cmd">adb connect 192.168.1.23:5555
+            <li>
+              <span class="aiinstall__no">03</span>
+              <div class="aiinstall__body">
+                <strong>连接电视</strong>
+                <p>电脑上执行（没装 adb 的话，让 AI 帮你下载 Android platform-tools 并解压）：</p>
+                <pre class="cmd">adb connect 192.168.1.23:5555
 adb devices
 <span class="cmt"># 第二行应列出 192.168.1.23:5555  device</span></pre>
-              <p>首次连接电视会弹出「允许 USB 调试吗」，勾选<strong>一律允许</strong>再确定。若 <code>adb devices</code> 显示 <code>unauthorized</code>，就是这一步没点确认。</p>
-            </div>
-          </li>
+                <p>首次连接电视会弹出「允许 USB 调试吗」，勾选<strong>一律允许</strong>再确定。若 <code>adb devices</code> 显示 <code>unauthorized</code>，就是这一步没点确认。</p>
+              </div>
+            </li>
 
-          <li>
-            <span class="aiinstall__no">04</span>
-            <div class="aiinstall__body">
-              <strong>推送安装</strong>
-              <pre class="cmd">adb install -r app-tv-release.apk
+            <li>
+              <span class="aiinstall__no">04</span>
+              <div class="aiinstall__body">
+                <strong>推送安装</strong>
+                <pre class="cmd">adb install -r app-tv-release.apk
 <span class="cmt"># -r 覆盖安装：已装过旧版本时保留数据</span></pre>
-              <p>看到 <code>Success</code> 就装好了。装完可以直接让 AI 顺手启动它：</p>
-              <pre class="cmd">adb shell am start -n com.wuaimusic.app.tv/com.wuaimusic.app.MainActivity</pre>
-            </div>
-          </li>
+                <p>看到 <code>Success</code> 就装好了。装完可以直接让 AI 顺手启动它：</p>
+                <pre class="cmd">adb shell am start -n com.wuaimusic.app.tv/com.wuaimusic.app.MainActivity</pre>
+              </div>
+            </li>
 
-          <li>
-            <span class="aiinstall__no">05</span>
-            <div class="aiinstall__body">
-              <strong>装不上时看返回码</strong>
-              <p><code>INSTALL_FAILED_NO_MATCHING_ABIS</code> → 换 32 位包（<code>app-tv-release-v7a.apk</code>）。</p>
-              <p><code>INSTALL_FAILED_UPDATE_INCOMPATIBLE</code> → 电视上装过别的来源的同名应用，签名不同；先 <code>adb uninstall com.wuaimusic.app.tv</code> 再装（会清掉应用内数据）。</p>
-              <p><code>INSTALL_FAILED_USER_RESTRICTED</code> → 开发者选项里还有一项「通过 USB 安装应用」，打开它再重试。</p>
-              <p><code>connection refused</code> → 电视的网络调试没开，或端口不是 5555；部分机型重启后会自动关闭网络调试，需要重新打开。</p>
-            </div>
-          </li>
-        </ol>
-
-        <div class="aiinstall__tip">
-          <strong>这条路的最大好处：</strong>绕开电视自带的文件管理器，也不用在电视上点「允许未知来源」。
-          但如果系统提示「禁止安装第三方应用」（创维 / 部分定制固件），ADB 一样会被拦 —— 那是厂商层面的封锁，
-          这种情况只能换电视盒子，或用应用商店版本。装好之后，后续更新直接在电视上「设置 → 关于 → 检查更新」即可。
+            <li>
+              <span class="aiinstall__no">05</span>
+              <div class="aiinstall__body">
+                <strong>装不上时看返回码</strong>
+                <p><code>INSTALL_FAILED_NO_MATCHING_ABIS</code> → 换 32 位包（<code>app-tv-release-v7a.apk</code>）。</p>
+                <p><code>INSTALL_FAILED_UPDATE_INCOMPATIBLE</code> → 电视上装过别的来源的同名应用，签名不同；先 <code>adb uninstall com.wuaimusic.app.tv</code> 再装（会清掉应用内数据）。</p>
+                <p><code>INSTALL_FAILED_USER_RESTRICTED</code> → 开发者选项里还有一项「通过 USB 安装应用」，打开它再重试。</p>
+                <p><code>connection refused</code> → 电视的网络调试没开，或端口不是 5555；部分机型重启后会自动关闭网络调试，需要重新打开。</p>
+              </div>
+            </li>
+          </ol>
         </div>
-      </div>
 
-      <div class="faq" style="margin-top: 34px;">
-        <details class="faq__item glass reveal">
-          <summary>各品牌「允许未知来源」在哪开？</summary>
-          <div class="faq__body">
-            <p><strong>小米 / Redmi：</strong>设置 → 账号与安全 → 允许安装未知来源应用。</p>
-            <p><strong>创维 / 酷开：</strong>多数机型走「电视卫士 → U 盘安装」；部分型号在「应用圈」里搜不到第三方应用，只能用电视卫士手动选 APK。若提示「禁止安装」，说明该机型已封锁外部安装，见下一条。</p>
-            <p><strong>海信 / VIDAA：</strong>设置 → 更多设置 → 通用 → 允许未知来源。</p>
-            <p><strong>TCL / 雷鸟：</strong>电视卫士 → 应用恢复 → U 盘安装。</p>
-            <p><strong>索尼：</strong>设置 → 应用 → 安全和限制 → 未知来源。</p>
-            <p><strong>华为智慧屏：</strong>设置 → 系统和更新 → 允许安装未知应用（部分型号需先开启开发者模式）。</p>
-            <p>各品牌固件版本差异较大，以上路径以实际系统为准；找不到时可在电视设置里直接搜「未知来源」。</p>
-          </div>
-        </details>
+        <div class="faq faq--tight">
+          <details class="faq__item reveal">
+            <summary>各品牌「允许未知来源」在哪开？</summary>
+            <div class="faq__body">
+              <p><strong>小米 / Redmi：</strong>设置 → 账号与安全 → 允许安装未知来源应用。</p>
+              <p><strong>创维 / 酷开：</strong>多数机型走「电视卫士 → U 盘安装」；部分型号在「应用圈」里搜不到第三方应用，只能用电视卫士手动选 APK。若提示「禁止安装」，说明该机型已封锁外部安装，见下一条。</p>
+              <p><strong>海信 / VIDAA：</strong>设置 → 更多设置 → 通用 → 允许未知来源。</p>
+              <p><strong>TCL / 雷鸟：</strong>电视卫士 → 应用恢复 → U 盘安装。</p>
+              <p><strong>索尼：</strong>设置 → 应用 → 安全和限制 → 未知来源。</p>
+              <p><strong>华为智慧屏：</strong>设置 → 系统和更新 → 允许安装未知应用（部分型号需先开启开发者模式）。</p>
+              <p>各品牌固件版本差异较大，以上路径以实际系统为准；找不到时可在电视设置里直接搜「未知来源」。</p>
+            </div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>提示「禁止安装第三方应用」怎么办？</summary>
-          <div class="faq__body">
-            <p>这是厂商固件层面的限制（创维、部分海信/长虹定制机型比较常见），不是安装包的问题，重试或换 U 盘都不会有用。</p>
-            <p>可行的出路有三条：① 到该品牌官方应用商店搜索「吾爱音乐」（若已上架）；② 联系厂商客服，询问如何解除第三方应用安装限制；③ 用电视盒子（如支持自由安装的 Android TV 盒子）代替电视内置系统。</p>
-            <p>应用内的「检查更新」在这种设备上也会被系统拦下，我们会在提示里明确告知，不会让你反复重试。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>提示「禁止安装第三方应用」怎么办？</summary>
+            <div class="faq__body">
+              <p>这是厂商固件层面的限制（创维、部分海信/长虹定制机型比较常见），不是安装包的问题，重试或换 U 盘都不会有用。</p>
+              <p>可行的出路有三条：① 到该品牌官方应用商店搜索「吾爱音乐」（若已上架）；② 联系厂商客服，询问如何解除第三方应用安装限制；③ 用电视盒子（如支持自由安装的 Android TV 盒子）代替电视内置系统。</p>
+              <p>应用内的「检查更新」在这种设备上也会被系统拦下，我们会在提示里明确告知，不会让你反复重试。</p>
+            </div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>U 盘插上没反应 / 找不到安装包？</summary>
-          <div class="faq__body">
-            <p>先确认 U 盘是 <strong>FAT32</strong> 格式（NTFS / exFAT 部分电视不认）。其次换一个 USB 口——不少电视只有其中一个口支持读取存储设备。若仍不显示，把 APK 放在 U 盘根目录，不要放在多层文件夹里。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>U 盘插上没反应 / 找不到安装包？</summary>
+            <div class="faq__body">
+              <p>先确认 U 盘是 <strong>FAT32</strong> 格式（NTFS / exFAT 部分电视不认）。其次换一个 USB 口——不少电视只有其中一个口支持读取存储设备。若仍不显示，把 APK 放在 U 盘根目录，不要放在多层文件夹里。</p>
+            </div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>装好了，以后怎么更新？</summary>
-          <div class="faq__body">
-            <p>在电视上进入「设置 → 关于 → 检查更新」，发现新版本后按确认即可下载安装，不需要再动 U 盘。</p>
-            <p>如果那台电视禁止第三方应用安装，应用内更新同样会被系统拦下——这种情况下只能等应用上架该品牌的官方商店，或用 U 盘覆盖安装（前提是系统已允许未知来源）。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>装好了，以后怎么更新？</summary>
+            <div class="faq__body">
+              <p>在电视上进入「设置 → 关于 → 检查更新」，发现新版本后按确认即可下载安装，不需要再动 U 盘。</p>
+              <p>如果那台电视禁止第三方应用安装，应用内更新同样会被系统拦下——这种情况下只能等应用上架该品牌的官方商店，或用 U 盘覆盖安装（前提是系统已允许未知来源）。</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- 各端下载 -->
-    <section class="section section--alt" id="platforms">
-      <div class="section__head reveal">
-        <span class="eyebrow">一个应用 · 四端适配</span>
-        <h2>选择你的设备</h2>
-        <p class="section__sub">同一份设计语言，为不同屏幕量身打造。点击即可下载对应安装包。</p>
-      </div>
+    <!-- ══════════════════════════════════════════════════════════════════
+         05 设计语言
+         交互演示与 App 内同一套语言（弹簧参数见 assets/js/design.js）。
+         ⚠️ 下面这些 id 是 design.js 的挂载点，删了它只会静默失效、不报错：
+            #dBtn / #dSwap / #dSwapIco / #dToggle / #dKnob / #dLink / #dLinkA / #dLinkB
+            #dMenu / #dInd
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="design">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">05</span><span class="shead__label">设计语言</span></div>
+          <h2 class="shead__title">液态玻璃 · 弹性交互</h2>
+          <p class="shead__sub">同一套玻璃质感贯穿手机、车机、电视与桌面：水光纹理、流动扫光，配弹簧回弹的按压与切换。下面五组交互都可以在页面里直接点 / 拖。</p>
+        </header>
 
-      <div class="grid grid--platforms">
-        <!-- 手机端 -->
-        <article class="platform glass reveal" data-flavor="phone">
-          <div class="platform__icon">
-            <svg viewBox="0 0 24 24" width="40" height="40"><rect x="6" y="2" width="12" height="20" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="10" y1="18.5" x2="14" y2="18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </div>
-          <h3>手机端</h3>
-          <p class="platform__desc">随身聆听，单手操控。完整功能浓缩于掌心，通勤路上随时切歌。</p>
-          <ul class="platform__tags"><li>Android 手机</li><li>手势操控</li><li>锁屏控制</li></ul>
-          <div class="platform__foot">
-            <span class="platform__ver" data-ver>v—</span>
-            <!-- 国内 / 国际双下载入口。
-                 国内：码云（Gitee），main.js 把 href 换成 /releases/download/latest/ 直链（永远指向最新版）；
-                       这里写死的静态兜底是码云 Releases 页 —— JS 不可用也是可用链接，不会是空链。
-                 国际：GitHub，由 main.js 按 version.json 的 url 填成直链（随版本号变化，故静态兜底给 Releases 最新页）。 -->
-            <div class="platform__btns">
-              <a class="btn btn--gold mirror-link" data-flavor="phone" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
-              <a class="btn btn--gold download-link" data-flavor="phone"
-                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
-              <!-- 第三条链路：多吉云（云存储 + 国内加速）。
-                   ⚠️ 默认 hidden —— 前缀由 main.js 的 DUOJI_BASE 提供，为空时
-                     整条链路不启用（宁可不显示，也不出死链）。 -->
-              <a class="btn btn--ghost duoji-link" data-flavor="phone" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+        <div class="design-grid">
+          <!-- ① 玻璃按钮 水效果 + 弹性 -->
+          <div class="design-card reveal">
+            <div class="design-card__head"><h3>玻璃按钮 · 水光 + 弹性</h3><p>按压下沉、松手弹簧回弹，水光纹理随交互流动。</p></div>
+            <div class="d-stage">
+              <div class="d-glass d-flow" id="dBtn">
+                <div class="d-water"><span class="band"></span><span class="rim"></span><span class="refract"></span></div>
+                <div class="d-sheen"></div>
+                <div class="d-ico"><svg viewBox="0 0 24 24" fill="#fff"><path d="M9 8v8l7-4z"/></svg></div>
+              </div>
             </div>
           </div>
-          <!-- 按 CPU 架构分发的独立包（清单带 variants 时才显示），由 main.js 填充 -->
-          <div class="platform__alts" data-alts="phone" hidden></div>
-        </article>
 
-        <!-- 车机 / 平板 -->
-        <article class="platform platform--feature glass reveal" data-flavor="hd">
-          <span class="platform__badge">大屏优选</span>
-          <div class="platform__icon">
-            <svg viewBox="0 0 24 24" width="40" height="40"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="12" y1="16" x2="12" y2="20" stroke="currentColor" stroke-width="1.6"/></svg>
-          </div>
-          <h3>车机 / 平板</h3>
-          <p class="platform__desc">横屏大视野，车机与平板同一构建。触控目标放大、布局分栏，驾驶或休闲都得心应手。</p>
-          <ul class="platform__tags"><li>Android 车机</li><li>平板大屏</li><li>横屏分栏</li></ul>
-          <div class="platform__foot">
-            <span class="platform__ver" data-ver>v—</span>
-            <div class="platform__btns">
-              <a class="btn btn--gold mirror-link" data-flavor="hd" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
-              <a class="btn btn--gold download-link" data-flavor="hd"
-                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
-              <a class="btn btn--ghost duoji-link" data-flavor="hd" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+          <!-- ② 图标切换 ▶ / ⏸ -->
+          <div class="design-card reveal">
+            <div class="design-card__head"><h3>图标切换 · 左右滑动</h3><p>播放 / 暂停切换时，旧图标左滑出、新图标右滑入。</p></div>
+            <div class="d-stage">
+              <div class="d-glass d-flow" id="dSwap">
+                <div class="d-water"><span class="band"></span><span class="rim"></span></div>
+                <div class="d-sheen"></div>
+                <div class="d-ico" id="dSwapIco"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+              </div>
             </div>
           </div>
-          <div class="platform__alts" data-alts="hd" hidden></div>
-        </article>
 
-        <!-- 电视端 -->
-        <article class="platform glass reveal" data-flavor="tv">
-          <div class="platform__icon">
-            <svg viewBox="0 0 24 24" width="40" height="40"><rect x="3" y="4" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </div>
-          <h3>电视端</h3>
-          <p class="platform__desc">客厅里的音乐中心。遥控器方向键操作，超大焦点与字号，沙发上轻松选曲。</p>
-          <ul class="platform__tags"><li>Android TV</li><li>遥控器导航</li><li>大字号焦点</li></ul>
-          <div class="platform__foot">
-            <span class="platform__ver" data-ver>v—</span>
-            <div class="platform__btns">
-              <a class="btn btn--gold mirror-link" data-flavor="tv" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
-              <a class="btn btn--gold download-link" data-flavor="tv"
-                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
-              <a class="btn btn--ghost duoji-link" data-flavor="tv" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+          <!-- ③ 可拖拽开关 -->
+          <div class="design-card reveal">
+            <div class="design-card__head"><h3>开关 · 可拖拽 + 弹起</h3><p>可拖动旋钮，松手弹簧吸附到开 / 关，并轻微弹起。</p></div>
+            <div class="d-stage">
+              <div class="d-switch" id="dToggle">
+                <div class="d-water"><span class="band"></span><span class="rim"></span></div>
+                <div class="d-knob" id="dKnob"></div>
+              </div>
             </div>
           </div>
-          <div class="platform__alts" data-alts="tv" hidden></div>
-          <p class="platform__hint">有电脑？可以<a href="#ai-install">让 AI 用 ADB 直装</a>，不用 U 盘。</p>
-        </article>
 
-        <!-- Windows 桌面端
-             ⚠️ 这里**故意不用** data-flavor="phone|hd|tv"：
-                 · `initMirrors()` 会把所有 `.mirror-link[data-flavor]` 填成
-                   `app-<flavor>-release.apk` —— Windows 的包是 `WuAiMusic-<ver>-setup.exe`，
-                   套进去就是一个 404 直链。
-                 · 版本号与 hd **同源**（同一次 pubspec 构建），文件名带版本号 ⇒
-                   不能用码云 latest 的「固定文件名」机制，必须由 main.js
-                   读清单里的 hd 版本号现拼（见 initPlatforms 的 windows 分支）。
-                 静态 href 兜底指向 Releases 页面：JS 不可用时仍可点进来自行下载。 -->
-        <article class="platform glass reveal" data-flavor="windows">
-          <span class="platform__badge">桌面版</span>
-          <div class="platform__icon">
-            <svg viewBox="0 0 24 24" width="40" height="40"><rect x="3" y="3" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-          </div>
-          <h3>Windows 桌面</h3>
-          <p class="platform__desc">PC 上的完整播放器。键鼠操控、宽屏歌词与可视化，界面与移动端同一套玻璃语言；exe 安装包双击即装。</p>
-          <ul class="platform__tags"><li>Windows 10 / 11</li><li>键鼠操控</li><li>exe 安装</li></ul>
-          <div class="platform__foot">
-            <span class="platform__ver" data-ver>v—</span>
-            <div class="platform__btns">
-              <a class="btn btn--gold win-mirror" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases">国内下载</a>
-              <a class="btn btn--gold win-download"
-                 href="https://github.com/jim-6688/wuai-music/releases/latest">国际下载</a>
-              <!-- Windows 的 exe 文件名带版本号 ⇒ href 由 main.js 的 fillWindows 现拼 -->
-              <a class="btn btn--ghost duoji-win" target="_blank" rel="noopener"
-                 href="https://gitee.com/jinghe-net/wuai-music/releases" hidden>多吉云高速下载</a>
+          <!-- ④ 两图标联动切换 -->
+          <div class="design-card reveal">
+            <div class="design-card__head"><h3>两图标联动 · 收藏 ⇄ 星标</h3><p>一次切换，两个图标同步反向滑动。</p></div>
+            <div class="d-stage">
+              <div class="d-glass d-flow" id="dLink">
+                <div class="d-water"><span class="band"></span><span class="rim"></span></div>
+                <div class="d-sheen"></div>
+                <div class="d-ico-wrap">
+                  <div class="d-ico layer" id="dLinkA"></div>
+                  <div class="d-ico layer" id="dLinkB"></div>
+                </div>
+              </div>
             </div>
           </div>
-        </article>
-      </div>
 
-      <p class="platforms__note reveal">每个平台提供两条基础下载链路：<strong>国内下载</strong>走码云（Gitee）镜像，<strong>国际下载</strong>走 GitHub Releases，两条同版本、任选其一即可。<span data-duoji-note hidden>另有<strong>多吉云</strong>加速链路（云存储 + 国内直连）：已上传的端会多出一个「多吉云高速下载」入口，同样与最新版同步。</span>下载后由客户端校验安装包完整性。车机与平板为同一安装包。绝大多数设备直接用主包即可；若是较早的纯 32 位设备，卡片下方还会列出对应的「32 位包」（走国内镜像）。<strong>Windows 桌面版</strong>是 exe 安装包，双击后解压到当前用户目录并创建桌面快捷方式，<strong>不需要管理员权限</strong>，也不会写入系统目录；卸载直接删掉安装目录即可。</p>
-    </section>
-
-    <!-- 更新中心 -->
-    <section class="section" id="update">
-      <div class="section__head reveal">
-        <span class="eyebrow">实时版本</span>
-        <h2>更新中心</h2>
-        <p class="section__sub">下方版本信息实时读取服务器清单，与客户端 OTA 共用同一数据源。</p>
-      </div>
-
-      <div class="update glass reveal">
-        <div class="update__bar">
-          <div>
-            <span class="update__label">最新版本</span>
-            <strong class="update__latest" id="updateLatest" data-fallback="v1.0.0">v1.0.0</strong>
-          </div>
-          <div class="update__status" id="updateStatus">
-            <span class="dot"></span><span id="updateStatusText">正在读取版本信息…</span>
-          </div>
-        </div>
-
-        <div class="update__table" id="versionTable">
-          <!-- JS 注入各端版本行 -->
-        </div>
-
-        <div class="update__log">
-          <div class="update__log-head">
-            <h3>更新日志</h3>
-            <!-- 设备类型筛选：三端（手机 / HD·车机 / 电视）是三个独立应用，
-                 构建号各自递增。筛选项由 JS 注入（见 main.js 的 renderLogFilter）。 -->
-            <div class="logfilter" id="changelogFilter" role="group" aria-label="按设备类型筛选更新日志"></div>
-          </div>
-          <div id="changelog" class="changelog">
-            <p class="changelog__empty">暂无更新记录。</p>
+          <!-- ⑤ 菜单切换（整宽） -->
+          <div class="design-card design-card--wide reveal">
+            <div class="design-card__head"><h3>菜单 · 玻璃指示条</h3><p>分段导航的玻璃指示条用弹簧滑到选中项，当前项同步高亮。</p></div>
+            <div class="d-stage d-stage--col">
+              <div class="d-menu" id="dMenu">
+                <div class="d-indicator d-flow" id="dInd"><div class="d-water"><span class="band"></span><span class="rim"></span></div><div class="d-sheen"></div></div>
+                <div class="d-mitem active">歌曲</div>
+                <div class="d-mitem">专辑</div>
+                <div class="d-mitem">歌手</div>
+                <div class="d-mitem">收藏</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- OTA 说明 -->
-    <section class="section section--alt" id="ota">
-      <div class="section__head reveal">
-        <span class="eyebrow">安心升级</span>
-        <h2>内置 OTA 自动更新</h2>
-        <p class="section__sub">无需应用商店，应用自己就能检查、下载并安装新版本。</p>
-      </div>
-      <div class="grid grid--steps">
-        <div class="step glass reveal"><span class="step__no">01</span><h3>静默检查</h3><p>应用启动时自动向服务器查询版本，不打扰你的聆听。</p></div>
-        <div class="step glass reveal"><span class="step__no">02</span><h3>增量提示</h3><p>发现新版本弹出更新说明，可选立即升级或稍后处理。</p></div>
-        <div class="step glass reveal"><span class="step__no">03</span><h3>安全下载</h3><p>下载至应用私有目录，完成后以 SHA-256 校验，防止文件被篡改。</p></div>
-        <div class="step glass reveal"><span class="step__no">04</span><h3>一键安装</h3><p>通过系统安装器完成覆盖安装，签名一致即可无缝升级。</p></div>
-      </div>
-      <p class="ota__note reveal">强制更新机制：当你的版本低于最低基线时，必须更新才能继续使用，确保老版本不会因接口变更而无法工作。</p>
+    <!-- ══════════════════════════════════════════════════════════════════
+         06 更新中心
+         #updateLatest / #versionTable / #changelogFilter / #changelog 由 main.js 填充。
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section section--alt" id="update">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">06</span><span class="shead__label">实时版本</span></div>
+          <h2 class="shead__title">更新中心</h2>
+          <p class="shead__sub">下方版本信息实时读取服务器清单，与客户端 OTA 共用同一数据源。</p>
+        </header>
 
-      <!-- 下载统计：GitHub 官方计数（平台统计、不可刷）+ 本站按钮点击计数。
-           默认带 is-pending（不可见），拿到真实数字后由 main.js 移除 —— 宁可不显示，也不显示假数字。 -->
-      <div class="dlstats reveal is-pending" id="dlStats">
-        <p class="dlstats__total">本站已下载 <strong id="dlTotal">0</strong> 次</p>
-        <p class="dlstats__break" id="dlBreak"></p>
+        <div class="update reveal">
+          <div class="update__bar">
+            <div class="update__ver">
+              <span class="update__label">最新版本</span>
+              <strong class="update__latest" id="updateLatest" data-fallback="v1.5.1">v1.5.1</strong>
+            </div>
+            <div class="update__status" id="updateStatus">
+              <span class="dot"></span><span id="updateStatusText">正在读取版本信息…</span>
+            </div>
+          </div>
+
+          <div class="update__table" id="versionTable">
+            <!-- JS 注入各端版本行 -->
+          </div>
+
+          <div class="update__log">
+            <div class="update__log-head">
+              <h3>更新日志</h3>
+              <!-- 设备类型筛选：三端（手机 / HD·车机 / 电视）是三个独立应用，
+                   构建号各自递增。筛选项由 JS 注入（见 main.js 的 renderLogFilter）。 -->
+              <div class="logfilter" id="changelogFilter" role="group" aria-label="按设备类型筛选更新日志"></div>
+            </div>
+            <div id="changelog" class="changelog">
+              <p class="changelog__empty">暂无更新记录。</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 常见问题 -->
-    <!-- 用 <details> 而不是 JS 手风琴：不需要脚本就能展开、能被浏览器「页内查找」展开、
+    <!-- ══════════════════════════════════════════════════════════════════
+         07 自动更新
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="ota">
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">07</span><span class="shead__label">安心升级</span></div>
+          <h2 class="shead__title">内置 OTA 自动更新</h2>
+          <p class="shead__sub">无需应用商店，应用自己就能检查、下载并安装新版本。</p>
+        </header>
+
+        <div class="steps">
+          <div class="step reveal"><span class="step__no">01</span><h3>静默检查</h3><p>应用启动时自动向服务器查询版本，不打扰你的聆听。</p></div>
+          <div class="step reveal"><span class="step__no">02</span><h3>增量提示</h3><p>发现新版本弹出更新说明，可选立即升级或稍后处理。</p></div>
+          <div class="step reveal"><span class="step__no">03</span><h3>安全下载</h3><p>下载至应用私有目录，完成后以 SHA-256 校验，防止文件被篡改。</p></div>
+          <div class="step reveal"><span class="step__no">04</span><h3>一键安装</h3><p>通过系统安装器完成覆盖安装，签名一致即可无缝升级。</p></div>
+        </div>
+
+        <p class="ota__note reveal">强制更新机制：当你的版本低于最低基线时，必须更新才能继续使用，确保老版本不会因接口变更而无法工作。</p>
+
+        <!-- 下载统计：GitHub 官方计数（平台统计、不可刷）+ 本站按钮点击计数。
+             默认带 is-pending（不可见），拿到真实数字后由 main.js 移除 ——
+             宁可不显示，也不显示假数字。 -->
+        <div class="dlstats reveal is-pending" id="dlStats">
+          <p class="dlstats__total">本站已下载 <strong id="dlTotal">0</strong> 次</p>
+          <p class="dlstats__break" id="dlBreak"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         08 常见问题
+         用 <details> 而不是 JS 手风琴：不需要脚本就能展开、能被浏览器「页内查找」展开、
          也天然可访问。答案里的说法都必须能在应用里对上，别在这里写做不到的承诺。
-         ⚠️ 这里的问答与 head 里 FAQPage 结构化数据必须逐字一致，改一处要改两处。 -->
+         ⚠️ 这里的问答与 head 里 FAQPage 结构化数据必须逐字一致，改一处要改两处。
+            结构也不能动：scripts/check_site_faq_parity.py 用
+            <details><summary>Q</summary><div class="faq__body">A</div> 匹配。
+         ══════════════════════════════════════════════════════════════════ -->
     <section class="section section--alt" id="faq">
-      <div class="section__head reveal">
-        <span class="eyebrow">常见问题</span>
-        <h2>你可能想先问清楚的事</h2>
-        <p class="section__sub">每一条都能在应用里自己验证 —— 我们没有后台账号，也没有需要藏着的行为。</p>
-      </div>
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">08</span><span class="shead__label">常见问题</span></div>
+          <h2 class="shead__title">你可能想先问清楚的事</h2>
+          <p class="shead__sub">每一条都能在应用里自己验证 —— 我们没有后台账号，也没有需要藏着的行为。</p>
+        </header>
 
-      <div class="faq">
-        <details class="faq__item glass reveal">
-          <summary>收费吗？有没有广告或内购？</summary>
-          <div class="faq__body">
-            <p>完全免费，没有广告、没有内购、没有会员，也不需要注册或登录。应用内没有账号体系，不采集手机号、邮箱等任何个人信息。</p>
-          </div>
-        </details>
+        <div class="faq">
+          <details class="faq__item reveal">
+            <summary>收费吗？有没有广告或内购？</summary>
+            <div class="faq__body"><p>完全免费，没有广告、没有内购、没有会员，也不需要注册或登录。应用内没有账号体系，不采集手机号、邮箱等任何个人信息。</p></div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>我的音乐文件会不会被上传到服务器？</summary>
-          <div class="faq__body">
-            <p>不会。曲库扫描、标签与封面读取、播放解码全部在本机完成，音频文件本身永远不会离开你的设备。只有「在线找歌词 / 找封面」这类你主动触发的联网操作，才会把歌名、歌手、时长这些检索用的信息发给你选择的那家歌词源。（另有一条只在出错时才走的匿名诊断上报，见下一条。）</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>我的音乐文件会不会被上传到服务器？</summary>
+            <div class="faq__body"><p>不会。曲库扫描、标签与封面读取、播放解码全部在本机完成，音频文件本身永远不会离开你的设备。只有「在线找歌词 / 找封面」这类你主动触发的联网操作，才会把歌名、歌手、时长这些检索用的信息发给你选择的那家歌词源。（另有一条只在出错时才走的匿名诊断上报，见下一条。）</p></div>
+          </details>
 
-        <!-- 隐私口径的**唯一权威说明**：只讲应用里真有的行为。
-             「匿名上报」真源 = lib/core/logging/log_uploader.dart（默认开、可关、可清队列）
-             + log_sanitizer.dart / worker/index.js 两边脱敏（凭据、路径折叠）。
-             别再写「绝无任何联网行为」这种绝对话 —— 出错上报是一条真实存在的外呼通道。
-             改完跑 python scripts/check_site_faq_parity.py 验一遍与 ld+json 是否逐字一致。 -->
-        <details class="faq__item glass reveal">
-          <summary>会偷偷上报我的使用数据吗？</summary>
-          <div class="faq__body">
-            <p>不会。曲库内容、播放记录与听歌习惯一概不外发，音频文件更不会。唯一一条主动外呼的通道是<strong>运行日志与崩溃上报</strong>（默认开启，可在「设置 → 关于」里取消勾选关闭，电视端暂不提供开关）：它只在应用出错或启动时触发，发出的是脱敏后的错误类型、堆栈与出错前后几十行日志，文件路径会被折叠，NAS 账号密码、<code>token</code> 这类凭据会被抹掉，不含任何设备唯一标识（IMEI / MAC / 序列号一个都不取），也不含你的曲库与播放记录。同一种错误一小时内只报一次。</p>
-          </div>
-        </details>
+          <!-- 隐私口径的**唯一权威说明**：只讲应用里真有的行为。
+               「匿名上报」真源 = lib/core/logging/log_uploader.dart（默认开、可关、可清队列）
+               + log_sanitizer.dart / worker/index.js 两边脱敏（凭据、路径折叠）。
+               别再写「绝无任何联网行为」这种绝对话 —— 出错上报是一条真实存在的外呼通道。
+               改完跑 python scripts/check_site_faq_parity.py 验一遍与 ld+json 是否逐字一致。 -->
+          <details class="faq__item reveal">
+            <summary>会偷偷上报我的使用数据吗？</summary>
+            <div class="faq__body"><p>不会。曲库内容、播放记录与听歌习惯一概不外发，音频文件更不会。唯一一条主动外呼的通道是<strong>运行日志与崩溃上报</strong>（默认开启，可在「设置 → 关于」里取消勾选关闭，电视端暂不提供开关）：它只在应用出错或启动时触发，发出的是脱敏后的错误类型、堆栈与出错前后几十行日志，文件路径会被折叠，NAS 账号密码、<code>token</code> 这类凭据会被抹掉，不含任何设备唯一标识（IMEI / MAC / 序列号一个都不取），也不含你的曲库与播放记录。同一种错误一小时内只报一次。</p></div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>支持哪些音频格式？APE 和 DSD 能放吗？</summary>
-          <div class="faq__body">
-            <p>直接播放的格式有 16 种，覆盖 FLAC、WAV、MP3、M4A、AAC、OGG、Opus、WMA、ALAC、AIFF 等常见与冷门格式。APE、WavPack、TTA 与 DSD（<code>.dsf</code>）会先转码成 FLAC 缓存再播放，第一次稍慢，之后与普通歌曲无异；转码缓存可以在设置里一键清理。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>支持哪些音频格式？APE 和 DSD 能放吗？</summary>
+            <div class="faq__body"><p>直接播放的格式有 16 种，覆盖 FLAC、WAV、MP3、M4A、AAC、OGG、Opus、WMA、ALAC、AIFF 等常见与冷门格式。APE、WavPack、TTA 与 DSD（<code>.dsf</code>）会先转码成 FLAC 缓存再播放，第一次稍慢，之后与普通歌曲无异；转码缓存可以在设置里一键清理。</p></div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>电视和车机上怎么操作？只有遥控器能用吗？</summary>
-          <div class="faq__body">
-            <p>电视端整套界面都能用遥控器方向键完成，焦点状态与字号专门为远距离观看放大过；车机与平板是宽屏三栏布局，导航常驻、队列可见。也可以让手机扫码与电视或车机配对，用手机当遥控器控制播放。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>电视和车机上怎么操作？只有遥控器能用吗？</summary>
+            <div class="faq__body"><p>电视端整套界面都能用遥控器方向键完成，焦点状态与字号专门为远距离观看放大过；车机与平板是宽屏三栏布局，导航常驻、队列可见。也可以让手机扫码与电视或车机配对，用手机当遥控器控制播放。</p></div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>不联网还能正常听歌吗？</summary>
-          <div class="faq__body">
-            <p>能。除了「在线找歌词」「在线找封面」与「检查更新」这三处需要联网，其余功能全部离线可用。已经下载或内嵌的歌词在断网时照常滚动，NAS 上的目录也可以提前缓存到本地，出门没网继续听。另外还有一条只在出错时才走的后台通道（上面那条匿名诊断上报），它连不上也不影响任何功能。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>不联网还能正常听歌吗？</summary>
+            <div class="faq__body"><p>能。除了「在线找歌词」「在线找封面」与「检查更新」这三处需要联网，其余功能全部离线可用。已经下载或内嵌的歌词在断网时照常滚动，NAS 上的目录也可以提前缓存到本地，出门没网继续听。另外还有一条只在出错时才走的后台通道（上面那条匿名诊断上报），它连不上也不影响任何功能。</p></div>
+          </details>
 
-        <details class="faq__item glass reveal">
-          <summary>CUE 整轨专辑支持吗？会不会被改坏？</summary>
-          <div class="faq__body">
-            <p>支持。一张碟的整轨镜像会按 CUE 分出多首显示，但底层共用同一个音频文件，因此应用对 CUE 曲目做了专门保护：它们不参与改标签、改名的写盘，批量美化也会自动跳过，避免把一张专辑拆坏。</p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>CUE 整轨专辑支持吗？会不会被改坏？</summary>
+            <div class="faq__body"><p>支持。一张碟的整轨镜像会按 CUE 分出多首显示，但底层共用同一个音频文件，因此应用对 CUE 曲目做了专门保护：它们不参与改标签、改名的写盘，批量美化也会自动跳过，避免把一张专辑拆坏。</p></div>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- 加入 QQ 粉丝群 -->
-    <!-- 整张卡片就是一个加群链接，点哪儿都能拉起 QQ，不用瞄准按钮。
+    <!-- ══════════════════════════════════════════════════════════════════
+         09 加入 QQ 粉丝群
+         整张卡片就是一个加群链接，点哪儿都能拉起 QQ，不用瞄准按钮。
          href 用腾讯官方的 qm.qq.com 加群短链：手机端打开即尝试唤起 QQ 申请入群，
          桌面端会打开腾讯的加群页（页面内带「打开QQ」按钮与二维码）。
-         该短链由腾讯维护、不含版本号，长期有效。 -->
+         ══════════════════════════════════════════════════════════════════ -->
     <section class="section" id="community">
-      <div class="section__head reveal">
-        <span class="eyebrow">加入我们</span>
-        <h2>进 QQ 粉丝群</h2>
-        <p class="section__sub">遇到问题、想提需求，或者只是想聊聊无损音乐与器材，都欢迎进群。版本预告、问题排查与使用技巧也会在群里同步。</p>
+      <div class="container">
+        <header class="shead reveal">
+          <div class="shead__meta"><span class="shead__no">09</span><span class="shead__label">加入我们</span></div>
+          <h2 class="shead__title">进 QQ 粉丝群</h2>
+          <p class="shead__sub">遇到问题、想提需求，或者只是想聊聊无损音乐与器材，都欢迎进群。版本预告、问题排查与使用技巧也会在群里同步。</p>
+        </header>
+
+        <a class="joingroup reveal" href="https://qm.qq.com/q/9OqnRwgMD0"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="点击加入 QQ 群聊：吾爱 Music 音乐播放器官方群">
+          <span class="joingroup__avatar" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="30" height="30">
+              <ellipse cx="10.5" cy="28" rx="3.4" ry="8.6" fill="currentColor" transform="rotate(-14 10.5 28)"/>
+              <ellipse cx="37.5" cy="28" rx="3.4" ry="8.6" fill="currentColor" transform="rotate(14 37.5 28)"/>
+              <ellipse cx="24" cy="26" rx="13.4" ry="16.8" fill="currentColor"/>
+              <ellipse cx="24" cy="32.5" rx="8" ry="9" fill="#ffffff"/>
+              <ellipse cx="24" cy="17" rx="8.6" ry="7.2" fill="#ffffff"/>
+              <circle cx="20.2" cy="16.6" r="1.9" fill="#1a1a1e"/>
+              <circle cx="27.8" cy="16.6" r="1.9" fill="#1a1a1e"/>
+              <path d="M21.6 20.2h4.8L24 23.2z" fill="#f2a33c"/>
+            </svg>
+          </span>
+          <span class="joingroup__body">
+            <strong class="joingroup__title">吾爱 Music 音乐播放器官方群</strong>
+            <span class="joingroup__desc">手机端点击自动拉起 QQ 加群，免搜群号</span>
+          </span>
+          <span class="joingroup__cta">
+            一键加群
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z" fill="currentColor"/></svg>
+          </span>
+        </a>
+
+        <p class="joingroup__note reveal">群链接由腾讯 QQ 官方提供（qm.qq.com），本站不会因此获取你的任何账号信息。</p>
       </div>
-
-      <a class="joingroup glass reveal" href="https://qm.qq.com/q/9OqnRwgMD0"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="点击加入 QQ 群聊：吾爱 Music 音乐播放器官方群">
-        <span class="joingroup__avatar" aria-hidden="true">
-          <svg viewBox="0 0 48 48" width="34" height="34">
-            <ellipse cx="10.5" cy="28" rx="3.4" ry="8.6" fill="currentColor" transform="rotate(-14 10.5 28)"/>
-            <ellipse cx="37.5" cy="28" rx="3.4" ry="8.6" fill="currentColor" transform="rotate(14 37.5 28)"/>
-            <ellipse cx="24" cy="26" rx="13.4" ry="16.8" fill="currentColor"/>
-            <ellipse cx="24" cy="32.5" rx="8" ry="9" fill="#ffffff"/>
-            <ellipse cx="24" cy="17" rx="8.6" ry="7.2" fill="#ffffff"/>
-            <circle cx="20.2" cy="16.6" r="1.9" fill="#1a1a1e"/>
-            <circle cx="27.8" cy="16.6" r="1.9" fill="#1a1a1e"/>
-            <path d="M21.6 20.2h4.8L24 23.2z" fill="#f2a33c"/>
-          </svg>
-        </span>
-        <span class="joingroup__body">
-          <strong class="joingroup__title">吾爱 Music 音乐播放器官方群</strong>
-          <!-- 文案刻意收短：要能在 360px 窄屏的单行内放下。
-               中文可以逐字断行，一旦换行就会把「申请入群」切成「申请入/群」这类
-               难看的断口 —— text-wrap: balance 只会让断点更平均，不会避开词界。 -->
-          <span class="joingroup__desc">手机端点击自动拉起 QQ 加群，免搜群号</span>
-        </span>
-        <span class="joingroup__cta">
-          一键加群
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z" fill="currentColor"/></svg>
-        </span>
-      </a>
-
-      <p class="joingroup__note reveal">群链接由腾讯 QQ 官方提供（qm.qq.com），本站不会因此获取你的任何账号信息。</p>
     </section>
   </main>
 
-  <!-- 页脚 -->
+  <!-- ══════════════════════════════════════════════════════════════════
+       页脚
+       ══════════════════════════════════════════════════════════════════ -->
   <footer class="footer">
-    <div class="footer__inner">
+    <div class="container footer__inner">
       <div class="footer__brand">
         <span class="brand">
           <!-- 双色板标识：深色主题用香槟金（favicon-dark.svg），浅色主题用品牌紫（favicon.svg）。
@@ -1120,17 +1240,34 @@ adb devices
         </span>
         <p>纯粹本地音乐，听见每一处细节。</p>
       </div>
-      <nav class="footer__links" aria-label="页脚导航">
-        <a href="#features">功能</a>
+
+      <nav class="footer__col" aria-label="产品导航">
+        <h4>产品</h4>
+        <a href="#features">核心能力</a>
+        <a href="#screens">界面预览</a>
         <a href="#design">设计语言</a>
-        <a href="#platforms">下载</a>
+        <a href="#platforms">各端下载</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="支持导航">
+        <h4>支持</h4>
+        <a href="#tv-install">电视安装</a>
         <a href="#update">更新中心</a>
         <a href="#ota">自动更新</a>
         <a href="#faq">常见问题</a>
-        <!-- 加群入口在页脚再留一个：用户滚到底部时不必再往上翻 -->
-        <a href="#community">QQ 粉丝群</a>
       </nav>
+
+      <nav class="footer__col" aria-label="社群导航">
+        <h4>社群</h4>
+        <a href="#community">QQ 粉丝群</a>
+        <a href="https://gitee.com/jinghe-net/wuai-music" target="_blank" rel="noopener">国内镜像</a>
+        <a href="https://github.com/jim-6688/wuai-music" target="_blank" rel="noopener">GitHub</a>
+        <a href="#platforms">下载入口</a>
+      </nav>
+    </div>
+    <div class="container footer__bar">
       <p class="footer__copy">© <span id="year"></span> 吾爱音乐 WuAiMusic · 本地音乐，云端不留痕</p>
+      <p class="footer__meta">Android · Android TV · Windows</p>
     </div>
   </footer>
 

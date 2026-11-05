@@ -19,6 +19,7 @@
     phone: "手机端",
     hd: "车机 / 平板",
     tv: "电视端",
+    windows: "Windows 版",
   };
 
   // 站点展示顺序：手机 / 车机平板(hd) / 电视
@@ -27,9 +28,9 @@
   // 兜底清单：清单未部署时站点仍可完整呈现（下载按钮置为“敬请期待”）
   var FALLBACK = {
     releases: {
-      phone: { versionName: "1.0.0", versionCode: 1, flavor: "phone", notes: "吾爱音乐 1.0.0 首个正式版本。", url: "", size: 0, sha256: "" },
-      hd: { versionName: "1.0.0", versionCode: 1, flavor: "hd", notes: "吾爱音乐 1.0.0 首个正式版本（车机/平板）。", url: "", size: 0, sha256: "" },
-      tv: { versionName: "1.0.0", versionCode: 1, flavor: "tv", notes: "吾爱音乐 1.0.0 首个正式版本（电视）。", url: "", size: 0, sha256: "" },
+      phone: { versionName: "1.5.1", versionCode: 73, flavor: "phone", notes: "吾爱音乐 1.5.1 版本。", url: "", size: 0, sha256: "" },
+      hd: { versionName: "1.5.1", versionCode: 73, flavor: "hd", notes: "吾爱音乐 1.5.1 版本（车机/平板）。", url: "", size: 0, sha256: "" },
+      tv: { versionName: "1.5.1", versionCode: 73, flavor: "tv", notes: "吾爱音乐 1.5.1 版本（电视）。", url: "", size: 0, sha256: "" },
     },
     minRequiredCode: { phone: 1, hd: 1, tv: 1 },
     // 与线上清单顶层 `changelog` **同形状**（真源见 `scripts/deploy_release.py`
@@ -37,8 +38,8 @@
     // 也能看到新版更新日志的真实排版与筛选效果；只放两条 —— 这是兜底数据，
     // 不该伪装成完整历史。
     changelog: [
-      { versionName: "1.0.0", date: "", notes: "吾爱音乐 1.0.0 首个正式版本。" },
-      { versionName: "0.9.0", date: "", notes: "预览数据：清单未部署时显示这两条，用于确认排版。" },
+      { versionName: "1.5.1", date: "", notes: "吾爱音乐 1.5.1 版本。" },
+      { versionName: "1.5.0", date: "", notes: "预览数据：清单未部署时显示这两条，用于确认排版。" },
     ],
   };
 
@@ -85,21 +86,28 @@
   //    encodeURIComponent 拼，不能字符串直接相加（`+` 在部分网关会被解成空格 ⇒ 404）。
   var DUOJI_BASE = "https://download.52ta.top/";
 
-  // 已上传到多吉云的包（只有列在这里的渠道才会显示「多吉云高速下载」）。
+  // 已上传到多吉云的包（只有列在这里的渠道才会显示按钮）。
   // 每端可放**主包**一个字符串，或 [主包, 32位包, ...] 数组（主包之外的会
   // 克隆出「32 位」按钮）。文件名里的 `+` 在 duojiUrlFor 里被 encodeURIComponent
   // 编成 %2B（部分网关把裸 `+` 解成空格 ⇒ 404）。
+  //
+  // ⚠️ 数组顺序 = 按钮顺序，**第一个必须是 64 位包（arm64-v8a）**：官网把首位
+  //    做成金色主按钮（绝大多数机型是 arm64），32 位只给较早的纯 32 位设备兜底。
+  //    数组里有几个文件，官网就渲染几个按钮，文字按 ABI 自动标「64 位 / 32 位」。
   var DUOJI_FILES = {
-    phone: "wuai-music-1.4.3+50-phone-arm64-v8a-release.apk",
-    windows: "WuAiMusic-1.4.3-setup.exe",
+    phone: [
+      "wuai-music-1.5.9+81-phone-arm64-v8a-release.apk",
+      "wuai-music-1.5.9+81-phone-armeabi-v7a-release.apk",
+    ],
     hd: [
-      "wuai-music-1.4.3+50-hd-arm64-v8a-release.apk",
-      "wuai-music-1.4.3+50-hd-armeabi-v7a-release.apk",
+      "wuai-music-1.5.9+81-hd-arm64-v8a-release.apk",
+      "wuai-music-1.5.9+81-hd-armeabi-v7a-release.apk",
     ],
     tv: [
-      "wuai-music-1.4.3+50-tv-arm64-v8a-release.apk",
-      "wuai-music-1.4.3+50-tv-armeabi-v7a-release.apk",
+      "wuai-music-1.5.9+81-tv-arm64-v8a-release.apk",
+      "wuai-music-1.5.9+81-tv-armeabi-v7a-release.apk",
     ],
+    windows: "WuAiMusic-1.5.9-setup.exe",
   };
 
   /** 某渠道在 DUOJI_FILES 里的文件列表（统一成数组便于处理） */
@@ -115,34 +123,71 @@
     return DUOJI_BASE.replace(/\/+$/, "") + "/" + encodeURIComponent(file);
   }
 
+  // 包名里的 ABI 段 → 人话。官网只区分 64 / 32 位这两种，其它架构返回 ""。
+  //   形如 wuai-music-1.5.1+73-phone-arm64-v8a-release.apk
+  function abiLabel(file) {
+    var f = (file || "").toLowerCase();
+    if (f.indexOf("arm64-v8a") >= 0) return "64 位";
+    if (f.indexOf("armeabi-v7a") >= 0) return "32 位";
+    return "";
+  }
+
   /** 揭开**已配置**渠道的按钮与说明文字；一个都没配时全部保持收起 */
   function initDuoji() {
     var shown = 0;
+
+    // ⚠️ 幂等：这个函数可能被重复调用（浏览器只会触发一次 DOMContentLoaded，
+    //    但测试环境 / 某些 WebView 会再派发一次），而「克隆架构按钮」是**追加**
+    //    操作 —— 不先摘下上一轮的克隆，调两次就变成两个「32 位」按钮。
+    $all(".duoji-link[data-duoji-extra]").forEach(function (n) {
+      if (n.parentNode) n.parentNode.removeChild(n);
+    });
+    $all(".platform__btns.is-abi-split").forEach(function (n) {
+      n.classList.remove("is-abi-split");
+    });
+
     $all(".duoji-link[data-flavor]").forEach(function (a) {
       var flavor = a.getAttribute("data-flavor");
       var files = duojiFiles(flavor);
       if (!files.length) return;          // 没传 = 不显示，绝不留死链
-      // 主包：填进原按钮
-      a.setAttribute("href", duojiUrlFor(files[0]));
-      a.hidden = false;
-      shown++;
-      // 主包之外还有（如 32 位包）→ 克隆出额外按钮，标签加「32 位」
-      for (var i = 1; i < files.length; i++) {
-        var extra = a.cloneNode(true);
-        extra.removeAttribute("data-flavor");   // 防止被再次选中
-        var label = (extra.textContent || "").replace(/\s*（.*）\s*$/, "");
-        extra.textContent = label + "（32 位）";
-        extra.setAttribute("href", duojiUrlFor(files[i]));
-        extra.hidden = false;
-        a.parentNode.insertBefore(extra, a.nextSibling);
+
+      // 一个渠道可能有多个架构的包（64 位 + 32 位）。HTML 里只写一个占位按钮，
+      // 其余就地克隆接在后面 —— 多架构由配置表决定，不必在四张卡里各写两遍。
+      var prev = null;
+      files.forEach(function (file, i) {
+        var btn = (i === 0) ? a : a.cloneNode(true);
+        if (i > 0) {
+          btn.removeAttribute("data-flavor");      // 防止被再次选中
+          btn.setAttribute("data-duoji-extra", "1"); // 下一轮幂等清理的标记
+          btn.classList.remove("btn--gold");
+          btn.classList.add("btn--gold-line");     // 32 位用金色描边：弱化但不丢可点性
+          a.parentNode.insertBefore(btn, prev.nextSibling);
+        }
+        var abi = abiLabel(file);
+        var hint = abi === "64 位" ? "arm64-v8a，适配绝大多数机型"
+                 : abi === "32 位" ? "armeabi-v7a，仅供较早的纯 32 位设备"
+                 : "";
+        btn.textContent = "多吉云 · " + (abi || "下载");
+        btn.setAttribute("href", duojiUrlFor(file));
+        if (hint) btn.title = "多吉云高速下载（" + hint + "）";
+        btn.hidden = false;
+        prev = btn;
         shown++;
-      }
+      });
+
+      // 两个以上（多架构）⇒ 按钮改并排半宽，否则整行独占（见 style.css）
+      if (files.length > 1) a.parentNode.classList.add("is-abi-split");
     });
     // Windows 卡没挂 data-flavor（它跟 APK 不是同一套版本规则），单独取主包
     var win = $(".duoji-win");
     if (win) {
       var winUrl = duojiUrlFor(DUOJI_FILES.windows);
-      if (winUrl) { win.setAttribute("href", winUrl); win.hidden = false; shown++; }
+      if (winUrl) {
+        win.setAttribute("href", winUrl);
+        win.title = "多吉云高速下载（Windows 安装包）";
+        win.hidden = false;
+        shown++;
+      }
     }
     if (shown) {
       var note = $("[data-duoji-note]");
@@ -456,6 +501,9 @@
       var verEl = $("[data-ver]", card);
       if (rel) {
         if (verEl) verEl.textContent = "v" + (rel.versionName || "—");
+        // 首屏下载条对应端也同步显示版本号（见 .hdev__ver）
+        var heroVer = $('.hdev[data-flavor="' + flavor + '"] [data-ver]');
+        if (heroVer) heroVer.textContent = "v" + (rel.versionName || "—");
         if (link) {
           if (rel.url) {
             link.setAttribute("href", rel.url);
@@ -488,6 +536,8 @@
       var ver = hdRel && hdRel.versionName;
       var verEl = $("[data-ver]", card);
       if (verEl) verEl.textContent = "v" + (ver || "—");
+      var heroWin = $('.hdev[data-flavor="windows"] [data-ver]');
+      if (heroWin) heroWin.textContent = "v" + (ver || "—");
       if (!ver) return;
       var file = "WuAiMusic-" + ver + "-setup.exe";
       var dl = $(".win-download", card);
@@ -502,6 +552,9 @@
       //    hd 版本），统一由 initDuoji() 按 DUOJI_FILES 表处理。
       //    两边都写会互相覆盖，谁后跑谁生效 —— 那是排查起来最费劲的一类 bug。
     })();
+
+    // 首屏下载条每个图标 → 对应平台主下载链接（卡片链接此时已填好）
+    wireHeroDownloads();
 
     // 顶栏/英雄区下载 CTA 也指向手机端
     var phoneRel = getRelease(manifest, "phone");
@@ -640,6 +693,173 @@
     });
   }
 
+  // ── 设备类型识别 + 首屏下载推荐 ──────────────────────────────────────
+  //
+  // 用户打开官网首屏时，按 UA / 平台识别当前设备，高亮对应平台卡片与
+  // 首屏下载按钮，并给出「适合当前设备」的提示。识别不到（如 Linux 桌面、
+  // iOS / macOS 暂无客户端）时降级为「请选择平台」，不强行命中。
+  //
+  // ⚠️ 这是**纯前端启发式**，只影响高亮与文案，不影响下载链路本身：
+  //    所有下载链接仍由 version.json / 码云 latest 决定，识别错了也顶多
+  //    高亮偏了，不会给出 404 或错误包。
+  function detectDevice() {
+    var ua = (navigator.userAgent || "").toLowerCase();
+    var plat = (navigator.platform || "").toLowerCase();
+
+    // UA-CH（Chromium 的 Client Hints）。`mobile` 只当**正向**信号用：
+    // 手机开「请求桌面版网站」时 Chrome 会把 Sec-CH-UA-Mobile 置 0 ⇒ 这时
+    // mobile === false 并不代表设备是平板，拿它判 hd 又会把手机判错。
+    var ch = navigator.userAgentData || null;
+    var chPlat = (ch && ch.platform) ? String(ch.platform).toLowerCase() : "";
+    var chMobile = (ch && typeof ch.mobile === "boolean") ? ch.mobile : null;
+
+    // Android 判定：UA 带 android，**或** UA-CH 报 Android。
+    // 两条都看的原因是桌面模式会把 UA 换成桌面 UA（丢掉 android 字样），
+    // 但 UA-CH 的 platform 依旧如实报 Android。
+    var isAndroid = /android/i.test(ua) || chPlat === "android";
+
+    // ⚠️ Android 分支**必须排在 Windows 嗅探之前**：部分 Android WebView
+    //    在「桌面模式」下会把 navigator.platform 报成 `Win32`，先判 Win
+    //    就会把手机认成 PC 版。
+    if (isAndroid) {
+      // 电视 / 盒子：只认 UA。UA-CH 看不出 TV（它们 platform 也是 Android、
+      // mobile=false，会掉进 hd），所以这条必须排在所有手机/平板判定之前。
+      if (/(tv|googletv|google tv|firetv|fire tv|mibox|mi box|shield|androidsdk|ehome|crkey|opera tv|tizen|web0s|viera|smarttv|hbbtv)/i.test(ua)) return "tv";
+
+      // ── 手机 vs 平板/车机：**先看 UA / UA-CH，最后才看屏幕尺寸** ──────────
+      // ⚠️ 老实现「视口短边 ≥600 就当平板」把手机判成了平板。根因是它量的是
+      //    `innerWidth`（布局视口）：桌面模式、部分国产浏览器、忽略 viewport
+      //    meta 的内嵌 WebView 都会把它撑到 980 上下，短边立刻过 600。
+      //    而 Android 的约定很干净 —— **手机 UA 里必有 Mobile，平板没有**，
+      //    Chromium 还额外给出 UA-CH 的 `mobile`。所以按可信度排序：
+      //      ① UA 里显式的平板型号（tablet / pad / sm-t…）
+      //      ② UA-CH `mobile === true`（受 UA 精简影响最小）
+      //      ③ UA 的 Mobile 标记
+      //      ④ 兜底才量**屏幕**短边（screen 是硬件尺寸，不随缩放 / 桌面模式漂移），
+      //         按 Android 自己的 sw600dp 定义：短边 ≥600 视为平板。
+      //    这样手机在任何浏览器 / 缩放 / 桌面模式下都稳定判成 phone。
+      if (/(tablet|\bpad\b|sm-t\d|kftt|kfthwi|gt-p\d|sch-i\d)/i.test(ua)) return "hd";
+
+      if (chMobile === true) return "phone";
+      if (/mobile/i.test(ua)) return "phone";
+
+      var sw = (window.screen && window.screen.width) || 0;
+      var sh = (window.screen && window.screen.height) || 0;
+      return (sw && sh && Math.min(sw, sh) >= 600) ? "hd" : "phone";
+    }
+
+    if (chPlat === "windows" || /windows nt/i.test(ua) || /win/i.test(plat)) return "windows";
+    // iOS / macOS 暂无客户端：返回 apple 让文案单独提示，不命中任何端
+    if (chPlat === "macos" || /iphone|ipad|ipod|macintosh|mac os x/i.test(ua)) return "apple";
+    return null;   // 桌面 Linux / 其它：不强行匹配
+  }
+
+  // 首屏主图：每个端一张「当前版本」实拍，键名 = 平台 data-flavor。
+  // ⚠️ 只换 src / 标题 / 宽高属性，**不改 DOM 结构** —— 框体形态由 CSS 按
+  //    `[data-flavor]` 决定：手机是竖图，走窄机身；其余三端共用窗口框。
+  // ⚠️ 换图时宽高属性必须跟着改（不然首屏会按旧比例先占位再跳一下）。
+  var HERO_SHOTS = {
+    phone: {
+      src: "assets/img/phone/phone-03.webp", w: 1080, h: 2376,
+      title: "吾爱Music · 手机端",
+      alt: "吾爱音乐手机端界面：黑胶唱片、实时歌词与播放控制",
+    },
+    hd: {
+      src: "assets/img/car/car-03.webp", w: 1591, h: 1439,
+      title: "吾爱Music · 车机 / 平板",
+      alt: "吾爱音乐车机 / 平板界面：横屏三栏与正在播放",
+    },
+    tv: {
+      src: "assets/img/tv/tv-04-nowplaying.webp", w: 1920, h: 1080,
+      title: "吾爱Music · 电视端",
+      alt: "吾爱音乐电视端界面：大字号焦点与正在播放",
+    },
+    windows: {
+      src: "assets/img/windows/win-02.webp", w: 1600, h: 900,
+      title: "吾爱Music · Windows 桌面版",
+      alt: "吾爱音乐 Windows 桌面版界面：正在播放、实时歌词与可视化",
+    },
+  };
+
+  // 首屏主图跟随识别结果。识别不到（桌面 Linux）或 apple 时回落 Windows ——
+  // 与改造前一致，不留空图（静态 HTML 的兜底也是它）。
+  function applyHeroShot(d) {
+    var fig = $("#heroShot");
+    if (!fig) return;
+    var key = HERO_SHOTS[d] ? d : "windows";
+    var shot = HERO_SHOTS[key];
+    fig.setAttribute("data-flavor", key);
+
+    var img = $("#heroShotImg", fig);
+    if (img) {
+      // 同端重复调用时不重设 src：避免浏览器把已加载的图再下一次
+      var cur = img.getAttribute("src") || "";
+      if (cur.indexOf(shot.src) < 0) img.setAttribute("src", shot.src);
+      img.setAttribute("width", shot.w);
+      img.setAttribute("height", shot.h);
+      img.setAttribute("alt", shot.alt);
+    }
+    var title = $("#heroShotTitle", fig);
+    if (title) title.textContent = shot.title;
+  }
+
+  // 把识别结果落到首屏下载条 + 平台卡片上（纯视图层，不碰下载链接）
+  function applyDeviceHighlight() {
+    var d = detectDevice();
+
+    // 首屏主图换成当前端的实拍
+    applyHeroShot(d);
+
+    // 首屏下载条：高亮命中的端
+    $all(".hdev").forEach(function (el) {
+      el.classList.toggle("is-current", el.getAttribute("data-flavor") === d);
+    });
+
+    // 平台卡片：命中端加 is-current + 显示「适合当前设备」角标
+    $all(".platform").forEach(function (card) {
+      var on = card.getAttribute("data-flavor") === d;
+      card.classList.toggle("is-current", on);
+      var ribbon = $(".platform__current", card);
+      if (ribbon) ribbon.hidden = !on;
+    });
+
+    // 文案
+    var label = $("#heroDeviceLabel");
+    if (label) {
+      if (d === "apple") {
+        label.innerHTML = "暂未发布 iOS / macOS 版本，可选择下方 Android 或 Windows 版本";
+      } else if (d) {
+        label.innerHTML = "检测到你正在使用 <strong>" + (FLAVOR_LABEL[d] || d) +
+          "</strong>，已为你推荐对应版本";
+      } else {
+        label.textContent = "选择你的平台下载";
+      }
+    }
+  }
+
+  // 首屏下载条每个图标 → 对应平台的**主**下载链接
+  //   优先级：多吉云（主推，且配好 64 位直链时）→ 国内镜像（码云 latest）。
+  //   多吉云按钮由 initDuoji 提前点亮（配置驱动），没配就自动退回国内镜像，
+  //   所以这里只看「有没有可见的多吉云按钮」，不存在死链风险。
+  function wireHeroDownloads() {
+    $all(".hdev").forEach(function (el) {
+      var f = el.getAttribute("data-flavor");
+      var card = $('.platform[data-flavor="' + f + '"]');
+      if (!card) return;
+      var duoji = (f === "windows")
+        ? $(".duoji-win", card)
+        : $('.duoji-link[data-flavor="' + f + '"]', card);
+      var primary = (duoji && !duoji.hidden && duoji.getAttribute("href"))
+        ? duoji
+        : ((f === "windows") ? $(".win-mirror", card)
+                              : $('.mirror-link[data-flavor="' + f + '"]', card));
+      if (primary) {
+        var href = primary.getAttribute("href");
+        if (href) el.setAttribute("href", href);
+      }
+    });
+  }
+
   /* =========================================================
      下载统计：「本站已下载 N 次」
      两个口径叠加，页面上分开讲清楚，不混成一个含糊的数字：
@@ -651,6 +871,10 @@
        - 再用 api.github.com / 计数服务**实时刷新**一次，成功即覆盖；
        - 两个都拿不到时整块保持隐藏 —— 宁可不显示，也不显示假数字。
      ========================================================= */
+  // 首选：同域边缘函数（EdgeOne 边缘节点 + KV）。一次请求同时拿到
+  // 「本站点击」与「GitHub 总数」，不再跨国往返，也不再受第三方服务生死影响。
+  var COUNT_LOCAL = "/api/downloads";
+  // 降级：老的跨域第三方计数（边缘函数未部署 / KV 未绑定时仍能计数）
   var COUNT_API = "https://countapi.mileshilliard.com/api/v1";
   // 计数键：单层 key（这服务不支持 namespace/key 两级，两级路径会 404）
   var COUNT_KEY = "wuai-music-site-dl-2026";
@@ -699,9 +923,14 @@
   // 页面继续用 /stats.json 的快照值（拿不到就隐藏整块，不显示假数字）。
   var FETCH_TIMEOUT_MS = 6000;
 
-  function fetchJson(url) {
+  function fetchJson(url, extra) {
     var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
     var opts = { cache: "no-cache" };
+    if (extra) {
+      for (var k in extra) {
+        if (Object.prototype.hasOwnProperty.call(extra, k)) opts[k] = extra[k];
+      }
+    }
     var timer = null;
     if (ctrl) {
       opts.signal = ctrl.signal;
@@ -721,32 +950,63 @@
   // 点下载按钮 +1。同浏览器只贡献一次；失败则不记标记，下次点击会重试。
   function bumpDownloads() {
     try { if (localStorage.getItem(COUNTED_FLAG)) return; } catch (e) {}
-    fetchJson(COUNT_API + "/hit/" + COUNT_KEY)
+
+    function settle(n) {
+      dlState.site = n;
+      try { localStorage.setItem(COUNTED_FLAG, "1"); } catch (e) {}
+      paintDownloads();
+    }
+
+    // ① 同域边缘函数 +1
+    fetchJson(COUNT_LOCAL, { method: "POST" })
       .then(function (d) {
-        if (!d || typeof d.value !== "number") return;
-        dlState.site = d.value;
-        try { localStorage.setItem(COUNTED_FLAG, "1"); } catch (e) {}
-        paintDownloads();
+        if (!d || !d.ok || typeof d.site !== "number") throw new Error("local");
+        settle(d.site);
       })
-      .catch(function () { /* 计数失败不影响下载本身 */ });
+      .catch(function () {
+        // ② 降级：老第三方计数
+        fetchJson(COUNT_API + "/hit/" + COUNT_KEY)
+          .then(function (d) {
+            if (!d || typeof d.value !== "number") return;
+            settle(d.value);
+          })
+          .catch(function () { /* 计数失败不影响下载本身 */ });
+      });
   }
 
   function initDownloads() {
     var box = $("#dlStats");
     if (!box) return;
 
-    // ② 实时：GitHub 匿名接口限 60 次/小时/IP，失败就继续用快照
-    fetchJson(GH_RELEASES_API)
-      .then(function (rels) {
-        var n = sumGithubDownloads(rels);
-        if (n !== null) { dlState.github = n; paintDownloads(); }
-      })
-      .catch(function () {});
-
-    // ③ 实时：本站点击数（只读，不 +1）
-    fetchJson(COUNT_API + "/get/" + COUNT_KEY)
+    // ② 实时：优先同域边缘函数，一次拿齐两个数字。
+    //    它内部已把 GitHub 总数缓存 10 分钟 —— 直接打 api.github.com 的话，
+    //    匿名限额只有 60 次/小时/IP，国内访客共享出口 IP 时很容易整片失效。
+    fetchJson(COUNT_LOCAL)
       .then(function (d) {
-        if (d && typeof d.value === "number") { dlState.site = d.value; paintDownloads(); }
+        if (!d || !d.ok) throw new Error("local_unavailable");
+        return d;
+      })
+      .catch(function () {
+        // ③ 降级：老的跨域链路，两路各取各的（一个挂了另一个还能成）
+        var out = { site: null, github: null };
+        return Promise.all([
+          fetchJson(COUNT_API + "/get/" + COUNT_KEY)
+            .then(function (d) {
+              if (d && typeof d.value === "number") out.site = d.value;
+            })
+            .catch(function () {}),
+          fetchJson(GH_RELEASES_API)
+            .then(function (rels) {
+              var n = sumGithubDownloads(rels);
+              if (n !== null) out.github = n;
+            })
+            .catch(function () {}),
+        ]).then(function () { return out; });
+      })
+      .then(function (d) {
+        if (typeof d.site === "number") dlState.site = d.site;
+        if (typeof d.github === "number") dlState.github = d.github;
+        paintDownloads();
       })
       .catch(function () {});
 
@@ -789,7 +1049,7 @@
       .catch(function () {});
   }
 
-  // 深浅色主题切换（默认跟随系统，选择后记忆）
+  // 深浅色主题切换（默认贝壳白，切换后记忆；不跟随系统偏好）
   function initTheme() {
     var KEY = "wuai-theme";
     var root = document.documentElement;
@@ -798,11 +1058,14 @@
     var MOON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.6A8 8 0 0 1 9.4 4a7 7 0 1 0 10.6 10.6z" fill="currentColor"/></svg>';
 
     function paint() {
-      var t = root.getAttribute("data-theme") || "dark";
+      var t = root.getAttribute("data-theme") || "light";
       if (btn) {
         // 当前为浅色时显示月亮（点击切到深色），当前深色显示太阳
         btn.innerHTML = t === "light" ? MOON : SUN;
       }
+      // 地址栏底色跟着站内主题走（与 <head> 里的首屏脚本同一套规则）
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", t === "dark" ? "#08090b" : "#f9f4f0");
     }
     paint();
 
@@ -817,7 +1080,7 @@
   }
 
   function initTvGallery() {
-    var roots = Array.prototype.slice.call(document.querySelectorAll("[data-tv-gallery], [data-phone-gallery], [data-car-gallery]"));
+    var roots = Array.prototype.slice.call(document.querySelectorAll("[data-tv-gallery], [data-phone-gallery], [data-car-gallery], [data-win-gallery]"));
     roots.forEach(function (root) {
       var slides = Array.prototype.slice.call(root.querySelectorAll(".tv-gallery__slide"));
       if (slides.length < 2) return;
@@ -967,7 +1230,7 @@
       else if (e.key === "ArrowRight") { next(); restart(); }
     });
 
-    Array.prototype.slice.call(document.querySelectorAll(".shot--gallery")).forEach(function (fig) {
+    Array.prototype.slice.call(document.querySelectorAll(".shot--gallery, [data-win-gallery]")).forEach(function (fig) {
       var frame = fig.querySelector(".shot__frame") || fig;
       frame.addEventListener("click", function () { open(fig); });
     });
@@ -980,6 +1243,7 @@
     initYear();
     initMirrors();
     initDuoji();   // 多吉云是配置驱动：前缀为空时这里什么都不做（按钮保持 hidden）
+    applyDeviceHighlight();   // 立即按 UA 高亮首屏下载条与对应平台卡片，不等清单
     fetchManifest();
     initSnapshot();
     initDownloads();

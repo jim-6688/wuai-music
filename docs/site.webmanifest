@@ -1,13 +1,13 @@
 {
   "name": "吾爱音乐 WuAiMusic",
   "short_name": "吾爱音乐",
-  "description": "跨手机、车机/平板、电视三端的本地无损音乐播放器",
+  "description": "跨手机、车机/平板、电视与 Windows 桌面的本地无损音乐播放器",
   "lang": "zh-CN",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0c0c0f",
-  "theme_color": "#0c0c0f",
+  "background_color": "#f9f4f0",
+  "theme_color": "#f9f4f0",
   "icons": [
     { "src": "assets/icon/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "assets/icon/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
