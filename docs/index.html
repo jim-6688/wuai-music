@@ -26,13 +26,13 @@
        全部由 scripts/build_site_icons.py 从 **App 内置图标**（assets/logo_512.png）
        派生：同一份字形提取函数，色板取 App 配色真源里的两个。
 
-       深浅**双版**只在浏览器标签栏里按系统偏好切换（下面两行的 media）：
-         · favicon.svg       品牌紫 #A070D0 —— 浅色标签栏 + **站内标识**
-         · favicon-dark.svg  香槟金 #A28857 —— 仅深色标签栏
-       站内标识固定用品牌紫那份，深浅主题都不变 —— 它要和手机桌面上的
-       App 图标同色；标签栏属于浏览器 chrome，可以随系统走。
-       站内所有图形图标（功能卡 / 平台卡 / 下载条设备）也统一走品牌紫
-       色板（见 style.css 的 --brand-*，取自四端统一 App 图标渐变）。
+       **站内与标签栏统一只用品牌紫 favicon.svg**（与手机桌面上的 App 图标
+       同色），深浅主题、深浅系统都不切换。
+       早先另有一份香槟金 favicon-dark.svg 供深色标签栏使用，那是
+       「深墨 + 香槟金」旧基调下的配套；站内强调色已整体迁到品牌紫
+       （见 style.css 的 --brand-*，取自四端统一 App 图标渐变），
+       留一个金色标签图标反而孤立，故不再引用（文件仍由脚本生成，留作存档）。
+       站内图形图标 / CTA / 命中态 / 标题 / 编号全部走同一套品牌紫。
        ⇒ 桌面上的 App 图标、标签页图标、分享卡图标是同一份几何，
          以后换 App 图标只需替换 logo_512.png 再重跑脚本。
 
@@ -40,8 +40,6 @@
        它只在「不支持 SVG 图标」的旧浏览器里生效，要与手机桌面上的图标一致。
        favicon.svg 排在 .ico 前面：现代浏览器优先用矢量版，缩放不糊。 -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="icon" type="image/svg+xml" href="favicon-dark.svg"
-        media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />

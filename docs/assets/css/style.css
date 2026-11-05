@@ -1,7 +1,7 @@
 /* =========================================================
    吾爱音乐 官网 — 企业级视觉系统
    ─────────────────────────────────────────────────────────
-   基调：贝壳白纸面 / 墨黑字 / 暖铜金细线 / 编号章节 / 大留白
+   基调：贝壳白纸面 / 墨黑字 / 品牌紫强调（同 App 图标）/ 编号章节 / 大留白
    默认主题是**贝壳白**（写在 :root），深墨是备选（[data-theme="dark"]）。
    两套主题共用同一组变量，只换色值不换结构；页面没有 data-theme 时
    也必须是白 —— 首屏脚本万一没跑起来，不能闪一下黑。
@@ -13,9 +13,8 @@
 
 /* 默认：贝壳白。
    不是"白"，是贝壳内壁那种带一线杏粉的象牙白（色相 ~22°，不是米黄）。
-   因此金色也必须跟着往红移：黄铜金（40°）压在这种底上会发绿、显脏，
-   换成暖铜金（24°）才咬得住。卡片比底色亮半个档 + 极淡投影分层级。
-   金仍然只出现在细线、编号、CTA，不铺面。 */
+   强调色统一走**品牌紫**（App 启动图标同款渐变），细线 / 编号 / CTA
+   都是它；紫只做点缀不铺面，靠留白和字重拉层级。 */
 :root {
   color-scheme: light;
 
@@ -32,23 +31,32 @@
   --fg-2: #514a4d;
   --muted: #8e868a;
 
-  /* 品牌紫：取自四端统一 App 启动图标 design/app_icons_v2
-     （左上 #9B6BE0 -> 右下 #5B21B6）。只给**图形图标**用，
-     不参与文字 / CTA / 章节编号 —— 那些仍是暖铜金，避免两套强调色打架。 */
+  /* 品牌紫 = 站点唯一强调色。真源是四端统一 App 启动图标
+     design/app_icons_v2（左上 #9B6BE0 -> 右下 #5B21B6）。
+     图标、按钮、命中态、标题、编号全部走这一套，不再另设暖铜金。 */
   --brand: #7b45c9;
+  --brand-2: #5b2c9e;
   --brand-line: rgba(123, 69, 201, 0.34);
   --brand-wash: rgba(123, 69, 201, 0.08);
+  /* 图标底：亮紫渐变（白字形）。42px 方块上亮端仍够反差 */
   --brand-grad: linear-gradient(135deg, #9b6be0 0%, #5b21b6 100%);
+  /* CTA 实底：比图标再压深一档，保证白字 ≥ 4.5:1（按钮是有文字的，不能只顾好看） */
+  --brand-cta: linear-gradient(135deg, #7c4bc4 0%, #4c1d95 100%);
+  /* 大标题 / 大版本号：浅纸上要够沉，亮端不能发灰 */
+  --brand-text: linear-gradient(135deg, #8b57cf 0%, #6d31c9 48%, #4a1a96 100%);
+  --brand-on: #ffffff;
+  --brand-edge: rgba(91, 33, 182, 0.28);
+  --brand-shadow: rgba(91, 33, 182, 0.18);
 
-  --gold: #8c6649;
-  --gold-2: #6a4832;
-  --gold-line: rgba(140, 102, 73, 0.44);
-  --gold-wash: rgba(140, 102, 73, 0.055);
-  /* 贝壳白要的是"珠光"不是"泥"：渐变两端必须拉开明度差，
-     顶亮到接近奶白、底压到铜褐，才反得出金属的那道光。 */
-  --gold-grad: linear-gradient(135deg, #f7e2ca 0%, #e3b992 44%, #bf8d66 100%);
-  --gold-text: linear-gradient(135deg, #cb9f7c 0%, #a8785c 46%, #7b5440 100%);
-  --glow: rgba(198, 152, 126, 0.075);
+  /* 历史令牌名：全站 40+ 处引用，改名要动所有选择器，收益低风险高。
+     值直接别名到品牌紫，保证**只有一套强调色**。 */
+  --gold: var(--brand);
+  --gold-2: var(--brand-2);
+  --gold-line: var(--brand-line);
+  --gold-wash: var(--brand-wash);
+  --gold-grad: var(--brand-cta);
+  --gold-text: var(--brand-text);
+  --glow: rgba(155, 107, 224, 0.10);
 
   --nav-bg: rgba(251, 247, 244, 0.82);
   --sel-fg: #fffdfc;
@@ -80,19 +88,27 @@
   --fg-2: #b9b6ae;
   --muted: #85837c;
 
-  /* 同一套品牌图标在深墨底上要提亮一档，否则渐变暗端会糊进背景 */
+  /* 同一套品牌紫在深墨底上提亮一档，否则渐变暗端会糊进背景 */
   --brand: #c49aee;
+  --brand-2: #e0c4f7;
   --brand-line: rgba(196, 154, 238, 0.4);
   --brand-wash: rgba(155, 107, 224, 0.14);
   --brand-grad: linear-gradient(135deg, #a97be8 0%, #6d31c9 100%);
+  /* 深色按钮也压到与浅色同一档：亮紫底上白字只有 4.4:1，
+     压深后 ≥5.5:1；图标渐变仍保持亮版（白线条无正文可读性要求） */
+  --brand-cta: linear-gradient(135deg, #7c4bc4 0%, #4c1d95 100%);
+  --brand-text: linear-gradient(135deg, #e0c4f7 0%, #c49aee 50%, #9b6be0 100%);
+  --brand-on: #ffffff;
+  --brand-edge: rgba(199, 160, 240, 0.3);
+  --brand-shadow: rgba(120, 60, 200, 0.32);
 
-  --gold: #c9a961;
-  --gold-2: #e6d2a5;
-  --gold-line: rgba(201, 169, 97, 0.42);
-  --gold-wash: rgba(201, 169, 97, 0.08);
-  --gold-grad: linear-gradient(135deg, #e8d4a8 0%, #c9a961 55%, #a8884f 100%);
-  --gold-text: linear-gradient(135deg, #e8d4a8 0%, #c9a961 55%, #a8884f 100%);
-  --glow: rgba(201, 169, 97, 0.16);
+  --gold: var(--brand);
+  --gold-2: var(--brand-2);
+  --gold-line: var(--brand-line);
+  --gold-wash: var(--brand-wash);
+  --gold-grad: var(--brand-cta);
+  --gold-text: var(--brand-text);
+  --glow: rgba(168, 122, 232, 0.18);
 
   --nav-bg: rgba(8, 9, 11, 0.76);
   --sel-fg: #14100a;
@@ -269,11 +285,12 @@ code {
 
 .btn--gold {
   background: var(--gold-grad);
-  color: #2b1a12;
+  color: var(--brand-on);
   font-weight: 600;
-  /* 白底上纯渐变的边缘会"化"进背景，压一道极淡的铜色描边把轮廓钉住 */
-  border-color: rgba(122, 80, 55, 0.3);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 1px 3px rgba(122, 80, 55, 0.18), 0 4px 12px rgba(122, 80, 55, 0.12);
+  /* 紫实底压一道同族描边，边缘不会化进背景；白顶光保留金属反光感 */
+  border-color: var(--brand-edge);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34),
+              0 1px 3px var(--brand-shadow), 0 4px 12px var(--brand-shadow);
 }
 
 .btn--gold:hover { filter: brightness(1.07); transform: translateY(-1px); }
@@ -719,7 +736,7 @@ code {
 .hdev:hover { background: var(--panel-2); }
 
 .hdev.is-current {
-  background: linear-gradient(180deg, rgba(206, 148, 104, 0.32) 0%, rgba(206, 148, 104, 0.09) 100%);
+  background: linear-gradient(180deg, rgba(155, 107, 224, 0.26) 0%, rgba(155, 107, 224, 0.07) 100%);
 }
 
 [data-theme="dark"] .hdev.is-current { background: var(--gold-wash); }
@@ -729,7 +746,7 @@ code {
   position: absolute;
   inset: 0;
   /* 白底上 0.44 的细线仍不够"选中"，命中端单独压一道更实的铜线 */
-  box-shadow: inset 0 0 0 1px rgba(155, 103, 66, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(123, 69, 201, 0.52);
   pointer-events: none;
 }
 
@@ -1272,7 +1289,7 @@ code {
   padding: 3px 9px;
   border-radius: 999px;
   background: var(--gold-grad);
-  color: #2b1a12;
+  color: var(--brand-on);
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -1944,7 +1961,7 @@ code {
 .logfilter__chip:hover { color: var(--fg); border-color: var(--line-2); }
 
 .logfilter__chip.is-active {
-  color: #2b1a12;
+  color: var(--brand-on);
   background: var(--gold-grad);
   border-color: transparent;
   font-weight: 500;
@@ -2110,7 +2127,7 @@ code {
   padding: 10px 18px;
   border-radius: var(--r-sm);
   background: var(--gold-grad);
-  color: #2b1a12;
+  color: var(--brand-on);
   font-size: 0.86rem;
   font-weight: 600;
 }
