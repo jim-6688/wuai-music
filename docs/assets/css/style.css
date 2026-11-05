@@ -1997,6 +1997,30 @@ code {
 
 .changelog__empty { padding: 20px 0; font-size: 0.88rem; color: var(--muted); }
 
+/* 历史版本默认折叠：条目仍在 DOM 里，只是不占位（机器校验按个数断言） */
+.changelog__item.is-folded { display: none; }
+
+.changelog__more {
+  display: block;
+  margin: 18px auto 2px;
+  padding: 9px 22px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg-2);
+  font: inherit;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+
+.changelog__more:hover {
+  border-color: var(--gold-line);
+  color: var(--gold);
+  background: var(--gold-wash);
+}
+
 /* ---------- 07 OTA ---------- */
 .ota__note {
   margin-top: 22px;

@@ -247,6 +247,13 @@
   /** 当前选中的设备类型：`"all"` 或渠道名 */
   var logFilter = "all";
 
+  // 更新日志会随每次发版一直增长（现在 52 条 ≈ 11000px）。默认只铺开最近
+  // LOG_PREVIEW 条，其余折起来 —— 否则访客要滚过一万多像素才能到下一节。
+  /** 默认展示的历史条数 */
+  var LOG_PREVIEW = 10;
+  /** 用户是否点过「查看全部」（切筛选时保持展开） */
+  var logExpanded = false;
+
   /** 筛选项（顺序即展示顺序） */
   var LOG_FILTERS = [
     { key: "all", label: "全部" },
@@ -424,6 +431,28 @@
         notesHtml(e.notes);
       logEl.appendChild(item);
     });
+
+    // 折叠只改 CSS，不减少 DOM 节点：scripts/check_site_dom.js 的 F 组按
+    // `.changelog__item` 的**个数**与顺序断言，真少渲染会让那组变红。
+    if (!logExpanded && shown.length > LOG_PREVIEW) {
+      [].slice.call(logEl.children, LOG_PREVIEW).forEach(function (el) {
+        el.classList.add("is-folded");
+      });
+      var more = document.createElement("button");
+      more.type = "button";
+      more.className = "changelog__more";
+      more.textContent = "查看全部 " + shown.length + " 个版本";
+      more.setAttribute("aria-expanded", "false");
+      more.addEventListener("click", function () {
+        logExpanded = true;
+        [].forEach.call(logEl.querySelectorAll(".changelog__item.is-folded"), function (el) {
+          el.classList.remove("is-folded");
+        });
+        more.setAttribute("aria-expanded", "true");
+        if (more.parentNode) more.parentNode.removeChild(more);
+      });
+      logEl.appendChild(more);
+    }
   }
 
   // 主下载按钮下方渲染「其它架构」的独立包链接
