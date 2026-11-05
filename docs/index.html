@@ -26,12 +26,13 @@
        全部由 scripts/build_site_icons.py 从 **App 内置图标**（assets/logo_512.png）
        派生：同一份字形提取函数，色板取 App 配色真源里的两个。
 
-       深浅**双版**，分工是「按语境明暗」而不是按喜好：
-         · favicon.svg       品牌紫 #A070D0 —— 浅色标签栏 / 站内浅色主题
-         · favicon-dark.svg  香槟金 #A28857 —— 深色标签栏 / 站内深色主题
-       标签栏用系统偏好挑（下面这两行的 media），站内标识用站内主题挑
-       （CSS 的 [data-theme]，见 .brand__mark--light / --dark）——
-       两者必须分开：用户完全可能用深色系统看浅色页面。
+       深浅**双版**只在浏览器标签栏里按系统偏好切换（下面两行的 media）：
+         · favicon.svg       品牌紫 #A070D0 —— 浅色标签栏 + **站内标识**
+         · favicon-dark.svg  香槟金 #A28857 —— 仅深色标签栏
+       站内标识固定用品牌紫那份，深浅主题都不变 —— 它要和手机桌面上的
+       App 图标同色；标签栏属于浏览器 chrome，可以随系统走。
+       站内所有图形图标（功能卡 / 平台卡 / 下载条设备）也统一走品牌紫
+       色板（见 style.css 的 --brand-*，取自四端统一 App 图标渐变）。
        ⇒ 桌面上的 App 图标、标签页图标、分享卡图标是同一份几何，
          以后换 App 图标只需替换 logo_512.png 再重跑脚本。
 
@@ -185,11 +186,9 @@
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a class="brand" href="#top" aria-label="吾爱音乐首页">
-        <!-- 与 App 启动图标同源（见 scripts/build_site_icons.py）。
-             深浅两份，由 CSS 按站内主题切换（见 .brand__mark--dark/--light）。 -->
-        <img class="brand__mark brand__mark--dark" src="favicon-dark.svg" alt=""
-             width="28" height="28" decoding="async" />
-        <img class="brand__mark brand__mark--light" src="favicon.svg" alt=""
+        <!-- 与 App 启动图标同源（scripts/build_site_icons.py），固定品牌紫，
+             不随站内主题切换；香槟金那份只留给深色系统的浏览器标签栏。 -->
+        <img class="brand__mark" src="favicon.svg" alt=""
              width="28" height="28" decoding="async" />
         <span class="brand__text">
           <span class="brand__name">吾爱音乐</span>
@@ -1229,12 +1228,8 @@ adb devices
     <div class="container footer__inner">
       <div class="footer__brand">
         <span class="brand">
-          <!-- 双色板标识：深色主题用香槟金（favicon-dark.svg），浅色主题用品牌紫（favicon.svg）。
-               切换交给 CSS 的 [data-theme] —— 不能用 <img media> 或 SVG 内的
-               prefers-color-scheme，因为站内主题是用户自己选的，跟系统偏好可以不一致。 -->
-          <img class="brand__mark brand__mark--sm brand__mark--dark" src="favicon-dark.svg"
-               alt="" width="22" height="22" decoding="async" />
-          <img class="brand__mark brand__mark--sm brand__mark--light" src="favicon.svg"
+          <!-- 站内标识固定品牌紫，与手机桌面上的 App 图标同色。 -->
+          <img class="brand__mark brand__mark--sm" src="favicon.svg"
                alt="" width="22" height="22" decoding="async" />
           <span class="brand__name">吾爱音乐</span>
         </span>

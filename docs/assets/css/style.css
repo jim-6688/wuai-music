@@ -32,6 +32,14 @@
   --fg-2: #514a4d;
   --muted: #8e868a;
 
+  /* 品牌紫：取自四端统一 App 启动图标 design/app_icons_v2
+     （左上 #9B6BE0 -> 右下 #5B21B6）。只给**图形图标**用，
+     不参与文字 / CTA / 章节编号 —— 那些仍是暖铜金，避免两套强调色打架。 */
+  --brand: #7b45c9;
+  --brand-line: rgba(123, 69, 201, 0.34);
+  --brand-wash: rgba(123, 69, 201, 0.08);
+  --brand-grad: linear-gradient(135deg, #9b6be0 0%, #5b21b6 100%);
+
   --gold: #8c6649;
   --gold-2: #6a4832;
   --gold-line: rgba(140, 102, 73, 0.44);
@@ -71,6 +79,12 @@
   --fg: #f2f0ec;
   --fg-2: #b9b6ae;
   --muted: #85837c;
+
+  /* 同一套品牌图标在深墨底上要提亮一档，否则渐变暗端会糊进背景 */
+  --brand: #c49aee;
+  --brand-line: rgba(196, 154, 238, 0.4);
+  --brand-wash: rgba(155, 107, 224, 0.14);
+  --brand-grad: linear-gradient(135deg, #a97be8 0%, #6d31c9 100%);
 
   --gold: #c9a961;
   --gold-2: #e6d2a5;
@@ -324,11 +338,9 @@ code {
   border-radius: 7px;
 }
 
-/* 默认白底 ⇒ 用品牌紫那份；深色标签栏/深色主题才换香槟金 */
-.brand__mark--dark { display: none; }
-[data-theme="dark"] .brand__mark--dark { display: block; }
-[data-theme="dark"] .brand__mark--light { display: none; }
-
+/* 站内标识固定用品牌紫（与手机桌面上的 App 图标同色），不随深浅主题变。
+   香槟金那份只留给**深色系统**的浏览器标签栏 —— 那是浏览器 chrome，
+   不是站内图标。 */
 .brand__mark--sm { width: 22px; height: 22px; border-radius: 6px; }
 
 .brand__text {
@@ -731,13 +743,13 @@ code {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 8px;
-  /* 未命中格用 muted 会虚到像缺图标，压一档到 --fg-2 */
-  color: var(--fg-2);
+  /* 设备图形统一走品牌紫；原来用中性灰，看起来像图标没加载 */
+  color: var(--brand);
   flex: none;
   transition: color 0.25s, border-color 0.25s;
 }
 
-.hdev.is-current .hdev__icon { color: var(--gold); border-color: var(--gold-line); }
+.hdev.is-current .hdev__icon { color: var(--brand); border-color: var(--brand-line); background: var(--brand-wash); }
 
 .hdev__body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 
@@ -805,9 +817,12 @@ code {
   display: grid;
   place-items: center;
   border-radius: 10px;
-  border: 1px solid var(--gold-line);
-  background: var(--gold-wash);
-  color: var(--gold);
+  /* 与 App 启动图标同一套语言：紫色渐变底 + 白色线性字形 */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--brand-grad);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24),
+              0 4px 12px rgba(91, 33, 182, 0.2);
 }
 
 .fcard__head h3 {
@@ -1270,7 +1285,7 @@ code {
   gap: 12px;
 }
 
-.platform__icon { color: var(--gold); }
+.platform__icon { color: var(--brand); }
 
 .platform__ver {
   font-size: 0.76rem;
