@@ -810,9 +810,9 @@
       alt: "吾爱音乐电视端界面：大字号焦点与正在播放",
     },
     windows: {
-      src: "assets/img/windows/win-02.webp", w: 1600, h: 900,
+      src: "assets/img/windows/win-01.webp", w: 1600, h: 900,
       title: "吾爱Music · Windows 桌面版",
-      alt: "吾爱音乐 Windows 桌面版界面：正在播放、实时歌词与可视化",
+      alt: "吾爱音乐 Windows 桌面版界面：本地音乐库，文件管理器侧栏、专辑墙与全部歌曲列表、右侧收藏与最近播放、底部播放条",
     },
   };
 
