@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "1.5.9",
-      "versionCode": 81,
+      "versionName": "2.0.0",
+      "versionCode": 107,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《行路难·其一》· 李白\n长风破浪会有时，直挂云帆济沧海。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-phone-arm64-v8a.apk",
-      "size": 68645042,
-      "sha256": "a2ee835e126ed147ad5894e55ccb890a173990282fa48cbf73cf9cce120de0f6",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《早发白帝城》· 李白\n朝辞白帝彩云间，千里江陵一日还。\n两岸猿声啼不住，轻舟已过万重山。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-phone-arm64-v8a.apk",
+      "size": 68882842,
+      "sha256": "a202dc4ef0060cebd3452dd8606d30941be5687e85989c32e084f22e593b1a25",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-phone-arm64-v8a.apk",
-          "size": 68645042,
-          "sha256": "a2ee835e126ed147ad5894e55ccb890a173990282fa48cbf73cf9cce120de0f6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-phone-arm64-v8a.apk",
+          "size": 68882842,
+          "sha256": "a202dc4ef0060cebd3452dd8606d30941be5687e85989c32e084f22e593b1a25",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-phone-armeabi-v7a.apk",
-          "size": 80695516,
-          "sha256": "0ce741d2e9e6e2bdb2e4c6311bbec59bfbf43e282cce7c616be0409444f986ad",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-phone-armeabi-v7a.apk",
+          "size": 80884164,
+          "sha256": "52e11ac8bdd0d931ec44babd2d4351fa64e06651f0aeb1499eded57bdaf7b96d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "1.5.9",
-      "versionCode": 81,
+      "versionName": "2.0.0",
+      "versionCode": 107,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《行路难·其一》· 李白\n长风破浪会有时，直挂云帆济沧海。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-hd-arm64-v8a.apk",
-      "size": 68670646,
-      "sha256": "66bd06323ead043ab223c7227f22576ab74be07308165c435e38f1f711f509af",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《早发白帝城》· 李白\n朝辞白帝彩云间，千里江陵一日还。\n两岸猿声啼不住，轻舟已过万重山。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-hd-arm64-v8a.apk",
+      "size": 68842910,
+      "sha256": "580dcd2ded60ec3b80999c85b8ab398088ad0ed2d72a13689f7ad82ef94afc35",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-hd-arm64-v8a.apk",
-          "size": 68670646,
-          "sha256": "66bd06323ead043ab223c7227f22576ab74be07308165c435e38f1f711f509af",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-hd-arm64-v8a.apk",
+          "size": 68842910,
+          "sha256": "580dcd2ded60ec3b80999c85b8ab398088ad0ed2d72a13689f7ad82ef94afc35",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-hd-armeabi-v7a.apk",
-          "size": 80639200,
-          "sha256": "4b1245a1fce0e191ef702eecc03ca8c30d5eda05872f161a33d264677a518c43",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-hd-armeabi-v7a.apk",
+          "size": 80860616,
+          "sha256": "b03a90d8c12692a47eb746e16d66858cccbe45e84fa7e33ab02b90108a95e782",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "1.5.9",
-      "versionCode": 81,
+      "versionName": "2.0.0",
+      "versionCode": 107,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《行路难·其一》· 李白\n长风破浪会有时，直挂云帆济沧海。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-tv-arm64-v8a.apk",
-      "size": 68748267,
-      "sha256": "b18787b10fff9e2ea646b3250c84c779d0a7f7fdb276f2aa709158ce8b067567",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《早发白帝城》· 李白\n朝辞白帝彩云间，千里江陵一日还。\n两岸猿声啼不住，轻舟已过万重山。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-tv-arm64-v8a.apk",
+      "size": 68854995,
+      "sha256": "a373d98ce3d52570b0d091b86250eed9406fb17e0b2cbbc5f89c668b6de1408f",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-tv-arm64-v8a.apk",
-          "size": 68748267,
-          "sha256": "b18787b10fff9e2ea646b3250c84c779d0a7f7fdb276f2aa709158ce8b067567",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-tv-arm64-v8a.apk",
+          "size": 68854995,
+          "sha256": "a373d98ce3d52570b0d091b86250eed9406fb17e0b2cbbc5f89c668b6de1408f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v1.5.9/WuAiMusic-1.5.9-build81-tv-armeabi-v7a.apk",
-          "size": 80684053,
-          "sha256": "f526e4702c71020a9ec21f688266294461b458dd94b4a307325a7424e074c92c",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.0.0/WuAiMusic-2.0.0-build107-tv-armeabi-v7a.apk",
+          "size": 80872701,
+          "sha256": "600ef7529b1c533bacf30cdf76092740b62e206d182b6730cb9922bd2daf4fa0",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "2.0.0",
+      "date": "2026-11-09",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《早发白帝城》· 李白\n朝辞白帝彩云间，千里江陵一日还。\n两岸猿声啼不住，轻舟已过万重山。"
+    },
     {
       "versionName": "1.5.9",
       "date": "2026-11-01",
