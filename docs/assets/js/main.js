@@ -96,18 +96,18 @@
   //    数组里有几个文件，官网就渲染几个按钮，文字按 ABI 自动标「64 位 / 32 位」。
   var DUOJI_FILES = {
     phone: [
-      "wuai-music-1.5.9+81-phone-arm64-v8a-release.apk",
-      "wuai-music-1.5.9+81-phone-armeabi-v7a-release.apk",
+      "wuai-music-2.1.0+118-phone-arm64-v8a-release.apk",
+      "wuai-music-2.1.0+118-phone-armeabi-v7a-release.apk",
     ],
     hd: [
-      "wuai-music-1.5.9+81-hd-arm64-v8a-release.apk",
-      "wuai-music-1.5.9+81-hd-armeabi-v7a-release.apk",
+      "wuai-music-2.1.0+118-hd-arm64-v8a-release.apk",
+      "wuai-music-2.1.0+118-hd-armeabi-v7a-release.apk",
     ],
     tv: [
-      "wuai-music-1.5.9+81-tv-arm64-v8a-release.apk",
-      "wuai-music-1.5.9+81-tv-armeabi-v7a-release.apk",
+      "wuai-music-2.1.0+118-tv-arm64-v8a-release.apk",
+      "wuai-music-2.1.0+118-tv-armeabi-v7a-release.apk",
     ],
-    windows: "WuAiMusic-1.5.9-setup.exe",
+    windows: "WuAiMusic-2.1.0-setup.exe",
   };
 
   /** 某渠道在 DUOJI_FILES 里的文件列表（统一成数组便于处理） */
