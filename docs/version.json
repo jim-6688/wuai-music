@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "2.1.0",
-      "versionCode": 118,
+      "versionName": "2.1.1",
+      "versionCode": 126,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《登飞来峰》· 王安石\n飞来山上千寻塔，闻说鸡鸣见日升。\n不畏浮云遮望眼，自缘身在最高层。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-phone-arm64-v8a.apk",
-      "size": 69079842,
-      "sha256": "9c8bd365e77439cdad5289b6d02f886ce45ebfebd4f788990d4798342bb15769",
+      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-phone-arm64-v8a.apk",
+      "size": 69276446,
+      "sha256": "e47fc13f018ad0dd708bbd42e0e7c5b44a15c6dfe00590d127f2721db43b3fb7",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-phone-arm64-v8a.apk",
-          "size": 69079842,
-          "sha256": "9c8bd365e77439cdad5289b6d02f886ce45ebfebd4f788990d4798342bb15769",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-phone-arm64-v8a.apk",
+          "size": 69276446,
+          "sha256": "e47fc13f018ad0dd708bbd42e0e7c5b44a15c6dfe00590d127f2721db43b3fb7",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-phone-armeabi-v7a.apk",
-          "size": 81130312,
-          "sha256": "f4d8544a71a9f8526a068d2451472090aedbd8dae290cd7ace38efd847db002d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-phone-armeabi-v7a.apk",
+          "size": 81343300,
+          "sha256": "062a4362576c7726b9ab70f870168012fa9d353190b60da718005b06d4902216",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "2.1.0",
-      "versionCode": 118,
+      "versionName": "2.1.1",
+      "versionCode": 126,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《登飞来峰》· 王安石\n飞来山上千寻塔，闻说鸡鸣见日升。\n不畏浮云遮望眼，自缘身在最高层。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-hd-arm64-v8a.apk",
-      "size": 69039918,
-      "sha256": "bf9c30fee1a6ca80e057f16a99b254262ba2f011e35249b0b1797d836707fd71",
+      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-hd-arm64-v8a.apk",
+      "size": 69170986,
+      "sha256": "a26438c7c1d7621c749327f66d197e031d96092cca10100d753d79c410d87bb5",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-hd-arm64-v8a.apk",
-          "size": 69039918,
-          "sha256": "bf9c30fee1a6ca80e057f16a99b254262ba2f011e35249b0b1797d836707fd71",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-hd-arm64-v8a.apk",
+          "size": 69170986,
+          "sha256": "a26438c7c1d7621c749327f66d197e031d96092cca10100d753d79c410d87bb5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-hd-armeabi-v7a.apk",
-          "size": 81074004,
-          "sha256": "8aa698bb2febead5c50be572858920dec0b18b03fd1078e6103984eca1b87cf7",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-hd-armeabi-v7a.apk",
+          "size": 81270608,
+          "sha256": "202c6cbcec07c51a7a1d23a2a05d8835bc77b394ede05c5149dffcbf5ecdb977",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "2.1.0",
-      "versionCode": 118,
+      "versionName": "2.1.1",
+      "versionCode": 126,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《登飞来峰》· 王安石\n飞来山上千寻塔，闻说鸡鸣见日升。\n不畏浮云遮望眼，自缘身在最高层。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-tv-arm64-v8a.apk",
-      "size": 69051995,
-      "sha256": "424d41a13514128a4e8b0b22b965ee85dd01b0b5b5ffa9559f1239908e2f630e",
+      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-tv-arm64-v8a.apk",
+      "size": 69248603,
+      "sha256": "80c9bd57a9910455c37a088ab1731ddc9aa9542de816f86fd01f716f17354353",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-tv-arm64-v8a.apk",
-          "size": 69051995,
-          "sha256": "424d41a13514128a4e8b0b22b965ee85dd01b0b5b5ffa9559f1239908e2f630e",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-tv-arm64-v8a.apk",
+          "size": 69248603,
+          "sha256": "80c9bd57a9910455c37a088ab1731ddc9aa9542de816f86fd01f716f17354353",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.0/WuAiMusic-2.1.0-build118-tv-armeabi-v7a.apk",
-          "size": 81086081,
-          "sha256": "c9723d3bd20eb11629e0fd102f4287a26d66c5ea84ae2da721f3a59f76e675fb",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-tv-armeabi-v7a.apk",
+          "size": 81282689,
+          "sha256": "940ca8a222d3734406f5da04d825e28048be42e777dad1a192ea769c46704340",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "2.1.1",
+      "date": "2026-11-12",
+      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。"
+    },
     {
       "versionName": "2.1.0",
       "date": "2026-11-10",
