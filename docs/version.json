@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "2.1.1",
-      "versionCode": 126,
+      "versionName": "2.2.1",
+      "versionCode": 134,
       "flavor": "phone",
-      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-phone-arm64-v8a.apk",
-      "size": 69276446,
-      "sha256": "e47fc13f018ad0dd708bbd42e0e7c5b44a15c6dfe00590d127f2721db43b3fb7",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《竹里馆》· 王维\n独坐幽篁里，弹琴复长啸。\n深林人不知，明月来相照。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-phone-arm64-v8a.apk",
+      "size": 69407518,
+      "sha256": "c838ded32633b3a56bd11249fc8ba81316a624b3308a0c9de6137a11cf505239",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-phone-arm64-v8a.apk",
-          "size": 69276446,
-          "sha256": "e47fc13f018ad0dd708bbd42e0e7c5b44a15c6dfe00590d127f2721db43b3fb7",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-phone-arm64-v8a.apk",
+          "size": 69407518,
+          "sha256": "c838ded32633b3a56bd11249fc8ba81316a624b3308a0c9de6137a11cf505239",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-phone-armeabi-v7a.apk",
-          "size": 81343300,
-          "sha256": "062a4362576c7726b9ab70f870168012fa9d353190b60da718005b06d4902216",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-phone-armeabi-v7a.apk",
+          "size": 81523524,
+          "sha256": "ae4d8a686732537ee8bcf3dc96c13f40341565c63e8f84a02c14e16fc6b5180f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "2.1.1",
-      "versionCode": 126,
+      "versionName": "2.2.1",
+      "versionCode": 134,
       "flavor": "hd",
-      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-hd-arm64-v8a.apk",
-      "size": 69170986,
-      "sha256": "a26438c7c1d7621c749327f66d197e031d96092cca10100d753d79c410d87bb5",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《竹里馆》· 王维\n独坐幽篁里，弹琴复长啸。\n深林人不知，明月来相照。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-hd-arm64-v8a.apk",
+      "size": 69302058,
+      "sha256": "35be081bfa75c1d4492eb8355243124b98a15f39f290b79234aceb01066953f9",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-hd-arm64-v8a.apk",
-          "size": 69170986,
-          "sha256": "a26438c7c1d7621c749327f66d197e031d96092cca10100d753d79c410d87bb5",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-hd-arm64-v8a.apk",
+          "size": 69302058,
+          "sha256": "35be081bfa75c1d4492eb8355243124b98a15f39f290b79234aceb01066953f9",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-hd-armeabi-v7a.apk",
-          "size": 81270608,
-          "sha256": "202c6cbcec07c51a7a1d23a2a05d8835bc77b394ede05c5149dffcbf5ecdb977",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-hd-armeabi-v7a.apk",
+          "size": 81418064,
+          "sha256": "ef45767b605763b7248c0056ea867951189b1dd72f9e8e5dd2ed26dbcdd792b1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "2.1.1",
-      "versionCode": 126,
+      "versionName": "2.2.1",
+      "versionCode": 134,
       "flavor": "tv",
-      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-tv-arm64-v8a.apk",
-      "size": 69248603,
-      "sha256": "80c9bd57a9910455c37a088ab1731ddc9aa9542de816f86fd01f716f17354353",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《竹里馆》· 王维\n独坐幽篁里，弹琴复长啸。\n深林人不知，明月来相照。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-tv-arm64-v8a.apk",
+      "size": 69314211,
+      "sha256": "916f14a8ca06c2a100472c87b07950d4d6d87c6e51eb9ea753d78b807fd881ed",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-tv-arm64-v8a.apk",
-          "size": 69248603,
-          "sha256": "80c9bd57a9910455c37a088ab1731ddc9aa9542de816f86fd01f716f17354353",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-tv-arm64-v8a.apk",
+          "size": 69314211,
+          "sha256": "916f14a8ca06c2a100472c87b07950d4d6d87c6e51eb9ea753d78b807fd881ed",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.1.1/WuAiMusic-2.1.1-build126-tv-armeabi-v7a.apk",
-          "size": 81282689,
-          "sha256": "940ca8a222d3734406f5da04d825e28048be42e777dad1a192ea769c46704340",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.1/WuAiMusic-2.2.1-build134-tv-armeabi-v7a.apk",
+          "size": 81446601,
+          "sha256": "a47e82d1c9b89f36afd34cdd7819192843243ee098cda43b9d97d19d7d8f3dc7",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -80,9 +80,19 @@
   },
   "changelog": [
     {
+      "versionName": "2.2.1",
+      "date": "2026-11-16",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《竹里馆》· 王维\n独坐幽篁里，弹琴复长啸。\n深林人不知，明月来相照。"
+    },
+    {
+      "versionName": "2.2.0",
+      "date": "2026-11-14",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《游山西村》· 陆游\n莫笑农家腊酒浑，丰年留客足鸡豚。\n山重水复疑无路，柳暗花明又一村。"
+    },
+    {
       "versionName": "2.1.1",
       "date": "2026-11-12",
-      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）。"
+      "notes": "本次更新把常用外观设置搬到了播放页底部，切换更快：\n\n· 歌词效果、可视化、背景模糊、版式、字形，一个按钮循环切换；\n· 个性化面板只保留低频校准项，界面更清爽；\n· 手机顶栏补回码率与 Hi-Res 标识；\n· 修复多碟套装（12CD 之类的 cue+wav）被合并成一张专辑的问题，现在一张碟一张专辑；\n· 新增全屏可视化「星空环」：歌名 / 圆形本首倒计时 / 歌词，背景可在星空、\n  萤火虫、雨夜、森林、极光之间随时切换（手机、车机、TV 都有入口）；\n· 修复升级后 CUE 专辑被清空的问题：重扫改为「先扫到新数据才替换」，\n  没扫到就保留原有专辑，并让已受影响的用户升级后自动重建；\n· 播放页外观设置收进个性化面板并统一归到「歌词」组；全屏舞台顶部\n  版式重排（歌名、艺术家不再被截断）；TV / 车机 / PC 播放页与全屏页补码率。"
     },
     {
       "versionName": "2.1.0",

@@ -222,6 +222,14 @@
          ══════════════════════════════════════════════════════════════════ -->
     <section class="hero">
       <div class="hero__rule" aria-hidden="true"></div>
+      <!-- 首屏 3D 背景：three.js 本地 vendor + assets/js/hero3d.js。
+           无 WebGL / 加载失败 / 用户关闭时自动隐藏，不影响任何现有内容。 -->
+      <canvas id="hero3d" class="hero__3d" aria-hidden="true"></canvas>
+      <button id="hero3dToggle" class="hero__3d-toggle" type="button"
+              aria-pressed="true" title="切换 3D 背景">
+        <span class="hero__3d-dot" aria-hidden="true"></span>
+        <span id="hero3dToggleLabel">3D 效果</span>
+      </button>
       <div class="container">
         <div class="hero__copy reveal">
           <span class="eyebrow">跨端 · 本地无损 · 纯粹聆听</span>
@@ -1266,6 +1274,10 @@ adb devices
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/design.js"></script>
+  <!-- 首屏 3D：本地 vendor，不依赖任何外部 CDN；defer 保证顺序且不阻塞解析。
+       脚本内部还会等 window.load 之后再初始化，不与首屏图片/字体抢带宽。 -->
+  <script src="assets/vendor/three.min.js" defer></script>
+  <script src="assets/js/hero3d.js" defer></script>
 
   <!-- 界面截图灯箱：点击手机 / 车机 / 电视相册放大查看，并继续自动轮播 -->
   <div id="shotLightbox" class="shot-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="界面截图大图">
