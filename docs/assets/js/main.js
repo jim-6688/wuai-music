@@ -94,20 +94,17 @@
   // ⚠️ 数组顺序 = 按钮顺序，**第一个必须是 64 位包（arm64-v8a）**：官网把首位
   //    做成金色主按钮（绝大多数机型是 arm64），32 位只给较早的纯 32 位设备兜底。
   //    数组里有几个文件，官网就渲染几个按钮，文字按 ABI 自动标「64 位 / 32 位」。
+  //
+  // ⚠️ 2026-11-16 起**暂时清空**：多吉云的上传凭据（`config/duoji.json` 的
+  //    AK/SK）在本机丢失，2.2.1 传不上去。留着旧条目比没有按钮更糟 ——
+  //    页面写着 2.2.1，点金色主按钮下下来的却是 2.1.0+118，全程没有任何报错。
+  //    空表 ⇒ initDuoji 什么都不渲染，三张卡与 Windows 卡只留「国内 / 国际」。
+  //    凭据找回后：`python scripts/deploy_duoji.py --patch-site` 会自动回填这张表。
   var DUOJI_FILES = {
-    phone: [
-      "wuai-music-2.1.0+118-phone-arm64-v8a-release.apk",
-      "wuai-music-2.1.0+118-phone-armeabi-v7a-release.apk",
-    ],
-    hd: [
-      "wuai-music-2.1.0+118-hd-arm64-v8a-release.apk",
-      "wuai-music-2.1.0+118-hd-armeabi-v7a-release.apk",
-    ],
-    tv: [
-      "wuai-music-2.1.0+118-tv-arm64-v8a-release.apk",
-      "wuai-music-2.1.0+118-tv-armeabi-v7a-release.apk",
-    ],
-    windows: "WuAiMusic-2.1.0-setup.exe",
+    phone: [],
+    hd: [],
+    tv: [],
+    windows: "",
   };
 
   /** 某渠道在 DUOJI_FILES 里的文件列表（统一成数组便于处理） */
