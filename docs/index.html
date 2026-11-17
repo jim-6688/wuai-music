@@ -242,6 +242,21 @@
             <a class="btn btn--gold btn--lg" href="#platforms">下载客户端</a>
             <a class="btn btn--ghost btn--lg" href="#features">了解功能</a>
           </div>
+          <!-- 可视化风格切换：与 App 的可视化枚举一一对应（液态极光 / 黑胶唱片 /
+               星云律动 / 音乐喷泉）。默认隐藏，等 3D 真正初始化成功后由
+               hero3d.js 放开 —— WebGL 不可用时不该露出点了没反应的按钮。
+               每个按钮备两套文案：宽屏用全称，窄屏用两字短名（.long / .short）。 -->
+          <div class="hero__3d-picker" id="hero3dPicker" role="group"
+               aria-label="切换首屏可视化风格" hidden>
+            <button class="hero__3d-chip" type="button" data-viz="aurora"
+                    aria-pressed="false"><span class="long">液态极光</span><span class="short">极光</span></button>
+            <button class="hero__3d-chip" type="button" data-viz="vinyl"
+                    aria-pressed="false"><span class="long">黑胶唱片</span><span class="short">黑胶</span></button>
+            <button class="hero__3d-chip" type="button" data-viz="nebula"
+                    aria-pressed="false"><span class="long">星云律动</span><span class="short">星云</span></button>
+            <button class="hero__3d-chip" type="button" data-viz="fountain"
+                    aria-pressed="false"><span class="long">音乐喷泉</span><span class="short">喷泉</span></button>
+          </div>
           <!-- 数字全部取自代码真源，改功能时要跟着改（出处见各条注释）：
                  formats = lib/core/constants/audio_formats.dart 的 AudioFormats.exts
                  schemes = lib/core/theme/custom_color_schemes.dart 的配色条目数

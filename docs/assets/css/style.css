@@ -2334,6 +2334,61 @@ code {
 .hero > .container { position: relative; z-index: 1; }
 .hero > .hero__rule { z-index: 2; }
 
+/* 可视化风格切换：紧贴在首屏两个 CTA 下面，与 App 里的四种可视化一一对应。
+   为什么不放画布下沿（原本试过）：窄屏上画布高 520~624px，那个位置正好压在
+   统计数字上；而首屏按钮下方是天然的一行留白，桌面居中、手机也能换行。
+   默认 hidden，等 3D 真正初始化后由 hero3d.js 放开 —— WebGL 不可用时
+   不该露出点了没反应的按钮。 */
+.hero__3d-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+/* display:flex 会盖掉 UA 的 [hidden]，必须显式收回 */
+.hero__3d-picker[hidden] { display: none; }
+
+.hero__3d-chip {
+  padding: 5px 11px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--fg-2);
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: .04em;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: .72;
+  transition: opacity .2s ease, border-color .2s ease,
+              background .2s ease, color .2s ease;
+}
+.hero__3d-chip:hover { opacity: 1; border-color: var(--brand-line); }
+.hero__3d-chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+/* 命中态只加边框与淡底，不填实色：首屏已经有紫色 CTA，再给一块实心紫会抢焦点 */
+.hero__3d-chip.is-active {
+  opacity: 1;
+  color: var(--fg);
+  border-color: var(--brand-line);
+  background: var(--brand-wash);
+}
+.hero__3d-chip .short { display: none; }
+
+/* 窄屏：四个全称一行放不下，退成两字短名；同时把 CTA 与数字的间距收一点，
+   给这排按钮腾出高度（否则首屏会被推长一截） */
+@media (max-width: 720px) {
+  /* 窄屏上 3D 只能当水印：画布 520px 高，必然和标题 / 正文交叠，
+     粒子类画面（喷泉）压在字上会显脏。整体降到 62%，切换时仍看得出差别。 */
+  .hero__3d.is-ready { opacity: .62; }
+  .hero__3d-picker { gap: 5px; margin-top: 16px; }
+  .hero__3d-chip { padding: 5px 9px; }
+  .hero__3d-chip .long { display: none; }
+  .hero__3d-chip .short { display: inline; }
+  .hero__stats { margin-top: 34px; }
+}
+
 /* 低调的开关：能一键对比有无 3D，也方便低配机器关掉 */
 .hero__3d-toggle {
   position: absolute;
