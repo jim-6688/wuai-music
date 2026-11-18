@@ -50,24 +50,24 @@
     },
     "tv": {
       "versionName": "2.2.2",
-      "versionCode": 136,
+      "versionCode": 137,
       "flavor": "tv",
       "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《送杜少府之任蜀州》· 王勃\n海内存知己，天涯若比邻。\n无为在歧路，儿女共沾巾。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.2/WuAiMusic-2.2.2-build136-tv-arm64-v8a.apk",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.2/WuAiMusic-2.2.2-build137-tv-arm64-v8a.apk",
       "size": 69510819,
-      "sha256": "9984dac1e7a55defee09f29d03b5acdc94559b00591f93db9d4e499ea4516042",
+      "sha256": "ed0ccd21205fd1df7f3a8173496f5c740b2cbe56210e174bbd72a586a027dbb1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.2/WuAiMusic-2.2.2-build136-tv-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.2/WuAiMusic-2.2.2-build137-tv-arm64-v8a.apk",
           "size": 69510819,
-          "sha256": "9984dac1e7a55defee09f29d03b5acdc94559b00591f93db9d4e499ea4516042",
+          "sha256": "ed0ccd21205fd1df7f3a8173496f5c740b2cbe56210e174bbd72a586a027dbb1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.2/WuAiMusic-2.2.2-build136-tv-armeabi-v7a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.2/WuAiMusic-2.2.2-build137-tv-armeabi-v7a.apk",
           "size": 81643209,
-          "sha256": "78e125e4439d7e532a800648fcf54f10ef948c9fafde34b8408ea182a91cf847",
+          "sha256": "021eb1d9ed3fe5863a224f55e6f78e501cc0ab2e18a791378e1150b2eee2b155",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
