@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>白皮书 01：把 bit-perfect 从声明变成证据 · 吾爱音频工作室</title>
+<meta name="description" content="信号链透明白皮书第一篇：以 ALSA hw_params 实测为真源，重做 bit-perfect 判定，附可复算的数据导出方法。" />
+<link rel="icon" type="image/png" href="../assets/logo-v3.png" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="sitebar">
+  <div class="wrap">
+    <a class="logo" href="../"><img src="../assets/logo-v3.png" alt="吾爱音乐">吾爱Music <small data-zh="工作室" data-en="Studio">工作室</small></a>
+    <span class="spacer"></span>
+    <a class="back" href="../#research" data-zh="← 返回工作室" data-en="← Back to Studio">← 返回工作室</a>
+    <div class="langsw" role="group" aria-label="Language / 语言">
+      <button type="button" data-lang="zh" aria-pressed="true">中</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap art-head">
+    <span class="crumb" data-zh="研究文章 / 信号链透明 / 2026-11-20" data-en="RESEARCH / SIGNAL CHAIN / 2026-11-20">研究文章 / 信号链透明 / 2026-11-20</span>
+    <h1 data-zh="白皮书 01：把 bit-perfect 从「声明」变成「证据」" data-en="Whitepaper 01: Turning bit-perfect from a claim into evidence">白皮书 01：把 bit-perfect 从「声明」变成「证据」</h1>
+    <p class="dek" data-zh="一次不哄不贬的功能审计，逼出了一个可复算的信号链判定方法。这是工作室的第一篇产出。" data-en="A no-sugarcoating feature audit forced a reproducible way to judge the signal chain. This is the studio's first deliverable.">一次不哄不贬的功能审计，逼出了一个可复算的信号链判定方法。这是工作室的第一篇产出。</p>
+    <div class="meta">
+      <span class="pill" data-zh="信号链透明" data-en="Signal Chain Transparency">信号链透明</span>
+      <span data-zh="吾爱高保真音频工作室" data-en="WuAi Hi-Fi Audio Studio">吾爱高保真音频工作室</span>
+      <span>· 2026-11-20</span>
+    </div>
+  </div>
+
+  <article class="wrap art-body">
+    <h2 data-zh="一、问题：绿灯是亮的，证据是空的" data-en="1. The problem: a green light with no evidence">一、问题：绿灯是亮的，证据是空的</h2>
+    <p data-zh="审计时我们问了一句很朴素的话：界面上那个亮着的 bit-perfect 绿灯，是真的吗？逐代码追下去，答案让人不安——判定读的是 MPD 的 status.audio，也就是解码器&ldquo;声明&rdquo;自己输出的是什么规格，而不是声卡真正跑在什么参数上。两件事在多数时候一致，但在重采样、多卡、输出未打开等情形下会悄悄分家。" data-en="We asked a plain question: is that lit bit-perfect green light real? Tracing the code, the answer was uncomfortable — the verdict read MPD's status.audio, i.e. what the decoder claims it outputs, not what the sound card actually runs. The two usually agree, but silently diverge under resampling, multiple cards, or a closed output.">审计时我们问了一句很朴素的话：界面上那个亮着的 bit-perfect 绿灯，是真的吗？逐代码追下去，答案让人不安——判定读的是 MPD 的 status.audio，也就是解码器“声明”自己输出的是什么规格，而不是声卡真正跑在什么参数上。两件事在多数时候一致，但在重采样、多卡、输出未打开等情形下会悄悄分家。</p>
+    <p data-zh="更糟的是两个叠加的缺陷：`read_hw_params()` 遍历所有声卡，取第一个有参数的卡（多卡就读错）；而一旦读不到硬件参数（输出未打开、采样尚未开始），代码落进 else 分支，默认判成 bit-perfect。结果是——最没有证据的时刻，灯反而是绿的。" data-en="Two compounding defects made it worse: read_hw_params() walked every sound card and took the first with parameters (wrong with multiple cards); and when no hardware parameters were available (output closed, playback not started), execution fell into the else branch and defaulted to bit-perfect. The result: the least-evidenced moment showed the greenest light.">更糟的是两个叠加的缺陷：<code>read_hw_params()</code> 遍历所有声卡，取第一个有参数的卡（多卡就读错）；而一旦读不到硬件参数（输出未打开、采样尚未开始），代码落进 else 分支，默认判成 bit-perfect。结果是——最没有证据的时刻，灯反而是绿的。</p>
+
+    <div class="note note--limit">
+      <b data-zh="纸老虎 · 判定" data-en="PAPER TIGER · VERDICT">纸老虎 · 判定</b>
+      <span data-zh="对外喊得最响的招牌，恰恰最经不起追问。这是工作室起点那句「还是纸老虎？」最具体的答案。" data-en="The loudest outward claim collapsed fastest under scrutiny. This is the most concrete answer to the question that founded the studio: 'or are they paper tigers?'">对外喊得最响的招牌，恰恰最经不起追问。这是工作室起点那句“还是纸老虎？”最具体的答案。</span>
+    </div>
+
+    <h2 data-zh="二、立判据：真源只有一个" data-en="2. Set the criterion: a single source of truth">二、立判据：真源只有一个</h2>
+    <p data-zh="方法学上第一步不是写代码，是把「什么叫证据」钉死。我们定下的判据很硬：<strong>bit-perfect 只认 ALSA hw_params 的实测</strong>——声卡在 &lt;code&gt;/proc/asound/&lt;/code&gt; 里报告的格式、采样率、声道，才是最终事实。MPD 的声明、配置文件的 format 字段、界面上的文案，都只是旁证，不能单独点亮绿灯。" data-en="The first methodological step is not code, but nailing down 'what counts as evidence'. Our criterion is strict: <strong>bit-perfect trusts only ALSA hw_params measurements</strong> — the format, rate and channels the card reports in /proc/asound are the final fact. MPD's claim, the config file's format field, and UI copy are corroboration only; none can light the green alone.">方法学上第一步不是写代码，是把“什么叫证据”钉死。我们定下的判据很硬：<strong>bit-perfect 只认 ALSA hw_params 的实测</strong>——声卡在 <code>/proc/asound/</code> 里报告的格式、采样率、声道，才是最终事实。MPD 的声明、配置文件的 format 字段、界面上的文案，都只是旁证，不能单独点亮绿灯。</p>
+    <p data-zh="这条判据带来一个反直觉但正确的结果：<strong>没有证据，不等于通过，而是「待验证」</strong>。宁可显示琥珀色的问号，也不给一个没有实测支撑的绿灯。" data-en="This criterion yields a counter-intuitive but correct result: <strong>no evidence is not a pass — it is 'unverified'</strong>. Better an amber question mark than a green light without measurement.">这条判据带来一个反直觉但正确的结果：<strong>没有证据，不等于通过，而是“待验证”</strong>。宁可显示琥珀色的问号，也不给一个没有实测支撑的绿灯。</p>
+
+    <h2 data-zh="三、方法：每一步都可复算" data-en="3. Method: every step is recomputable">三、方法：每一步都可复算</h2>
+    <ol>
+      <li data-zh="<strong>只读当前启用路。</strong>从 MPD 配置里解析 enabled=yes 的 audio_output，把 hw:PCH,0 这样的设备名映射到 /proc/asound/&amp;lt;card&amp;gt;/pcm&amp;lt;N&amp;gt;p/sub&amp;lt;S&amp;gt;/hw_params。多卡不再读错。" data-en="<strong>Read only the active output.</strong> Parse the enabled=yes audio_output from MPD config and map a device name like hw:PCH,0 to /proc/asound/&amp;lt;card&amp;gt;/pcm&amp;lt;N&amp;gt;p/sub&amp;lt;S&amp;gt;/hw_params. No more wrong-card reads."><strong>只读当前启用路。</strong>从 MPD 配置里解析 enabled=yes 的 audio_output，把 <code>hw:PCH,0</code> 这样的设备名映射到 <code>/proc/asound/&lt;card&gt;/pcm&lt;N&gt;p/sub&lt;S&gt;/hw_params</code>。多卡不再读错。</li>
+      <li data-zh="<strong>源规格与实测规格逐项对照。</strong>status.audio 给出源采样率/位深/声道，hw_params 给出声卡实际值。一致且无重采样才可能直通；采样率不符判 resample，多声道降混判 downmix，ReplayGain 开启则明确标注非严格直通。" data-en="<strong>Compare source spec against measured spec, field by field.</strong> status.audio gives source rate/bits/channels, hw_params gives actual card values. Direct path is possible only when they match with no resampling; rate mismatch is resample, channel drop is downmix, and ReplayGain is explicitly labelled not-strictly-direct."><strong>源规格与实测规格逐项对照。</strong>status.audio 给出源采样率/位深/声道，hw_params 给出声卡实际值。一致且无重采样才可能直通；采样率不符判 resample，多声道降混判 downmix，ReplayGain 开启则明确标注非严格直通。</li>
+      <li data-zh="<strong>全程留证并导出。</strong>新增 GET /api/signal-chain 证据快照，带时间戳、原始 status.audio、原始 hw_params 文本、启用输出与最终判定，并支持 ?format=csv 导出。任何人拿去可复算。" data-en="<strong>Log and export everything.</strong> A new GET /api/signal-chain snapshot carries a timestamp, raw status.audio, raw hw_params text, the active output and the verdict, with ?format=csv export. Anyone can recompute."><strong>全程留证并导出。</strong>新增 <code>GET /api/signal-chain</code> 证据快照，带时间戳、原始 status.audio、原始 hw_params 文本、启用输出与最终判定，并支持 <code>?format=csv</code> 导出。任何人拿去可复算。</li>
+    </ol>
+
+    <table>
+      <thead><tr><th data-zh="状态" data-en="State">状态</th><th data-zh="证据" data-en="Evidence">证据</th><th data-zh="判定" data-en="Verdict">判定</th></tr></thead>
+      <tbody>
+        <tr><td data-zh="停播 / 输出未打开" data-en="Stopped / output closed">停播 / 输出未打开</td><td>hw_params = null</td><td><b data-zh="待验证 · verified:false" data-en="Unverified · verified:false">待验证 · verified:false</b></td></tr>
+        <tr><td data-zh="播放（实测）" data-en="Playing (measured)">播放（实测）</td><td>hw:PCH,0 · S16_LE @ 44.1 kHz · 2 ch</td><td><b data-zh="源 44100:16:2 一致 → bit-perfect · verified:true" data-en="Source 44100:16:2 matches → bit-perfect · verified:true">源 44100:16:2 一致 → bit-perfect · verified:true</b></td></tr>
+        <tr><td data-zh="源 44.1k / 声卡 48k" data-en="Source 44.1k / card 48k">源 44.1k / 声卡 48k</td><td data-zh="采样率不一致" data-en="Rate mismatch">采样率不一致</td><td><b data-zh="重采样 · resample" data-en="Resampled · resample">重采样 · resample</b></td></tr>
+      </tbody>
+    </table>
+
+    <div class="note note--verified">
+      <b data-zh="已验证 · 2026-11-20" data-en="VERIFIED · 2026-11-20">已验证 · 2026-11-20</b>
+      <span data-zh="以上三步已在 T1S 参考机上线：停播显示「待验证」；播放时只读当前输出实测 hw_params，读到 hw:PCH,0 的 S16_LE @ 44.1 kHz，与源 44100:16:2 一致才翻转为 bit-perfect。播放器已恢复原状态。" data-en="All three steps are live on the T1S reference unit: stopped shows 'unverified'; during playback only the active output's measured hw_params is read — hw:PCH,0 at S16_LE / 44.1 kHz, matching the 44100:16:2 source before flipping to bit-perfect. The player was restored to its prior state.">以上三步已在 T1S 参考机上线：停播显示“待验证”；播放时只读当前输出实测 hw_params，读到 <code>hw:PCH,0</code> 的 S16_LE @ 44.1 kHz，与源 <code>44100:16:2</code> 一致才翻转为 bit-perfect。播放器已恢复原状态。</span>
+    </div>
+
+    <h2 data-zh="四、边界：还不够格叫终点" data-en="4. Boundaries: not yet the finish line">四、边界：还不够格叫终点</h2>
+    <p data-zh="这是第一步，不是答案。三点如实说明：其一，DDC 尚未到货，I²S / USB 与板载卡的真实差异还没跑过对比实验——到货前后各测一遍，才是这篇的续集。其二，插上 DDC 后 policy=one 仍会锁在板载、不自动启用也不弹窗，这个坑按既定节奏等实测再动。其三，camilladsp 路径本身就不是 bit-perfect，方法已把它明确归类，不冒充直通。" data-en="This is a first step, not an answer. Three honest caveats: one, the DDC has not arrived, so no before/after comparison of I²S / USB versus onboard has been run — that is this paper's sequel. Two, with the DDC plugged in, policy=one still pins the onboard card without auto-enabling or prompting; we leave that until measurement, as agreed. Three, the CamillaDSP path is itself not bit-perfect, and the method classifies it as such rather than passing it off as direct.">这是第一步，不是答案。三点如实说明：其一，DDC 尚未到货，I²S / USB 与板载卡的真实差异还没跑过对比实验——到货前后各测一遍，才是这篇的续集。其二，插上 DDC 后 policy=one 仍会锁在板载、不自动启用也不弹窗，这个坑按既定节奏等实测再动。其三，CamillaDSP 路径本身就不是 bit-perfect，方法已把它明确归类，不冒充直通。</p>
+    <blockquote data-zh="「bit-perfect 修的是『说的能不能对』；核心价值建的是『说的能不能信』。本篇属于前者。" data-en="'Bit-perfect fixes whether what we say is correct; core value builds whether what we say is trustworthy. This paper belongs to the former.'">“bit-perfect 修的是‘说的能不能对’；核心价值建的是‘说的能不能信’。本篇属于前者。”<small data-zh="— 工作室方法论笔记" data-en="— Studio method note">— 工作室方法论笔记</small></blockquote>
+  </article>
+
+  <div class="wrap art-foot">
+    <a class="btn btn--primary" href="../#research" data-zh="返回工作室 · 深度研究" data-en="Back to Studio · Research">返回工作室 · 深度研究</a>
+    <a class="btn btn--ghost" href="acoustid-target-mismatch.html" data-zh="下一篇：AcoustID 的目标错配 →" data-en="Next: AcoustID's target mismatch →">下一篇：AcoustID 的目标错配 →</a>
+  </div>
+</main>
+
+<footer><div class="wrap">© <span id="year"></span> 吾爱Music · <span data-zh="把功能做成证据" data-en="Turning features into evidence">把功能做成证据</span></div></footer>
+<script src="article.js"></script>
+</body>
+</html>

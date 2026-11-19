@@ -1,0 +1,35 @@
+{
+  "_note": "发文机制：复制 articles/_template.html 写一篇新文章，然后在本数组最前面追加一条，字段照抄。工作室页会自动读取本清单渲染文章列表。date 用 YYYY-MM-DD，file 填相对于本目录的文件名。",
+  "articles": [
+    {
+      "id": "signal-chain-transparency",
+      "date": "2026-11-20",
+      "category": { "zh": "信号链透明", "en": "Signal Chain" },
+      "title": {
+        "zh": "白皮书 01：把 bit-perfect 从「声明」变成「证据」",
+        "en": "Whitepaper 01: Turning bit-perfect from a claim into evidence"
+      },
+      "dek": {
+        "zh": "一次功能真实性审计，如何逼出一个可复算的信号链判定方法。",
+        "en": "How a feature-authenticity audit forced a reproducible signal-chain method."
+      },
+      "file": "signal-chain-transparency.html",
+      "tags": ["bit-perfect", "hw_params", "MPD", "ALSA"]
+    },
+    {
+      "id": "acoustid-target-mismatch",
+      "date": "2026-11-20",
+      "category": { "zh": "曲库智能化", "en": "Library Intelligence" },
+      "title": {
+        "zh": "中文曲库刮削为什么难：AcoustID 的目标错配",
+        "en": "Why Chinese-library tagging is hard: AcoustID's target mismatch"
+      },
+      "dek": {
+        "zh": "不是没源，是文本脏加缺少交叉验证——以及一条本地数据飞轮的路线。",
+        "en": "Not a shortage of sources, but dirty text and no cross-checks — and a local data-flywheel route."
+      },
+      "file": "acoustid-target-mismatch.html",
+      "tags": ["AcoustID", "元数据", "数据飞轮", "合规"]
+    }
+  ]
+}

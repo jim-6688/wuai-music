@@ -173,6 +173,30 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
 .bounds li{margin:8px 0}
 .bounds .soft{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);color:var(--muted);font-size:13px}
 
+/* 深度研究：判断摘录 */
+.rnotes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.rnote{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px}
+.rnote__k{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--brand)}
+.rnote h3{margin:9px 0 8px;font-size:17px;line-height:1.4}
+.rnote p{margin:0;color:var(--fg2);font-size:13.6px}
+.rnote__go{display:inline-block;margin-top:12px;font-size:12.5px;color:var(--brand2);font-weight:700}
+
+/* 研究文章列表（由 articles/index.json 驱动） */
+.plist{display:grid;gap:12px;margin-top:14px}
+.pcard{display:flex;gap:20px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);
+  border-radius:18px;padding:20px 24px;transition:border-color .15s,transform .15s}
+.pcard:hover{border-color:var(--brand3);transform:translateY(-1px)}
+.pcard__date{flex:0 0 92px;font-size:12px;color:var(--muted);font-weight:700;padding-top:3px;
+  font-variant-numeric:tabular-nums}
+.pcard__body{flex:1;min-width:0}
+.pcard__cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--brand2);
+  background:var(--wash);border-radius:999px;padding:3px 11px;margin-bottom:8px}
+.pcard h3{margin:0 0 6px;font-size:18px;line-height:1.35}
+.pcard p{margin:0;color:var(--fg2);font-size:13.6px}
+.pcard__arrow{flex:0 0 auto;color:var(--brand);font-size:20px;font-weight:700;align-self:center}
+.plist__empty{color:var(--muted);font-size:13.5px;padding:18px 0}
+.pub-note{margin-top:16px;font-size:12.5px;color:var(--muted)}
+
 /* 合作区 */
 .contact{background:linear-gradient(160deg,rgba(123,69,201,.08),rgba(249,244,240,0) 70%);
   border-top:1px solid var(--line);padding:78px 0}
@@ -198,8 +222,10 @@ footer a:hover{color:var(--brand)}
   .hero{padding:52px 0 44px}
   .bench{margin:0 auto;max-width:100%}
   .tiers,.dirs,.road{grid-template-columns:1fr}
-  .model,.value{grid-template-columns:1fr}
+  .model,.value,.rnotes{grid-template-columns:1fr}
   .sitebar .container{height:62px}
+  .pcard{flex-wrap:wrap;gap:10px}
+  .pcard__date{flex-basis:100%}
 }
 @media (max-width:520px){
   .container{width:calc(100% - 28px)}
@@ -219,6 +245,7 @@ footer a:hover{color:var(--brand)}
       <a href="#value" data-zh="核心价值" data-en="Core Value">核心价值</a>
       <a href="#model" data-zh="工作方式" data-en="How We Work">工作方式</a>
       <a href="#roadmap" data-zh="路线图" data-en="Roadmap">路线图</a>
+      <a href="#research" data-zh="深度研究" data-en="Research">深度研究</a>
       <a href="#contact" data-zh="联系" data-en="Contact">联系</a>
     </nav>
     <div class="langsw" role="group" aria-label="Language / 语言">
@@ -426,11 +453,58 @@ footer a:hover{color:var(--brand)}
     </div>
   </section>
 
-  <!-- 07 诚实边界 -->
+  <!-- 07 深度研究 -->
+  <section class="section" id="research">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="07 / 深度研究" data-en="07 / DEEP RESEARCH">07 / 深度研究</div>
+        <h2 data-zh="把讨论沉淀成方法，把方法写成文章" data-en="Turn discussion into method, method into papers">把讨论沉淀成方法，把方法写成文章</h2>
+        <p data-zh="下面每一条都是一轮追问后的判断，不是功能介绍。成型的会写成可复现的研究文章，持续追加。" data-en="Each item below is a judgment earned by sustained questioning, not a feature blurb. Mature ones become reproducible research papers, published continuously.">下面每一条都是一轮追问后的判断，不是功能介绍。成型的会写成可复现的研究文章，持续追加。</p>
+      </div>
+
+      <div class="rnotes">
+        <div class="rnote">
+          <span class="rnote__k" data-zh="架构判断" data-en="ARCHITECTURE">架构判断</span>
+          <h3 data-zh="数播像「重造」而非「升级」，根因是缺平台无关的核心层" data-en="The music server felt 'rebuilt', not 'upgraded' — the root cause is a missing platform-independent core">数播像「重造」而非「升级」，根因是缺平台无关的核心层</h3>
+          <p data-zh="数播不跑 Flutter，歌词/封面/元数据/心情只能复刻，真正共享的只有 HTTP API、MPD 协议与 MOOD 标签三处契约。一半重造是必然且正确（J1900 跑不动 Flutter、会破坏 bit-perfect），缺的另一半是当初埋在 lib/features 里、没沉淀成独立层的平台无关核心逻辑。" data-en="The server doesn't run Flutter; lyrics, covers, metadata and mood had to be re-implemented. Only three contracts are truly shared: the HTTP API, the MPD protocol and MOOD tags. Half the rebuild is inevitable and right (J1900 can't run Flutter and it would break bit-perfect); the missing half is platform-independent core logic that stayed buried in lib/features instead of becoming its own layer.">数播不跑 Flutter，歌词/封面/元数据/心情只能复刻，真正共享的只有 HTTP API、MPD 协议与 MOOD 标签三处契约。一半重造是必然且正确（J1900 跑不动 Flutter、会破坏 bit-perfect），缺的另一半是当初埋在 lib/features 里、没沉淀成独立层的平台无关核心逻辑。</p>
+        </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="道与术" data-en="STRATEGY">道与术</span>
+          <h3 data-zh="bit-perfect 修「说的能不能对」，核心价值建「说的能不能信」" data-en="Bit-perfect fixes 'is it correct'; core value builds 'is it trustworthy'">bit-perfect 修「说的能不能对」，核心价值建「说的能不能信」</h3>
+          <p data-zh="DDC 到货一测便知，是术；可验证 + 懂中文曲库才是值得长期投入的道。二者共享同一份数据底座——信号链实测数据与曲库语义数据，走同一个「采集 → 沉淀 → 导出」结构。低频高杠杆，不搞大干快上。" data-en="The DDC is a matter of technique — plug it in and measure. Verifiability plus fluency in Chinese music is the strategy worth long-term investment. Both share one data foundation — signal-chain measurements and library semantics through the same collect → deposit → export structure. Low frequency, high leverage, no big-bang rollout.">DDC 到货一测便知，是术；可验证 + 懂中文曲库才是值得长期投入的道。二者共享同一份数据底座——信号链实测数据与曲库语义数据，走同一个「采集 → 沉淀 → 导出」结构。低频高杠杆，不搞大干快上。</p>
+        </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="方法诊断" data-en="METHOD">方法诊断</span>
+          <h3 data-zh="AcoustID 匹配「同一段录音」，而整理要问「哪一首歌」" data-en="AcoustID matches 'the same recording'; curation asks 'which song'">AcoustID 匹配「同一段录音」，而整理要问「哪一首歌」</h3>
+          <p data-zh="中文曲库难，不是没源，是文本脏加缺少交叉验证——目标错配才是根因。路线是文本优先、指纹兜底：时长交叉验证淘汰误匹配、激进清洗文件名、先锁专辑再配曲目。已写成研究文章。" data-en="Chinese libraries are hard not for lack of sources, but dirty text plus no cross-checks — a target mismatch is the root cause. The route: text first, fingerprint as fallback — duration cross-checks reject false matches, aggressive filename cleaning, lock the album before tracks. Published as a research paper.">中文曲库难，不是没源，是文本脏加缺少交叉验证——目标错配才是根因。路线是文本优先、指纹兜底：时长交叉验证淘汰误匹配、激进清洗文件名、先锁专辑再配曲目。已写成研究文章。</p>
+          <a class="rnote__go" href="articles/acoustid-target-mismatch.html" data-zh="阅读研究文章 →" data-en="Read the paper →">阅读研究文章 →</a>
+        </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="信任机制" data-en="TRUST">信任机制</span>
+          <h3 data-zh="无证据不是通过，是「待验证」" data-en="No evidence is not a pass — it is 'unverified'">无证据不是通过，是「待验证」</h3>
+          <p data-zh="bit-perfect 只认 ALSA hw_params 实测，读不到就标琥珀色问号，绝不给无实测支撑的绿灯。这项判定已重做并上线，附 JSON / CSV 证据导出，任何人可复算。已写成白皮书。" data-en="Bit-perfect trusts only ALSA hw_params measurements; when unreadable it shows an amber question mark, never an unsupported green light. The verdict has been rebuilt and shipped with JSON / CSV evidence export for anyone to recompute. Published as a whitepaper.">bit-perfect 只认 ALSA hw_params 实测，读不到就标琥珀色问号，绝不给无实测支撑的绿灯。这项判定已重做并上线，附 JSON / CSV 证据导出，任何人可复算。已写成白皮书。</p>
+          <a class="rnote__go" href="articles/signal-chain-transparency.html" data-zh="阅读白皮书 01 →" data-en="Read whitepaper 01 →">阅读白皮书 01 →</a>
+        </div>
+      </div>
+
+      <div style="margin-top:44px">
+        <div class="shead" style="margin-bottom:8px">
+          <h2 style="font-size:clamp(22px,2.8vw,29px)" data-zh="研究文章" data-en="Publications">研究文章</h2>
+          <p data-zh="可复现的方法与实测报告，持续更新。" data-en="Reproducible methods and measurement reports, updated continuously.">可复现的方法与实测报告，持续更新。</p>
+        </div>
+        <div class="plist" id="pubList">
+          <div class="plist__empty" data-zh="正在载入文章清单…" data-en="Loading publication list…">正在载入文章清单…</div>
+        </div>
+        <p class="pub-note" data-zh="新文章上线后会自动出现在这里。" data-en="New papers appear here automatically once published.">新文章上线后会自动出现在这里。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 诚实边界 -->
   <section class="section" id="boundaries">
     <div class="container">
       <div class="shead">
-        <div class="no" data-zh="07 / 诚实边界" data-en="07 / HONEST BOUNDARIES">07 / 诚实边界</div>
+        <div class="no" data-zh="08 / 诚实边界" data-en="08 / HONEST BOUNDARIES">08 / 诚实边界</div>
         <h2 data-zh="把丑话说前面，免得又成纸老虎" data-en="Say the hard parts first, so we don't become paper tigers again">把丑话说前面，免得又成纸老虎</h2>
       </div>
       <div class="bounds">
@@ -501,6 +575,56 @@ footer a:hover{color:var(--brand)}
   try { saved = localStorage.getItem("wuai-studio-lang"); } catch(e){}
   setLang(saved === "en" ? "en" : "zh");
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ── 研究文章清单：读取 articles/index.json 动态渲染 ──
+  // 发文机制：在 articles/ 加一篇 html，并在 index.json 追加一条即可，本页无需改动。
+  var pubList = document.getElementById("pubList");
+  var currentLang = saved === "en" ? "en" : "zh";
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function renderPubs(list){
+    if (!pubList) return;
+    if (!list || !list.length){
+      pubList.innerHTML = '<div class="plist__empty" data-zh="研究文章整理中。" data-en="Papers in preparation.">研究文章整理中。</div>';
+      setLang(currentLang);
+      return;
+    }
+    var html = "";
+    for (var i=0;i<list.length;i++){
+      var a = list[i];
+      var zh = a.title && a.title.zh || "";
+      var en = a.title && a.title.en || zh;
+      var dzh = a.dek && a.dek.zh || "";
+      var den = a.dek && a.dek.en || dzh;
+      var czh = a.category && a.category.zh || "研究";
+      var cen = a.category && a.category.en || "Research";
+      html += '<a class="pcard" href="articles/' + esc(a.file) + '">' +
+        '<div class="pcard__date">' + esc(a.date) + '</div>' +
+        '<div class="pcard__body">' +
+          '<span class="pcard__cat" data-zh="' + esc(czh) + '" data-en="' + esc(cen) + '">' + esc(czh) + '</span>' +
+          '<h3 data-zh="' + esc(zh) + '" data-en="' + esc(en) + '">' + esc(zh) + '</h3>' +
+          '<p data-zh="' + esc(dzh) + '" data-en="' + esc(den) + '">' + esc(dzh) + '</p>' +
+        '</div>' +
+        '<span class="pcard__arrow" aria-hidden="true">→</span>' +
+      '</a>';
+    }
+    pubList.innerHTML = html;
+    // 新注入的节点带 data-zh/data-en，套用当前语言
+    nodes = document.querySelectorAll("[data-zh][data-en]");
+    setLang(currentLang);
+  }
+  // 语言切换时记录当前语言，供文章卡片重绘使用
+  for (var m=0;m<buttons.length;m++){
+    buttons[m].addEventListener("click", function(){ currentLang = this.getAttribute("data-lang"); });
+  }
+  if (window.fetch && pubList){
+    fetch("articles/index.json", {cache:"no-store"})
+      .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+      .then(function(d){ renderPubs(d && d.articles); })
+      .catch(function(){ renderPubs(null); });
+  } else {
+    renderPubs(null);
+  }
 })();
 </script>
 </body>
