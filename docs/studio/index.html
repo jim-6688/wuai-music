@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>吾爱高保真音频工作室 · 把功能做成证据</title>
+<meta name="description" content="吾爱高保真音频工作室：以 MPD + ALSA + CamillaDSP 真实链路与 40GB 中文曲库为实验台，主攻信号链透明、本地曲库智能化与 AI 智能声场，只产出可复现的方法与数据。中英双语。" />
+<meta name="theme-color" content="#f9f4f0" />
+<link rel="canonical" href="https://music.52ta.top/studio/" />
+<link rel="icon" type="image/png" href="assets/logo-v3.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="吾爱Music" />
+<meta property="og:title" content="吾爱高保真音频工作室 · 把功能做成证据" />
+<meta property="og:description" content="真实可测的播放链路 + 40GB 中文曲库 = 实验台。产出方法与数据，不产出功能截图。" />
+<meta property="og:url" content="https://music.52ta.top/studio/" />
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f9f4f0;--bg2:#f5efe9;--panel:#fffefd;--panel2:#fcf8f5;
+  --line:rgba(30,20,24,.09);--line2:rgba(30,20,24,.16);
+  --fg:#1c1719;--fg2:#514a4d;--muted:#8b8386;
+  --brand:#7b45c9;--brand2:#5b2c9e;--brand3:#9b6be0;
+  --wash:rgba(123,69,201,.075);--wash2:rgba(123,69,201,.13);
+  --gold:#a8761f;--goldwash:rgba(168,118,31,.10);
+  --good:#2f7d55;--goodwash:rgba(47,125,85,.09);
+  --mid:#9a6b1f;--midwash:rgba(154,107,31,.10);
+  --bad:#b4483f;--badwash:rgba(180,72,63,.09);
+  --grad:linear-gradient(135deg,#9b6be0 0%,#5b21b6 100%);
+  --cta:linear-gradient(135deg,#7c4bc4 0%,#4c1d95 100%);
+  --shadow:0 18px 50px rgba(61,32,92,.10);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%}
+.container{width:min(1120px,calc(100% - 40px));margin:0 auto}
+
+/* ── 顶栏 ── */
+.sitebar{position:sticky;top:0;z-index:50;background:rgba(249,244,240,.88);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.sitebar .container{height:70px;display:flex;align-items:center;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:.2px;white-space:nowrap}
+.logo img{width:26px;height:26px;border-radius:8px;display:block;box-shadow:0 4px 14px rgba(91,33,182,.28)}
+.logo small{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.08em}
+.nav{display:flex;gap:22px;margin-left:auto;font-size:13.5px;color:var(--fg2)}
+.nav a:hover{color:var(--brand)}
+.navcta{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;
+  border-radius:12px;background:var(--cta);color:#fff;font-size:13.5px;font-weight:650;
+  box-shadow:0 8px 20px rgba(91,33,182,.22)}
+.navcta:hover{filter:brightness(1.06)}
+.langsw{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--panel)}
+.langsw button{border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:700;
+  padding:7px 10px;cursor:pointer;line-height:1}
+.langsw button[aria-pressed="true"]{background:var(--brand);color:#fff}
+
+/* ── 首屏 ── */
+.hero{padding:74px 0 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-160px;top:-150px;width:640px;height:640px;
+  background:radial-gradient(circle,rgba(155,107,224,.16),transparent 68%);pointer-events:none}
+.hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;position:relative}
+.hero .container>*{min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;
+  background:var(--wash);border:1px solid var(--wash2);color:var(--brand2);
+  font-size:12px;font-weight:700;letter-spacing:.11em}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.18;letter-spacing:-.03em;margin:22px 0 18px;font-weight:800}
+h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:17.5px;color:var(--fg2);max-width:36em;margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;
+  border-radius:14px;font-weight:700;font-size:14.5px}
+.btn--primary{background:var(--cta);color:#fff;box-shadow:0 12px 28px rgba(91,33,182,.24)}
+.btn--primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn--ghost{border:1px solid var(--line2);background:var(--panel);color:var(--fg2)}
+.btn--ghost:hover{border-color:var(--brand3);color:var(--brand2)}
+.hero-note{margin-top:20px;font-size:12.5px;color:var(--muted)}
+
+/* 手术台卡 */
+.bench{max-width:340px;margin-left:auto;background:var(--panel);border:1px solid var(--line);
+  border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.bench__top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.bench__top b{font-size:14px}
+.bench__top span{font-size:11px;color:var(--muted)}
+.bench__row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 0;border-bottom:1px dashed var(--line)}
+.bench__row:last-child{border-bottom:0}
+.bench__row span{font-size:13px;color:var(--fg2)}
+.bench__row b{font-size:13px;color:var(--brand2)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:7px}
+.dot--wait{background:var(--mid)}
+.bench__note{margin-top:12px;font-size:11.5px;color:var(--muted)}
+
+/* ── 通用区块 ── */
+.section{padding:72px 0;border-top:1px solid var(--line)}
+.shead{max-width:760px;margin-bottom:34px}
+.shead .no{font-size:12px;letter-spacing:.2em;color:var(--brand);font-weight:800}
+.shead h2{font-size:clamp(27px,3.4vw,38px);line-height:1.25;letter-spacing:-.02em;margin:10px 0 12px}
+.shead p{color:var(--fg2);margin:0}
+.quote{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--brand);
+  border-radius:16px;padding:22px 24px;margin:0 0 34px;font-size:17px;color:var(--fg)}
+.quote small{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+
+/* 三级审计 */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tier{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+  box-shadow:0 6px 24px rgba(40,24,55,.035)}
+.tier__tag{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:800;padding:5px 12px;border-radius:999px}
+.tier--good .tier__tag{background:var(--goodwash);color:var(--good)}
+.tier--mid .tier__tag{background:var(--midwash);color:var(--mid)}
+.tier--bad .tier__tag{background:var(--badwash);color:var(--bad)}
+.tier h3{margin:14px 0 8px;font-size:19px}
+.tier p{margin:0 0 12px;color:var(--fg2);font-size:14px}
+.tier ul{margin:0;padding-left:18px;color:var(--fg2);font-size:13.5px}
+.tier li{margin:5px 0}
+.tier li b{color:var(--fg)}
+.verdict{margin-top:24px;background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.verdict b{color:var(--brand2)}
+.verdict p{margin:8px 0 0;color:var(--fg2);font-size:14px}
+
+/* 方向卡 */
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dir{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+  box-shadow:0 6px 24px rgba(40,24,55,.035);position:relative;overflow:hidden}
+.dir::after{content:"";position:absolute;right:-28px;top:-28px;width:96px;height:96px;border-radius:50%;
+  background:radial-gradient(circle,var(--wash2),transparent 70%)}
+.dir__no{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--brand)}
+.dir h3{font-size:18px;margin:10px 0 6px}
+.dir .dir__en{display:block;font-size:12px;color:var(--muted);font-weight:600;margin:-4px 0 12px}
+.dir p{margin:0;color:var(--fg2);font-size:13.8px}
+.dir .step{margin-top:14px;font-size:12px;color:var(--brand2);background:var(--wash);
+  border:1px solid var(--wash2);border-radius:10px;padding:9px 12px;display:block}
+
+/* 核心价值 */
+.value{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.vcard h3{margin:0 0 8px;font-size:20px}
+.vcard p{margin:0;color:var(--fg2);font-size:14.5px}
+.vcard .big{font-size:13px;letter-spacing:.12em;color:var(--brand);font-weight:800}
+.value-note{margin-top:18px;background:linear-gradient(120deg,var(--wash),transparent 80%);
+  border:1px solid var(--wash2);border-radius:16px;padding:18px 22px;font-size:14.5px;color:var(--fg2)}
+.value-note b{color:var(--brand2)}
+
+/* 工作室模式：条目网格 */
+.model{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mrow{display:flex;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.mrow .k{flex:0 0 42px;height:42px;border-radius:12px;background:var(--wash);color:var(--brand);
+  display:grid;place-items:center;font-weight:800;font-size:14px;border:1px solid var(--wash2)}
+.mrow h3{margin:0 0 5px;font-size:16.5px}
+.mrow p{margin:0;color:var(--fg2);font-size:13.8px}
+.criterion{margin-top:22px;background:var(--goodwash);border:1px solid rgba(47,125,85,.22);
+  border-radius:16px;padding:18px 22px;color:var(--fg2);font-size:14.5px}
+.criterion b{color:var(--good)}
+
+/* 路线图 */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
+.phase{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+.phase__n{font-size:12px;font-weight:800;color:var(--brand);letter-spacing:.14em}
+.phase h3{font-size:18px;margin:10px 0 8px}
+.phase p{margin:0;color:var(--fg2);font-size:13.8px}
+.phase__out{margin-top:14px;font-size:12.5px;color:var(--brand2);border-top:1px dashed var(--line);padding-top:12px}
+
+/* 边界 */
+.bounds{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.bounds h3{margin:0 0 14px;font-size:16px;color:var(--bad)}
+.bounds ul{margin:0;padding-left:20px;color:var(--fg2);font-size:14px}
+.bounds li{margin:8px 0}
+.bounds .soft{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);color:var(--muted);font-size:13px}
+
+/* 合作区 */
+.contact{background:linear-gradient(160deg,rgba(123,69,201,.08),rgba(249,244,240,0) 70%);
+  border-top:1px solid var(--line);padding:78px 0}
+.contactbox{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.contact h2{font-size:clamp(28px,4vw,42px);line-height:1.2;margin:12px 0 14px;letter-spacing:-.02em}
+.contact p{color:var(--fg2);margin:0 0 24px}
+.links{display:grid;gap:12px}
+.linkrow{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px 18px}
+.linkrow:hover{border-color:var(--brand3)}
+.linkrow b{font-size:15px}
+.linkrow small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.linkrow span{color:var(--brand);font-size:13px;font-weight:700;white-space:nowrap}
+
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}
+footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--brand)}
+
+@media (max-width:900px){
+  .nav{display:none}
+  .hero .container,.contactbox{grid-template-columns:1fr;gap:34px}
+  .hero{padding:52px 0 44px}
+  .bench{margin:0 auto;max-width:100%}
+  .tiers,.dirs,.road{grid-template-columns:1fr}
+  .model,.value{grid-template-columns:1fr}
+  .sitebar .container{height:62px}
+}
+@media (max-width:520px){
+  .container{width:calc(100% - 28px)}
+  .btn{width:100%}
+  .navcta{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="sitebar">
+  <div class="container">
+    <a class="logo" href="#top"><img src="assets/logo-v3.png" alt="吾爱音乐">吾爱Music <small data-zh="工作室" data-en="Studio">工作室</small></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#pain" data-zh="痛点论证" data-en="Evidence">痛点论证</a>
+      <a href="#directions" data-zh="三大方向" data-en="Directions">三大方向</a>
+      <a href="#value" data-zh="核心价值" data-en="Core Value">核心价值</a>
+      <a href="#model" data-zh="工作方式" data-en="How We Work">工作方式</a>
+      <a href="#roadmap" data-zh="路线图" data-en="Roadmap">路线图</a>
+      <a href="#contact" data-zh="联系" data-en="Contact">联系</a>
+    </nav>
+    <div class="langsw" role="group" aria-label="Language / 语言">
+      <button type="button" data-lang="zh" aria-pressed="true">中</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="navcta" href="#contact" data-zh="合作咨询" data-en="Contact Us">合作咨询</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="eyebrow" data-zh="吾爱高保真音频工作室 · WUAI HI-FI STUDIO" data-en="WUAI HI-FI AUDIO STUDIO · EST. 2026">吾爱高保真音频工作室 · WUAI HI-FI STUDIO</span>
+        <h1><span data-zh="把功能做成证据，" data-en="Turn features into evidence.">把功能做成证据，</span><br /><span class="hl" data-zh="把招牌做成真金。" data-en="Make every claim verifiable.">把招牌做成真金。</span></h1>
+        <p class="lead" data-zh="吾爱高保真音频工作室不另起炉灶——把一台真实可测的播放链路和 40GB 中文曲库当作实验台，只产出可复现的方法与数据。这里是吾爱音乐把'透明'从口号变成证据的地方。" data-en="The WuAi Hi-Fi Audio Studio is not a greenfield lab. We turn a real, measurable playback chain and a 40 GB Chinese music library into a test bench, and publish only reproducible methods and data. This is where 'transparency' stops being a slogan and becomes evidence.">吾爱高保真音频工作室不另起炉灶——把一台真实可测的播放链路和 40GB 中文曲库当作实验台，只产出可复现的方法与数据。这里是吾爱音乐把“透明”从口号变成证据的地方。</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#pain" data-zh="看痛点与论证" data-en="See the Evidence">看痛点与论证</a>
+          <a class="btn btn--ghost" href="../" data-zh="返回主站" data-en="Back to Main Site">返回主站</a>
+        </div>
+        <p class="hero-note" data-zh="工作室不是营销门面：产出是方法与数据，别人照着我们的方法能测出同样结果。" data-en="This is not a marketing facade: our output is methods and data, so anyone following our report can reproduce the result.">工作室不是营销门面：产出是方法与数据，别人照着我们的方法能测出同样结果。</p>
+      </div>
+      <div class="bench">
+        <div class="bench__top"><b data-zh="实验台 · 现成" data-en="TEST BENCH · READY">实验台 · 现成</b><span>wuai@T1S</span></div>
+        <div class="bench__row"><span data-zh="播放链路" data-en="Playback chain">播放链路</span><b>MPD 0.24 · ALSA · CamillaDSP</b></div>
+        <div class="bench__row"><span data-zh="中文曲库" data-en="Chinese library">中文曲库</span><b data-zh="40 GB · 1500+ 专辑" data-en="40 GB · 1500+ albums">40 GB · 1500+ 专辑</b></div>
+        <div class="bench__row"><span data-zh="硬件实测" data-en="Hardware probe">硬件实测</span><b>hw_params · I²S / USB</b></div>
+        <div class="bench__row"><span data-zh="USB DDC" data-en="USB DDC">USB DDC</span><b><span class="dot dot--wait"></span><span data-zh="待到货" data-en="Pending delivery">待到货</span></b></div>
+        <div class="bench__row"><span data-zh="测量麦克风" data-en="Measurement mic">测量麦克风</span><b><span class="dot dot--wait"></span><span data-zh="UMIK-1 · 规划中" data-en="UMIK-1 · Planned">UMIK-1 · 规划中</span></b></div>
+        <div class="bench__note" data-zh="重复使用的实验对象，不是从零采购。" data-en="Reusable test objects — not purchased from scratch.">重复使用的实验对象，不是从零采购。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 为什么存在 -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="01 / 为什么存在" data-en="01 / WHY WE EXIST">01 / 为什么存在</div>
+        <h2 data-zh="不另起炉灶，是把现有系统测量化" data-en="Not a new lab — an existing system, made measurable">不另起炉灶，是把现有系统测量化</h2>
+        <p data-zh="实验室和“从零搞研发”最大的区别，是已经有研究者拿不到的实验对象：一条真实可测的播放链路，和一个 40GB 的真实中文曲库。别人要搭这套台子得先买设备、攒数据；我们现成。" data-en="What sets this studio apart from 'R&D from scratch' is that we already own what other researchers cannot easily get: a real, measurable playback chain and a 40 GB Chinese music library. Others must buy gear and accumulate data first. We already have both.">实验室和“从零搞研发”最大的区别，是已经有研究者拿不到的实验对象：一条真实可测的播放链路，和一个 40GB 的真实中文曲库。别人要搭这套台子得先买设备、攒数据；我们现成。</p>
+      </div>
+      <div class="quote">
+        <span data-zh="“咱们做的功能准确吗？都是真实专业的吗？还是纸老虎？”" data-en="&ldquo;Are our features accurate? Are they truly professional? Or are they paper tigers?&rdquo;">“咱们做的功能准确吗？都是真实专业的吗？还是纸老虎？”</span>
+        <small data-zh="工作室的起点，是一次不哄不贬的功能真实性审计。" data-en="The studio begins with an honest, no-sugarcoating audit of feature authenticity.">工作室的起点，是一次不哄不贬的功能真实性审计。</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 痛点与论证 -->
+  <section class="section" id="pain">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="02 / 主攻痛点与论证" data-en="02 / PAIN POINTS & EVIDENCE">02 / 主攻痛点与论证</div>
+        <h2 data-zh="把功能拆成三级，用证据说话" data-en="Three tiers, judged by evidence">把功能拆成三级，用证据说话</h2>
+        <p data-zh="不吹牛，也不一棍子打死。下面每一条都对着代码和实测，而不是功能列表。" data-en="No hype, no blanket dismissal. Every line below is checked against code and measurement, not a feature list.">不吹牛，也不一棍子打死。下面每一条都对着代码和实测，而不是功能列表。</p>
+      </div>
+      <div class="tiers">
+        <div class="tier tier--good">
+          <span class="tier__tag" data-zh="真金 · 有硬证据" data-en="REAL GOLD · HARD EVIDENCE">真金 · 有硬证据</span>
+          <h3 data-zh="对内的基建" data-en="Internal foundation">对内的基建</h3>
+          <p data-zh="真实实现，敢亮细节。" data-en="Real implementations; details we dare to show.">真实实现，敢亮细节。</p>
+          <ul>
+            <li data-zh="曲库落盘：1540 文件零缺失、大小全对" data-en="Library on disk: 1,540 files, zero missing">曲库落盘：1540 文件零缺失、大小全对</li>
+            <li data-zh="硬件 ID：整机指纹，换配件跟着变" data-en="Hardware ID: whole-machine fingerprint, changes with parts">硬件 ID：整机指纹，换配件跟着变</li>
+            <li data-zh="感知音量曲线、密码恢复出厂" data-en="Perceptual volume curve, password-guarded factory reset">感知音量曲线、密码恢复出厂</li>
+            <li data-zh="DSD / ReplayGain 标注诚实，非位流不冒充" data-en="Honest DSD / ReplayGain labels; no false bit-perfect claims">DSD / ReplayGain 标注诚实，非位流不冒充</li>
+          </ul>
+        </div>
+        <div class="tier tier--mid">
+          <span class="tier__tag" data-zh="半真 · 证据链有洞" data-en="HALF-REAL · GAPS IN EVIDENCE">半真 · 证据链有洞</span>
+          <h3 data-zh="解析真，来源不稳" data-en="Real parsing, fragile sources">解析真，来源不稳</h3>
+          <p data-zh="实现是真的，但依赖非官方接口。" data-en="Implementation is real, but relies on unofficial sources.">实现是真的，但依赖非官方接口。</p>
+          <ul>
+            <li data-zh="逐字歌词：真移植，但多源随时失效" data-en="Word-by-word lyrics: real parsing, sources can vanish">逐字歌词：真移植，但多源随时失效</li>
+            <li data-zh="封面刮削：同上，来源不稳定" data-en="Cover art: same — unstable sources">封面刮削：同上，来源不稳定</li>
+            <li data-zh="CamillaDSP：真实现，但明确非 bit-perfect" data-en="CamillaDSP: real, but explicitly not bit-perfect">CamillaDSP：真实现，但明确非 bit-perfect</li>
+          </ul>
+        </div>
+        <div class="tier tier--bad">
+          <span class="tier__tag" data-zh="纸老虎 · 名不副实" data-en="PAPER TIGER · NAME WITHOUT SUBSTANCE">纸老虎 · 名不副实</span>
+          <h3 data-zh="对外的招牌" data-en="The outward claims">对外的招牌</h3>
+          <p data-zh="喊得最响的，恰恰最经不起追问。" data-en="The loudest claims are the ones that collapse under scrutiny.">喊得最响的，恰恰最经不起追问。</p>
+          <ul>
+            <li data-zh="bit-perfect 假绿灯：读不到硬件证据就默认判直通" data-en="Fake bit-perfect green light: defaults to 'direct' with no hardware evidence">bit-perfect 假绿灯：读不到硬件证据就默认判直通</li>
+            <li data-zh="“智能”心情分类：实为关键词打分，曲库零真标签" data-en="&ldquo;Smart&rdquo; mood: keyword scoring; zero real tags in library">“智能”心情分类：实为关键词打分，曲库零真标签</li>
+            <li data-zh="六源/四源数字好看，但来源随时被收走" data-en="Six-source / four-source numbers look good, but sources can be revoked">六源/四源数字好看，但来源随时被收走</li>
+            <li data-zh="硬件 ID “授权激活”：ID 真，激活未落地" data-en="Hardware-ID activation: ID real, activation not shipped">硬件 ID “授权激活”：ID 真，激活未落地</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">
+        <b data-zh="核心判断：对外的招牌基本是纸老虎，对内的基建基本是真金——错位才是痛心的根源。" data-en="Core judgment: the outward signage is mostly paper tiger; the internal foundation is mostly real gold. The mismatch is the real pain.">核心判断：对外的招牌基本是纸老虎，对内的基建基本是真金——错位才是痛心的根源。</b>
+        <p data-zh="去纸老虎化第一步很具体：假绿灯改“待验证”而不是默认绿、hw_params 只读当前启用的那一路、把信号链实测数据沉淀成可导出的证据。让“透明”从口号变成能亮出来的东西。" data-en="The first de-tigerization step is concrete: change the fake green light to 'unverified', read hw_params only from the active output, and export signal-chain measurements as evidence. Make 'transparency' something you can actually show.">去纸老虎化第一步很具体：假绿灯改“待验证”而不是默认绿、hw_params 只读当前启用的那一路、把信号链实测数据沉淀成可导出的证据。让“透明”从口号变成能亮出来的东西。</p>
+        <p style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)"><b style="color:var(--good)" data-zh="✓ 已落地（2026-11-20）" data-en="✓ SHIPPED (2026-11-20)">✓ 已落地（2026-11-20）</b><span data-zh="：上面三步已在 T1S 参考机上线——无硬件证据显示“待验证”、播放时只读当前输出 hw_params（实测 S16_LE @ 44.1 kHz）、并提供 /api/signal-chain 证据快照与 CSV 导出，任何人可复算。信号链透明白皮书有了第一份真实数据源。" data-en=": all three are live on the T1S reference unit — no hardware evidence shows 'unverified', playback reads only the active output's hw_params (measured S16_LE @ 44.1 kHz), and a /api/signal-chain evidence snapshot with CSV export is available for anyone to recompute. The transparency whitepaper now has its first real data source.">：上面三步已在 T1S 参考机上线——无硬件证据显示“待验证”、播放时只读当前输出 hw_params（实测 S16_LE @ 44.1 kHz）、并提供 /api/signal-chain 证据快照与 CSV 导出，任何人可复算。信号链透明白皮书有了第一份真实数据源。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 三大方向 -->
+  <section class="section" id="directions">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="03 / 三大主攻方向" data-en="03 / THREE RESEARCH DIRECTIONS">03 / 三大主攻方向</div>
+        <h2 data-zh="文件 → 比特 → 听觉，一条链" data-en="File → Bits → Hearing: one chain">文件 → 比特 → 听觉，一条链</h2>
+        <p data-zh="三个方向不是三个项目，是同一条信号链上的三段。都有现成基础，不是从零起。" data-en="The three directions are not three projects but three segments of one chain. Each builds on existing foundations, not zero.">三个方向不是三个项目，是同一条信号链上的三段。都有现成基础，不是从零起。</p>
+      </div>
+      <div class="dirs">
+        <div class="dir">
+          <div class="dir__no">DIRECTION 01</div>
+          <h3 data-zh="AI + 智能声场" data-en="AI + Smart Sound Field">AI + 智能声场</h3>
+          <span class="dir__en" data-zh="最远：需测量麦与听感验证" data-en="Farthest: needs measurement mic & listening validation">最远：需测量麦与听感验证</span>
+          <p data-zh="用测量麦克风采集房间响应，自动生成 PEQ 灌进 CamillaDSP，做可复现的自动房间校正。不自研大算法，切入点是“测量 → 生成 PEQ → 灌 DSP”工程闭环。" data-en="Capture room response with a measurement mic, auto-generate PEQ into CamillaDSP, and deliver reproducible room correction. No homegrown big models — the entry point is a measure → generate → load engineering loop.">用测量麦克风采集房间响应，自动生成 PEQ 灌进 CamillaDSP，做可复现的自动房间校正。不自研大算法，切入点是“测量 → 生成 PEQ → 灌 DSP”工程闭环。</p>
+          <span class="step" data-zh="切入点：测量 → PEQ → CamillaDSP" data-en="Entry: measure → PEQ → CamillaDSP">切入点：测量 → PEQ → CamillaDSP</span>
+        </div>
+        <div class="dir">
+          <div class="dir__no">DIRECTION 02</div>
+          <h3 data-zh="bit-perfect 与信号链透明" data-en="Bit-perfect & Signal-Chain Transparency">bit-perfect 与信号链透明</h3>
+          <span class="dir__en" data-zh="最先：成本最低、最能立信誉" data-en="First: cheapest, strongest credibility">最先：成本最低、最能立信誉</span>
+          <p data-zh="把 analyze_playback 从“声明”变“证据”：每步采样落盘——源规格、解码、重采样、hw_params 实测、时间戳；无证据标“待验证”，导出 JSON / CSV 任何人可复算。DDC 到货前后各测一遍，就是现成对比实验。" data-en="Turn analyze_playback from a claim into evidence: log every stage — source spec, decode, resampling, measured hw_params, timestamps; mark 'unverified' without evidence, export JSON / CSV anyone can recompute. Measure before and after the DDC arrives for a ready-made comparison.">把 analyze_playback 从“声明”变“证据”：每步采样落盘——源规格、解码、重采样、hw_params 实测、时间戳；无证据标“待验证”，导出 JSON / CSV 任何人可复算。DDC 到货前后各测一遍，就是现成对比实验。</p>
+          <span class="step" data-zh="第一份产出：《信号链透明白皮书》" data-en="First deliverable: Signal-Chain Transparency Whitepaper">第一份产出：《信号链透明白皮书》</span>
+        </div>
+        <div class="dir">
+          <div class="dir__no">DIRECTION 03</div>
+          <h3 data-zh="本地曲库智能化整理" data-en="Smart Local Library Curation">本地曲库智能化整理</h3>
+          <span class="dir__en" data-zh="居中：产品价值最快" data-en="Middle: fastest product value">居中：产品价值最快</span>
+          <p data-zh="文本优先、指纹兜底：时长交叉验证淘汰误匹配，激进清洗脏文件名，先锁专辑再配曲目；每确认对一首，就沉淀一条“指纹/时长/文件名 → 元数据”的本地映射。识别对一首，数据飞轮长一格。" data-en="Text first, fingerprint as fallback: use duration cross-checks to reject false matches, aggressively clean dirty filenames, lock the album before tracks. Every confirmed match deposits a local 'fingerprint / duration / filename → metadata' mapping. One song recognized, one notch on the data flywheel.">文本优先、指纹兜底：时长交叉验证淘汰误匹配，激进清洗脏文件名，先锁专辑再配曲目；每确认对一首，就沉淀一条“指纹/时长/文件名 → 元数据”的本地映射。识别对一首，数据飞轮长一格。</p>
+          <span class="step" data-zh="自有资产：中文曲库映射数据集" data-en="Owned asset: Chinese-library mapping dataset">自有资产：中文曲库映射数据集</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 核心价值 -->
+  <section class="section" id="value">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="04 / 核心价值" data-en="04 / CORE VALUE">04 / 核心价值</div>
+        <h2 data-zh="可验证 + 懂中文曲库" data-en="Verifiable + Fluent in Chinese Music">可验证 + 懂中文曲库</h2>
+        <p data-zh="不是两个项目，是一份数据资产的两面。Roon 与 AcoustID 都栽过的地方，恰是我们的切入点。" data-en="Not two projects — two faces of one data asset. Exactly where Roon and AcoustID stumble is our entry point.">不是两个项目，是一份数据资产的两面。Roon 与 AcoustID 都栽过的地方，恰是我们的切入点。</p>
+      </div>
+      <div class="value">
+        <div class="vcard">
+          <span class="big">01 / VERIFIABLE</span>
+          <h3 data-zh="可验证 = 信号链透明" data-en="Verifiable = Signal-chain transparency">可验证 = 信号链透明</h3>
+          <p data-zh="不是“我说我 bit-perfect”，是把实测数据亮出来、可导出、可复现。别人不敢亮，我们敢——这本身就是产品。" data-en="Not 'we say we're bit-perfect', but publishing measured data that is exportable and reproducible. Others won't show theirs; we will — that itself is the product.">不是“我说我 bit-perfect”，是把实测数据亮出来、可导出、可复现。别人不敢亮，我们敢——这本身就是产品。</p>
+        </div>
+        <div class="vcard">
+          <span class="big">02 / CHINESE LIBRARY</span>
+          <h3 data-zh="懂中文曲库" data-en="Fluent in Chinese music">懂中文曲库</h3>
+          <p data-zh="谁把中文歌“整理对一首、沉淀一条映射”跑起来，谁就有一份买不来、随时间增值的资产。别人买得到接口，买不到积累。" data-en="Whoever gets one Chinese song 'right and deposited' running has an asset money can't buy and time only grows. Others can buy APIs; they can't buy accumulation.">谁把中文歌“整理对一首、沉淀一条映射”跑起来，谁就有一份买不来、随时间增值的资产。别人买得到接口，买不到积累。</p>
+        </div>
+      </div>
+      <div class="value-note" data-zh="一份底座，两面价值：信号链实测数据 + 曲库语义数据，共享同一个“采集 → 沉淀 → 导出”的结构。DDC 修的是“说的能不能对”，核心价值建的是“说的能不能信”。" data-en="One foundation, two values: signal-chain measurements and library semantics share one collect → deposit → export structure. The DDC fixes 'is what we say correct'; the core value builds 'is what we say trustworthy'.">一份底座，两面价值：信号链实测数据 + 曲库语义数据，共享同一个“采集 → 沉淀 → 导出”的结构。DDC 修的是“说的能不能对”，核心价值建的是“说的能不能信”。</div>
+    </div>
+  </section>
+
+  <!-- 05 工作室模式 -->
+  <section class="section" id="model">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="05 / 专业工作室模式" data-en="05 / HOW A PROFESSIONAL STUDIO WORKS">05 / 专业工作室模式</div>
+        <h2 data-zh="用研究工作室的方式建设，不是堆功能" data-en="Built like a research studio, not a feature pile">用研究工作室的方式建设，不是堆功能</h2>
+        <p data-zh="产出是方法和数据，不是功能截图。判据只有一条：别人照着你的报告、用同样的设备，能测出同样的结果。" data-en="Output is methods and data, not feature screenshots. One criterion: following your report on the same gear, anyone can reproduce the result.">产出是方法和数据，不是功能截图。判据只有一条：别人照着你的报告、用同样的设备，能测出同样的结果。</p>
+      </div>
+      <div class="model">
+        <div class="mrow"><div class="k">01</div><div><h3 data-zh="现成实验台" data-en="Ready-made test bench">现成实验台</h3><p data-zh="拿真实播放链路和真实曲库当实验对象；设备到货一插就能测，不需另起采购。" data-en="Use the real playback chain and library as subjects; plug in new gear and measure — no new procurement cycle.">拿真实播放链路和真实曲库当实验对象；设备到货一插就能测，不需另起采购。</p></div></div>
+        <div class="mrow"><div class="k">02</div><div><h3 data-zh="测量化、证据化" data-en="Measure it, evidence it">测量化、证据化</h3><p data-zh="每一步采样都落盘，无证据就标“待验证”，不冒充直通；读不到硬件参数不默认绿灯。" data-en="Log every stage; mark 'unverified' without evidence, never claim direct path; no green light when hardware data is missing.">每一步采样都落盘，无证据就标“待验证”，不冒充直通；读不到硬件参数不默认绿灯。</p></div></div>
+        <div class="mrow"><div class="k">03</div><div><h3 data-zh="可复现的产出" data-en="Reproducible output">可复现的产出</h3><p data-zh="白皮书、实测数据集、结构化方法，任何人拿去可复算；不是功能介绍，也不是营销包装。" data-en="Whitepapers, measurement datasets, structured methods — anyone can recompute. Not a feature brochure, not marketing.">白皮书、实测数据集、结构化方法，任何人拿去可复算；不是功能介绍，也不是营销包装。</p></div></div>
+        <div class="mrow"><div class="k">04</div><div><h3 data-zh="低频高杠杆的节奏" data-en="Low-frequency, high-leverage cadence">低频高杠杆的节奏</h3><p data-zh="不大干快上：采集 / 沉淀 / 导出结构建一次，之后每次播放、整理、确认都自动喂数据。" data-en="No big-bang rollout: build the collect / deposit / export structure once, then every play, curation and confirmation feeds it.">不大干快上：采集 / 沉淀 / 导出结构建一次，之后每次播放、整理、确认都自动喂数据。</p></div></div>
+      </div>
+      <div class="criterion" data-zh="立得住的判据：产出是方法和数据。把现有功能包装成“实验室成果”是营销；别人照你的报告能复现，才是研究。" data-en="The bar: output must be methods and data. Packaging existing features as 'lab results' is marketing; a reproducible report is research.">立得住的判据：产出是方法和数据。把现有功能包装成“实验室成果”是营销；别人照你的报告能复现，才是研究。</div>
+    </div>
+  </section>
+
+  <!-- 06 路线图 -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="06 / 建设路线图" data-en="06 / ROADMAP">06 / 建设路线图</div>
+        <h2 data-zh="先立信誉，再做价值，最后攻声场" data-en="Credibility first, value next, sound field last">先立信誉，再做价值，最后攻声场</h2>
+        <p data-zh="从最硬、最便宜、最经不起追问的地方下第一锹。" data-en="Start where the evidence is hardest, the cost lowest, and the scrutiny fiercest.">从最硬、最便宜、最经不起追问的地方下第一锹。</p>
+      </div>
+      <div class="road">
+        <div class="phase">
+          <div class="phase__n">PHASE 01 · NOW</div>
+          <h3 data-zh="信号链透明" data-en="Signal-chain transparency">信号链透明</h3>
+          <p data-zh="把 analyze_playback 改成证据链：逐段落盘、无证据标待验证、导出结构化数据；先修假绿灯与 hw_params 只读当前路。" data-en="Turn analyze_playback into an evidence chain: stage-by-stage logging, 'unverified' without evidence, structured exports; fix the fake green light and read the active output only.">把 analyze_playback 改成证据链：逐段落盘、无证据标待验证、导出结构化数据；先修假绿灯与 hw_params 只读当前路。</p>
+          <div class="phase__out" data-zh="产出：《信号链透明白皮书》 + JSON/CSV 数据集" data-en="Output: Transparency Whitepaper + JSON/CSV dataset">产出：《信号链透明白皮书》 + JSON/CSV 数据集</div>
+        </div>
+        <div class="phase">
+          <div class="phase__n">PHASE 02 · NEXT</div>
+          <h3 data-zh="曲库智能化" data-en="Library intelligence">曲库智能化</h3>
+          <p data-zh="跑通“清洗 + 时长校验”的最小闭环，用户确认喂进本地映射库，逐步养出别人买不到的中文曲库数据集。" data-en="Ship the minimal 'clean + duration-check' loop; confirmed matches feed a local mapping store, gradually growing a Chinese-library dataset money can't buy.">跑通“清洗 + 时长校验”的最小闭环，用户确认喂进本地映射库，逐步养出别人买不到的中文曲库数据集。</p>
+          <div class="phase__out" data-zh="产出：可复现整理方法 + 映射数据集" data-en="Output: reproducible curation method + mapping dataset">产出：可复现整理方法 + 映射数据集</div>
+        </div>
+        <div class="phase">
+          <div class="phase__n">PHASE 03 · LATER</div>
+          <h3 data-zh="AI 智能声场" data-en="AI smart sound field">AI 智能声场</h3>
+          <p data-zh="前两步跑顺后再上：UMIK-1 测房间响应，测量 → 生成 PEQ → 灌 CamillaDSP，配听感验证，不做自研大算法。" data-en="Only after the first two are smooth: UMIK-1 room response, measure → generate PEQ → load CamillaDSP, validated by listening — no homegrown big models.">前两步跑顺后再上：UMIK-1 测房间响应，测量 → 生成 PEQ → 灌 CamillaDSP，配听感验证，不做自研大算法。</p>
+          <div class="phase__out" data-zh="产出：房间校正方法与实测报告" data-en="Output: room-correction method + measurement report">产出：房间校正方法与实测报告</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 诚实边界 -->
+  <section class="section" id="boundaries">
+    <div class="container">
+      <div class="shead">
+        <div class="no" data-zh="07 / 诚实边界" data-en="07 / HONEST BOUNDARIES">07 / 诚实边界</div>
+        <h2 data-zh="把丑话说前面，免得又成纸老虎" data-en="Say the hard parts first, so we don't become paper tigers again">把丑话说前面，免得又成纸老虎</h2>
+      </div>
+      <div class="bounds">
+        <h3 data-zh="不碰这三样" data-en="Three things we won't touch">不碰这三样</h3>
+        <ul>
+          <li data-zh="流媒体授权：门槛在商务资质，谈不动，不在实验室射程内。" data-en="Streaming licenses: a business-credential barrier, out of a lab's range.">流媒体授权：门槛在商务资质，谈不动，不在实验室射程内。</li>
+          <li data-zh="自研大算法：声场那块用成熟测量 + PEQ 工程闭环，不做算法军备竞赛。" data-en="Homegrown big algorithms: sound field uses mature measurement + PEQ engineering, not an algorithm arms race.">自研大算法：声场那块用成熟测量 + PEQ 工程闭环，不做算法军备竞赛。</li>
+          <li data-zh="把“可插拔”当答案：拔得快不等于消除授权风险，只能止损。" data-en="Treating 'pluggable' as the answer: swap-ability limits loss but doesn't remove licensing risk.">把“可插拔”当答案：拔得快不等于消除授权风险，只能止损。</li>
+        </ul>
+        <div class="soft" data-zh="诚实代价：数据飞轮冷启动慢、头几个月覆盖率低；语义数据靠“用户确认”喂养，所以产品机制必须让人愿意确认——不能悄悄改库。" data-en="Honest costs: the data flywheel is slow to start, with low coverage at first; semantics are fed by 'user confirmation', so the product must make confirming worthwhile — never silently rewrite the library.">诚实代价：数据飞轮冷启动慢、头几个月覆盖率低；语义数据靠“用户确认”喂养，所以产品机制必须让人愿意确认——不能悄悄改库。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 联系 -->
+  <section class="contact" id="contact">
+    <div class="container contactbox">
+      <div>
+        <span class="eyebrow" data-zh="COLLABORATION" data-en="COLLABORATION">COLLABORATION</span>
+        <h2 data-zh="一起把招牌做成真金" data-en="Let's make the claim real">一起把招牌做成真金</h2>
+        <p data-zh="整机与测量设备合作、 whitepaper 联合署名、曲库数据集共建、定制研究，都可以从一次咨询开始。这里不提供安装包。" data-en="Hardware and measurement-gear partnerships, co-authored whitepapers, joint library datasets, custom research — all start with a conversation. No installers here.">整机与测量设备合作、whitepaper 联合署名、曲库数据集共建、定制研究，都可以从一次咨询开始。这里不提供安装包。</p>
+        <a class="btn btn--primary" href="https://qm.qq.com/q/9OqnRwgMD0" target="_blank" rel="noopener noreferrer" data-zh="合作咨询" data-en="Contact Us">合作咨询</a>
+      </div>
+      <div class="links">
+        <a class="linkrow" href="https://qm.qq.com/q/9OqnRwgMD0" target="_blank" rel="noopener noreferrer">
+          <span><b data-zh="QQ 粉丝群" data-en="QQ Community">QQ 粉丝群</b><small data-zh="聊器材、提需求、看实测更新" data-en="Gear talk, requests, measurement updates">聊器材、提需求、看实测更新</small></span><span data-zh="立即进入 →" data-en="Join →">立即进入 →</span>
+        </a>
+        <a class="linkrow" href="../shuabo/">
+          <span><b data-zh="吾爱Music 数播" data-en="WuAi Music Server">吾爱Music 数播</b><small data-zh="工作室的实验台原型机" data-en="The studio's reference test bench">工作室的实验台原型机</small></span><span data-zh="查看方案 →" data-en="View →">查看方案 →</span>
+        </a>
+        <a class="linkrow" href="../">
+          <span><b data-zh="吾爱音乐 App 官网" data-en="WuAi Music App">吾爱音乐 App 官网</b><small data-zh="手机 / 车机 / 电视 / Windows 客户端" data-en="Phone / Car / TV / Windows clients">手机 / 车机 / 电视 / Windows 客户端</small></span><span data-zh="返回主站 →" data-en="Back →">返回主站 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year"></span> 吾爱Music · <span data-zh="把功能做成证据" data-en="Turning features into evidence">把功能做成证据</span></span>
+    <span><a href="../" data-zh="App 官网" data-en="App Site">App 官网</a> · <a href="https://license.52ta.top/" target="_blank" rel="noopener noreferrer" data-zh="授权平台" data-en="Licensing">授权平台</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var nodes = document.querySelectorAll("[data-zh][data-en]");
+  var buttons = document.querySelectorAll(".langsw button");
+  function setLang(lang){
+    for (var i=0;i<nodes.length;i++){
+      var el = nodes[i];
+      var val = (lang === "en") ? el.getAttribute("data-en") : el.getAttribute("data-zh");
+      // data-en 里的实体(如 &ldquo;)需作为 HTML 注入；纯文本直接写 textContent
+      if (val && /&[a-z]+;|&#\d+;/i.test(val)) el.innerHTML = val;
+      else el.textContent = val;
+    }
+    document.documentElement.lang = (lang === "en") ? "en" : "zh-CN";
+    for (var j=0;j<buttons.length;j++)
+      buttons[j].setAttribute("aria-pressed", String(buttons[j].getAttribute("data-lang") === lang));
+    try { localStorage.setItem("wuai-studio-lang", lang); } catch(e){}
+  }
+  for (var k=0;k<buttons.length;k++){
+    buttons[k].addEventListener("click", function(){ setLang(this.getAttribute("data-lang")); });
+  }
+  var saved = null;
+  try { saved = localStorage.getItem("wuai-studio-lang"); } catch(e){}
+  setLang(saved === "en" ? "en" : "zh");
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

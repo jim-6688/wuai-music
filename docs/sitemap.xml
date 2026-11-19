@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 由 scripts/build_site_icons.py 生成。主页一个页面，功能区/下载区都是锚点
      （#features…）不单独收录；agent.md 是**给 AI Agent 看的安装说明**，
-     独立成页、要能被检索到，所以单独列一条。 -->
+     独立成页、要能被检索到；shuabo/ 是数播独立官网、studio/ 是音频工作室，
+     两者都单独收录。 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://music.52ta.top/</loc>
@@ -14,5 +15,17 @@
     <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://music.52ta.top/shuabo/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://music.52ta.top/studio/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

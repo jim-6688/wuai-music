@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>吾爱Music 数播 · 本地无损播放方案</title>
+<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、六源歌词与四源封面刮削，浏览器一页管理。面向硬件合作、渠道分销与定制开发。" />
+<meta name="theme-color" content="#f9f4f0" />
+<link rel="canonical" href="https://music.52ta.top/shuabo/" />
+<link rel="icon" type="image/png" href="assets/logo-v3.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="吾爱Music" />
+<meta property="og:title" content="吾爱Music 数播 · 本地无损播放方案" />
+<meta property="og:description" content="把曲库放进机器，把手机变成遥控器。无损直出、歌词封面自动刮削、专业设置一页管完。" />
+<meta property="og:url" content="https://music.52ta.top/shuabo/" />
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f9f4f0;--bg2:#f5efe9;--panel:#fffefd;--panel2:#fcf8f5;
+  --line:rgba(30,20,24,.09);--line2:rgba(30,20,24,.16);
+  --fg:#1c1719;--fg2:#514a4d;--muted:#8b8386;
+  --brand:#7b45c9;--brand2:#5b2c9e;--brand3:#9b6be0;
+  --wash:rgba(123,69,201,.075);--wash2:rgba(123,69,201,.13);
+  --grad:linear-gradient(135deg,#9b6be0 0%,#5b21b6 100%);
+  --cta:linear-gradient(135deg,#7c4bc4 0%,#4c1d95 100%);
+  --shadow:0 18px 50px rgba(61,32,92,.10);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%}
+.container{width:min(1120px,calc(100% - 40px));margin:0 auto}
+
+/* ── 顶栏 ── */
+.sitebar{
+  position:sticky;top:0;z-index:50;background:rgba(249,244,240,.86);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+}
+.sitebar .container{height:70px;display:flex;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:.2px;white-space:nowrap}
+.logo img{width:26px;height:26px;border-radius:8px;display:block;
+  box-shadow:0 4px 14px rgba(91,33,182,.28)}
+.logo small{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.08em}
+.nav{display:flex;gap:26px;margin-left:auto;font-size:14px;color:var(--fg2)}
+.nav a:hover{color:var(--brand)}
+.navcta{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:42px;padding:0 18px;border-radius:12px;background:var(--cta);
+  color:#fff;font-size:14px;font-weight:650;box-shadow:0 8px 20px rgba(91,33,182,.22);
+}
+.navcta:hover{filter:brightness(1.06)}
+
+/* ── 首屏 ── */
+.hero{padding:78px 0 64px;position:relative;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;right:-180px;top:-140px;width:620px;height:620px;
+  background:radial-gradient(circle,rgba(155,107,224,.16),transparent 68%);pointer-events:none;
+}
+.hero .container{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center;position:relative}
+.hero .container > *{min-width:0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;
+  background:var(--wash);border:1px solid var(--wash2);color:var(--brand2);
+  font-size:12px;font-weight:700;letter-spacing:.12em;
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+h1{
+  font-size:clamp(38px,5vw,60px);line-height:1.16;letter-spacing:-.03em;
+  margin:22px 0 18px;font-weight:800;
+}
+h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--fg2);max-width:34em;margin:0 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:52px;padding:0 24px;border-radius:14px;font-weight:700;font-size:15px;
+}
+.btn--primary{background:var(--cta);color:#fff;box-shadow:0 12px 28px rgba(91,33,182,.24)}
+.btn--primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn--ghost{border:1px solid var(--line2);background:var(--panel);color:var(--fg2)}
+.btn--ghost:hover{border-color:var(--brand-line);color:var(--brand2)}
+.hero-note{margin-top:20px;font-size:13px;color:var(--muted)}
+
+/* 真机截图 */
+.hero-shot{max-width:318px;margin-left:auto}
+.hero-shot img{
+  display:block;width:100%;border-radius:26px;border:7px solid #18121e;
+  box-shadow:0 30px 70px rgba(32,18,46,.30);background:#18121e;
+}
+.hero-shot small{display:block;margin-top:12px;text-align:center;color:var(--muted);font-size:12px}
+
+/* 截图画廊 */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.gallery > *{min-width:0}
+.gallery--wide{grid-template-columns:repeat(2,1fr);margin-top:18px}
+.shot{
+  margin:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;
+  padding:10px;box-shadow:0 6px 24px rgba(40,24,55,.05);
+}
+.shot img{display:block;width:100%;border-radius:12px;background:#17121d}
+.shot--phone img{height:440px;width:auto;max-width:100%;margin:0 auto}
+.shot figcaption{
+  display:flex;justify-content:space-between;gap:10px;align-items:baseline;
+  padding:11px 6px 3px;font-size:13px;color:var(--fg2);
+}
+.shot figcaption span{color:var(--muted);font-size:11px;white-space:nowrap}
+.shotnote{margin:16px 0 0;font-size:12px;color:var(--muted)}
+
+/* ── 通用区块 ── */
+.section{padding:76px 0;border-top:1px solid var(--line)}
+.shead{max-width:720px;margin-bottom:36px}
+.shead .no{font-size:12px;letter-spacing:.2em;color:var(--brand);font-weight:800}
+.shead h2{font-size:clamp(28px,3.6vw,40px);line-height:1.25;letter-spacing:-.02em;margin:10px 0 12px}
+.shead p{color:var(--fg2);margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:0 6px 24px rgba(40,24,55,.035);
+}
+.card h3{margin:14px 0 8px;font-size:18px}
+.card p{margin:0;color:var(--fg2);font-size:14.5px}
+.card .k{
+  width:40px;height:40px;border-radius:12px;background:var(--wash);color:var(--brand);
+  display:grid;place-items:center;font-weight:800;font-size:15px;border:1px solid var(--wash2);
+}
+.card ul{margin:14px 0 0;padding-left:18px;color:var(--fg2);font-size:14px}
+.card li{margin:6px 0}
+
+/* 核心指标 */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 22px}
+.metric{
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:18px 16px;text-align:center;
+}
+.metric b{display:block;font-size:26px;line-height:1.15;color:var(--brand2);letter-spacing:-.02em}
+.metric span{display:block;margin-top:5px;font-size:12px;color:var(--muted)}
+
+/* 对比表 */
+.compare-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.compare{width:100%;border-collapse:collapse;min-width:980px;font-size:13px}
+.compare th,.compare td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.compare thead th{background:var(--panel2);font-size:13px;font-weight:700;color:var(--fg);white-space:nowrap;position:sticky;top:0}
+.compare thead th:first-child{width:15%}
+.compare tbody th{color:var(--fg2);font-weight:600;background:var(--panel2);white-space:nowrap}
+.compare td.ours{background:rgba(123,69,201,.055);color:var(--fg)}
+.compare td small{display:block;color:var(--muted);margin-top:5px;line-height:1.5}
+.compare tr:last-child th,.compare tr:last-child td{border-bottom:0}
+.compare-note{margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7}
+.compare-note a{color:var(--brand2);text-decoration:underline;text-underline-offset:2px}
+
+/* 链路图 */
+.flow{display:flex;align-items:stretch;gap:10px}
+.flow .node{
+  flex:1 1 0;min-width:0;background:var(--panel);border:1px solid var(--line);
+  border-radius:16px;padding:20px;text-align:center;
+}
+.flow .node b{display:block;font-size:15px;margin-bottom:4px}
+.flow .node small{color:var(--muted);font-size:12px}
+.flow .arrow{flex:0 0 18px;display:grid;place-items:center;color:var(--brand);font-size:20px}
+.flownote{margin-top:16px;font-size:13px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--wash);color:var(--brand2);border:1px solid var(--wash2)}
+
+/* 规格表 */
+.spec{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.spec th,.spec td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.spec th{width:26%;color:var(--muted);font-weight:600;background:var(--panel2)}
+.spec tr:last-child th,.spec tr:last-child td{border-bottom:0}
+.spec td.no{color:var(--muted)}
+
+/* 合作区 */
+.contact{
+  background:linear-gradient(160deg,rgba(123,69,201,.08),rgba(249,244,240,0) 70%);
+  border-top:1px solid var(--line);padding:84px 0;
+}
+.contactbox{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.contact h2{font-size:clamp(30px,4vw,44px);line-height:1.2;margin:12px 0 14px;letter-spacing:-.02em}
+.contact p{color:var(--fg2);margin:0 0 26px}
+.links{display:grid;gap:12px}
+.linkrow{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px 18px;
+}
+.linkrow:hover{border-color:var(--brand-line)}
+.linkrow b{font-size:15px}
+.linkrow small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.linkrow span{color:var(--brand);font-size:13px;font-weight:700;white-space:nowrap}
+
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}
+footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--brand)}
+
+@media (max-width:900px){
+  .nav{display:none}
+  .hero .container,.contactbox{grid-template-columns:1fr;gap:36px}
+  .hero{padding:54px 0 46px}
+  .hero-shot{margin:0 auto;max-width:100%}
+  .grid3,.grid2{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .gallery,.gallery--wide{grid-template-columns:1fr}
+  .shot--phone img{height:auto;width:100%;max-width:380px}
+  .flow{flex-wrap:wrap}
+  .flow .node{flex:1 1 44%}
+  .flow .arrow{display:none}
+  .sitebar .container{height:62px}
+}
+@media (max-width:520px){
+  .container{width:calc(100% - 28px)}
+  .flow .node{flex:1 1 100%}
+  .btn{width:100%}
+  .navcta{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="sitebar">
+  <div class="container">
+    <a class="logo" href="#top"><img src="assets/logo-v3.png" alt="吾爱音乐">吾爱Music <small>数播</small></a>
+    <nav class="nav">
+      <a href="#why">方案</a>
+      <a href="#ability">能力</a>
+      <a href="#screens">界面</a>
+      <a href="#compare">对比</a>
+      <a href="#spec">规格</a>
+      <a href="#contact">合作咨询</a>
+    </nav>
+    <a class="navcta" href="#contact">合作咨询</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="eyebrow">WUAIMUSIC SERVER · 参考机 T1S</span>
+        <h1>把曲库放进机器，<br /><span class="hl">把手机变成遥控器。</span></h1>
+        <p class="lead">吾爱Music 数播是一台面向本地无损曲库的无头播放方案。音乐留在机器里，浏览器就是控制台；默认 bit-perfect 直出，歌词和封面自动刮削，专业设置一页管完。</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#contact">合作咨询</a>
+          <a class="btn btn--ghost" href="../">返回 App 官网</a>
+        </div>
+        <p class="hero-note">当前为参考机 / 方案验证机，非量产商品。整机合作、渠道合作与定制开发欢迎联系。</p>
+      </div>
+      <div class="hero-shot">
+        <img src="assets/phone-player.webp" alt="吾爱Music 数播 Web 手机端播放页真机截图：黑胶封面、源码码率、bit-perfect 标识与播放队列" />
+        <small>手机浏览器直开，无需安装 App</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="container">
+      <div class="shead">
+        <div class="no">01 / 为什么是数播</div>
+        <h2>本地音乐，不该被绑在手机上</h2>
+        <p>曲库放在机器里，播放交给专用链路。手机只负责选歌和看歌词，关掉屏幕音乐照常走。</p>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="k">01</div><h3>曲库留在本地</h3><p>机械盘装歌，系统盘跑服务。SMB 直连拷歌，Web 文件管理、NAS 导入、回收站都在同一页。</p></div>
+        <div class="card"><div class="k">02</div><h3>声音走直路</h3><p>MPD 0.24 加 mixer_type none，默认不重采样、不用软件音量。接 DDC 后可走数字口到功放。</p></div>
+        <div class="card"><div class="k">03</div><h3>一页管完全部</h3><p>手机、平板、电脑浏览器都能打开管理页。曲库、播放、设备、网络、系统设置集中在一处。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ability">
+    <div class="container">
+      <div class="shead">
+        <div class="no">02 / 核心功能</div>
+        <h2>一台数播该有的，都在这里</h2>
+        <p>播放、曲库、歌词封面、设备管理与授权售后全部做进同一页。下面每一项都已在参考机上跑通；硬件做不到的，规格表里直说。</p>
+      </div>
+      <div class="metrics">
+        <div class="metric"><b>7</b><span>设置分区</span></div>
+        <div class="metric"><b>6 + 4</b><span>歌词源 / 封面源</span></div>
+        <div class="metric"><b>1501</b><span>参考机实测专辑</span></div>
+        <div class="metric"><b>0</b><span>需要安装的客户端</span></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="k">A</div><h3>播放与音质</h3>
+          <ul>
+            <li>MPD 0.24 + mixer_type none，默认 bit-perfect 直出，不走系统重采样与软件音量</li>
+            <li>重采样开关与升频目标：关 / 88.2 / 96 / 176.4 / 192 kHz，输出位深 16 / 24 bit</li>
+            <li>ReplayGain（关 / 曲目 / 专辑）、无缝播放、交叉淡化 2–10 秒</li>
+            <li>soxr 品质档位与 DSD→PCM 目标可调；播放中实时显示码率、输出设备与链路标注</li>
+            <li>左右平衡、极性、输出电平与 FIR 走 CamillaDSP，明确标注非 bit-perfect</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">B</div><h3>曲库与内容</h3>
+          <ul>
+            <li>机械盘本地曲库 + SMB 共享，Web 文件管理、NAS 导入、回收站都在一页</li>
+            <li>音乐墙按专辑浏览，格式筛选，点专辑直接播放或追加队列</li>
+            <li>歌词六源在线取词（酷狗 / QQ / 网易云 / 酷我 / lrc.cx / LRCLIB），逐字高亮，本地缓存 30 天</li>
+            <li>封面四源刮削（网易云 / QQ / 酷我 / Apple Music），可手动换图，本地缓存 90 天</li>
+            <li>中文路径、GB18030 / Big5 / Shift-JIS 全链路兼容</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">C</div><h3>设备与自动化</h3>
+          <ul>
+            <li>七分区设置中心：音频 / 播放 / 设备 / 网络 / 曲库 / 界面 / 系统</li>
+            <li>自动待机、定时开机（RTC）、曲库机械盘休眠、极致聆听模式</li>
+            <li>感知音量曲线：UI 30% ≈ ALSA 55%，解决线性刻度前段无声</li>
+            <li>恢复出厂需设备密码，3 次错误锁 5 分钟；保留曲库 / 网络 / SSH / 缓存</li>
+            <li>可选小爱语音 / 巴法云通道播放控制，不依赖公网端口或内网穿透</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">D</div><h3>连接与授权</h3>
+          <ul>
+            <li>手机 / 平板 / 电脑浏览器直接管理，无需安装 App；开机三屏品牌化统一视觉</li>
+            <li>硬件 ID 随主板、全部物理网卡、内置盘、CPU 与内存变化</li>
+            <li>对接自有授权平台 license.52ta.top，便于激活绑定与售后追溯</li>
+            <li>曲库盘 SMART 健康巡检、资源占用与内核 I/O 错误统计，管家页一屏可见</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="screens">
+    <div class="container">
+      <div class="shead">
+        <div class="no">03 / 真机界面</div>
+        <h2>不画效果图，直接看真机</h2>
+        <p>下面全部来自 T1S 参考机上的实际浏览器：手机、平板与电脑打开同一个地址，曲库、歌词、状态和专业设置都在里面。</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot shot--phone">
+          <img src="assets/phone-player.webp" loading="lazy" alt="手机端播放页：封面、码率、源码规格、bit-perfect 标识与播放队列" />
+          <figcaption>手机 · 播放页 <span>FLAC / bit-perfect</span></figcaption>
+        </figure>
+        <figure class="shot shot--phone">
+          <img src="assets/phone-wall.webp" loading="lazy" alt="手机端音乐墙：按专辑浏览，支持格式筛选与封面刮削" />
+          <figcaption>手机 · 音乐墙 <span>1501 张专辑</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/tablet-butler.webp" loading="lazy" alt="平板端数播管家：设备概览、资源占用与曲库盘健康状态" />
+          <figcaption>平板 · 数播管家 <span>资源 / SMART</span></figcaption>
+        </figure>
+      </div>
+      <div class="gallery gallery--wide">
+        <figure class="shot">
+          <img src="assets/desktop-player.webp" loading="lazy" alt="桌面端播放页：黑胶封面、播放队列与逐字歌词" />
+          <figcaption>桌面 · 播放页 <span>队列 + 歌词</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/desktop-settings.webp" loading="lazy" alt="桌面端设置中心：音频分区中的重采样、输出位深、ReplayGain、DSP 等选项" />
+          <figcaption>桌面 · 设置中心 <span>音频 / 播放 / 设备…</span></figcaption>
+        </figure>
+      </div>
+      <p class="shotnote">截图取自参考机实际运行界面，未用设计稿替代；专辑与封面仅作界面演示。</p>
+    </div>
+  </section>
+
+  <section class="section" id="flow">
+    <div class="container">
+      <div class="shead">
+        <div class="no">04 / 播放链路</div>
+        <h2>声音怎么走，页面就怎么标</h2>
+        <p>源格式与实际输出分开显示。采样率不一致就是重采样，多声道变两声道就是降混，不把转换说成直通。</p>
+      </div>
+      <div class="flow">
+        <div class="node"><b>曲库盘</b><small>本地 FLAC / DSD / WAV</small></div>
+        <div class="arrow">→</div>
+        <div class="node"><b>MPD 0.24</b><small>解码 · 不插重采样</small></div>
+        <div class="arrow">→</div>
+        <div class="node"><b>声卡 / DDC</b><small>ALC662 · USB DDC 可选</small></div>
+        <div class="arrow">→</div>
+        <div class="node"><b>功放 / 音箱</b><small>数字口或模拟口</small></div>
+      </div>
+      <div class="chips">
+        <span class="chip">✓ bit-perfect 直通</span>
+        <span class="chip">◈ DSD 解码为 PCM</span>
+        <span class="chip">↻ PCM 重采样</span>
+        <span class="chip">⇥ 多声道降混 2.0</span>
+      </div>
+      <p class="flownote">板载 ALC662 不支持 DSD Native / DoP 与 MQA；需要原生位流请配支持 DoP 的 USB DAC。</p>
+    </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="container">
+      <div class="shead">
+        <div class="no">05 / 横向对比</div>
+        <h2>和成熟数播比，差在哪、强在哪</h2>
+        <p>选三款公开规格可查的主流机型，只比官方写明的硬指标与功能边界；听感不做纸面判断。横向滑动可看完整表格。</p>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>吾爱Music 数播（T1S 参考机）</th>
+              <th>Bluesound NODE</th>
+              <th>Cambridge Audio MXN10</th>
+              <th>WiiM Ultra</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>产品定位</th>
+              <td class="ours">本地曲库方案验证机<small>参考机 / 非量产商品</small></td>
+              <td>成熟商业流媒体播放器<small>BluOS 多房间生态</small></td>
+              <td>紧凑型网络播放器<small>StreamMagic 平台</small></td>
+              <td>带屏数字音乐中枢<small>3.5 英寸触屏 + 前级</small></td>
+            </tr>
+            <tr>
+              <th>解码 / 输出</th>
+              <td class="ours">ALC662，192 kHz / 24 bit，2 声道<small>默认直出；无内置高端 DAC</small></td>
+              <td>32 bit / 384 kHz DAC<small>原生采样率至 192 kHz / 24 bit，DSD256</small></td>
+              <td>ESS ES9033Q<small>最高 768 kHz / 32 bit PCM，DSD512</small></td>
+              <td>ESS ES9038Q2M<small>最高 192 kHz / 24 bit，数字输出 bit-perfect</small></td>
+            </tr>
+            <tr>
+              <th>本地曲库管理</th>
+              <td class="ours">SMB + Web 文件管理 + NAS 导入 + 回收站<small>音乐墙按专辑浏览，实测 1501 张</small></td>
+              <td>USB 盘 + SMB 索引<small>官方标称最多 200,000 首</small></td>
+              <td>USB 媒体 + UPnP / DLNA<small>StreamMagic 管理专辑与歌单</small></td>
+              <td>USB 存储（FAT32 / NTFS / EXT4）<small>可给 DLNA 设备做媒体服务器</small></td>
+            </tr>
+            <tr>
+              <th>歌词 / 封面</th>
+              <td class="ours">六源逐字歌词 + 四源封面刮削<small>本地缓存，可手动换图</small></td>
+              <td>专辑封面 JPG / PNG<small>官方规格未标注多源刮削</small></td>
+              <td>App 内专辑封面浏览<small>官方规格未标注多源刮削</small></td>
+              <td>触屏显示封面与小组件<small>官方规格未标注多源刮削</small></td>
+            </tr>
+            <tr>
+              <th>音效 / 调节</th>
+              <td class="ours">重采样 / ReplayGain / 交叉淡化 / DSP 平衡极性 / FIR<small>七分区设置；感知音量曲线；密码恢复出厂</small></td>
+              <td>BluOS 均衡器 / Dirac Live Ready<small>多音箱与低音炮管理</small></td>
+              <td>7 段 EQ<small>多房间同步</small></td>
+              <td>10 段图示 + 参数 EQ / RoomFit<small>24 组预设、房间校正</small></td>
+            </tr>
+            <tr>
+              <th>生态 / 多房间</th>
+              <td class="ours">浏览器控制 + App 遥控，可选小爱语音<small>不接主流流媒体订阅服务</small></td>
+              <td>AirPlay 2 / Spotify / TIDAL / Qobuz / Roon<small>BluOS 最多 64 个播放器同步</small></td>
+              <td>AirPlay 2 / Chromecast / Spotify / TIDAL / Qobuz / Roon<small>StreamMagic 多房间</small></td>
+              <td>Google Cast / DLNA / Spotify / TIDAL / Roon<small>WiiM 生态多房间；官方标注不支持 AirPlay 2</small></td>
+            </tr>
+            <tr>
+              <th>设备识别 / 授权</th>
+              <td class="ours">硬件 ID 随配件变化<small>可绑定 license.52ta.top 做激活与售后</small></td>
+              <td>官方规格未标注<small>—</small></td>
+              <td>官方规格未标注<small>—</small></td>
+              <td>官方规格未标注<small>—</small></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compare-note">对比参数取自各品牌官方页面 / 用户手册（2026-11-19 查询）：
+        <a href="https://bluesound.com/collections/all/products/node" target="_blank" rel="noopener noreferrer">Bluesound NODE</a> ·
+        <a href="https://www.cambridgeaudio.com/row/en/products/hi-fi/mx/mxn10" target="_blank" rel="noopener noreferrer">Cambridge Audio MXN10</a> ·
+        <a href="https://wiimhome.com/pdf/WiiM%20Ultra%20User%20Manual.pdf" target="_blank" rel="noopener noreferrer">WiiM Ultra 用户手册</a>。
+        型号与固件会迭代，购买前请以官方最新规格为准；这里不比较听感，也不把参考机说成量产商品。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="spec">
+    <div class="container">
+      <div class="shead">
+        <div class="no">06 / 参考机规格</div>
+        <h2>实机参数，照单写明</h2>
+        <p>以下为当前 T1S 参考机实测配置，可按合作需求调整机箱、存储、声卡与屏幕。</p>
+      </div>
+      <table class="spec">
+        <tr><th>平台</th><td>TOPFEEL T1S / BYT30</td></tr>
+        <tr><th>处理器</th><td>Intel Celeron J1900 @ 1.99 GHz，4 核</td></tr>
+        <tr><th>内存 / 系统盘</th><td>4 GB / KINGBANK SSD 128 GB</td></tr>
+        <tr><th>曲库盘</th><td>HGST HTS545050A7E380 2.5 英寸机械盘</td></tr>
+        <tr><th>声卡</th><td>Realtek ALC662，最高 192 kHz / 24 bit，双声道</td></tr>
+        <tr><th>网络</th><td>板载有线 ×3 + WiFi（参考机当前 WiFi 在线）</td></tr>
+        <tr><th>显示</th><td>无屏无背光；可选 HDMI 接屏进入本地管理界面</td></tr>
+        <tr><th>管理方式</th><td>浏览器访问 8080 端口，无需安装客户端</td></tr>
+        <tr><th>硬件 ID</th><td>WUAI-XXXX-XXXX-XXXX-XXXX，换配件跟随变化</td></tr>
+        <tr><th>不支持</th><td class="no">DSD Native / DoP、MQA、屏幕亮度、网口 LED（受当前硬件限制）</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container contactbox">
+      <div>
+        <span class="eyebrow">COOPERATION</span>
+        <h2>想做一台自己的数播？</h2>
+        <p>整机贴牌、渠道供货、特定屏幕与遥控器适配、DLNA 接入或 DSP 定制，都可以从一次咨询开始。这里不提供安装包，我们更想聊硬件与合作。</p>
+        <a class="btn btn--primary" href="https://qm.qq.com/q/9OqnRwgMD0" target="_blank" rel="noopener noreferrer">合作咨询</a>
+      </div>
+      <div class="links">
+        <a class="linkrow" href="https://qm.qq.com/q/9OqnRwgMD0" target="_blank" rel="noopener noreferrer">
+          <span><b>QQ 粉丝群</b><small>手机端点击拉起 QQ，桌面端打开加群页</small></span><span>立即进入 →</span>
+        </a>
+        <a class="linkrow" href="https://license.52ta.top/" target="_blank" rel="noopener noreferrer">
+          <span><b>授权平台</b><small>硬件 ID 绑定、激活与授权查询</small></span><span>打开平台 →</span>
+        </a>
+        <a class="linkrow" href="../">
+          <span><b>吾爱音乐 App 官网</b><small>手机 / 车机 / 电视 / Windows 客户端</small></span><span>返回主站 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year"></span> 吾爱Music · 本地音乐，机器管曲库，手机做遥控</span>
+    <span><a href="../">App 官网</a> · <a href="https://license.52ta.top/" target="_blank" rel="noopener noreferrer">授权平台</a></span>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body>
+</html>
