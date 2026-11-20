@@ -22,6 +22,71 @@
   -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
+  <!-- 产品矩阵区专属样式：6 个产品卡片 + 最近更新/研发成果/进度动态汇总。
+       刻意内联而不进 style.css —— 这段只服务首页这一块，独立维护。
+       设计令牌沿用主站（品牌紫 / 贝壳白），深浅主题都跟 data-theme。 -->
+  <style>
+    .prodmx{padding:82px 0 76px;border-top:1px solid var(--line)}
+    .prodmx__head{max-width:760px;margin-bottom:34px}
+    .prodmx__kicker{font-size:12px;letter-spacing:.2em;color:var(--brand);font-weight:800}
+    .prodmx__head h2{font-size:clamp(28px,3.8vw,40px);line-height:1.25;letter-spacing:-.02em;margin:10px 0 12px}
+    .prodmx__head p{color:var(--fg-2,var(--fg2));margin:0}
+    .mxgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .mxcard{
+      display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;
+      background:var(--panel);border:1px solid var(--line);border-radius:18px;
+      padding:24px;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s;
+      min-height:186px;
+    }
+    .mxcard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--brand-line)}
+    .mxcard::after{
+      content:"";position:absolute;right:-60px;top:-60px;width:160px;height:160px;border-radius:50%;
+      background:radial-gradient(circle,var(--brand-wash),transparent 70%);pointer-events:none;
+    }
+    .mxcard__top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .mxcard__ico{
+      width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+      background:var(--brand-wash);border:1px solid var(--brand-line);color:var(--brand)
+    }
+    .mxcard__state{
+      font-size:11px;font-weight:700;letter-spacing:.05em;padding:4px 9px;border-radius:999px;
+      background:var(--brand-wash);color:var(--brand-2)
+    }
+    .mxcard h3{font-size:19px;margin:0 0 7px;letter-spacing:-.01em}
+    .mxcard p{font-size:13.5px;color:var(--fg-2,var(--fg2));margin:0 0 16px;line-height:1.6}
+    .mxcard__go{margin-top:auto;font-size:13px;font-weight:650;color:var(--brand);display:inline-flex;align-items:center;gap:6px}
+    .mxcard__go svg{transition:transform .2s}
+    .mxcard:hover .mxcard__go svg{transform:translateX(4px)}
+    .mxdyn{margin-top:46px;border-top:1px solid var(--line);padding-top:36px}
+    .mxdyn__head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 20px;margin-bottom:22px}
+    .mxdyn__head h3{font-size:22px;margin:0;letter-spacing:-.01em}
+    .mxdyn__head p{color:var(--muted);font-size:13px;margin:0}
+    .mxdyn__tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+    .mxdyn__tab{
+      padding:9px 16px;border-radius:11px;border:1px solid var(--line-2,var(--line2));
+      background:var(--panel);color:var(--fg-2,var(--fg2));font-size:13.5px;font-weight:650
+    }
+    .mxdyn__tab.is-active{background:var(--brand-grad,var(--brand-cta));color:var(--brand-on,#fff);border-color:transparent;box-shadow:0 6px 16px var(--brand-shadow)}
+    .mxdyn__panel{display:none}
+    .mxdyn__panel.is-active{display:block}
+    .mxtl{position:relative;padding-left:24px}
+    .mxtl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line-2,var(--line2))}
+    .mxtl__item{position:relative;padding:0 0 20px}
+    .mxtl__item:last-child{padding-bottom:0}
+    .mxtl__item::before{content:"";position:absolute;left:-21px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--brand-wash)}
+    .mxtl__date{font-size:11.5px;color:var(--brand);font-weight:700;letter-spacing:.04em}
+    .mxtl__item h4{margin:3px 0 4px;font-size:15px;font-weight:650}
+    .mxtl__item p{margin:0;color:var(--fg-2,var(--fg2));font-size:13.5px}
+    .mxbars{display:grid;gap:18px}
+    .mxbar__head{display:flex;justify-content:space-between;gap:14px;font-size:14px;margin-bottom:8px}
+    .mxbar__head b{font-weight:650}
+    .mxbar__head span{color:var(--muted);font-size:12.5px}
+    .mxbar__track{height:8px;border-radius:999px;background:var(--brand-wash);overflow:hidden}
+    .mxbar__fill{height:100%;border-radius:999px;background:var(--brand-grad,var(--brand-cta))}
+    @media(max-width:900px){.mxgrid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.mxgrid{grid-template-columns:1fr}}
+  </style>
+
   <!-- ── 站点图标 ───────────────────────────────────────────────────────
        全部由 scripts/build_site_icons.py 从 **App 内置图标**（assets/logo_512.png）
        派生：同一份字形提取函数，色板取 App 配色真源里的两个。
@@ -194,13 +259,11 @@
         </span>
       </a>
       <nav class="nav__links" aria-label="主导航">
+        <a href="#products">产品</a>
         <a href="#features">功能</a>
-        <a href="shuabo/">数播</a>
-        <a href="studio/">工作室</a>
         <a href="#screens">界面</a>
         <a href="#platforms">下载</a>
         <a href="#tv-install">电视安装</a>
-        <a href="#design">设计语言</a>
         <a href="#update">更新</a>
         <a href="#faq">常见问题</a>
       </nav>
@@ -695,6 +758,157 @@
             </div>
             <figcaption>均衡器 · 10 段调节<span>频响曲线 · 音效增强 · 调整实时生效</span></figcaption>
           </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         产品矩阵：6 个产品独立入口 + 最近更新 / 研发成果 / 研发进度
+         每个产品都拆成独立页面；这里只做分类导航与动态汇总，不去重首页
+         原有的功能/下载/FAQ 等区块，避免动 main.js 的 DOM 契约。
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="prodmx" id="products">
+      <div class="container">
+        <header class="prodmx__head reveal">
+          <span class="prodmx__kicker">PRODUCT MATRIX · 产品矩阵</span>
+          <h2>一套内核，六种形态</h2>
+          <p>从掌心到客厅、从车机到机架。同一个本地音乐内核，为每种设备做成独立产品——点进去看各自的定位、界面与进展。</p>
+        </header>
+
+        <div class="mxgrid">
+          <a class="mxcard reveal" href="phone/">
+            <div class="mxcard__top">
+              <span class="mxcard__ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="10.5" y1="18.4" x2="13.5" y2="18.4" stroke-linecap="round"/></svg></span>
+              <span class="mxcard__state">已发布</span>
+            </div>
+            <h3>手机版</h3>
+            <p>随身聆听，单手掌控。本地与 NAS 统一曲库、智能歌词、专业均衡器。</p>
+            <span class="mxcard__go">查看手机版 <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+
+          <a class="mxcard reveal" href="pc/">
+            <div class="mxcard__top">
+              <span class="mxcard__ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4" stroke-linecap="round"/></svg></span>
+              <span class="mxcard__state">已发布</span>
+            </div>
+            <h3>PC 版</h3>
+            <p>Windows 桌面宽屏三栏布局，文件管理器、曲库与队列一屏尽览。</p>
+            <span class="mxcard__go">查看 PC 版 <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+
+          <a class="mxcard reveal" href="car/">
+            <div class="mxcard__top">
+              <span class="mxcard__ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 16l1.4-5A2 2 0 018.3 9h7.4a2 2 0 011.9 1.4L19 16v3h-2v-1H7v1H5v-3z"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg></span>
+              <span class="mxcard__state">已发布</span>
+            </div>
+            <h3>车机版</h3>
+            <p>为车载宽屏打造的大字界面与驾驶友好操控，本地播放不依赖网络。</p>
+            <span class="mxcard__go">查看车机版 <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+
+          <a class="mxcard reveal" href="tv/">
+            <div class="mxcard__top">
+              <span class="mxcard__ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></span>
+              <span class="mxcard__state">已发布</span>
+            </div>
+            <h3>TV 版</h3>
+            <p>遥控器全流程操作，全屏歌词与星空环，NAS 曲库与开机自启。</p>
+            <span class="mxcard__go">查看 TV 版 <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+
+          <a class="mxcard reveal" href="shuabo/">
+            <div class="mxcard__top">
+              <span class="mxcard__ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><circle cx="7" cy="7.5" r="1"/><circle cx="7" cy="16.5" r="1"/></svg></span>
+              <span class="mxcard__state">方案验证</span>
+            </div>
+            <h3>数播版</h3>
+            <p>本地无损播放方案，bit-perfect 直出、歌词封面自动刮削、浏览器一页管理。</p>
+            <span class="mxcard__go">查看数播版 <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+
+          <a class="mxcard reveal" href="studio/">
+            <div class="mxcard__top">
+              <span class="mxcard__ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h2.2l1.6-5.4L10.4 18l1.9-7.4L14 15h1.6l1.2-4.6L18.4 12H20" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="mxcard__state">进行中</span>
+            </div>
+            <h3>实验室</h3>
+            <p>高保真音频工作室。把功能做成证据，产出可复现的方法、数据与白皮书。</p>
+            <span class="mxcard__go">查看实验室 <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+
+        <!-- 分类下方：最近更新 / 研发成果 / 研发进度 -->
+        <div class="mxdyn reveal">
+          <div class="mxdyn__head">
+            <h3>最近动态</h3>
+            <p>跨产品线的更新、成果与研发进度，一屏掌握。</p>
+          </div>
+          <div class="mxdyn__tabs" role="tablist" aria-label="动态分类">
+            <button class="mxdyn__tab is-active" type="button" data-mx-tab="update" role="tab" aria-selected="true">最近更新</button>
+            <button class="mxdyn__tab" type="button" data-mx-tab="result" role="tab" aria-selected="false">研发成果</button>
+            <button class="mxdyn__tab" type="button" data-mx-tab="progress" role="tab" aria-selected="false">研发进度</button>
+          </div>
+
+          <div class="mxdyn__panel is-active" id="mx-update" role="tabpanel">
+            <div class="mxtl">
+              <div class="mxtl__item">
+                <span class="mxtl__date">2026-11-20 · 数播版</span>
+                <h4>CUE 整轨专辑分轨播放上线</h4>
+                <p>整轨 WAV / APE + CUE 在音乐墙按轨显示与点播，切歌起点精准跳转；解析规则对齐 App 版，并清除了幽灵轨。</p>
+              </div>
+              <div class="mxtl__item">
+                <span class="mxtl__date">2026-11-20 · 实验室</span>
+                <h4>首批两篇深度研究发布</h4>
+                <p>《信号链透明性白皮书 01》与《AcoustID 目标错配》上线，工作室页支持中英双语与后续文章持续发文。</p>
+              </div>
+              <div class="mxtl__item">
+                <span class="mxtl__date">2026-11-19 · 数播版</span>
+                <h4>Web 设置中心与硬件指纹</h4>
+                <p>常用设置项集中管理，音量感知映射、设备硬件 ID 与授权入口就绪，恢复出厂保留曲库与网络。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mxdyn__panel" id="mx-result" role="tabpanel">
+            <div class="grid3">
+              <div class="card">
+                <span class="k">01</span>
+                <h3>bit-perfect 信号链证据</h3>
+                <p>以 ALSA hw_params 实测为唯一判据，无证据标为待验证；提供带原始 hw_params 与时间戳的信号链快照供复算。</p>
+              </div>
+              <div class="card">
+                <span class="k">02</span>
+                <h3>跨平台单一内核</h3>
+                <p>手机、PC、车机、TV 共用同一套曲库、歌词与解码内核，按屏幕尺寸重排界面，功能一致。</p>
+              </div>
+              <div class="card">
+                <span class="k">03</span>
+                <h3>本地曲库智能化整理</h3>
+                <p>批量标签补全、封面刮削、内嵌歌词与心情分类，写入有日志、误操作可撤销，音频文件绝不离开设备。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mxdyn__panel" id="mx-progress" role="tabpanel">
+            <div class="mxbars">
+              <div class="mxbar">
+                <div class="mxbar__head"><b>手机 / PC / 车机 / TV 四端</b><span>持续迭代 · 已稳定发布</span></div>
+                <div class="mxbar__track"><div class="mxbar__fill" style="width:92%"></div></div>
+              </div>
+              <div class="mxbar">
+                <div class="mxbar__head"><b>数播方案</b><span>方案验证 · 合作咨询中</span></div>
+                <div class="mxbar__track"><div class="mxbar__fill" style="width:70%"></div></div>
+              </div>
+              <div class="mxbar">
+                <div class="mxbar__head"><b>信号链透明与测量方法</b><span>证据积累 · 白皮书连载</span></div>
+                <div class="mxbar__track"><div class="mxbar__fill" style="width:55%"></div></div>
+              </div>
+              <div class="mxbar">
+                <div class="mxbar__head"><b>智能声场与自动房间校正</b><span>预研 · DDC 硬件实测待接入</span></div>
+                <div class="mxbar__track"><div class="mxbar__fill" style="width:25%"></div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1261,12 +1475,13 @@ adb devices
 
       <nav class="footer__col" aria-label="产品导航">
         <h4>产品</h4>
-        <a href="#features">核心能力</a>
-        <a href="shuabo/">吾爱Music 数播</a>
-        <a href="studio/">高保真音频工作室</a>
-        <a href="#screens">界面预览</a>
-        <a href="#design">设计语言</a>
-        <a href="#platforms">各端下载</a>
+        <a href="#products">产品矩阵</a>
+        <a href="phone/">手机版</a>
+        <a href="pc/">PC 版</a>
+        <a href="car/">车机版</a>
+        <a href="tv/">TV 版</a>
+        <a href="shuabo/">数播版</a>
+        <a href="studio/">实验室</a>
       </nav>
 
       <nav class="footer__col" aria-label="支持导航">
@@ -1291,6 +1506,26 @@ adb devices
     </div>
   </footer>
 
+  <!-- 产品矩阵动态区 Tab 切换（独立于 main.js，不改它的 DOM 契约） -->
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll(".mxdyn__tab");
+      if (!tabs.length) return;
+      function activate(key) {
+        tabs.forEach(function (b) {
+          var on = b.getAttribute("data-mx-tab") === key;
+          b.classList.toggle("is-active", on);
+          b.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        document.querySelectorAll(".mxdyn__panel").forEach(function (p) {
+          p.classList.toggle("is-active", p.id === "mx-" + key);
+        });
+      }
+      tabs.forEach(function (b) {
+        b.addEventListener("click", function () { activate(b.getAttribute("data-mx-tab")); });
+      });
+    })();
+  </script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/design.js"></script>
   <!-- 首屏 3D：本地 vendor，不依赖任何外部 CDN；defer 保证顺序且不阻塞解析。

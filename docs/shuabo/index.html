@@ -219,9 +219,31 @@ footer a:hover{color:var(--brand)}
   .btn{width:100%}
   .navcta{display:none}
 }
+/* ── 产品矩阵切换条（与全站 6 个产品页统一）── */
+.pstrip{background:var(--bg2);border-bottom:1px solid var(--line)}
+.pstrip .container{height:42px;display:flex;align-items:center;gap:4px;overflow-x:auto}
+.pstrip .plabel{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:700;white-space:nowrap;margin-right:10px}
+.pstrip a{
+  padding:5px 11px;border-radius:8px;font-size:12.5px;color:var(--fg2);white-space:nowrap;
+}
+.pstrip a:hover{background:var(--wash);color:var(--brand2)}
+.pstrip a.is-active{background:var(--grad);color:#fff;font-weight:650;box-shadow:0 4px 12px rgba(91,33,182,.2)}
+@media(max-width:640px){.pstrip .plabel{display:none}}
 </style>
 </head>
 <body>
+
+<div class="pstrip">
+  <div class="container">
+    <span class="plabel">产品矩阵</span>
+    <a href="../phone/">手机版</a>
+    <a href="../pc/">PC 版</a>
+    <a href="../car/">车机版</a>
+    <a href="../tv/">TV 版</a>
+    <a href="./" class="is-active">数播版</a>
+    <a href="../studio/">实验室</a>
+  </div>
+</div>
 
 <header class="sitebar">
   <div class="container">
