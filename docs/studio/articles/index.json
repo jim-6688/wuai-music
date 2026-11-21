@@ -2,6 +2,21 @@
   "_note": "发文机制：复制 articles/_template.html 写一篇新文章，然后在本数组最前面追加一条，字段照抄。工作室页会自动读取本清单渲染文章列表。date 用 YYYY-MM-DD，file 填相对于本目录的文件名。",
   "articles": [
     {
+      "id": "tenscape-perceptual-eq",
+      "date": "2026-11-20",
+      "category": { "zh": "听感调音", "en": "Perceptual Tuning" },
+      "title": {
+        "zh": "白皮书 02：十境调音——听感语义参量均衡系统",
+        "en": "Whitepaper 02: TENSCAPE — A Perceptual-Semantic EQ System"
+      },
+      "dek": {
+        "zh": "把 PEQ 的频率、增益与 Q 翻译成十个听感维度，语义与专业互斥双模式。",
+        "en": "Translating PEQ frequency, gain and Q into ten perceptual dimensions, with exclusive dual modes."
+      },
+      "file": "tenscape-perceptual-eq.html",
+      "tags": ["TENSCAPE", "DSP", "PEQ", "CamillaDSP"]
+    },
+    {
       "id": "signal-chain-transparency",
       "date": "2026-11-20",
       "category": { "zh": "信号链透明", "en": "Signal Chain" },

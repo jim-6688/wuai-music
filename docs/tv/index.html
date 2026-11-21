@@ -21,6 +21,7 @@
 </script>
 <link rel="stylesheet" href="../assets/css/product.css" />
 <script src="../assets/js/product.js" defer></script>
+<script src="../assets/js/product-data.js" defer></script>
 </head>
 <body id="top">
 
@@ -106,10 +107,28 @@
     </div>
   </section>
 
+  <section class="section section--alt" id="activity">
+    <div class="container">
+      <header class="shead">
+        <span class="no">03 · 持续进化</span>
+        <h2>最近更新 · 研发成果 · 进度</h2>
+        <p>版本记录与官方发布清单实时同步，研发成果来自工作室公开的白皮书。</p>
+      </header>
+      <div class="dyn-tabs" role="tablist">
+        <button class="dyn-tab is-active" data-dyn-tab="updates" role="tab">最近更新</button>
+        <button class="dyn-tab" data-dyn-tab="papers" role="tab">研发成果</button>
+        <button class="dyn-tab" data-dyn-tab="progress" role="tab">进度</button>
+      </div>
+      <div class="dyn-panel is-active" id="dyn-updates" data-pd="updates" data-pd-count="4"></div>
+      <div class="dyn-panel" id="dyn-papers" data-pd="papers"></div>
+      <div class="dyn-panel" id="dyn-progress" data-pd="progress"></div>
+    </div>
+  </section>
+
   <section class="section" id="download">
     <div class="container">
       <header class="shead">
-        <span class="no">03 · 下载与安装</span>
+        <span class="no">04 · 下载与安装</span>
         <h2>装到电视上</h2>
         <p>TV 版提供多个架构安装包。国内走码云，国际走 GitHub，均为官方发布页。</p>
       </header>
@@ -118,6 +137,89 @@
         <div class="step"><div><h3>在电视上打开安装</h3><p>用文件管理器找到 APK，按遥控器确认安装（需允许安装未知来源）。</p></div></div>
         <div class="step"><div><h3>首次启动</h3><p>给曲库目录授权，即可用遥控器开始聆听。</p></div></div>
       </div>
+      <!-- 让 AI 装：ADB 直装教程
+             为什么单独一块：U 盘安装要「找 APK → 拷盘 → 插电视 → 用电视自带的
+             文件管理器点」四步，而且不少电视的文件管理器会把 APK 藏起来；
+             而 ADB 直装只要「电脑一条命令」，电视端不用点任何东西 ——
+             对会用电脑的人来说这是最省事的路径。
+             ⚠️ 命令里的包名 com.wuaimusic.app.tv 是 TV 风味真实的 applicationId，
+                与 phone / hd 不同，别照抄成 com.wuaimusic.app。 -->
+        <div class="aiinstall reveal">
+          <div class="aiinstall__aside">
+            <h3 id="ai-install">让 AI 帮你装<br />ADB 直装，不用 U 盘</h3>
+            <p>如果你手边有电脑，可以不碰 U 盘、也不在电视上用遥控器翻文件管理器。把下面这段需求直接丢给 <strong>WorkBuddy</strong>（能自己执行命令）或<strong>豆包</strong>这类助手，它会帮你把安装包下好、连上电视、推送安装；豆包不能执行命令时，把命令复制到终端逐条运行即可。</p>
+            <div class="aiinstall__tip">
+              <strong>这条路的最大好处：</strong>绕开电视自带的文件管理器，也不用在电视上点「允许未知来源」。
+              但如果系统提示「禁止安装第三方应用」（创维 / 部分定制固件），ADB 一样会被拦 —— 那是厂商层面的封锁，
+              这种情况只能换电视盒子，或用应用商店版本。装好之后，后续更新直接在电视上「设置 → 关于 → 检查更新」即可。
+            </div>
+          </div>
+
+          <ol class="aiinstall__steps">
+            <li>
+              <span class="aiinstall__no">01</span>
+              <div class="aiinstall__body">
+                <strong>让 AI 取安装包</strong>
+                <p>一句话就够：「帮我装吾爱音乐 TV 版到电视上：先下最新的 TV 安装包（优先 arm64，装不上再换 32 位），再用 adb 推过去。」</p>
+                <p>安装包有两个来源，国内优先码云（快）：</p>
+                <pre class="cmd"># 版本清单（含各渠道、各架构的下载地址与 sha256）
+https://music.52ta.top/version.json
+
+# 电视版 · arm64（大多数电视盒子 / 智能电视）
+https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk
+
+# 电视版 · 32 位（老机顶盒，arm64 包装不上时用它）
+https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk</pre>
+                <p>下完可以对一下 <code>sha256</code>，与清单里 <code>releases.tv.variants</code> 的值一致就说明包完整。</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="aiinstall__no">02</span>
+              <div class="aiinstall__body">
+                <strong>电视打开 ADB 调试</strong>
+                <p>电视上：<strong>设置 → 关于 → 版本号</strong>连点 7 次，出现「开发者选项」；进去打开 <strong>USB 调试</strong>，并打开 <strong>网络调试 / ADB over network</strong>（不同品牌叫法略有差异）。</p>
+                <p>再到 <strong>设置 → 网络</strong> 记下电视的 IP 地址，例如 <code>192.168.1.23</code>。电脑要和电视连同一个路由器。</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="aiinstall__no">03</span>
+              <div class="aiinstall__body">
+                <strong>连接电视</strong>
+                <p>电脑上执行（没装 adb 的话，让 AI 帮你下载 Android platform-tools 并解压）：</p>
+                <pre class="cmd">adb connect 192.168.1.23:5555
+adb devices
+<span class="cmt"># 第二行应列出 192.168.1.23:5555  device</span></pre>
+                <p>首次连接电视会弹出「允许 USB 调试吗」，勾选<strong>一律允许</strong>再确定。若 <code>adb devices</code> 显示 <code>unauthorized</code>，就是这一步没点确认。</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="aiinstall__no">04</span>
+              <div class="aiinstall__body">
+                <strong>推送安装</strong>
+                <pre class="cmd">adb install -r app-tv-release.apk
+<span class="cmt"># -r 覆盖安装：已装过旧版本时保留数据</span></pre>
+                <p>看到 <code>Success</code> 就装好了。装完可以直接让 AI 顺手启动它：</p>
+                <pre class="cmd">adb shell am start -n com.wuaimusic.app.tv/com.wuaimusic.app.MainActivity</pre>
+              </div>
+            </li>
+
+            <li>
+              <span class="aiinstall__no">05</span>
+              <div class="aiinstall__body">
+                <strong>装不上时看返回码</strong>
+                <p><code>INSTALL_FAILED_NO_MATCHING_ABIS</code> → 换 32 位包（<code>app-tv-release-v7a.apk</code>）。</p>
+                <p><code>INSTALL_FAILED_UPDATE_INCOMPATIBLE</code> → 电视上装过别的来源的同名应用，签名不同；先 <code>adb uninstall com.wuaimusic.app.tv</code> 再装（会清掉应用内数据）。</p>
+                <p><code>INSTALL_FAILED_USER_RESTRICTED</code> → 开发者选项里还有一项「通过 USB 安装应用」，打开它再重试。</p>
+                <p><code>connection refused</code> → 电视的网络调试没开，或端口不是 5555；部分机型重启后会自动关闭网络调试，需要重新打开。</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        
       <div class="actions">
         <a class="btn btn--primary" href="https://gitee.com/jinghe-net/wuai-music/releases" target="_blank" rel="noopener">国内下载</a>
         <a class="btn btn--ghost" href="https://github.com/jim-6688/wuai-music/releases/latest" target="_blank" rel="noopener">国际下载</a>
@@ -140,3 +242,169 @@
 
 </body>
 </html>
+/* 电视安装指南（ADB 直装） — 从完整版移植 */
+.aiinstall {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: clamp(32px, 4vw, 52px);
+  padding: clamp(24px, 3.2vw, 40px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.aiinstall__aside {
+  /* 右侧命令步骤比左侧长得多：让左侧跟着滚动，别让标题早早滚出视野 */
+  position: sticky;
+  top: 104px;
+  align-self: start;
+}
+
+.aiinstall__aside h3 {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+}
+
+.aiinstall__aside > p {
+  margin-top: 14px;
+  font-size: 0.88rem;
+  line-height: 1.85;
+  color: var(--fg2);
+}
+
+.aiinstall__aside strong { color: var(--fg); font-weight: 500; }
+
+.aiinstall__tip {
+  margin-top: 24px;
+  padding-left: 14px;
+  border-left: 2px solid var(--line2);
+  font-size: 0.8rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.aiinstall__tip strong { color: var(--fg2); }
+
+.aiinstall__steps { list-style: none; }
+
+.aiinstall__steps li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+
+.aiinstall__steps li:first-child { border-top: none; padding-top: 0; }
+.aiinstall__steps li:last-child { padding-bottom: 0; }
+
+.aiinstall__no {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--brand);
+  padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.aiinstall__body strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.aiinstall__body p {
+  margin-top: 7px;
+  font-size: 0.86rem;
+  line-height: 1.8;
+  color: var(--fg2);
+}
+
+.aiinstall__body p strong { display: inline; color: var(--fg); }
+
+.cmd {
+  margin: 12px 0;
+  padding: 14px 16px;
+  background: rgba(30,20,24,.05);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+  line-height: 1.75;
+  color: var(--fg2);
+  /* 命令里的 Gitee 直链很长，一屏放不下。
+     用 pre-wrap + anywhere：换行只是视觉折行，复制出来仍是同一行，
+     比横向滚动（看不到全貌、还以为被截断）好得多。 */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cmd .cmt { color: var(--muted); }
+
+/* ---------- 常见问题 ---------- */
+.faq {
+  border-top: 1px solid var(--line);
+}
+
+.faq--tight {
+  max-width: none;
+  margin-top: clamp(36px, 4vw, 52px);
+}
+
+.faq__item { border-bottom: 1px solid var(--line); }
+
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.25s;
+}
+
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item summary:hover { color: var(--brand2); }
+
+.faq__item summary::after {
+  content: "+";
+  flex: none;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line2);
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--fg2);
+  line-height: 1;
+  transition: transform 0.3s var(--ease), border-color 0.3s, color 0.3s;
+}
+
+.faq__item[open] summary { color: var(--brand2); }
+
+.faq__item[open] summary::after {
+  content: "−";
+  transform: rotate(180deg);
+  border-color: var(--line2);
+  color: var(--brand);
+}
+
+.faq__body {
+  padding-bottom: 22px;
+  max-width: 70ch;
+  font-size: 0.92rem;
+  line-height: 1.9;
+  color: var(--fg2);
+}
+
+.faq__body p + p { margin-top: 10px; }
+

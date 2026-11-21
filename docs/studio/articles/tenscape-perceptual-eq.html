@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十境调音：听感语义参量均衡系统 · 吾爱高保真实验室</title>
+<style>
+:root{
+  --ink:#1c1719; --ink2:#514a4d; --muted:#8b8386; --line:rgba(30,20,24,.09);
+  --paper:#f9f4f0; --card:#fffefd; --gold:#7b45c9; --gold2:#5b2c9e;
+  --soft:rgba(123,69,201,.075); --accent:#7b45c9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",serif;
+  line-height:1.75;font-size:15px}
+.wrap{max-width:920px;margin:0 auto;padding:56px 34px 90px}
+header{text-align:center;border-bottom:3px double var(--gold);padding-bottom:28px;margin-bottom:34px}
+.kicker{font-size:12px;letter-spacing:.32em;color:var(--gold2);text-transform:uppercase}
+h1{font-size:30px;margin:14px 0 6px;line-height:1.3;font-weight:700}
+h1 .en{display:block;font-size:19px;color:var(--ink2);font-weight:500;margin-top:8px}
+.authors{color:var(--muted);font-size:13px;margin-top:16px}
+.meta{color:var(--muted);font-size:12px;margin-top:6px}
+h2{font-size:20px;margin:44px 0 14px;padding-left:12px;border-left:4px solid var(--gold)}
+h2 .en{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:2px}
+h3{font-size:16px;margin:26px 0 10px;color:var(--accent)}
+p{margin:10px 0}
+.zh,.en-p{display:block}
+.en-p{color:#514a4d;font-size:13.5px;font-style:italic;margin-top:3px;
+  padding-left:12px;border-left:2px solid var(--line)}
+figure{margin:24px 0;text-align:center}
+figure svg{max-width:100%;height:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+figcaption{font-size:12.5px;color:var(--muted);margin-top:9px;line-height:1.6}
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:13px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:var(--soft);font-weight:600}
+tr:nth-child(even) td{background:#fcf8f5}
+.formula{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:8px;padding:14px 18px;margin:16px 0;font-family:"Cambria Math",Georgia,serif;
+  font-size:15px;overflow-x:auto}
+.note{background:var(--soft);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:13px;color:var(--ink2)}
+.abstract{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:20px 0}
+.abstract b{color:var(--accent)}
+.refs{font-size:12.5px;color:var(--ink2);padding-left:22px}
+.refs li{margin:6px 0}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 22px;font-size:13px;columns:2}
+.toc a{color:var(--accent);text-decoration:none}
+footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);
+  text-align:center;color:var(--muted);font-size:12px}
+code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:12.5px}
+@media print{body{background:#fff}.wrap{padding:20px}.en-p{font-size:12px}}
+@media(max-width:640px){.toc{columns:1}h1{font-size:23px}}
+
+/* 官网 studio 融入：顶栏与文末导航 */
+.sitebar{position:sticky;top:0;z-index:50;background:rgba(249,244,240,.92);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.sitebar .sbwrap{width:min(920px,calc(100% - 40px));margin:0 auto;height:62px;
+  display:flex;align-items:center;gap:14px}
+.sitebar .logo{display:flex;align-items:center;gap:9px;font-weight:750;color:var(--ink);white-space:nowrap}
+.sitebar .logo img{width:24px;height:24px;border-radius:7px;display:block}
+.sitebar .logo small{font-size:11px;color:var(--muted);font-weight:500}
+.sitebar .spacer{flex:1}
+.sitebar .back{font-size:13px;color:var(--ink2);font-weight:600;white-space:nowrap}
+.sitebar .langtag{font-size:11px;color:var(--gold2);border:1px solid var(--line);
+  border-radius:8px;padding:5px 9px;white-space:nowrap}
+.art-foot{width:min(920px,calc(100% - 40px));margin:46px auto 60px;padding-top:22px;
+  border-top:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap}
+.art-foot .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  padding:0 18px;border-radius:12px;font-weight:600;font-size:13px}
+.art-foot .btn--primary{background:var(--gold);color:#fff}
+.art-foot .btn--ghost{border:1px solid var(--line);background:var(--card);color:var(--ink2)}
+footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;
+  color:var(--muted);font-size:12px;margin-top:0}
+@media(max-width:640px){.sitebar .logo small,.sitebar .langtag{display:none}}
+</style>
+</head>
+<body>
+<header class="sitebar">
+  <div class="sbwrap">
+    <a class="logo" href="../"><img src="../assets/logo-v3.png" alt="吾爱音乐">吾爱Music <small>高保真实验室</small></a>
+    <span class="spacer"></span>
+    <span class="langtag">中英对照 · Bilingual</span>
+    <a class="back" href="../#research">← 返回实验室</a>
+  </div>
+</header>
+<div class="wrap">
+
+<header>
+  <div class="kicker">WuAi Music · HiFi Laboratory · Whitepaper 02</div>
+  <h1>十境调音：面向数字音频播放器的听感语义参量均衡系统
+    <span class="en">TENSCAPE: A Perceptual-Semantic Parametric Equalization System for Digital Audio Players</span>
+  </h1>
+  <div class="authors">吾爱高保真实验室　WuAi HiFi Laboratory</div>
+  <div class="meta">白皮书 02 · 音频 DSP · 吾爱高保真实验室 · 2026-11-20</div>
+</header>
+
+<div class="abstract">
+<span class="zh"><b>摘要</b>　本文提出并实现了一套面向数字音频播放器的听感语义参量均衡系统——十境调音（WUAI TENSCAPE）。该系统将传统参量均衡器的频率、增益、Q 值三参数，映射为十个以听感描述命名的控制维度（晨昏、深潜、回弹、肌理、唱腔、圆润、顺滑、起落、清亮、天光），使不具备声学专业知识的用户亦能进行风格化调音。系统以 CamillaDSP 的 Biquad 滤波器组为执行内核，采用"语义层／专业层"互斥双模式架构：语义层使用十组固定频点与 Q 值的滤波器，专业层保留完全开放的标准十段均衡器并作为 AutoEQ 测量校正的落点。本文详细阐述十境的维度定义、滑块到滤波器参数的线性映射、倾斜（tilt）滤波器的反向搁架实现，以及圆形旋钮交互设计。经参数级验证，各维度映射精度与互斥性均满足设计预期。</span>
+<span class="en-p"><b>Abstract</b> — This paper presents the design and implementation of a perceptual-semantic parametric equalization system for digital audio players, named TENSCAPE (WUAI TENSCAPE). The system maps the three conventional parameters of a parametric equalizer — frequency, gain, and Q — into ten perceptually named control dimensions, enabling users without acoustic expertise to perform stylistic sound shaping. Built upon a CamillaDSP Biquad filter bank, the system adopts a mutually exclusive dual-mode architecture: a semantic layer using ten fixed-frequency/fixed-Q filters, and a professional layer preserving a fully parametric ten-band EQ as the integration point for AutoEQ measured correction. This paper details the dimension definitions, the linear slider-to-filter mapping, a anti-shelf implementation of the tilt filter, and the circular-knob interaction design. Parameter-level verification confirms mapping accuracy and mode exclusivity.</span>
+</div>
+
+<div class="toc">
+<b>目录 / Contents</b><br>
+<a href="#s1">1 引言 / Introduction</a><br>
+<a href="#s2">2 技术背景 / Background</a><br>
+<a href="#s3">3 系统设计 / System Design</a><br>
+<a href="#s4">4 关键算法 / Key Algorithms</a><br>
+<a href="#s5">5 实现 / Implementation</a><br>
+<a href="#s6">6 验证 / Verification</a><br>
+<a href="#s7">7 结论 / Conclusion</a><br>
+<a href="#ref">参考文献 / References</a>
+</div>
+
+<h2 id="s1">1 引言<span class="en">1 Introduction</span></h2>
+<p class="zh">高保真音频回放中，均衡器（EQ）是修正频响与塑造听感的核心工具。传统图形均衡器以固定频点、固定 Q 值的多个频段构成，用户需理解频率与听感之间的对应关系；参量均衡器（PEQ）虽提供频率、增益、Q 值的完全控制，却进一步提高了使用门槛。消费级市场亟需一种既能表达"冷暖、人声靠前、空气感"等主观听感，又能保证工程精度的调音接口。</p>
+<p class="en-p">In high-fidelity audio playback, the equalizer is central to both frequency-response correction and tonal shaping. Graphic equalizers use fixed frequency bands with fixed Q, requiring users to understand the mapping between frequency and perception. Parametric equalizers (PEQ) offer full control over frequency, gain, and Q, but raise the barrier further. The consumer market needs a tuning interface that expresses subjective descriptors such as warmth, vocal forwardness, and airiness while preserving engineering precision.</p>
+<p class="zh">本文提出的十境调音（TENSCAPE）与海贝音乐 MSEB 属同类听感调音思路——将参数均衡包装为听感语言——但为独立设计与实现，在命名体系、参数可见性与系统架构上采取差异化路线：十位维度采用东方意象命名并附白话副标题；提供"语义／专业"互斥双模式，前者面向普通用户，后者面向测量校正；并叠加交叉馈送、FIR 房间校正等本系统独有能力。</p>
+<p class="en-p">The proposed TENSCAPE shares the same perceptual-tuning approach as HiBy's MSEB — wrapping parametric EQ in perceptual language — but is an independent design and implementation, differentiated in nomenclature, parameter visibility, and architecture: the ten dimensions use Eastern imagery with plain-language subtitles; a mutually exclusive semantic/professional dual-mode serves novices and measurement-based correction respectively; and capabilities unique to this system, such as crossfeed and FIR room correction, are layered on top.</p>
+
+<h2 id="s2">2 技术背景<span class="en">2 Technical Background</span></h2>
+<h3>2.1 参量均衡与 AutoEQ</h3>
+<p class="zh">参量均衡器由 RBJ Audio EQ Cookbook 定义的 Biquad 滤波器构成，核心参数为：中心频率 <code>f₀</code>（20 Hz–20 kHz）、增益 <code>Gain</code>（典型 ±12 dB）、品质因数 <code>Q</code>（0.2–20）及滤波器类型（Peaking、Low Shelf、High Shelf）。AutoEQ 项目以 MIT 许可发布大量耳机的测量校正数据，其 <code>ParametricEQ.txt</code> 输出即一组任意频率＋Q 的参数滤波器，<code>FixedBandEQ.txt</code> 则为十段固定频点、Q = 1.41 的方案。</p>
+<p class="en-p">A parametric equalizer comprises Biquad filters as defined by the RBJ Audio EQ Cookbook, parameterized by center frequency (20 Hz–20 kHz), gain (typically ±12 dB), quality factor Q (0.2–20), and filter type (peaking, low shelf, high shelf). The MIT-licensed AutoEQ project publishes measured correction data for headphones; its ParametricEQ.txt is a set of arbitrary frequency/Q filters, while FixedBandEQ.txt is a ten-band fixed-frequency scheme with Q = 1.41.</p>
+
+<h3>2.2 海贝 MSEB 的实现原理</h3>
+<p class="zh">MSEB（Mage Sound 8-ball Tuning）是海贝自研的多维度调音系统。根据 MSEB 作者（海贝员工）于 2022 年公开的技术说明及第三方实测，其本质是"一组固定频点与 Q 值的 PEQ 滤波器，滑块值映射为增益"：总温度为倾斜（tilt）滤波，低频下潜为 70 Hz 临界阻尼低搁架，空气感为 10 kHz 临界阻尼高搁架，其余为不同 Q 值的点均衡器。各频带刻意设计得足够宽，彼此交融，从而以十个维度覆盖广泛的听感塑形空间。</p>
+<p class="en-p">MSEB (Mage Sound 8-ball Tuning) is HiBy's proprietary multi-dimensional tuning system. According to technical details disclosed in 2022 by its author (a HiBy employee) and third-party measurements, it is essentially "a set of PEQ filters with predetermined frequency and Q, with slider values mapped to gain": overall temperature is a tilt filter, bass extension a critically damped low shelf at 70 Hz, air a critically damped high shelf at 10 kHz, and the remainder point EQs of varying Q. The bands are intentionally wide enough to blend, covering a broad perceptual shaping space with ten dimensions.</p>
+
+<figure>
+<svg viewBox="0 0 680 330" role="img" aria-label="十境维度在对数频率轴上的分布"><title>Figure 1 — Distribution of the ten TENSCAPE dimensions on a logarithmic frequency axis</title><line x1="210" y1="30" x2="630" y2="30" stroke="#7b45c9" stroke-width="1"/><line x1="210.0" y1="26" x2="210.0" y2="34" stroke="#7b45c9"/><text x="210.0" y="22" font-size="10" fill="#8b8386" text-anchor="middle">20Hz</text><line x1="307.9" y1="26" x2="307.9" y2="34" stroke="#7b45c9"/><text x="307.9" y="22" font-size="10" fill="#8b8386" text-anchor="middle">100</text><line x1="447.9" y1="26" x2="447.9" y2="34" stroke="#7b45c9"/><text x="447.9" y="22" font-size="10" fill="#8b8386" text-anchor="middle">1k</text><line x1="587.9" y1="26" x2="587.9" y2="34" stroke="#7b45c9"/><text x="587.9" y="22" font-size="10" fill="#8b8386" text-anchor="middle">10k</text><line x1="630.0" y1="26" x2="630.0" y2="34" stroke="#7b45c9"/><text x="630.0" y="22" font-size="10" fill="#8b8386" text-anchor="middle">20k</text><text x="40" y="58" font-size="11" fill="#1c1719">晨昏 Shade</text><text x="40" y="72" font-size="9" fill="#5b2c9e">tilt 全频</text><line x1="210" y1="64" x2="630" y2="64" stroke="#7b45c9" stroke-width="2"/><text x="40" y="90" font-size="11" fill="#1c1719">深潜 Depth</text><text x="168" y="90" font-size="9" fill="#5b2c9e" text-anchor="end">low shelf</text><line x1="174" y1="88" x2="286.2" y2="88" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="286.2" cy="88" r="4.5" fill="#7b45c9"/><text x="40" y="114" font-size="11" fill="#1c1719">回弹 Rebound</text><text x="168" y="114" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q1.0</text><line x1="174" y1="112" x2="313.7" y2="112" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="313.7" cy="112" r="4.5" fill="#7b45c9"/><text x="40" y="138" font-size="11" fill="#1c1719">肌理 Texture</text><text x="168" y="138" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q0.7</text><line x1="174" y1="136" x2="355.8" y2="136" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="355.8" cy="136" r="4.5" fill="#7b45c9"/><text x="40" y="162" font-size="11" fill="#1c1719">唱腔 Voice</text><text x="168" y="162" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q0.4</text><line x1="174" y1="160" x2="421.7" y2="160" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="421.7" cy="160" r="4.5" fill="#7b45c9"/><text x="40" y="186" font-size="11" fill="#1c1719">圆润 Sweet</text><text x="168" y="186" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q4.0</text><line x1="174" y1="184" x2="514.7" y2="184" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="514.7" cy="184" r="4.5" fill="#7b45c9"/><text x="40" y="210" font-size="11" fill="#1c1719">顺滑 Smooth</text><text x="168" y="210" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q1.5</text><line x1="174" y1="208" x2="554.7" y2="208" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="554.7" cy="208" r="4.5" fill="#7b45c9"/><text x="40" y="234" font-size="11" fill="#1c1719">起落 Attack</text><text x="168" y="234" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q0.4</text><line x1="174" y1="232" x2="570.4" y2="232" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="570.4" cy="232" r="4.5" fill="#7b45c9"/><text x="40" y="258" font-size="11" fill="#1c1719">清亮 Clarity</text><text x="168" y="258" font-size="9" fill="#5b2c9e" text-anchor="end">peak Q1.5</text><line x1="174" y1="256" x2="582.8" y2="256" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="582.8" cy="256" r="4.5" fill="#7b45c9"/><text x="40" y="282" font-size="11" fill="#1c1719">天光 Air</text><text x="168" y="282" font-size="9" fill="#5b2c9e" text-anchor="end">high shelf</text><line x1="174" y1="280" x2="587.9" y2="280" stroke="#dcd6e6" stroke-width="0.5" stroke-dasharray="3 3"/><circle cx="587.9" cy="280" r="4.5" fill="#7b45c9"/></svg>
+<figcaption>图 1　十境维度在对数频率轴上的分布。晨昏为全频倾斜；深潜／天光为搁架滤波器；其余七个为不同 Q 值的峰值滤波器。<br>Figure 1. Distribution of the ten TENSCAPE dimensions on a log-frequency axis. Shade is a full-band tilt; Depth/Air are shelving filters; the remaining seven are peaking filters of varying Q.</figcaption>
+</figure>
+
+<h2 id="s3">3 系统设计<span class="en">3 System Design</span></h2>
+<h3>3.1 十境维度定义</h3>
+<p class="zh">十境以两字中文名命名，各附白话副标题，避免纯玄学表述。滑块范围统一为 −100 至 +100，中位为 0。下表列出各维度的滤波器类型、频点、Q／斜率与增益上限。</p>
+<p class="en-p">Each of the ten dimensions bears a two-character Chinese name with a plain-language subtitle to avoid pure audiophile jargon. All sliders span −100 to +100 with a neutral center. The table lists filter type, frequency, Q/Q, and gain ceiling for each dimension.</p>
+
+<table>
+<tr><th>#</th><th>名称 Name</th><th>副标题 Subtitle</th><th>类型 Type</th><th>频点 Freq</th><th>Q / Q</th><th>±Gain</th></tr>
+<tr><td>1</td><td>晨昏 Shade</td><td>整体冷暖</td><td>tilt（反向搁架对）</td><td>180 Hz / 6 kHz</td><td>0.707</td><td>6 dB</td></tr>
+<tr><td>2</td><td>深潜 Depth</td><td>极低频下潜</td><td>Low Shelf</td><td>70 Hz</td><td>0.707</td><td>10 dB</td></tr>
+<tr><td>3</td><td>回弹 Rebound</td><td>低频速度与弹性</td><td>Peaking</td><td>110 Hz</td><td>1.0</td><td>10 dB</td></tr>
+<tr><td>4</td><td>肌理 Texture</td><td>声音饱满厚薄</td><td>Peaking</td><td>220 Hz</td><td>0.7</td><td>10 dB</td></tr>
+<tr><td>5</td><td>唱腔 Voice</td><td>人声前后距离</td><td>Peaking</td><td>650 Hz</td><td>0.4</td><td>8 dB</td></tr>
+<tr><td>6</td><td>圆润 Sweet</td><td>女声甜润去毛刺</td><td>Peaking</td><td>3 kHz</td><td>4.0</td><td>8 dB</td></tr>
+<tr><td>7</td><td>顺滑 Smooth</td><td>中高频齿音柔化</td><td>Peaking</td><td>5.8 kHz</td><td>1.5</td><td>8 dB</td></tr>
+<tr><td>8</td><td>起落 Attack</td><td>瞬态软硬快慢</td><td>Peaking</td><td>7.5 kHz</td><td>0.4</td><td>8 dB</td></tr>
+<tr><td>9</td><td>清亮 Clarity</td><td>高频亮泽不刺</td><td>Peaking</td><td>9.2 kHz</td><td>1.5</td><td>8 dB</td></tr>
+<tr><td>10</td><td>天光 Air</td><td>高频延伸与空间</td><td>High Shelf</td><td>10 kHz</td><td>0.707</td><td>10 dB</td></tr>
+</table>
+<figcaption>表 1　十境维度参数表。频带刻意做宽以彼此交融，与 MSEB 的设计哲学一致。<br>Table 1. TENSCAPE dimension parameters. Bands are intentionally wide to blend, consistent with the MSEB design philosophy.</figcaption>
+
+<h3>3.2 双模式互斥架构</h3>
+<p class="zh">音色层采用互斥双模式，由状态字段 <code>tone_mode</code> 控制：<code>semantic</code>（十境）与 <code>pro</code>（原十段 EQ）二选一。互斥的目的是避免对同一频段重复处理造成频响畸变与相位问题。两种模式的参数均独立保存在持久化状态中，切换时不丢失。房间校正 FIR、去加重、交叉馈送、声道平衡与输出电平位于音色层之外，与任一模式叠加，不受切换影响。</p>
+<p class="en-p">The tone layer adopts a mutually exclusive dual-mode architecture controlled by the state field <code>tone_mode</code>: <code>semantic</code> (TENSCAPE) and <code>pro</code> (original ten-band EQ), with exactly one active. Exclusivity prevents response distortion and phase issues from processing the same bands twice. Parameters of both modes are stored independently and preserved across switches. FIR room correction, de-emphasis, crossfeed, channel balance, and output gain reside outside the tone layer and overlay either mode.</p>
+
+<figure>
+<svg viewBox="0 0 680 250" role="img" aria-label="双模式互斥与叠加架构">
+<title>Figure 2 — Mutually exclusive dual-mode architecture</title>
+<defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#5b2c9e" stroke-width="1.5"/></marker></defs>
+<g font-size="12" fill="#1c1719">
+<rect x="250" y="20" width="180" height="40" rx="8" fill="#f3eefa" stroke="#7b45c9"/>
+<text x="340" y="44" text-anchor="middle">音色层 Tone Layer</text>
+<line x1="300" y1="60" x2="180" y2="90" stroke="#5b2c9e" marker-end="url(#ar2)"/>
+<line x1="380" y1="60" x2="500" y2="90" stroke="#5b2c9e" marker-end="url(#ar2)"/>
+<rect x="70" y="92" width="220" height="56" rx="8" fill="#fff" stroke="#7b45c9"/>
+<text x="180" y="112" text-anchor="middle" font-weight="600">semantic · 十境</text>
+<text x="180" y="131" text-anchor="middle" font-size="10" fill="#8b8386">7 peaking + 2 shelf + tilt</text>
+<rect x="390" y="92" width="220" height="56" rx="8" fill="#fff" stroke="#5b2c9e"/>
+<text x="500" y="112" text-anchor="middle" font-weight="600">pro · 10 段 EQ</text>
+<text x="500" y="131" text-anchor="middle" font-size="10" fill="#8b8386">Q 1.41 · AutoEQ 落点</text>
+<text x="340" y="122" text-anchor="middle" fill="#5b2c9e">互斥</text>
+<line x1="180" y1="148" x2="340" y2="180" stroke="#5b2c9e" marker-end="url(#ar2)"/>
+<line x1="500" y1="148" x2="340" y2="180" stroke="#5b2c9e" marker-end="url(#ar2)"/>
+<rect x="180" y="182" width="320" height="46" rx="8" fill="#f3eefa" stroke="#7b45c9"/>
+<text x="340" y="200" text-anchor="middle">CamillaDSP pipeline</text>
+<text x="340" y="217" text-anchor="middle" font-size="10" fill="#8b8386">+ FIR / 去加重 / 交叉馈送（叠加层）</text>
+</g>
+</svg>
+<figcaption>图 2　双模式互斥架构。十境与专业 EQ 二选一，其余处理独立叠加。<br>Figure 2. Mutually exclusive dual-mode architecture; one tone engine active, other processes overlay.</figcaption>
+</figure>
+
+<h2 id="s4">4 关键算法<span class="en">4 Key Algorithms</span></h2>
+<h3>4.1 滑块到增益的映射</h3>
+<p class="zh">对任意维度 <em>i</em>，设滑块值 <code>s ∈ [−100, 100]</code>，该维增益上限 <code>G_max</code>，则滤波器增益为线性映射：</p>
+<p class="en-p">For any dimension <em>i</em>, given slider value <code>s ∈ [−100, 100]</code> and gain ceiling <code>G_max</code>, the filter gain is a linear mapping:</p>
+<div class="formula">Gain_dB = (s / 100) × G_max　　　(s = 0 时该滤波器不插入 pipeline)</div>
+
+<h3>4.2 倾斜（tilt）滤波器的反向搁架实现</h3>
+<p class="zh">晨昏（Shade）为全频倾斜：在 dB–log f 平面上绕中频旋转整条频响曲线。CamillaDSP 无原生 tilt 类型，本系统以一对反向宽搁架实现——低频搁架切点 180 Hz、高频搁架切点 6 kHz，Q 均为 0.707，增益互为相反数：</p>
+<p class="en-p">Shade is a full-band tilt: rotating the entire response curve around a mid frequency in the dB–log f plane. CamillaDSP has no native tilt type; the system implements it with a pair of anti-phase wide shelving filters — low-shelf corner 180 Hz, high-shelf corner 6 kHz, both Q 0.707, with opposite gains:</p>
+<div class="formula">G_tilt = (s / 100) × 6 dB<br>LowShelf(180 Hz, gain = −G_tilt)　+　HighShelf(6 kHz, gain = +G_tilt)</div>
+<p class="zh"><code>s &gt; 0</code> 为冷亮（压低、抬高高频），<code>s &lt; 0</code> 为暖暗（抬高低频、压低高频），与海贝 MSEB 作者所述"toward treble (cool) or bass (warm)"一致。</p>
+<p class="en-p"><code>s &gt; 0</code> yields a cool/bright tilt (attenuate bass, lift treble); <code>s &lt; 0</code> a warm/dark tilt, consistent with the MSEB author's description of "toward treble (cool) or bass (warm)".</p>
+
+<figure>
+<svg viewBox="0 0 680 240" role="img" aria-label="倾斜滤波器原理示意">
+<title>Figure 3 — Tilt filter realized by anti-phase shelving pairs</title>
+<g font-size="11" fill="#8b8386">
+<line x1="60" y1="120" x2="620" y2="120" stroke="#7b45c9" stroke-width="1"/>
+<text x="60" y="140">20Hz</text><text x="620" y="140" text-anchor="end">20kHz</text>
+<text x="60" y="30" fill="#1c1719">暖 / Warm (s &lt; 0)</text>
+<path d="M60 45 Q 200 42 340 62 T 620 90" fill="none" stroke="#7b45c9" stroke-width="2"/>
+<text x="60" y="105" fill="#1c1719">平直 / Flat</text>
+<line x1="60" y1="100" x2="620" y2="100" stroke="#5b2c9e" stroke-dasharray="4 4"/>
+<text x="60" y="175" fill="#1c1719">冷 / Cool (s &gt; 0)</text>
+<path d="M60 200 Q 200 197 340 178 T 620 150" fill="none" stroke="#7b45c9" stroke-width="2"/>
+</g>
+</svg>
+<figcaption>图 3　倾斜滤波器原理：低频与高频搁架取相反增益，形成绕中频旋转的频响直线。<br>Figure 3. Tilt filter principle: low/high shelves with opposite gains form a response line rotating around mid frequency.</figcaption>
+</figure>
+
+<h2 id="s5">5 实现<span class="en">5 Implementation</span></h2>
+<h3>5.1 双模式互斥实现</h3>
+<p class="zh">配置生成器 <code>dsp_config.py</code> 根据 <code>tone_mode</code> 分支构建滤波器：<code>semantic</code> 模式调用 <code>build_ten_scenes()</code> 生成十境组（滑块中位附近时跳过该滤波器，零处理直通）；<code>pro</code> 模式生成原十段 Peaking（32 Hz–16 kHz，Q = 1.41）。服务端 <code>server.py</code> 提供 <code>tone_gain</code>、<code>tone_mode</code>、<code>tone_preset</code> 三类操作，并对滑块值做 −100 至 +100 的钳制。状态结构向后兼容：缺少 <code>tone_mode</code> 的旧配置默认进入语义模式（十境全 0 即直通）。</p>
+<p class="en-p">The configuration generator <code>dsp_config.py</code> branches on <code>tone_mode</code>: <code>semantic</code> calls <code>build_ten_scenes()</code> to generate the TENSCAPE bank (skipping filters near the neutral slider position for zero-processing pass-through); <code>pro</code> generates the ten-band Peaking bank (32 Hz–16 kHz, Q = 1.41). The server exposes <code>tone_gain</code>, <code>tone_mode</code>, and <code>tone_preset</code> operations with slider clamping to [−100, 100]. State is backward compatible: legacy configurations lacking <code>tone_mode</code> default to semantic mode (all-zero sliders mean pass-through).</p>
+
+<h3>5.2 圆形旋钮交互</h3>
+<p class="zh">十境与专业段均以圆形旋钮呈现，复用音量旋钮的视觉语言（conic-gradient 渐变环、指示圆点、中央数值）。与单向音量旋钮不同，均衡旋钮为双极性：环覆盖 270°，中位置于正顶部；正值沿顺时针填充右侧，负值逆时针填充左侧。指针角度经 <code>atan2</code> 计算并吸附至底部缺口两端；滚轮、双击归零、键盘方向键均受支持。交互在 Web 前端完成，提交时调用既有 DSP 接口，不改变后端信号处理链路。</p>
+<p class="en-p">Both TENSCAPE and professional bands are rendered as circular knobs, reusing the volume knob's visual language (conic-gradient ring, indicator dot, central value). Unlike the unidirectional volume knob, EQ knobs are bipolar: the ring spans 270° with neutral at top; positive values fill clockwise to the right, negative counterclockwise to the left. Pointer angle is computed via <code>atan2</code> and snapped at the bottom gap; wheel, double-click-to-zero, and arrow keys are supported. Interaction is implemented in the web front-end and invokes existing DSP endpoints, leaving the back-end signal chain unchanged.</p>
+
+<figure>
+<svg viewBox="0 0 680 210" role="img" aria-label="双极性圆形旋钮角度映射">
+<title>Figure 4 — Bipolar circular knob angle mapping</title>
+<g font-size="11" fill="#1c1719">
+<circle cx="120" cy="105" r="62" fill="#fff" stroke="#7b45c9"/>
+<path d="M120 43 A62 62 0 0 1 174 150" fill="none" stroke="#7b45c9" stroke-width="8"/>
+<circle cx="174" cy="150" r="5" fill="#7b45c9"/>
+<text x="120" y="110" text-anchor="middle" font-size="16" font-weight="600">+45</text>
+<text x="120" y="185" text-anchor="middle" font-size="10" fill="#8b8386">正值：顺时针 / positive</text>
+<circle cx="360" cy="105" r="62" fill="#fff" stroke="#7b45c9"/>
+<path d="M360 43 A62 62 0 0 0 306 150" fill="none" stroke="#9b6be0" stroke-width="8"/>
+<circle cx="306" cy="150" r="5" fill="#9b6be0"/>
+<text x="360" y="110" text-anchor="middle" font-size="16" font-weight="600">0</text>
+<text x="360" y="185" text-anchor="middle" font-size="10" fill="#8b8386">中位：正顶部 / neutral</text>
+<circle cx="600" cy="105" r="62" fill="#fff" stroke="#7b45c9"/>
+<path d="M600 43 A62 62 0 0 0 546 150" fill="none" stroke="#9b6be0" stroke-width="8"/>
+<circle cx="546" cy="150" r="5" fill="#9b6be0"/>
+<text x="600" y="110" text-anchor="middle" font-size="16" font-weight="600">−60</text>
+<text x="600" y="185" text-anchor="middle" font-size="10" fill="#8b8386">负值：逆时针 / negative</text>
+</g>
+</svg>
+<figcaption>图 4　双极性圆形旋钮：中位在正顶部，正值向右、负值向左，环填充区间随数值变化。<br>Figure 4. Bipolar circular knobs: neutral at top, positive clockwise, negative counterclockwise.</figcaption>
+</figure>
+
+<h2 id="s6">6 验证<span class="en">6 Verification</span></h2>
+<p class="zh">本文对参数映射与模式互斥进行了配置级验证，结果如下：</p>
+<p class="en-p">Configuration-level verification of parameter mapping and mode exclusivity yielded the following results:</p>
+<table>
+<tr><th>测试项 Test</th><th>预期 Expected</th><th>结果 Result</th></tr>
+<tr><td>十境全 0 / All-zero TENSCAPE</td><td>无音色滤波器（零处理直通）</td><td>通过 / Pass</td></tr>
+<tr><td>晨昏 +100 / Shade +100</td><td>180 Hz −6 dB + 6 kHz +6 dB 反向搁架</td><td>通过 / Pass</td></tr>
+<tr><td>深潜 +50 / Depth +50</td><td>70 Hz LowShelf +5 dB</td><td>通过 / Pass</td></tr>
+<tr><td>圆润 +80 / Sweet +80</td><td>3 kHz Peaking Q 4.0 +6.4 dB</td><td>通过 / Pass</td></tr>
+<tr><td>semantic 模式 / semantic mode</td><td>不生成专业段 EQ（互斥）</td><td>通过 / Pass</td></tr>
+<tr><td>pro 模式 / pro mode</td><td>不生成十境段（互斥）</td><td>通过 / Pass</td></tr>
+<tr><td>旧配置兼容 / Legacy state</td><td>默认语义模式、十境全 0 直通</td><td>通过 / Pass</td></tr>
+<tr><td>旋钮角度往返 / Knob round-trip</td><td>−100…+100 反解误差 &lt; 1</td><td>通过 / Pass</td></tr>
+</table>
+<figcaption>表 2　验证结果汇总。所有测试项均通过。<br>Table 2. Verification summary. All test cases passed.</figcaption>
+
+<h2 id="s7">7 结论<span class="en">7 Conclusion</span></h2>
+<p class="zh">十境调音（WUAI TENSCAPE）以听感语义层降低了数播调音的使用门槛，同时以互斥双模式保留了专业参数控制的精度与 AutoEQ 校正能力。其创新点在于：东方意象命名与白话副标题的语义体系、语义／专业互斥架构、双极性圆形旋钮交互，以及与 FIR 房间校正等独有能力的可叠加性。该系统已在本项目数播端完成工程实现与参数级验证，后续工作包括听感盲听评测与 AutoEQ 参数化模式的进一步整合。</p>
+<p class="en-p">TENSCAPE lowers the barrier to DSP tuning on digital audio players through a perceptual-semantic layer, while retaining professional parameter control and AutoEQ correction via a mutually exclusive dual-mode architecture. Its contributions include an Eastern-imagery nomenclature with plain subtitles, the exclusive dual-mode design, bipolar circular-knob interaction, and composability with unique capabilities such as FIR room correction. The system has been engineered and parameter-verified in this project; future work includes listening-panel evaluation and deeper integration of an AutoEQ parametric mode.</p>
+
+<div class="note"><b>声明 / Note</b>　「十境调音 / WUAI TENSCAPE」为本项目内部命名，网络检索未见同名音频产品；正式商用前须经中国商标网及 CNIPA 专利检索系统完成法律确权。本文为技术白皮书，非同行评审论文。<br>The name "TENSCAPE" is an internal designation; no identically named audio product was found in public web search. Legal clearance via CNIPA trademark and patent databases is required before commercial use. This is a technical white paper, not a peer-reviewed paper.</div>
+
+<h2 id="ref">参考文献<span class="en">References</span></h2>
+<ol class="refs">
+<li>HiBy. "Introduction to HiBy MSEB" / "PEQ", HiBy Music Wiki, guide.hiby.com/docs/guides/audioprocess/ (2024).</li>
+<li>HiBy MSEB author, technical disclosure on Audio Science Review forum, thread "Some subjective thoughts about Hiby MSEB" (2022).</li>
+<li>Jeromeof, measured frequency response of MSEB filters on HiBy R1, Audio Science Review (2025).</li>
+<li>RBJ. "Audio EQ Cookbook", Robert Bristow-Johnson (public domain / widely cited).</li>
+<li>Jaakko Pasanen et al. "AutoEq", MIT License, github.com/jaakkopasanen/AutoEq (2018–2022).</li>
+<li>CamillaDSP documentation, Biquad filter types and Convolution filter, camilladsp.github.io.</li>
+<li>吾爱音乐实验室. 《十境调音系统设计》内部文档 (2026). / WuAi Music Lab, internal design document (2026).</li>
+</ol>
+
+<div class="art-foot">
+  <a class="btn btn--primary" href="../#research">返回实验室 · 深度研究</a>
+  <a class="btn btn--ghost" href="signal-chain-transparency.html">← 上一篇：信号链透明</a>
+</div>
+<footer>© 2026 吾爱Music · 把功能做成证据　|　十境调音 · WUAI TENSCAPE · WuAi HiFi Laboratory</footer>
+
+</div>
+</body>
+</html>

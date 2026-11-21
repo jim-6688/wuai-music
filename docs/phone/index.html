@@ -21,6 +21,7 @@
 </script>
 <link rel="stylesheet" href="../assets/css/product.css" />
 <script src="../assets/js/product.js" defer></script>
+<script src="../assets/js/product-data.js" defer></script>
 </head>
 <body id="top">
 
@@ -117,10 +118,28 @@
     </div>
   </section>
 
+  <section class="section section--alt" id="activity">
+    <div class="container">
+      <header class="shead">
+        <span class="no">03 · 持续进化</span>
+        <h2>最近更新 · 研发成果 · 进度</h2>
+        <p>版本记录与官方发布清单实时同步，研发成果来自工作室公开的白皮书。</p>
+      </header>
+      <div class="dyn-tabs" role="tablist">
+        <button class="dyn-tab is-active" data-dyn-tab="updates" role="tab">最近更新</button>
+        <button class="dyn-tab" data-dyn-tab="papers" role="tab">研发成果</button>
+        <button class="dyn-tab" data-dyn-tab="progress" role="tab">进度</button>
+      </div>
+      <div class="dyn-panel is-active" id="dyn-updates" data-pd="updates" data-pd-count="4"></div>
+      <div class="dyn-panel" id="dyn-papers" data-pd="papers"></div>
+      <div class="dyn-panel" id="dyn-progress" data-pd="progress"></div>
+    </div>
+  </section>
+
   <section class="section" id="download">
     <div class="container">
       <header class="shead">
-        <span class="no">03 · 下载</span>
+        <span class="no">04 · 下载</span>
         <h2>装到手机上</h2>
         <p>选择适合你设备的版本。国内走码云，国际走 GitHub，均为官方发布页。</p>
       </header>

@@ -1,18 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   首屏 3D 背景 —— 四种可视化风格（three.js r149，本地 vendor）
+   首屏 3D 背景 —— 官网展示三种可视化（three.js r149，本地 vendor）
 
-   四种风格与 App 里的 visualize 枚举**一一对应**（真源
-   `lib/features/player/widgets/audio_visualizer.dart` 的 VisualizerStyle，
-   顺序也照抄：aurora / vinyl / nebula / fountain）：
-     · aurora   液态极光 —— 多层流体光带
-     · vinyl    黑胶唱片 —— 封面随唱片旋转（默认，也是 App 的默认档）
-     · nebula   星云律动 —— 柱状频谱 + 倒影
-     · fountain 音乐喷泉 —— 中央水柱 + 喷溅
+   官网只展示 aurora / vinyl / nebula 三种：
+     · aurora   液态极光 —— 多层流体光带，压在标题下方
+     · vinyl    黑胶唱片 —— 单独旋转的唱片，放在右侧（默认）
+     · nebula   星云律动 —— 柱状频谱 + 倒影，压在标题下方
 
-   这里不是像素级复刻 App 的 CustomPainter：官网是 3D 语境，二维光带平铺
-   在透视空间里会很薄。所以四种都在三维里重建，但保留各自的**识别特征**
-   （极光=交叠光带、黑胶=同心沟槽、星云=柱阵+倒影、喷泉=粒子抛物），
-   让看过 App 的人一眼能对上。
+   App 里仍有四档（另有音乐喷泉），但官网首屏不再复刻喷泉。这里不是像素级
+   复刻 App 的 CustomPainter：官网是 3D 语境，二维光带平铺在透视空间里会很薄。
+   三种都在三维里重建，但保留各自的识别特征（极光=交叠光带、黑胶=同心沟槽、
+   星云=柱阵+倒影），让看过 App 的人一眼能对上。
 
    设计约束（都来自官网现有门面，不要轻易改）：
    · 画布完全透明：hero::before 的紫色辉光和 hero__rule 的网格底纹要透出来；
@@ -21,7 +18,7 @@
    · 不阻塞首屏：three.min.js 与本文件都 defer，等 window.load 后再延迟初始化；
    · 可降级：WebGL 不可用 / 上下文丢失 / three.js 没加载 → 静默隐藏，官网原样；
    · 可关闭：右下角小胶囊，偏好写 localStorage('wuai-hero3d')；
-   · 可切换：左下角四个 chip，偏好写 localStorage('wuai-hero3d-style')，
+   · 可切换：下方三个 chip，偏好写 localStorage('wuai-hero3d-style')，
      也接受 `?viz=aurora` 直达（分享链接 / 截图调试用）；
    · 省电：页面隐藏、hero 滚出视口、reduced-motion 时都停渲染；只更新可见场景，
      非当前风格**不建**（首屏只创建一种，切换时才建下一个）。
@@ -42,7 +39,7 @@
 
   /* 顺序 = App 枚举顺序。改这里要同步 visualizer_style_provider 的默认值与
      audio_visualizer.dart 的枚举，否则两端"第几档"对不上。 */
-  var STYLES = ['aurora', 'vinyl', 'nebula', 'fountain'];
+  var STYLES = ['aurora', 'vinyl', 'nebula'];
   var DEFAULT_STYLE = 'vinyl';
 
   var enabled = true;
@@ -215,161 +212,190 @@
         }
       },
       layout: function () {
-        // 桌面落在正文右侧（正文右边界约 x = +2.2），不要压住段落
-        g.position.set(small ? 0 : 4.35, small ? 1.95 : 0.55, 0);
-        g.scale.setScalar(small ? 0.50 : 0.66);
+        // 极光横向拉宽、上移到标题一带，作为更宽的标题底光
+        g.position.set(0, small ? -0.10 : -0.22, -0.6);
+        g.scale.set(small ? 0.62 : 0.92, small ? 0.34 : 0.52, small ? 0.34 : 0.52);
       }
     };
   }
 
-  /* ── 场景 ② 黑胶唱片（原有实现，只是搬进场景接口） ───────────────── */
+  /* ── 场景 ② 黑胶唱片：只留唱片本体 ──────────────────────────────────
+     App 的黑胶核心是深色盘面 + 细密同心沟槽 + 随转高光 + 盘心纸标。
+     官网首屏不摆唱机底座与唱臂：只保留唱片本体，旋转更干净，也和另外
+     三档抽象可视化保持同一层视觉语言。盘面用 CanvasTexture 一次画完。 */
 
-  // 盘面沟槽用一支 shader 画同心纹：比堆几十个 RingGeometry 少几十个 draw call，
-  // 且旋转时高光会顺着纹理走，比贴图更像唱片。
-  var GROOVE_VERT = [
-    'varying vec2 vUv;',
-    'void main() {',
-    '  vUv = uv;',
-    '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
-    '}'
-  ].join('\n');
+  function makeDiscTexture(p) {
+    var c = document.createElement('canvas');
+    c.width = c.height = 1024;
+    var x = c.getContext('2d');
+    if (!x) return null;
+    var cx = 512, cy = 512, R = 512;
 
-  var GROOVE_FRAG = [
-    'varying vec2 vUv;',
-    'uniform vec3 uColor;',
-    'uniform float uOpacity;',
-    'uniform float uTime;',
-    'uniform float uLineMode;',
-    'void main() {',
-    '  vec2 p = vUv - 0.5;',
-    '  float r = length(p) * 2.0;',
-    '  if (r > 1.0) discard;',
-    '  float grooves = 0.5 + 0.5 * sin(r * 245.0);',
-    '  float ang = atan(p.y, p.x);',
-    '  float sheen = 0.5 + 0.5 * sin(ang * 2.0 + uTime * 0.25);',
-    '  float edge = smoothstep(1.0, 0.86, r);',
-    '  float inner = smoothstep(0.17, 0.22, r);',
-    '  float band = smoothstep(0.86, 0.94, r) * 0.55;',
-    // 浅色贝壳白底上实心紫会发脏：把底色调到几乎透明，
-    // 只留明暗交替的同心细纹；深墨底仍用原来的实心配方。
-    '  float base = mix(0.07, 0.012, uLineMode);',
-    '  float amp  = mix(0.13, 0.22, uLineMode);',
-    '  float she  = mix(0.10, 0.045, uLineMode);',
-    '  float a = (base + grooves * amp + sheen * she + band)',
-    '            * edge * inner * uOpacity;',
-    '  gl_FragColor = vec4(uColor, a);',
-    '}'
-  ].join('\n');
+    // 盘面底色：不是纯黑（纯黑在白底上是个洞），而是压暗的暖黑
+    var g = x.createRadialGradient(cx, cy, 40, cx, cy, R);
+    g.addColorStop(0, '#2b211f');
+    g.addColorStop(0.55, '#1a1413');
+    g.addColorStop(1, '#0c0908');
+    x.fillStyle = g;
+    x.fillRect(0, 0, c.width, c.height);
+
+    x.save();
+    x.beginPath();
+    x.arc(cx, cy, R - 1, 0, Math.PI * 2);
+    x.clip();
+
+    // 沟槽：明暗交替的亚像素细线，外圈更密；数量多但每条很淡
+    for (var i = 0; i < 88; i++) {
+      var t = i / 87;
+      var rr = 226 + (500 - 226) * Math.pow(t, 0.86);
+      x.beginPath();
+      x.arc(cx, cy, rr, 0, Math.PI * 2);
+      x.strokeStyle = (i % 2 === 0)
+        ? 'rgba(255,255,255,' + (0.13 - t * 0.05).toFixed(3) + ')'
+        : 'rgba(0,0,0,' + (0.30 - t * 0.10).toFixed(3) + ')';
+      x.lineWidth = (i % 2 === 0) ? 1.6 : 2.2;
+      x.stroke();
+    }
+
+    // 随盘面一起转的一道柔和反光
+    x.save();
+    x.translate(cx, cy);
+    x.rotate(-0.42);
+    var sg = x.createLinearGradient(0, -R, 0, R);
+    sg.addColorStop(0, 'rgba(255,255,255,0)');
+    sg.addColorStop(0.34, 'rgba(255,255,255,0.05)');
+    sg.addColorStop(0.50, 'rgba(255,255,255,0.18)');
+    sg.addColorStop(0.66, 'rgba(255,255,255,0.05)');
+    sg.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = sg;
+    x.beginPath();
+    x.moveTo(0, 0);
+    x.arc(0, 0, R, -0.52, 0.52);
+    x.closePath();
+    x.fill();
+    x.restore();
+    x.restore();
+
+    // 盘心纸标：品牌色渐变 + 金边，不再画方形封面
+    var labelR = 195;
+    var lg = x.createRadialGradient(cx - 30, cy - 40, 10, cx, cy, labelR);
+    lg.addColorStop(0, p.brand2 || '#5b2c9e');
+    lg.addColorStop(1, p.brand || '#7b45c9');
+    x.fillStyle = lg;
+    x.beginPath();
+    x.arc(cx, cy, labelR, 0, Math.PI * 2);
+    x.fill();
+    x.strokeStyle = 'rgba(255,226,168,0.72)';
+    x.lineWidth = 4;
+    x.stroke();
+
+    // 盘心只留圆形纸标：两道细环 + 主轴孔，不放方形封面
+    x.strokeStyle = 'rgba(255,255,255,0.22)';
+    x.lineWidth = 2;
+    x.beginPath();
+    x.arc(cx, cy, labelR * 0.66, 0, Math.PI * 2);
+    x.stroke();
+    x.strokeStyle = 'rgba(255,226,168,0.30)';
+    x.lineWidth = 1.5;
+    x.beginPath();
+    x.arc(cx, cy, labelR * 0.42, 0, Math.PI * 2);
+    x.stroke();
+
+    // 主轴孔
+    x.fillStyle = '#f7f3ee';
+    x.beginPath();
+    x.arc(cx, cy, 17, 0, Math.PI * 2);
+    x.fill();
+    x.strokeStyle = 'rgba(0,0,0,0.35)';
+    x.lineWidth = 2;
+    x.stroke();
+
+    var tex = new T.CanvasTexture(c);
+    if (T.SRGBColorSpace && 'colorSpace' in tex) tex.colorSpace = T.SRGBColorSpace;
+    else if (T.sRGBEncoding) tex.encoding = T.sRGBEncoding;
+    tex.anisotropy = 4;
+    return tex;
+  }
 
   function buildVinyl() {
     var g = new T.Group();
-    g.rotation.x = -0.42;
-    g.rotation.z = -0.12;
+    g.rotation.x = -0.55;
+    g.rotation.z = -0.16;
 
-    var disc = new T.Group();
+    var p = palette();
+    var discMat = new T.MeshBasicMaterial({
+      map: makeDiscTexture(p), transparent: true, side: T.DoubleSide
+    });
+    var disc = new T.Mesh(new T.CircleGeometry(2.30, 128), discMat);
     g.add(disc);
 
-    // 盘体（薄圆柱，翻 90° 让圆面正对相机）
-    var bodyMat = new T.MeshStandardMaterial({
-      color: 0x15121a, roughness: 0.46, metalness: 0.5,
-      transparent: true, opacity: 0.5
-    });
-    var body = new T.Mesh(new T.CylinderGeometry(2.35, 2.35, 0.06, 96), bodyMat);
-    body.rotation.x = Math.PI / 2;
-    disc.add(body);
+    // 细沟槽环：只做微弱反光，不画成一圈圈明显的靶环
+    for (var i = 0; i < 12; i++) {
+      var r = 0.74 + i * 0.13;
+      var rm = new T.MeshBasicMaterial({
+        color: 0xf0e5d6, transparent: true,
+        opacity: 0.040 + (i % 3) * 0.008,
+        side: T.DoubleSide, depthWrite: false
+      });
+      var ring = new T.Mesh(new T.RingGeometry(r, r + 0.006, 128), rm);
+      ring.position.z = 0.003;
+      disc.add(ring);
+    }
 
-    var grooveMat = new T.ShaderMaterial({
-      vertexShader: GROOVE_VERT, fragmentShader: GROOVE_FRAG,
-      transparent: true, depthWrite: false, side: T.DoubleSide,
-      uniforms: {
-        uColor: { value: new T.Color(0x7b45c9) },
-        uOpacity: { value: 0.6 },
-        uTime: { value: 0 },
-        uLineMode: { value: 0 }
-      }
-    });
-    var grooves = new T.Mesh(new T.PlaneGeometry(4.7, 4.7), grooveMat);
-    grooves.position.z = 0.042;
-    disc.add(grooves);
-
-    var labelMat = new T.MeshBasicMaterial({
-      color: 0x5b2c9e, transparent: true, opacity: 0.92, side: T.DoubleSide
-    });
-    var labelDisc = new T.Mesh(new T.CircleGeometry(0.52, 64), labelMat);
-    labelDisc.position.z = 0.052;
-    disc.add(labelDisc);
-
-    var hole = new T.Mesh(
-      new T.CircleGeometry(0.055, 24),
-      new T.MeshBasicMaterial({ color: 0xf9f4f0, side: T.DoubleSide })
+    // 盘缘一道很细的高光，让唱片与纸白背景分开
+    var rim = new T.Mesh(
+      new T.RingGeometry(2.28, 2.315, 128),
+      new T.MeshBasicMaterial({
+        color: 0xf3e9dd, transparent: true, opacity: 0.10,
+        side: T.DoubleSide, depthWrite: false
+      })
     );
-    hole.position.z = 0.056;
-    disc.add(hole);
+    rim.position.z = 0.005;
+    disc.add(rim);
 
-    var ringMat = new T.MeshBasicMaterial({
-      color: 0x7b45c9, transparent: true, opacity: 0.42, side: T.DoubleSide
-    });
-    var ring = new T.Mesh(new T.RingGeometry(2.30, 2.37, 96), ringMat);
-    ring.position.z = 0.046;
-    disc.add(ring);
-
-    // 星尘：一个 Points，单 draw call
+    // 星尘：一个 Points，单 draw call；它不跟唱片转
     var count = small ? 72 : 190;
     var pos = new Float32Array(count * 3);
-    for (var i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 17;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      pos[i * 3 + 2] = -2.5 + Math.random() * 3.5;
+    for (var j = 0; j < count; j++) {
+      pos[j * 3] = (Math.random() - 0.5) * 17;
+      pos[j * 3 + 1] = (Math.random() - 0.5) * 10;
+      pos[j * 3 + 2] = -2.5 + Math.random() * 3.5;
     }
     var geo = new T.BufferGeometry();
     geo.setAttribute('position', new T.BufferAttribute(pos, 3));
     var pointsMat = new T.PointsMaterial({
-      color: 0x7b45c9, size: small ? 0.045 : 0.055,
+      color: p.brand, size: small ? 0.045 : 0.055,
       transparent: true, opacity: 0.5, sizeAttenuation: true,
       depthWrite: false
     });
     var particles = new T.Points(geo, pointsMat);
-    // ⚠️ 星尘不进 disc：它不能跟着唱片转。由 extra 挂到 scene 上，
-    //    切场景时跟 group 一起显示/隐藏（见 ensure / showScene）。
 
-    var ambient = new T.AmbientLight(0xffffff, 0.85);
-    var keyLight = new T.DirectionalLight(0x7b45c9, 1.1);
-    keyLight.position.set(3, 4, 6);
-    var rimLight = new T.DirectionalLight(0x5b2c9e, 0.6);
-    rimLight.position.set(-4, -2, 3);
-
+    var lastDark = null;
     return {
       group: g,
-      // 星尘与灯要单独持有引用，切场景时跟着可见性走
-      extra: [particles, ambient, keyLight, rimLight],
+      extra: [particles],
       theme: function (p) {
-        var c1 = color(p.brand, '#7b45c9');
-        var c2 = color(p.brand2, '#5b2c9e');
-        bodyMat.opacity = p.disc;
-        grooveMat.uniforms.uColor.value.copy(c1);
-        grooveMat.uniforms.uOpacity.value = p.groove;
-        grooveMat.uniforms.uLineMode.value = p.dark ? 0 : 1;
-        labelMat.color.copy(c2);
-        labelMat.opacity = p.label;
-        ringMat.color.copy(c1);
-        ringMat.opacity = p.ring;
-        pointsMat.color.copy(c1);
+        if (lastDark !== p.dark) {
+          lastDark = p.dark;
+          if (discMat.map) discMat.map.dispose();
+          discMat.map = makeDiscTexture(p);
+          discMat.needsUpdate = true;
+        }
+        pointsMat.color.copy(color(p.brand, '#7b45c9'));
         pointsMat.opacity = p.points;
-        // 加法混合在白色贝壳底上会把粒子"加"成白色而看不见，浅色下走普通混合
         pointsMat.blending = blendFor(p.dark);
         pointsMat.needsUpdate = true;
-        keyLight.color.copy(c1);
-        rimLight.color.copy(c2);
       },
       update: function (dt, t) {
-        disc.rotation.z += dt * 0.16;
-        grooveMat.uniforms.uTime.value += dt;
+        // 约 9 秒一圈：比原来的 39 秒明显，但不晃眼
+        disc.rotation.z += dt * 0.72;
         particles.rotation.z += dt * 0.006;
         particles.position.y = Math.sin(t * 0.18) * 0.12;
       },
       layout: function () {
-        g.position.set(small ? 0 : 3.8, small ? 2.35 : 0.95, 0);
-        g.scale.setScalar(small ? 0.46 : 0.72);
+        // 唱片单独放右侧，稍高、稍小，留出标题下方的极光 / 律动空间
+        g.position.set(small ? 0 : 4.60, small ? 1.35 : 0.70, 0);
+        g.scale.setScalar(small ? 0.40 : 0.62);
       }
     };
   }
@@ -468,8 +494,8 @@
           mats[i].blending = blendFor(p.dark);
           mats[i].needsUpdate = true;
         }
-        bars.material.uniforms.uOpacity.value = 0.95 * p.boost;
-        refl.material.uniforms.uOpacity.value = 0.24 * p.boost;
+        bars.material.uniforms.uOpacity.value = 0.55 * p.boost;
+        refl.material.uniforms.uOpacity.value = 0.15 * p.boost;
       },
       update: function (dt, t) {
         for (var i = 0; i < count; i++) {
@@ -490,200 +516,9 @@
         refl.instanceMatrix.needsUpdate = true;
       },
       layout: function () {
-        // 弧宽 7.6 × 0.50 = 3.8，落在正文右侧；倒影最深处约 y=-0.97，
-        // 正好停在下方统计数字之上（不压 16 种 / 22 套 那一排）
-        g.position.set(small ? 0 : 4.8, small ? 1.30 : 0.55, 0);
-        g.scale.setScalar(small ? 0.44 : 0.50);
-      }
-    };
-  }
-
-  /* ── 场景 ④ 音乐喷泉 ────────────────────────────────────────────────
-     一根中央水柱 + 一圈抛物线粒子 + 地面涟漪。粒子走真物理（初速 + 重力），
-     不像"上下平移的点阵"；每颗粒子有独立寿命，落回池底就重发，密度才会
-     随时间自然起伏。 */
-  var POINT_VERT = [
-    'uniform float uPR;',
-    'attribute float aAlpha;',
-    'attribute float aSize;',
-    'varying float vAlpha;',
-    'void main() {',
-    '  vAlpha = aAlpha;',
-    '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
-    '  gl_PointSize = aSize * uPR * (120.0 / max(0.001, -mv.z));',
-    '  gl_Position = projectionMatrix * mv;',
-    '}'
-  ].join('\n');
-
-  var POINT_FRAG = [
-    'uniform vec3 uColor;',
-    'uniform float uOpacity;',
-    'varying float vAlpha;',
-    'void main() {',
-    // 圆形软点：不用贴图，省一次纹理加载
-    '  vec2 d = gl_PointCoord - 0.5;',
-    '  float r = length(d) * 2.0;',
-    '  if (r > 1.0) discard;',
-    '  gl_FragColor = vec4(uColor, pow(1.0 - r, 1.8) * vAlpha * uOpacity);',
-    '}'
-  ].join('\n');
-
-  var COLUMN_VERT = [
-    'varying vec2 vUv;',
-    'void main() {',
-    '  vUv = uv;',
-    '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
-    '}'
-  ].join('\n');
-
-  var COLUMN_FRAG = [
-    'uniform vec3 uColor;',
-    'uniform float uTime;',
-    'uniform float uOpacity;',
-    'varying vec2 vUv;',
-    'void main() {',
-    // 竖直流动的亮纹：水柱在"走"，不是一根静止的柱子
-    '  float s = 0.5 + 0.5 * sin(vUv.y * 26.0 - uTime * 5.2);',
-    // 侧面正对相机处最亮（uv.x 绕一圈，取两倍频的余弦）
-    '  float side = 0.55 + 0.45 * cos((vUv.x - 0.5) * 12.566);',
-    '  float fade = smoothstep(0.0, 0.08, vUv.y) *',
-    '               (1.0 - smoothstep(0.82, 1.0, vUv.y) * 0.90);',
-    '  gl_FragColor = vec4(uColor, (0.34 + 0.42 * s) * side * fade * uOpacity);',
-    '}'
-  ].join('\n');
-
-  function buildFountain() {
-    var g = new T.Group();
-    var PCOUNT = small ? 150 : 340;
-    var GRAV = 6.4;
-    var FLOOR = -1.78;
-
-    var pos = new Float32Array(PCOUNT * 3);
-    var vel = new Float32Array(PCOUNT * 3);
-    var alpha = new Float32Array(PCOUNT);
-    var size = new Float32Array(PCOUNT);
-    var life = new Float32Array(PCOUNT);
-    var span = new Float32Array(PCOUNT);   // 生命总长（算淡入淡出用）
-
-    function spawn(i) {
-      // 出发点聚在中心附近：柱心喷得高、外圈散，靠初速差异自然分层
-      var r = Math.pow(Math.random(), 0.55) * 0.42;
-      var ang = Math.random() * 6.2832;
-      pos[i * 3] = Math.cos(ang) * r;
-      pos[i * 3 + 1] = FLOOR;
-      pos[i * 3 + 2] = Math.sin(ang) * r;
-      var spread = 1.15 + r * 2.6;
-      vel[i * 3] = Math.cos(ang) * spread * (0.5 + Math.random() * 0.6);
-      vel[i * 3 + 1] = 4.2 + Math.random() * 1.6 - r * 1.2;
-      vel[i * 3 + 2] = Math.sin(ang) * spread * (0.5 + Math.random() * 0.6);
-      span[i] = 0.85 + Math.random() * 0.85;
-      // 初始寿命 0 = 第一帧就重发，粒子从底部陆续升空（不会开局全堆在池底）
-      life[i] = 0;
-      alpha[i] = 0;
-      size[i] = 0.85 + Math.random() * 0.85;
-    }
-    for (var i = 0; i < PCOUNT; i++) spawn(i);
-
-    var geo = new T.BufferGeometry();
-    geo.setAttribute('position', new T.BufferAttribute(pos, 3));
-    geo.setAttribute('aAlpha', new T.BufferAttribute(alpha, 1));
-    geo.setAttribute('aSize', new T.BufferAttribute(size, 1));
-    geo.boundingSphere = new T.Sphere(new T.Vector3(0, 0, 0), 12);
-
-    var pointMat = new T.ShaderMaterial({
-      transparent: true, depthWrite: false, blending: T.AdditiveBlending,
-      uniforms: {
-        uPR: { value: 1 },
-        uColor: { value: new T.Color(0x9c74e8) },
-        uOpacity: { value: 0.9 }
-      },
-      vertexShader: POINT_VERT, fragmentShader: POINT_FRAG
-    });
-    var points = new T.Points(geo, pointMat);
-
-    var colMat = new T.ShaderMaterial({
-      transparent: true, depthWrite: false, side: T.DoubleSide,
-      uniforms: {
-        uTime: { value: 0 },
-        uColor: { value: new T.Color(0x7b45c9) },
-        uOpacity: { value: 0.85 }
-      },
-      vertexShader: COLUMN_VERT, fragmentShader: COLUMN_FRAG
-    });
-    var column = new T.Mesh(
-      new T.CylinderGeometry(0.11, 0.19, 2.60, 22, 1, true), colMat
-    );
-    column.position.y = FLOOR + 1.30;
-    g.add(column);
-    g.add(points);
-
-    // 地面涟漪：三圈错相位的环，一起呼吸不会像呼吸灯那样呆
-    var ripples = [];
-    for (var k = 0; k < 3; k++) {
-      var rm = new T.MeshBasicMaterial({
-        color: 0x7b45c9, transparent: true, opacity: 0.2,
-        side: T.DoubleSide, depthWrite: false
-      });
-      var mesh = new T.Mesh(new T.RingGeometry(0.52, 0.60, 56), rm);
-      mesh.rotation.x = -Math.PI / 2;
-      mesh.position.y = FLOOR + 0.01;
-      g.add(mesh);
-      ripples.push({ mesh: mesh, mat: rm, phase: k / 3 });
-    }
-
-    function step(dt, t) {
-      colMat.uniforms.uTime.value += dt;
-      for (var i = 0; i < PCOUNT; i++) {
-        var j = i * 3;
-        life[i] -= dt;
-        if (life[i] <= 0 || pos[j + 1] < FLOOR) { spawn(i); life[i] = span[i]; continue; }
-        vel[j + 1] -= GRAV * dt;
-        pos[j] += vel[j] * dt;
-        pos[j + 1] += vel[j + 1] * dt;
-        pos[j + 2] += vel[j + 2] * dt;
-        // 淡入 12% / 淡出 40%：硬弹出会像雪花飘
-        var u = 1 - life[i] / span[i];
-        alpha[i] = Math.min(u / 0.12, 1) * Math.min((1 - u) / 0.40, 1) * 0.95;
-      }
-      geo.attributes.position.needsUpdate = true;
-      geo.attributes.aAlpha.needsUpdate = true;
-
-      for (var r = 0; r < ripples.length; r++) {
-        var rp = ripples[r];
-        var ph = ((t * 0.42 + rp.phase) % 1);
-        var sc = 0.5 + ph * 2.9;
-        rp.mesh.scale.set(sc, sc, sc);
-        rp.mat.opacity = Math.pow(1 - ph, 2.0) * 0.30 * pointMat.uniforms.uOpacity.value;
-      }
-    }
-
-    // 预热 2 秒。不预热的话首屏刚打开时粒子全在池底，要两三秒才"喷起来"，
-    // 而且静态截图永远抓不到成型的伞状 —— 预热后第一帧就是稳态。
-    for (var w = 0; w < 120; w++) step(1 / 60, w / 60);
-
-    return {
-      group: g,
-      theme: function (p) {
-        var c = color(p.brand, '#7b45c9');
-        var c2 = color(p.brand2, '#5b2c9e');
-        pointMat.uniforms.uColor.value.copy(c);
-        pointMat.uniforms.uOpacity.value = 0.95 * p.boost;
-        pointMat.blending = blendFor(p.dark);
-        pointMat.needsUpdate = true;
-        colMat.uniforms.uColor.value.copy(c2);
-        colMat.uniforms.uOpacity.value = 0.9 * p.boost;
-        for (var i = 0; i < ripples.length; i++) {
-          ripples[i].mat.color.copy(c);
-          ripples[i].mat.opacity = 0.22 * p.boost;
-          ripples[i].mat.blending = blendFor(p.dark);
-          ripples[i].mat.needsUpdate = true;
-        }
-      },
-      update: step,
-      layout: function () {
-        g.position.set(small ? 0 : 4.15, small ? 2.10 : 0.15, 0);
-        g.scale.setScalar(small ? 0.46 : 0.85);
-        pointMat.uniforms.uPR.value = Math.min(window.devicePixelRatio || 1, 2);
+        // 星云律动同样加宽上移；柱阵铺得更开，倒影仍在正文之前
+        g.position.set(0, small ? -0.10 : -0.18, -0.8);
+        g.scale.set(small ? 0.46 : 0.64, small ? 0.28 : 0.36, small ? 0.28 : 0.36);
       }
     };
   }
@@ -691,8 +526,7 @@
   var BUILDERS = {
     aurora: buildAurora,
     vinyl: buildVinyl,
-    nebula: buildNebula,
-    fountain: buildFountain
+    nebula: buildNebula
   };
 
   /* ── 场景管理 ─────────────────────────────────────────────────────── */
@@ -702,7 +536,7 @@
     var s = BUILDERS[name]();
     s.group.visible = false;
     pivot.add(s.group);
-    // 星尘 / 灯光这类不属于 group 的部件，用各自的 visible 跟着切
+    // 星尘这类不属于 group 的部件，用 visible 跟着切
     if (s.extra) {
       for (var i = 0; i < s.extra.length; i++) {
         s.extra[i].visible = false;

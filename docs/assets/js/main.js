@@ -807,9 +807,9 @@
       alt: "吾爱音乐电视端界面：大字号焦点与正在播放",
     },
     windows: {
-      src: "assets/img/windows/win-01.webp", w: 1600, h: 900,
+      src: "assets/img/windows/win-03.webp", w: 1600, h: 900,
       title: "吾爱Music · Windows 桌面版",
-      alt: "吾爱音乐 Windows 桌面版界面（矢车菊蓝主题）：本地音乐库，文件管理器侧栏、专辑墙与 609 首全部歌曲、右侧收藏与最近播放、底部播放条",
+      alt: "吾爱音乐 Windows 桌面版整机 · 播放页与可视化：宽屏播放界面与实时频谱可视化",
     },
   };
 

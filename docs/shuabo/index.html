@@ -14,6 +14,13 @@
 <meta property="og:title" content="吾爱Music 数播 · 本地无损播放方案" />
 <meta property="og:description" content="把曲库放进机器，把手机变成遥控器。无损直出、歌词封面自动刮削、专业设置一页管完。" />
 <meta property="og:url" content="https://music.52ta.top/shuabo/" />
+<meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<script>
+  (function(){var r=document.documentElement,t="light";try{var s=localStorage.getItem("wuai-theme");if(s==="dark"||s==="light")t=s}catch(e){}r.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#08090b":"#f9f4f0")})();
+</script>
 <style>
 :root{
   color-scheme:light;
@@ -22,11 +29,34 @@
   --fg:#1c1719;--fg2:#514a4d;--muted:#8b8386;
   --brand:#7b45c9;--brand2:#5b2c9e;--brand3:#9b6be0;
   --wash:rgba(123,69,201,.075);--wash2:rgba(123,69,201,.13);
+  --brand-line:rgba(123,69,201,.45);
   --grad:linear-gradient(135deg,#9b6be0 0%,#5b21b6 100%);
   --cta:linear-gradient(135deg,#7c4bc4 0%,#4c1d95 100%);
   --shadow:0 18px 50px rgba(61,32,92,.10);
   --radius:20px;
 }
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#08090b;--bg2:#0b0d11;--panel:#0e1116;--panel2:#12161c;
+  --line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.18);
+  --fg:#f2f0ec;--fg2:#b9b6ae;--muted:#85837c;
+  --brand:#a97be8;--brand2:#c4a0f5;--brand3:#8b57cf;
+  --wash:rgba(169,123,232,.12);--wash2:rgba(169,123,232,.22);
+  --brand-line:rgba(169,123,232,.5);
+  --grad:linear-gradient(135deg,#a97be8 0%,#7b45c9 100%);
+  --cta:linear-gradient(135deg,#8b57cf 0%,#5b21b6 100%);
+  --shadow:0 18px 50px rgba(0,0,0,.4);
+}
+[data-theme="dark"] .sitebar{background:rgba(8,9,11,.86)}
+[data-theme="dark"] .pstrip{background:rgba(11,13,17,.9)}
+[data-theme="dark"] .hero::before{background:radial-gradient(circle,rgba(169,123,232,.20),transparent 68%)}
+[data-theme="dark"] .contact{background:linear-gradient(160deg,rgba(169,123,232,.12),rgba(11,13,17,0) 70%)}
+/* 主题切换按钮（与四端页一致） */
+.theme-toggle{
+  width:38px;height:38px;border-radius:11px;border:1px solid var(--line2);
+  background:var(--panel);color:var(--fg2);display:grid;place-items:center;font-size:16px;flex:none;
+}
+.theme-toggle:hover{color:var(--brand2);border-color:var(--brand-line)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -119,6 +149,26 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
 .shead .no{font-size:12px;letter-spacing:.2em;color:var(--brand);font-weight:800}
 .shead h2{font-size:clamp(28px,3.6vw,40px);line-height:1.25;letter-spacing:-.02em;margin:10px 0 12px}
 .shead p{color:var(--fg2);margin:0}
+/* 最近更新 / 成果 / 进度 动态区 */
+.dyn-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.dyn-tab{padding:9px 17px;border-radius:11px;border:1px solid var(--line2);
+  background:var(--panel);color:var(--fg2);font-size:14px;font-weight:650}
+.dyn-tab.is-active{background:var(--grad);color:#fff;border-color:transparent}
+.dyn-panel{display:none}.dyn-panel.is-active{display:block}
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line2)}
+.tl-item{position:relative;padding:0 0 22px}.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-23px;top:7px;width:10px;height:10px;border-radius:50%;
+  background:var(--brand);box-shadow:0 0 0 4px var(--wash)}
+.tl-date{font-size:12px;color:var(--brand);font-weight:700;letter-spacing:.04em}
+.tl-item h4{margin:4px 0 5px;font-size:16px}.tl-item h4 a:hover{color:var(--brand2)}
+.tl-item p{margin:0;color:var(--fg2);font-size:14px}
+.bar-row{margin-bottom:18px}.bar-row:last-child{margin-bottom:0}
+.bar-head{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin-bottom:8px}
+.bar-head b{font-weight:650}.bar-head span{color:var(--muted)}
+.bar-track{height:8px;border-radius:999px;background:var(--wash2);overflow:hidden}
+.bar-fill{height:100%;border-radius:999px;background:var(--grad)}
+.pd-empty{color:var(--muted);font-size:14px;margin:0}.pd-progress{max-width:720px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .card{
@@ -257,6 +307,7 @@ footer a:hover{color:var(--brand)}
       <a href="#contact">合作咨询</a>
     </nav>
     <a class="navcta" href="#contact">合作咨询</a>
+    <button class="theme-toggle" type="button" aria-label="切换深浅色主题"></button>
   </div>
 </header>
 
@@ -515,6 +566,24 @@ footer a:hover{color:var(--brand)}
     </div>
   </section>
 
+  <section class="section" id="activity">
+    <div class="container">
+      <header class="shead">
+        <div class="no">07 / 最近更新 · 研发成果 · 进度</div>
+        <h2>持续进化，看得见</h2>
+        <p>版本记录与官方发布清单实时同步，研发成果来自工作室公开的白皮书。</p>
+      </header>
+      <div class="dyn-tabs" role="tablist">
+        <button class="dyn-tab is-active" data-dyn-tab="updates" role="tab">最近更新</button>
+        <button class="dyn-tab" data-dyn-tab="papers" role="tab">研发成果</button>
+        <button class="dyn-tab" data-dyn-tab="progress" role="tab">进度</button>
+      </div>
+      <div class="dyn-panel is-active" id="dyn-updates" data-pd="updates" data-pd-count="4"></div>
+      <div class="dyn-panel" id="dyn-papers" data-pd="papers"></div>
+      <div class="dyn-panel" id="dyn-progress" data-pd="progress"></div>
+    </div>
+  </section>
+
   <section class="contact" id="contact">
     <div class="container contactbox">
       <div>
@@ -545,6 +614,8 @@ footer a:hover{color:var(--brand)}
   </div>
 </footer>
 
+<script src="../assets/js/product.js" defer></script>
+<script src="../assets/js/product-data.js" defer></script>
 <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
 </body>
 </html>

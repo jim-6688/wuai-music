@@ -221,6 +221,10 @@ h1 .hl{background:var(--text-grad);-webkit-background-clip:text;background-clip:
 .bar-head span{color:var(--muted)}
 .bar-track{height:8px;border-radius:999px;background:var(--wash2);overflow:hidden}
 .bar-fill{height:100%;border-radius:999px;background:var(--grad)}
+.pd-empty{color:var(--muted);font-size:14px;margin:0}
+.tl-item h4 a{color:var(--fg)}
+.tl-item h4 a:hover{color:var(--brand2)}
+.pd-progress{max-width:720px}
 
 /* ── CTA 横幅 ── */
 .cta-band{
@@ -239,7 +243,7 @@ h1 .hl{background:var(--text-grad);-webkit-background-clip:text;background-clip:
 
 /* ── 响应式 ── */
 @media(max-width:900px){
-  .prodnav{display:none}
+  .prodnav,.navcta{display:none}
   .nav-toggle{
     display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
     border:1px solid var(--line2);background:var(--panel);color:var(--fg);margin-left:auto;

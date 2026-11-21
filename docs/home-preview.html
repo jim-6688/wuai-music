@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>吾爱音乐 WuAiMusic · 聆听最美的声音</title>
+<meta name="description" content="吾爱音乐，聆听最美的声音。本地音乐、云端不留痕——手机、桌面、车机、电视、数播与高保真工作室，一套内核，为每块屏幕重新设计。" />
+<meta name="theme-color" content="#f9f4f0" />
+<link rel="canonical" href="https://music.52ta.top/" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<script src="assets/js/device-recommend.js"></script>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="吾爱音乐 WuAiMusic" />
+<meta property="og:title" content="吾爱音乐 WuAiMusic · 聆听最美的声音" />
+<meta property="og:description" content="本地音乐、云端不留痕。手机、桌面、车机、电视、数播与工作室，一套内核，为每块屏幕重新设计。" />
+<meta property="og:url" content="https://music.52ta.top/" />
+<meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f9f4f0;--bg2:#f5efe9;--panel:#fffefd;--panel2:#fcf8f5;
+  --line:rgba(30,20,24,.09);--line2:rgba(30,20,24,.16);
+  --fg:#1c1719;--fg2:#514a4d;--muted:#8b8386;
+  --brand:#7b45c9;--brand2:#5b2c9e;--brand3:#9b6be0;
+  --wash:rgba(123,69,201,.075);--wash2:rgba(123,69,201,.14);
+  --grad:linear-gradient(135deg,#9b6be0 0%,#5b21b6 100%);
+  --cta:linear-gradient(135deg,#7c4bc4 0%,#4c1d95 100%);
+  --textgrad:linear-gradient(120deg,#8b57cf,#4a1a96);
+  --shadow:0 18px 50px rgba(61,32,92,.10);
+  --shadow-sm:0 6px 24px rgba(40,24,55,.06);
+  --r:22px;--maxw:1180px;--ease:cubic-bezier(.22,1,.36,1);
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#08090b;--bg2:#0b0d11;--panel:#0e1116;--panel2:#12161c;
+  --line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.18);
+  --fg:#f2f0ec;--fg2:#b9b6ae;--muted:#85837c;
+  --brand:#a97be8;--brand2:#c4a0f5;--brand3:#8b57cf;
+  --wash:rgba(169,123,232,.12);--wash2:rgba(169,123,232,.22);
+  --grad:linear-gradient(135deg,#a97be8 0%,#7b45c9 100%);
+  --cta:linear-gradient(135deg,#8b57cf 0%,#5b21b6 100%);
+  --textgrad:linear-gradient(120deg,#c4a0f5,#9b6be0);
+  --shadow:0 18px 50px rgba(0,0,0,.4);
+  --shadow-sm:0 6px 24px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+.wrap{width:min(var(--maxw),calc(100% - 44px));margin:0 auto}
+
+/* ── 顶栏 ── */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(249,244,240,.82);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+[data-theme="dark"] .topbar{background:rgba(8,9,11,.82)}
+.topbar .wrap{height:66px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px;letter-spacing:.2px}
+.logo img{width:30px;height:30px;border-radius:8px;box-shadow:0 6px 18px rgba(91,33,182,.28)}
+.logo small{display:block;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.16em;line-height:1}
+.topnav{display:flex;gap:4px;margin-left:auto;font-size:14px}
+.topnav a{padding:8px 13px;border-radius:10px;color:var(--fg2);transition:.2s}
+.topnav a:hover{background:var(--wash);color:var(--brand2)}
+.tt{width:38px;height:38px;border-radius:11px;border:1px solid var(--line2);
+  background:var(--panel);color:var(--fg2);display:grid;place-items:center;font-size:16px;margin-left:4px}
+.get{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 17px;
+  border-radius:12px;background:var(--cta);color:#fff;font-weight:700;font-size:14px;margin-left:8px;
+  box-shadow:0 8px 20px rgba(91,33,182,.24)}
+.get:hover{filter:brightness(1.07)}
+.nvg{display:none}
+
+/* ── 上方：大字体分类 ── */
+.hero{padding:70px 0 26px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-160px;top:-180px;width:640px;height:640px;
+  background:radial-gradient(circle,rgba(155,107,224,.16),transparent 68%);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;
+  background:var(--wash);border:1px solid var(--wash2);color:var(--brand2);
+  font-size:12px;font-weight:800;letter-spacing:.14em}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+h1{font-size:clamp(40px,6.4vw,74px);line-height:1.1;letter-spacing:-.045em;margin:22px 0 14px;font-weight:850}
+h1 .hl{background:var(--textgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(16px,2vw,20px);color:var(--fg2);max-width:34em;margin:0}
+.cathead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:52px 0 18px}
+.cathead h2{font-size:15px;letter-spacing:.16em;color:var(--muted);margin:0;font-weight:800}
+.cathead span{font-size:13px;color:var(--muted)}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.cat{position:relative;display:flex;flex-direction:column;min-height:182px;padding:16px 15px 15px;
+  background:var(--panel);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.cat:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--wash2)}
+.cat::after{content:"";position:absolute;inset:auto -30px -50px auto;width:150px;height:150px;
+  background:radial-gradient(circle,var(--wash2),transparent 70%);opacity:.7;pointer-events:none}
+.cat .no{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--brand);opacity:.85}
+.cat .ico{margin:12px 0 auto;color:var(--brand2)}
+.cat .ico svg{width:23px;height:23px;stroke-width:1.8}
+.cat .nm{font-size:20px;line-height:1.1;font-weight:850;letter-spacing:-.02em;margin:14px 0 2px}
+.cat .en{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.cat .ds{font-size:11.5px;color:var(--fg2);margin-top:8px;line-height:1.45}
+.cat .go{position:absolute;right:13px;top:14px;font-size:14px;color:var(--brand);transition:transform .3s var(--ease)}
+.cat:hover .go{transform:translateX(4px)}
+.cat--lab .nm{background:var(--textgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ── 设备智能推荐条 ── */
+.recbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px;padding:13px 17px;
+  border-radius:15px;background:linear-gradient(100deg,var(--wash),var(--panel) 60%);
+  border:1px solid var(--wash2);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--fg2)}
+.recbar[hidden]{display:none!important}
+.recbar .rb-ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--grad);color:#fff;box-shadow:0 6px 14px rgba(91,33,182,.24)}
+.recbar .rb-ic svg{width:18px;height:18px;stroke-width:1.9}
+.recbar .rb-txt{flex:1;min-width:180px}
+.recbar .rb-txt b{color:var(--fg);font-weight:800}
+.recbar .rb-cta{flex:none;display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:10px;
+  background:var(--grad);color:#fff;text-decoration:none;font-weight:750;font-size:12.5px;
+  box-shadow:0 6px 15px rgba(91,33,182,.25);transition:transform .25s var(--ease)}
+.recbar .rb-cta:hover{transform:translateY(-2px)}
+.recbar .rb-x{flex:none;width:26px;height:26px;border:0;border-radius:8px;background:transparent;
+  color:var(--muted);font-size:18px;line-height:1;cursor:pointer}
+.recbar .rb-x:hover{background:var(--wash2);color:var(--fg)}
+/* 被推荐的那张卡：描边高亮 + 角标 */
+.cat.is-rec{border-color:var(--brand);box-shadow:0 0 0 2px var(--wash2),var(--shadow)}
+.cat .rec-tag{position:absolute;right:12px;bottom:12px;z-index:3;font-size:9px;font-weight:800;
+  letter-spacing:.04em;padding:3px 8px;border-radius:7px;background:var(--grad);color:#fff;
+  box-shadow:0 4px 10px rgba(91,33,182,.28)}
+@media(max-width:900px){.recbar .rb-cta{width:100%;justify-content:center}}
+
+/* ── 首屏主展示区：随分类悬停整体切换 ── */
+.hero-stage{display:grid;grid-template-columns:1.04fr .96fr;gap:52px;align-items:center;min-height:376px}
+.hero-stage .hero-copy,.hero-stage .shot{transition:opacity .2s ease,transform .2s ease}
+.hero-stage.fading .hero-copy,.hero-stage.fading .shot{opacity:0;transform:translateY(9px)}
+.hero-stage .shot{aspect-ratio:16/11;display:grid;place-items:center}
+.hero-stage .shot-bg{position:absolute;inset:-6%;background-size:cover;background-position:center;
+  filter:blur(26px) brightness(.6) saturate(1.15);transform:scale(1.06);opacity:.9}
+.hero-stage .shot img{position:relative;z-index:1;width:auto;height:auto;max-width:94%;max-height:94%;
+  object-fit:contain;object-position:center;border-radius:14px;box-shadow:0 16px 38px rgba(0,0,0,.5)}
+.hero-stage .shot .cap{z-index:2}
+/* 无截图的端（首页/实验室）：横版品牌 logo（左图标 + 右中英文），配品牌渐变底 */
+.hero-stage .shot.logo-mode .shot-bg{background:var(--grad);filter:none;transform:none;opacity:1}
+.hero-stage .shot.logo-mode #hImg{display:none}
+.hero-stage .shot .brandmark{display:none;position:relative;z-index:2;align-items:center;gap:16px;padding:0 6px}
+.hero-stage .shot.logo-mode .brandmark{display:flex}
+.hero-stage .shot.logo-mode .brandmark img{width:62px;height:62px;max-width:none;max-height:none;
+  border-radius:16px;box-shadow:0 16px 34px rgba(30,10,60,.4)}
+.brandmark .bm-txt b{display:block;color:#fff;font-size:clamp(24px,3.2vw,36px);font-weight:850;
+  letter-spacing:-.02em;line-height:1.1}
+.brandmark .bm-txt i{display:block;color:rgba(255,255,255,.82);font-size:11px;font-style:normal;
+  font-weight:700;letter-spacing:.28em;margin-top:8px}
+.hero-stage .shot.logo-mode .cap{background:rgba(255,255,255,.2);color:#fff}
+/* 竖版设备（手机）：框体转竖向，整机站满高度，不再被横框压成窄条 */
+.hero-stage .shot.tall{aspect-ratio:auto;height:400px;background:transparent;border-color:transparent;box-shadow:none}
+.hero-stage .shot.tall .shot-bg{inset:0;border-radius:24px}
+.hero-stage .shot.tall img{max-height:100%;max-width:100%;height:100%;width:auto;
+  border-radius:0;box-shadow:none}
+.hero-stage .shot.tall .cap{left:50%;transform:translateX(-50%);white-space:nowrap}
+.hero-stage .eyebrow{margin-bottom:0}
+
+/* ── 中间：能力优点（无图） ── */
+.intro{padding:78px 0;border-top:1px solid var(--line);margin-top:52px}
+.intro .lead{max-width:760px;margin:0 0 48px;text-align:left}
+.intro .lead h2{font-size:clamp(28px,3.8vw,44px);line-height:1.2;letter-spacing:-.03em;margin:14px 0 16px;font-weight:820}
+.intro .lead p{color:var(--fg2);font-size:16px;margin:0;line-height:1.7}
+.abilities{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ab{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px 22px 24px;box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.ab:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--wash2)}
+.ab .num{font-size:clamp(26px,3vw,38px);line-height:1;font-weight:850;letter-spacing:-.04em;
+  background:var(--textgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ab .t{font-size:16px;font-weight:750;margin:12px 0 6px}
+.ab .d{font-size:13px;color:var(--fg2);line-height:1.6;margin:0}
+.shot{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:var(--shadow);background:#17121d;aspect-ratio:16/10}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.shot .cap{position:absolute;left:16px;bottom:14px;padding:7px 13px;border-radius:999px;
+  background:rgba(12,10,16,.58);color:#fff;font-size:12px;backdrop-filter:blur(6px)}
+
+/* ── 下方：新闻 + 新增功能文章 ── */
+.news{padding:70px 0 84px;border-top:1px solid var(--line);background:var(--bg2)}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.sec-head h2{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.025em;margin:0;font-weight:820}
+.sec-head h2 span{color:var(--brand)}
+.sec-head p{margin:6px 0 0;color:var(--fg2);font-size:14px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow-sm)}
+.panel .pt{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.panel .pt h3{margin:0;font-size:18px}
+.panel .pt a{font-size:13px;color:var(--brand2);font-weight:700}
+.panel .pt a:hover{text-decoration:underline}
+.rel{display:grid;gap:2px}
+.rel a{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:13px 8px;border-radius:12px;transition:background .2s}
+.rel a:hover{background:var(--wash)}
+.rel .v{font-size:16px;font-weight:800;color:var(--fg);letter-spacing:-.01em}
+.rel .meta{font-size:12.5px;color:var(--muted);margin-left:8px;font-weight:500}
+.rel .txt{font-size:13.5px;color:var(--fg2);margin-top:3px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;padding:2px 8px;border-radius:6px;
+  background:var(--grad);color:#fff;vertical-align:middle;margin-left:8px}
+.art{display:grid;gap:12px}
+.art a{display:block;padding:17px 18px;border-radius:15px;border:1px solid var(--line);
+  background:var(--panel2);transition:.25s var(--ease)}
+.art a:hover{border-color:var(--wash2);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.art .tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--brand2)}
+.art .tag i{width:6px;height:6px;border-radius:50%;background:var(--brand);display:inline-block}
+.art h4{margin:8px 0 6px;font-size:16.5px;line-height:1.4;letter-spacing:-.01em}
+.art .date{font-size:12px;color:var(--muted)}
+.hr{height:1px;background:var(--line);margin:6px 0}
+
+/* ── 页脚 ── */
+.footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px;background:var(--bg)}
+.footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+.footer a:hover{color:var(--brand2)}
+.flinks{display:flex;gap:18px;flex-wrap:wrap}
+
+@media(max-width:980px){
+  .cats{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .topnav,.get{display:none}
+  .topnav.is-open{
+    display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+    gap:2px;background:var(--panel);border-bottom:1px solid var(--line);
+    padding:10px 22px;box-shadow:var(--shadow);margin:0;
+  }
+  .nvg{display:grid;margin-left:auto}
+  .hero-stage{grid-template-columns:1fr;gap:28px;min-height:0}
+  .abilities{grid-template-columns:repeat(2,1fr)}
+  .intro .lead{margin-bottom:34px}
+  .duo{grid-template-columns:1fr;gap:30px}
+  .shot{aspect-ratio:16/11}
+}
+@media(max-width:560px){
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .cat{min-height:168px}
+  .abilities{grid-template-columns:repeat(2,1fr)}
+  .wrap{width:calc(100% - 32px)}
+}
+@media(max-width:360px){
+  .cats{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <img src="favicon.svg" alt="logo" />
+      <span>吾爱音乐<small>WUAI MUSIC</small></span>
+    </a>
+    <nav class="topnav" aria-label="主导航">
+      <a href="#cats">产品</a>
+      <a href="#intro">关于</a>
+      <a href="#news">动态</a>
+      <a href="studio/">实验室</a>
+    </nav>
+    <button class="tt" id="tt" type="button" aria-label="切换主题">◐</button>
+    <a class="get" href="#cats">获取应用</a>
+    <button class="tt nvg" id="nvg" type="button" aria-label="菜单" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 上方：大字体分类 -->
+  <section class="hero">
+    <div class="wrap">
+      <!-- 首屏主展示区：默认口号，随下方分类悬停整体切换 -->
+      <div class="hero-stage" id="heroStage">
+        <div class="hero-copy">
+          <span class="eyebrow" id="hEyebrow">吾爱音乐 · WUAI MUSIC</span>
+          <h1 id="hTitle">聆听<span class="hl">最美的声音</span></h1>
+          <p class="lede" id="hLede">让每一首歌，都以它本来的样子响起。手机、桌面、车机、电视、数播——六种形态，只为专注地聆听。</p>
+        </div>
+        <figure class="shot" id="hShot">
+          <div class="shot-bg" id="hShotBg"></div>
+          <img id="hImg" src="assets/img/ardot/player-page-ardot-design.webp" alt="播放界面" />
+          <div class="brandmark" id="hBrand" aria-hidden="true">
+            <img src="favicon.svg" alt="" />
+            <span class="bm-txt"><b>吾爱音乐</b><i>WUAI MUSIC</i></span>
+          </div>
+          <figcaption class="cap" id="hCap">播放页 · 封面模糊背景与逐字歌词</figcaption>
+        </figure>
+      </div>
+
+      <div class="cathead">
+        <h2>选择你的设备</h2>
+        <span>鼠标移上查看介绍，点击进入 →</span>
+      </div>
+
+      <!-- 按访问设备自动推荐对应版本（检测到时显示） -->
+      <div class="recbar" id="recbar" aria-live="polite" hidden></div>
+
+      <div class="cats" id="cats">
+
+        <a class="cat" href="phone/" data-key="phone">
+          <span class="no">01 / PHONE</span>
+          <span class="ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.4"/><path d="M10.5 18.5h3"/></svg></span>
+          <span class="nm">手机版</span>
+          <span class="en">Phone</span>
+          <span class="ds">随身而听，单手掌控</span>
+          <span class="go">→</span>
+        </a>
+
+        <a class="cat" href="pc/" data-key="pc">
+          <span class="no">02 / DESKTOP</span>
+          <span class="ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8 20h8M12 16.5V20"/></svg></span>
+          <span class="nm">桌面版</span>
+          <span class="en">Desktop</span>
+          <span class="ds">宽屏三栏，桌面主力</span>
+          <span class="go">→</span>
+        </a>
+
+        <a class="cat" href="car/" data-key="car">
+          <span class="no">03 / CAR</span>
+          <span class="ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 14l1.6-5.2A2 2 0 016.5 7.5h11a2 2 0 011.9 1.3L21 14M3 14h18v4h-2v-1.5H5V18H3z"/><path d="M6.5 14h.01M17.5 14h.01"/></svg></span>
+          <span class="nm">车机版</span>
+          <span class="en">Car</span>
+          <span class="ds">驾驶友好，大字高对比</span>
+          <span class="go">→</span>
+        </a>
+
+        <a class="cat" href="tv/" data-key="tv">
+          <span class="no">04 / TV</span>
+          <span class="ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="13" rx="2"/><path d="M8 21h8M12 17.5V21"/></svg></span>
+          <span class="nm">电视版</span>
+          <span class="en">TV</span>
+          <span class="ds">十尺客厅，遥控器掌控</span>
+          <span class="go">→</span>
+        </a>
+
+        <a class="cat" href="shuabo/" data-key="shuabo">
+          <span class="no">05 / STREAMER</span>
+          <span class="ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 10.5a8 8 0 0116 0"/><path d="M7 13.5a4.5 4.5 0 0110 0"/><circle cx="12" cy="17" r="1.6"/><path d="M2.5 19h19"/></svg></span>
+          <span class="nm">数播版</span>
+          <span class="en">Streamer</span>
+          <span class="ds">参考音质，浏览器管理</span>
+          <span class="go">→</span>
+        </a>
+
+        <a class="cat cat--lab" href="studio/" data-key="lab">
+          <span class="no">06 / LAB</span>
+          <span class="ico"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.6 18a2 2 0 001.7 3h11.4a2 2 0 001.7-3L14 9V3"/><path d="M7.5 15h9"/></svg></span>
+          <span class="nm">实验室</span>
+          <span class="en">Lab</span>
+          <span class="ds">把功能，做成可验证的证据</span>
+          <span class="go">→</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 中间：能力优点（无图，纯能力展示） -->
+  <section class="intro" id="intro">
+    <div class="wrap">
+      <div class="lead">
+        <span class="eyebrow">核心能力</span>
+        <h2>一套内核，<br />把聆听这件事做到极致</h2>
+        <p>从格式兼容到歌词体验，从跨端同步到音质验证——每一处能力，都为「听得更好」而做。</p>
+      </div>
+      <div class="abilities">
+        <div class="ab"><div class="num">16 种</div><h3 class="t">音频格式</h3><p class="d">FLAC、APE、DSD、WAV 等无损格式，本地直通声卡。</p></div>
+        <div class="ab"><div class="num">多源</div><h3 class="t">智能歌词</h3><p class="d">逐字歌词自动匹配纠错，偏移按曲目记住。</p></div>
+        <div class="ab"><div class="num">6 端</div><h3 class="t">同源体验</h3><p class="d">手机、桌面、车机、电视、数播，一处设置处处延续。</p></div>
+        <div class="ab"><div class="num">7 款</div><h3 class="t">可视化</h3><p class="d">喷泉、黑胶、星空环、音波，让音乐看得见。</p></div>
+        <div class="ab"><div class="num">CUE</div><h3 class="t">分轨精准</h3><p class="d">整轨专辑按索引精确切分，曲目独立播放。</p></div>
+        <div class="ab"><div class="num">NAS</div><h3 class="t">局域网曲库</h3><p class="d">SMB / WebDAV 直连，异地也能翻遍整个收藏。</p></div>
+        <div class="ab"><div class="num">本地</div><h3 class="t">隐私优先</h3><p class="d">文件不上传、云端不留痕，断网照样完整播放。</p></div>
+        <div class="ab"><div class="num">可验证</div><h3 class="t">真实音质</h3><p class="d">bit-perfect 用 ALSA 实测，结论写成白皮书公开。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下方：新闻 + 新增功能文章 -->
+  <section class="news" id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>最新<span>动态</span></h2>
+          <p>版本更新与研发进展，都在这里。</p>
+        </div>
+      </div>
+      <div class="duo">
+
+        <div class="panel">
+          <div class="pt"><h3>最近更新</h3><a href="#news">全部版本 →</a></div>
+          <div class="rel" id="homeRel" data-pd="updates" data-pd-count="4">
+            <a href="#news"><span class="v">v2.2.3<span class="badge">最新</span></span><span><span class="meta">2026-11-19</span><span class="txt">常规修复与体验优化，手机 / 车机 / TV 同步更新。</span></span></a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="pt"><h3>新增功能文章</h3><a href="studio/">进入实验室 →</a></div>
+          <div class="art">
+            <a href="studio/articles/signal-chain-transparency.html">
+              <span class="tag"><i></i>信号链透明 · 2026-11-20</span>
+              <h4>白皮书 01：把 bit-perfect 从「声明」变成「证据」</h4>
+              <span class="date">一次功能真实性审计，如何逼出一个可复算的信号链判定方法。</span>
+            </a>
+            <div class="hr"></div>
+            <a href="studio/articles/acoustid-target-mismatch.html">
+              <span class="tag"><i></i>曲库智能化 · 2026-11-20</span>
+              <h4>中文曲库刮削为什么难：AcoustID 的目标错配</h4>
+              <span class="date">不是没源，是文本脏加缺少交叉验证——以及一条本地数据飞轮的路线。</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© 2026 吾爱音乐 WuAiMusic · 本地音乐，云端不留痕</span>
+    <nav class="flinks" aria-label="产品链接">
+      <a href="phone/">手机版</a><a href="pc/">桌面版</a><a href="car/">车机版</a>
+      <a href="tv/">电视版</a><a href="shuabo/">数播版</a><a href="studio/">实验室</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,meta=document.querySelector('meta[name="theme-color"]'),tt=document.getElementById('tt');
+  var t='light';
+  try{var s=localStorage.getItem('wuai-theme');if(s==='dark'||s==='light')t=s}catch(e){}
+  root.setAttribute('data-theme',t);
+  if(meta)meta.setAttribute('content',t==='dark'?'#08090b':'#f9f4f0');
+  function paint(){tt.textContent=root.getAttribute('data-theme')==='dark'?'☀':'◐'}
+  paint();
+  tt.addEventListener('click',function(){
+    var n=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',n);
+    try{localStorage.setItem('wuai-theme',n)}catch(e){}
+    if(meta)meta.setAttribute('content',n==='dark'?'#08090b':'#f9f4f0');
+    paint();
+  });
+
+  /* 窄屏菜单展开/收起 */
+  var nvg=document.getElementById('nvg'),topnav=document.querySelector('.topnav');
+  if(nvg&&topnav){
+    nvg.addEventListener('click',function(){
+      var open=topnav.classList.toggle('is-open');
+      nvg.setAttribute('aria-expanded',open?'true':'false');
+      nvg.textContent=open?'✕':'☰';
+    });
+    topnav.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){topnav.classList.remove('is-open');nvg.setAttribute('aria-expanded','false');nvg.textContent='☰';}
+    });
+  }
+
+  /* 分类悬停 → 在卡片正上方弹出浮层；移开隐藏。下方介绍区常驻不动 */
+  var views={
+    phone:{kicker:'手机版 · 随身而听',title:'把整个曲库，<br />装进口袋',
+      desc:'本地与 NAS 统一曲库，单手就能翻遍。多源智能歌词记住你的偏移习惯，10 段均衡器与可视化，让每段通勤都更好听。',
+      pillars:[['统一曲库','本地与 SMB/WebDAV 一次整理，随处可播。'],['多源歌词','逐字歌词自动纠错，偏移按曲目记住。'],['随手美化','10 段均衡器、封面批量整理，口袋里也讲究。']],
+      img:'assets/img/phone/phone-03.webp',cap:'手机版 · 黑胶播放页',alt:'手机版整机 · 黑胶唱片与实时歌词',tall:true},
+    pc:{kicker:'桌面版 · 宽屏主力',title:'三栏之间，<br />尽在掌握',
+      desc:'为 Windows 宽屏打造的三栏播放器：文件、专辑墙与播放队列同屏。键鼠操控顺手，大屏上每一张封面都清晰。',
+      pillars:[['三栏布局','文件侧栏、专辑墙、队列，一屏看全。'],['键鼠操控','拖拽、快捷键、右键菜单，桌面效率拉满。'],['无损直出','本地文件直通声卡，码率与格式一目了然。']],
+      img:'assets/img/windows/win-03.webp',cap:'桌面版 · 宽屏播放与可视化',alt:'桌面版整机 · 播放页与可视化'},
+    car:{kicker:'车机版 · 驾驶友好',title:'眼睛留在路上，<br />音乐留在耳边',
+      desc:'大字号、高对比、宽屏布局，关键操作一瞥即达。U 盘、SD 卡本地播放不依赖网络，隧道里也不断线。',
+      pillars:[['大字高对比','按驾驶距离重定字号，远距离也清晰。'],['离线播放','本地文件不联网，信号弱照常听。'],['宽屏适配','车机横屏三栏，触控顺手。']],
+      img:'assets/img/car/car-03.webp',cap:'车机版 · 横屏播放器',alt:'车机版整机 · 横屏播放界面'},
+    tv:{kicker:'电视版 · 十尺客厅',title:'沙发上，<br />也能完整掌控',
+      desc:'全方向键操作、大字号焦点，遥控器就能遍历整个曲库。全屏歌词、星空环与音乐相册，把客厅变成 listening room。',
+      pillars:[['遥控器全流程','方向键遍历、确认播放、返回退出。'],['沉浸视效','全屏歌词、星空环、音乐相册随你切。'],['NAS 曲库','局域网 NAS 直连，开机自启继续听。']],
+      img:'assets/img/tv/tv-04-nowplaying.webp',cap:'电视版 · 正在播放',alt:'电视版整机 · 正在播放页'},
+    shuabo:{kicker:'数播版 · 参考音质',title:'浏览器一页，<br />管理整条信号链',
+      desc:'T1S 参考机方案：MPD bit-perfect 直出，浏览器里完成曲库、播放与七区设置。无头运行，零客户端。',
+      pillars:[['bit-perfect','直出不写格式，用 ALSA 实测判定真假。'],['智能刮削','歌词六源、封面四源，中文曲库更准。'],['零客户端','浏览器一页管理，设置分区清晰。']],
+      img:'shuabo/assets/desktop-player.webp',cap:'数播版 · 浏览器一页管理',alt:'数播版界面'},
+    lab:{kicker:'实验室 · 把功能做成证据',title:'可验证，<br />才算数',
+      desc:'把功能真实性做成可复现的方法与数据：信号链判定、bit-perfect 审计、中文曲库治理，都写成白皮书公开。',
+      pillars:[['信号链透明','hw_params 实测，证据快照可复算。'],['功能审计','不冒充绿灯，未验证就如实标注。'],['开放研究','白皮书与方法，人人可复核。']],
+      img:'favicon.svg',cap:'吾爱音乐 · 实验室',alt:'吾爱音乐 logo',logo:true}
+  };
+  /* 默认首屏：品牌口号 */
+  var homeView={
+    eyebrow:'吾爱音乐 · WUAI MUSIC',
+    title:'聆听<span class="hl">最美的声音</span>',
+    lede:'让每一首歌，都以它本来的样子响起。手机、桌面、车机、电视、数播——六种形态，只为专注地聆听。',
+    img:'favicon.svg',cap:'吾爱音乐 · 聆听最美的声音',alt:'吾爱音乐 logo',logo:true
+  };
+  /* 分类悬停 → 首屏「标题+封面」整体切换；移开还原口号 */
+  var stage=document.getElementById('heroStage'),
+      hEy=document.getElementById('hEyebrow'),hT=document.getElementById('hTitle'),
+      hL=document.getElementById('hLede'),hImg=document.getElementById('hImg'),
+      hShot=document.getElementById('hShot'),hShotBg=document.getElementById('hShotBg'),
+      hCap=document.getElementById('hCap'),timer=null,shown='home';
+
+  function toView(v){
+    hEy.textContent=v.eyebrow||v.kicker;
+    hT.innerHTML=v.title;
+    hL.textContent=v.lede||v.desc;
+    hImg.src=v.img;hImg.alt=v.alt||'';
+    hShot.classList.toggle('logo-mode',!!v.logo);
+    hShot.classList.toggle('tall',!!v.tall);
+    hShotBg.style.backgroundImage=v.logo?'':'url("'+v.img+'")';
+    hCap.textContent=v.cap;
+  }
+  toView(homeView);
+  function toVM(v){
+    return {eyebrow:v.kicker,title:v.title,lede:v.desc,img:v.img,cap:v.cap,alt:v.alt,logo:v.logo,tall:v.tall};
+  }
+  function show(key){
+    if(key===shown)return;shown=key;
+    var v=(key==='home')?homeView:toVM(views[key]);if(!v)return;
+    stage.classList.add('fading');
+    clearTimeout(timer);
+    timer=setTimeout(function(){toView(v);stage.classList.remove('fading')},170);
+  }
+  document.querySelectorAll('.cat').forEach(function(c){
+    var key=c.getAttribute('data-key');
+    c.addEventListener('mouseenter',function(){show(key)});
+    c.addEventListener('mouseleave',function(){show('home')});
+    c.addEventListener('focus',function(){show(key)});
+    c.addEventListener('blur',function(){show('home')});
+  });
+
+  /* 最近更新：从 version.json 动态填充（失败则保留静态兜底） */
+  var relBox=document.getElementById('homeRel');
+  if(relBox && window.fetch){
+    fetch('version.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})
+      .then(function(m){
+        var cl=(m.changelog||[]).slice(0,4);if(!cl.length)return;
+        function brief(n){var ls=String(n||'').split('\n'),o=[];for(var i=0;i<ls.length;i++){var x=ls[i].trim();if(!x)continue;if(x.indexOf('《')===0)break;o.push(x)}var t=o.join(' ').replace(/\*\*/g,'')||'常规修复与体验优化。';return t.slice(0,42)}
+        relBox.innerHTML=cl.map(function(it,i){
+          return '<a href="#news"><span class="v">v'+it.versionName+(i===0?'<span class="badge">最新</span>':'')+'</span>'+
+            '<span><span class="meta">'+it.date+'</span><span class="txt">'+brief(it.notes)+'</span></span></a>';
+        }).join('');
+      }).catch(function(){});
+  }
+
+  /* 按访问设备自动推荐对应版本：设备检测 → 推荐条 + 高亮卡片（不改首屏口号/悬停逻辑） */
+  (function(){
+    var api=window.WuAiDeviceRecommend, bar=document.getElementById('recbar');
+    if(!api||!bar)return;
+    var r=api.recommend(), dev=r.device, info=r.info;
+    // 检测不到（桌面 Linux 等）不打扰；iPhone/Mac 无客户端，给中性引导
+    if(!dev)return;
+
+    var ICON={
+      phone:'<rect x="6" y="2.5" width="12" height="19" rx="2.4"/><path d="M10.5 18.5h3"/>',
+      hd:'<path d="M3 14l1.6-5.2A2 2 0 016.5 7.5h11a2 2 0 011.9 1.3L21 14M3 14h18v4h-2v-1.5H5V18H3z"/><path d="M6.5 14h.01M17.5 14h.01"/>',
+      tv:'<rect x="2.5" y="4.5" width="19" height="13" rx="2"/><path d="M8 21h8M12 17.5V21"/>',
+      windows:'<rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8 20h8M12 16.5V20"/>',
+      apple:'<rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M10 5.5h4"/>'
+    };
+    function fill(ico,txt,href,label){
+      bar.innerHTML='<span class="rb-ic"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24">'+ico+'</svg></span>'+
+        '<span class="rb-txt">'+txt+'</span>'+
+        (href?'<a class="rb-cta" href="'+href+'">'+label+' <span>→</span></a>':'')+
+        '<button class="rb-x" type="button" aria-label="关闭推荐">×</button>';
+      bar.hidden=false;
+      var x=bar.querySelector('.rb-x');
+      if(x)x.addEventListener('click',function(){bar.hidden=true;});
+    }
+
+    if(dev==='apple'){
+      // iOS / macOS 暂无客户端：中性引导，不硬推不匹配的包
+      fill(ICON.apple,'检测到你正在使用 <b>iPhone / Mac</b>，客户端正在路上；先看看 <b>桌面版</b> 或其他平台。','pc/','了解桌面版');
+      return;
+    }
+    if(!info)return;
+    var card=document.querySelector('.cat[data-key="'+info.key+'"]');
+    var ver='最新版';
+    fill(ICON[dev],'检测到你正在使用 <b>'+r.label+'</b>，为你推荐 <b>'+info.name+' '+ver+'</b>。',info.href,'查看并下载');
+    if(card){
+      card.classList.add('is-rec');
+      var tag=document.createElement('span');tag.className='rec-tag';tag.textContent='为你推荐';card.appendChild(tag);
+    }
+    // 有对应 flavor 的（phone/hd/tv）补真实版本号
+    if(info.flavor&&window.fetch){
+      fetch('version.json',{cache:'no-cache'}).then(function(x){if(!x.ok)throw 0;return x.json()})
+        .then(function(m){var v=(m.releases&&m.releases[info.flavor]||{}).versionName;
+          if(v){var t=bar.querySelector('.rb-txt');if(t)t.innerHTML=t.innerHTML.replace(ver,'v'+v);}
+        }).catch(function(){});
+    }
+  })();
+})();
+</script>
+</body>
+</html>
