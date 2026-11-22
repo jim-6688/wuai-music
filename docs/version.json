@@ -1,67 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "2.2.4",
-      "versionCode": 139,
+      "versionName": "3.0.0",
+      "versionCode": 142,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《凉州词》· 王之涣\n黄河远上白云间，一片孤城万仞山。\n羌笛何须怨杨柳，春风不度玉门关。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.4/WuAiMusic-2.2.4-build139-phone-arm64-v8a.apk",
-      "size": 70123460,
-      "sha256": "3820b27b4f57a7f3079661d9956f2bc4c5efb50270d5fcb54153397ef366dd5d",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-phone-arm64-v8a.apk",
+      "size": 70252312,
+      "sha256": "83969955cd5345c4cea10c6fa2f42308beb47110edacf2ec043fa3c4407dfd9d",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.4/WuAiMusic-2.2.4-build139-phone-arm64-v8a.apk",
-          "size": 70123460,
-          "sha256": "3820b27b4f57a7f3079661d9956f2bc4c5efb50270d5fcb54153397ef366dd5d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-phone-arm64-v8a.apk",
+          "size": 70252312,
+          "sha256": "83969955cd5345c4cea10c6fa2f42308beb47110edacf2ec043fa3c4407dfd9d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-phone-armeabi-v7a.apk",
+          "size": 82441440,
+          "sha256": "1cbfc59e8edf3b599a9ed2cd7e24f22b6f0cc47b175216cd659e3ecf851019e6",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "2.2.3",
-      "versionCode": 138,
+      "versionName": "3.0.0",
+      "versionCode": 142,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鸟鸣涧》· 王维\n人闲桂花落，夜静春山空。\n月出惊山鸟，时鸣春涧中。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.3/WuAiMusic-2.2.3-build138-hd-arm64-v8a.apk",
-      "size": 69919096,
-      "sha256": "5a0c77be4b3d5d3ee71199055c8261cd83847514bc7e44435a68af11147a6d2e",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-hd-arm64-v8a.apk",
+      "size": 70146140,
+      "sha256": "71275853207ae6a85b19fcedfff9d142234286103dff09ac15522d6552019b90",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.3/WuAiMusic-2.2.3-build138-hd-arm64-v8a.apk",
-          "size": 69919096,
-          "sha256": "5a0c77be4b3d5d3ee71199055c8261cd83847514bc7e44435a68af11147a6d2e",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-hd-arm64-v8a.apk",
+          "size": 70146140,
+          "sha256": "71275853207ae6a85b19fcedfff9d142234286103dff09ac15522d6552019b90",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.3/WuAiMusic-2.2.3-build138-hd-armeabi-v7a.apk",
-          "size": 82108228,
-          "sha256": "da13562c69320559667e1e0ec07f779ee30858c47405252deb9cc64b170dbde3",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-hd-armeabi-v7a.apk",
+          "size": 82318884,
+          "sha256": "4bd2915084b5b180e7f9e67ffe185cacc94ef53f4ad7b18c58a5068f9ba202c1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "2.2.3",
-      "versionCode": 138,
+      "versionName": "3.0.0",
+      "versionCode": 142,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鸟鸣涧》· 王维\n人闲桂花落，夜静春山空。\n月出惊山鸟，时鸣春涧中。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.3/WuAiMusic-2.2.3-build138-tv-arm64-v8a.apk",
-      "size": 69996753,
-      "sha256": "54b86ecb8ff4c96b6e755e26f3871321a7cb1944fffcf0e2b7ef80e66c87aa72",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-tv-arm64-v8a.apk",
+      "size": 70156989,
+      "sha256": "8e0a7ca2668c469bda7543033c8e1856a9ad2fea7084cdce8b4d34d1952e116c",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.3/WuAiMusic-2.2.3-build138-tv-arm64-v8a.apk",
-          "size": 69996753,
-          "sha256": "54b86ecb8ff4c96b6e755e26f3871321a7cb1944fffcf0e2b7ef80e66c87aa72",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-tv-arm64-v8a.apk",
+          "size": 70156989,
+          "sha256": "8e0a7ca2668c469bda7543033c8e1856a9ad2fea7084cdce8b4d34d1952e116c",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v2.2.3/WuAiMusic-2.2.3-build138-tv-armeabi-v7a.apk",
-          "size": 82136733,
-          "sha256": "36487976e321f0a177d37582d18ffe56fd343e79a7b578d6d7fe92dd688fb14a",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-tv-armeabi-v7a.apk",
+          "size": 82362501,
+          "sha256": "12c42f7ce62860f07ad7996d87d2837ead26306b862618004b114dc4ef19af35",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -73,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.0.0",
+      "date": "2026-11-23",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。"
+    },
     {
       "versionName": "2.2.4",
       "date": "2026-11-20",
