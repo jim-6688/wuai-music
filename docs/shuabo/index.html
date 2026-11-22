@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>吾爱Music 数播 · 本地无损播放方案</title>
-<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、小光 AI 管家与十境调音、AI 合成歌词、本地声纹核对，浏览器一页管理。面向硬件合作、渠道分销与定制开发。" />
+<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、小光 AI 管家与十境调音、AI 合成歌词、本地声纹核对，手机 App 直控、电脑浏览器专业设置。面向硬件合作、渠道分销与定制开发。" />
 <meta name="theme-color" content="#f9f4f0" />
 <link rel="canonical" href="https://music.52ta.top/shuabo/" />
 <link rel="icon" type="image/png" href="assets/logo-v3.png" />
@@ -277,6 +277,38 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
 .linkrow small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
 .linkrow span{color:var(--brand);font-size:13px;font-weight:700;white-space:nowrap}
 
+/* 合作咨询：手机号 + 拉起微信/QQ */
+.contact-form{
+  background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);
+  padding:22px;margin:4px 0 20px;box-shadow:var(--shadow);
+}
+.contact-form h3{margin:0 0 6px;font-size:17px}
+.contact-form .cf-hint{margin:0 0 16px;color:var(--muted);font-size:12.5px;line-height:1.6}
+.cf-row{display:flex;gap:10px;flex-wrap:wrap}
+.cf-row input{
+  flex:1 1 200px;min-width:0;height:48px;padding:0 15px;font-size:15px;
+  border:1px solid var(--line2);border-radius:12px;background:var(--bg2);color:var(--fg);
+  outline:none;
+}
+.cf-row input:focus{border-color:var(--brand-line);box-shadow:0 0 0 3px var(--wash)}
+.cf-row input::placeholder{color:var(--muted)}
+.cf-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.cf-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:46px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;
+}
+.cf-btn--wx{background:#07c160;color:#fff}
+.cf-btn--qq{background:#12b7f5;color:#fff}
+.cf-btn:hover{filter:brightness(1.06)}
+.cf-mini{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--fg2)}
+.cf-mini b{color:var(--brand2);font-variant-numeric:tabular-nums}
+.cf-mini button{
+  border:0;background:none;padding:0;color:var(--brand2);font-size:12.5px;
+  cursor:pointer;text-decoration:underline;text-underline-offset:2px;
+}
+.cf-msg{min-height:18px;margin:10px 0 0;font-size:12.5px;color:var(--brand2)}
+@media (max-width:520px){.cf-btns{grid-template-columns:1fr}}
+
 /* 页脚 */
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}
 footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -360,8 +392,8 @@ footer a:hover{color:var(--brand)}
         <p class="hero-note">当前为参考机 / 方案验证机，非量产商品。整机合作、渠道合作与定制开发欢迎联系。</p>
       </div>
       <div class="hero-shot">
-        <img src="assets/phone-player.webp" alt="吾爱Music 数播 Web 手机端播放页真机截图：黑胶封面、源码码率、bit-perfect 标识与播放队列" />
-        <small>手机浏览器直开，无需安装 App</small>
+        <img src="assets/phone-player.webp" alt="吾爱音乐手机版 App 播放页真机截图：黑胶封面、逐字歌词与播放控制，可局域网直控数播机" />
+        <small>手机用吾爱音乐 App 直接控制数播</small>
       </div>
     </div>
   </section>
@@ -376,7 +408,7 @@ footer a:hover{color:var(--brand)}
       <div class="grid3">
         <div class="card"><div class="k">01</div><h3>曲库留在本地</h3><p>机械盘装歌，系统盘跑服务。SMB 直连拷歌，Web 文件管理、NAS 导入、回收站都在同一页。</p></div>
         <div class="card"><div class="k">02</div><h3>声音走直路</h3><p>MPD 0.24.4 加 mixer_type none，默认不重采样、不用软件音量。接 DDC 后可走数字口到功放。</p></div>
-        <div class="card"><div class="k">03</div><h3>一页管完全部</h3><p>手机、平板、电脑浏览器都能打开管理页。曲库、播放、设备、网络、系统设置集中在一处。</p></div>
+        <div class="card"><div class="k">03</div><h3>一页管完全部</h3><p>手机用吾爱音乐 App 直接控制播放；平板、电脑浏览器打开管理页，曲库、设备、网络、系统设置集中在一处。</p></div>
       </div>
     </div>
   </section>
@@ -431,7 +463,7 @@ footer a:hover{color:var(--brand)}
         <div class="card">
           <div class="k">D</div><h3>连接与授权</h3>
           <ul>
-            <li>手机 / 平板 / 电脑浏览器直接管理，无需安装 App；开机三屏品牌化统一视觉</li>
+            <li>手机用吾爱音乐 App 局域网发现并直控数播；平板 / 电脑浏览器打开管理页做专业设置</li>
             <li>硬件 ID 随主板、全部物理网卡、内置盘、CPU 与内存变化</li>
             <li>对接自有授权平台 license.52ta.top，便于激活绑定与售后追溯</li>
             <li>曲库盘 SMART 健康巡检、资源占用与内核 I/O 错误统计，管家页一屏可见</li>
@@ -573,16 +605,16 @@ footer a:hover{color:var(--brand)}
       <div class="shead">
         <div class="no">05 / 真机界面</div>
         <h2>不画效果图，直接看真机</h2>
-        <p>下面全部来自 T1S 参考机上的实际浏览器：手机、平板与电脑打开同一个地址，曲库、歌词、状态和专业设置都在里面。</p>
+        <p>手机端是吾爱音乐 App 直接控制数播的真机画面；平板与桌面是浏览器管理页。全部为实机截图，未用设计稿替代。</p>
       </div>
       <div class="gallery">
         <figure class="shot shot--phone">
-          <img src="assets/phone-player.webp" loading="lazy" alt="手机端播放页：封面、码率、源码规格、bit-perfect 标识与播放队列" />
-          <figcaption>手机 · 播放页 <span>FLAC / bit-perfect</span></figcaption>
+          <img src="assets/phone-player.webp" loading="lazy" alt="吾爱音乐手机版 App 播放页：黑胶封面、逐字歌词与播放控制，可直控数播" />
+          <figcaption>手机 · App 控制数播 <span>逐字歌词</span></figcaption>
         </figure>
         <figure class="shot shot--phone">
-          <img src="assets/phone-wall.webp" loading="lazy" alt="手机端音乐墙：按专辑浏览，支持格式筛选与封面刮削" />
-          <figcaption>手机 · 音乐墙 <span>502 张专辑</span></figcaption>
+          <img src="assets/phone-wall.webp" loading="lazy" alt="吾爱音乐手机版 App 本地曲库：专辑浏览、格式筛选与歌曲列表" />
+          <figcaption>手机 · App 本地曲库 <span>专辑 / 歌曲</span></figcaption>
         </figure>
         <figure class="shot">
           <img src="assets/tablet-butler.webp" loading="lazy" alt="平板端数播管家：设备概览、资源占用与曲库盘健康状态" />
@@ -599,7 +631,7 @@ footer a:hover{color:var(--brand)}
           <figcaption>桌面 · 设置中心 <span>声纹索引 / AI 歌词…</span></figcaption>
         </figure>
       </div>
-      <p class="shotnote">截图取自参考机实际运行界面，未用设计稿替代；专辑与封面仅作界面演示。</p>
+      <p class="shotnote">手机图为吾爱音乐 App 真机界面，平板与桌面为参考机浏览器管理页；均未用设计稿替代，专辑与封面仅作界面演示。</p>
     </div>
   </section>
 
@@ -685,7 +717,7 @@ footer a:hover{color:var(--brand)}
             </tr>
             <tr>
               <th>生态 / 多房间</th>
-              <td class="ours">浏览器控制 + App 遥控，小光 AI 管家在本地值守<small>可选小爱语音；不接主流流媒体订阅服务</small></td>
+              <td class="ours">手机用吾爱音乐 App 直控，平板 / 电脑浏览器做专业设置<small>小光 AI 管家本地值守；可选小爱语音；不接主流流媒体订阅</small></td>
               <td>AirPlay 2 / Spotify / TIDAL / Qobuz / Roon<small>BluOS 最多 64 个播放器同步</small></td>
               <td>AirPlay 2 / Chromecast / Spotify / TIDAL / Qobuz / Roon<small>StreamMagic 多房间</small></td>
               <td>Google Cast / DLNA / Spotify / TIDAL / Roon<small>WiiM 生态多房间；官方标注不支持 AirPlay 2</small></td>
@@ -724,7 +756,7 @@ footer a:hover{color:var(--brand)}
         <tr><th>声卡</th><td>板载 Realtek ALC662（最高 192 kHz / 24 bit，双声道）；可加 USB DDC，参考机实测接 SMSL PO100 Pro 走同轴</td></tr>
         <tr><th>网络</th><td>板载有线 ×3 + WiFi（参考机当前 WiFi 在线）</td></tr>
         <tr><th>显示</th><td>无屏无背光；可选 HDMI 接屏进入本地管理界面</td></tr>
-        <tr><th>管理方式</th><td>浏览器访问 8080 端口，无需安装客户端</td></tr>
+        <tr><th>管理方式</th><td>手机用吾爱音乐 App 局域网直控；平板 / 电脑浏览器访问 8080 端口做专业设置</td></tr>
         <tr><th>硬件 ID</th><td>WUAI-XXXX-XXXX-XXXX-XXXX，换配件跟随变化</td></tr>
         <tr><th>不支持</th><td class="no">DSD Native / DoP、MQA、屏幕亮度、网口 LED（受当前硬件限制）</td></tr>
       </table>
@@ -735,8 +767,8 @@ footer a:hover{color:var(--brand)}
     <div class="container">
       <header class="shead">
         <div class="no">09 / 最近更新 · 研发成果 · 进度</div>
-        <h2>持续进化，看得见</h2>
-        <p>版本记录与官方发布清单实时同步，研发成果来自工作室公开的白皮书。</p>
+        <h2>数播自己也在持续进化</h2>
+        <p>这里记录的是数播参考机的功能迭代与真机跑通状态，不是 App 的发版清单；研发成果来自工作室公开的音频白皮书。</p>
       </header>
       <div class="dyn-tabs" role="tablist">
         <button class="dyn-tab is-active" data-dyn-tab="updates" role="tab">最近更新</button>
@@ -755,9 +787,25 @@ footer a:hover{color:var(--brand)}
         <span class="eyebrow">COOPERATION</span>
         <h2>想做一台自己的数播？</h2>
         <p>整机贴牌、渠道供货、特定屏幕与遥控器适配、DLNA 接入或 DSP 定制，都可以从一次咨询开始。这里不提供安装包，我们更想聊硬件与合作。</p>
-        <a class="btn btn--primary" href="https://qm.qq.com/q/9OqnRwgMD0" target="_blank" rel="noopener noreferrer">合作咨询</a>
+        <div class="contact-form" id="contactForm">
+          <h3>留个手机号，直接拉起咨询</h3>
+          <p class="cf-hint">填上手机号（用于我们回拨联系），再点微信或 QQ：会先把联系方式复制到剪贴板，并拉起对应应用。手机号只留在你自己设备上，本站不上传、不保存。</p>
+          <div class="cf-row"><input id="cfPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="输入手机号，方便我们回电" /></div>
+          <div class="cf-btns">
+            <button type="button" class="cf-btn cf-btn--wx" id="cfWx">微信咨询</button>
+            <button type="button" class="cf-btn cf-btn--qq" id="cfQq">QQ 咨询</button>
+          </div>
+          <div class="cf-mini">
+            <span>手机：<b>18611269185</b></span>
+            <span>微信：<b>jinghewang</b> <button type="button" id="cfCopyWx">复制</button></span>
+          </div>
+          <p class="cf-msg" id="cfMsg" role="status" aria-live="polite"></p>
+        </div>
       </div>
       <div class="links">
+        <a class="linkrow" href="tel:18611269185">
+          <span><b>电话咨询</b><small>18611269185 · 手机端点击直接拨号</small></span><span>拨打 →</span>
+        </a>
         <a class="linkrow" href="https://qm.qq.com/q/9OqnRwgMD0" target="_blank" rel="noopener noreferrer">
           <span><b>QQ 粉丝群</b><small>手机端点击拉起 QQ，桌面端打开加群页</small></span><span>立即进入 →</span>
         </a>
@@ -780,7 +828,51 @@ footer a:hover{color:var(--brand)}
 </footer>
 
 <script src="../assets/js/product.js" defer></script>
-<script src="../assets/js/product-data.js" defer></script>
-<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="assets/js/shuabo-data.js" defer></script>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+// 合作咨询：手机号本机校验 + 复制联系方式/留言 + 拉起微信/QQ
+(function(){
+  var phone=document.getElementById("cfPhone"),msg=document.getElementById("cfMsg");
+  if(!phone||!msg)return;
+  var PHONE="18611269185",WX="jinghewang",QQ="https://qm.qq.com/q/9OqnRwgMD0";
+  function note(t){msg.textContent=t;clearTimeout(note.t);note.t=setTimeout(function(){msg.textContent=""},5000)}
+  function readPhone(){return (phone.value||"").replace(/\D/g,"")}
+  function validPhone(){var p=readPhone();return /^1\d{10}$/.test(p)}
+  function copy(text,cb){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){cb(true)},function(){cb(false)})}
+    else{var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
+      document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}
+      document.body.removeChild(ta);cb(ok)}
+  }
+  function launch(cb){ // 移动端尽量拉起 App，桌面端退回新窗口
+    var ua=navigator.userAgent||"",mobile=/Android|iPhone|iPad|iPod/i.test(ua);
+    if(mobile){location.href=cb.scheme}
+    else{window.open(cb.web,"_blank","noopener")}
+  }
+  document.getElementById("cfWx").addEventListener("click",function(){
+    var p=readPhone();
+    if(!validPhone()){note("请先填写 11 位手机号，方便我们回电");phone.focus();return}
+    var text="你好，我想咨询吾爱Music 数播合作。回电手机："+p;
+    copy("微信号："+WX+"\n"+text,function(ok){
+      note(ok?"已复制微信号和留言，正在拉起微信，粘贴发送即可":"微信号："+WX+"，手机号："+p+"（请手动添加微信）");
+      launch({scheme:"weixin://",web:"https://weixin.qq.com/"});
+    });
+  });
+  document.getElementById("cfQq").addEventListener("click",function(){
+    var p=readPhone();
+    if(!validPhone()){note("请先填写 11 位手机号，方便我们回电");phone.focus();return}
+    var text="你好，我想咨询吾爱Music 数播合作。回电手机："+p;
+    copy(text,function(ok){
+      note(ok?"留言已复制，正在拉起 QQ 群，进群后粘贴即可":"请加 QQ 群咨询，手机号："+p);
+      window.open(QQ,"_blank","noopener");
+    });
+  });
+  document.getElementById("cfCopyWx").addEventListener("click",function(){
+    copy(WX,function(ok){note(ok?"微信号已复制："+WX:"微信号："+WX)});
+  });
+  phone.addEventListener("input",function(){phone.value=phone.value.replace(/\D/g,"").slice(0,11)});
+})();
+</script>
 </body>
 </html>
