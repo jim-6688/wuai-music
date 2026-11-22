@@ -219,6 +219,39 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
 .chip{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--wash);color:var(--brand2);border:1px solid var(--wash2)}
 
+/* 专业技术参数 */
+.subhead{font-size:19px;font-weight:750;letter-spacing:-.01em;margin:34px 0 14px}
+.tech-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.tech{width:100%;border-collapse:collapse;min-width:680px;font-size:13px}
+.tech th,.tech td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tech thead th{background:var(--panel2);font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;letter-spacing:.04em}
+.tech tbody th{color:var(--fg);font-weight:700;white-space:nowrap;background:var(--panel2)}
+.tech td{color:var(--fg2)}
+.tech td.num{color:var(--brand2);font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tech tr:last-child th,.tech tr:last-child td{border-bottom:0}
+.tech-note{margin-top:13px;font-size:13px;color:var(--muted);line-height:1.7}
+.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+.pr-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:18px;
+  padding:20px 20px 6px;
+}
+.pr-card h4{margin:0 0 10px;font-size:16px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.pr-card h4 i{
+  font-style:normal;width:24px;height:24px;border-radius:8px;flex:none;
+  display:grid;place-items:center;background:var(--wash);color:var(--brand2);font-size:12px;font-weight:800;
+}
+.pr-card ul{margin:0;padding:0 0 14px;list-style:none;color:var(--fg2);font-size:13.5px}
+.pr-card li{position:relative;padding-left:14px;margin:7px 0;line-height:1.6}
+.pr-card li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--brand3)}
+.pr-card li b{color:var(--fg);font-weight:650}
+.fact-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.fact{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:14px 16px;font-size:13px;color:var(--fg2);
+}
+.fact b{display:block;color:var(--brand2);font-size:15px;margin-bottom:3px}
+@media (max-width:900px){.pr-grid,.fact-strip{grid-template-columns:1fr}}
+
 /* 规格表 */
 .spec{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .spec th,.spec td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px}
@@ -302,6 +335,7 @@ footer a:hover{color:var(--brand)}
       <a href="#why">方案</a>
       <a href="#ability">能力</a>
       <a href="#buddy">小光</a>
+      <a href="#tech">技术参数</a>
       <a href="#screens">界面</a>
       <a href="#compare">对比</a>
       <a href="#spec">规格</a>
@@ -355,7 +389,7 @@ footer a:hover{color:var(--brand)}
         <p>播放、曲库、封面、设备管理与授权售后全部做进同一页。下面每一项都已在参考机上跑通；硬件做不到的，规格表里直说。</p>
       </div>
       <div class="metrics">
-        <div class="metric"><b>7</b><span>设置分区</span></div>
+        <div class="metric"><b>8</b><span>设置分区</span></div>
         <div class="metric"><b>10</b><span>十境连续调节</span></div>
         <div class="metric"><b>886</b><span>参考机实测曲目</span></div>
         <div class="metric"><b>0</b><span>需要安装的客户端</span></div>
@@ -385,7 +419,7 @@ footer a:hover{color:var(--brand)}
         <div class="card">
           <div class="k">C</div><h3>设备与自动化</h3>
           <ul>
-            <li>七分区设置中心：音频 / 播放 / 设备 / 网络 / 曲库 / 界面 / 系统</li>
+            <li>八分区设置中心：音频 / 播放 / 设备 / 网络 / 曲库 / AI 歌词 / 界面 / 系统</li>
             <li>自动待机、定时开机（RTC）、曲库机械盘休眠、极致聆听模式</li>
             <li>沉浸舞台：星环与动态背景、5 档亮度、自动全屏、逐字歌词效果</li>
             <li>简中 / 繁中 / 英 / 日 / 韩五语界面，即时切换不动歌词与文件名</li>
@@ -454,10 +488,90 @@ footer a:hover{color:var(--brand)}
     </div>
   </section>
 
+  <section class="section" id="tech">
+    <div class="container">
+      <div class="shead">
+        <div class="no">04 / 专业技术</div>
+        <h2>参数摊开写，能力不靠形容词</h2>
+        <p>下面每一条都能在参考机的设置页里逐项核对。调音不是几档预设音效，而是能落到频点、Q 值与增益上限的真实滤波器；信号链也不靠播放器自报，靠 ALSA 实测。</p>
+      </div>
+      <div class="metrics">
+        <div class="metric"><b>10</b><span>境 · 可调听感维度</span></div>
+        <div class="metric"><b>10</b><span>段参量 EQ（专业模式）</span></div>
+        <div class="metric"><b>8</b><span>档重采样目标</span></div>
+        <div class="metric"><b>0</b><span>第三方 Python 依赖</span></div>
+      </div>
+
+      <h3 class="subhead">十境调音 · 逐段参数</h3>
+      <div class="tech-wrap">
+        <table class="tech">
+          <thead>
+            <tr><th>境</th><th>听感维度</th><th>滤波类型</th><th>中心频点</th><th>Q / 斜率</th><th>增益上限</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>晨昏</th><td>整体冷暖</td><td>tilt 双搁架</td><td class="num">180 / 6000 Hz</td><td class="num">0.707</td><td class="num">±6 dB</td></tr>
+            <tr><th>深潜</th><td>极低频下潜</td><td>lowshelf</td><td class="num">70 Hz</td><td class="num">0.707</td><td class="num">±10 dB</td></tr>
+            <tr><th>回弹</th><td>低频速度与弹性</td><td>peaking</td><td class="num">110 Hz</td><td class="num">1.0</td><td class="num">±10 dB</td></tr>
+            <tr><th>肌理</th><td>声音饱满厚薄</td><td>peaking</td><td class="num">220 Hz</td><td class="num">0.7</td><td class="num">±10 dB</td></tr>
+            <tr><th>唱腔</th><td>人声前后距离</td><td>peaking</td><td class="num">650 Hz</td><td class="num">0.4</td><td class="num">±8 dB</td></tr>
+            <tr><th>圆润</th><td>女声甜润去毛刺</td><td>peaking</td><td class="num">3000 Hz</td><td class="num">4.0</td><td class="num">±8 dB</td></tr>
+            <tr><th>顺滑</th><td>中高频齿音柔化</td><td>peaking</td><td class="num">5800 Hz</td><td class="num">1.5</td><td class="num">±8 dB</td></tr>
+            <tr><th>起落</th><td>瞬态软硬快慢</td><td>peaking</td><td class="num">7500 Hz</td><td class="num">0.4</td><td class="num">±8 dB</td></tr>
+            <tr><th>清亮</th><td>高频亮泽不刺</td><td>peaking</td><td class="num">9200 Hz</td><td class="num">1.5</td><td class="num">±8 dB</td></tr>
+            <tr><th>天光</th><td>高频延伸与空间</td><td>highshelf</td><td class="num">10000 Hz</td><td class="num">0.707</td><td class="num">±10 dB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tech-note">每境滑块 −100 ～ +100 线性映射到增益上限，中位 ±0.5 以内不插入滤波器。六组预设：平直 / 人声 / 低频 / 明亮 / 温暖 / 现场。切到「专业模式」即变为 32、64、125、250、500、1k、2k、4k、8k、16k Hz 十段等距参量 EQ，Q 固定 1.41。</p>
+
+      <h3 class="subhead">DSP 处理链 · 不只是十境</h3>
+      <div class="pr-grid">
+        <div class="pr-card">
+          <h4><i>◈</i>FIR 房间校正</h4>
+          <ul>
+            <li><b>Conv 卷积滤波</b>，导入自己的 <b>.wav 脉冲响应</b>，置于整条链路最前端</li>
+            <li>左右平衡 −100 ～ +100，左右声道<b>各自独立极性反转</b></li>
+            <li>输出电平 0 / −3 / −6 / −12 dB 档位，后端可微调至 −24 dB</li>
+            <li>耳机交叉馈送 0～100（对侧掺入 0～0.45），50/15 μs 去加重，单声道混合</li>
+            <li>改参数走 CamillaDSP WebSocket <b>热加载，调音不断声</b></li>
+          </ul>
+        </div>
+        <div class="pr-card">
+          <h4><i>↻</i>重采样与输出</h4>
+          <ul>
+            <li>8 档目标：auto / 关 / 44.1 / 48 / 88.2 / 96 / 176.4 / <b>192 kHz</b>，位深 16 / 24 bit</li>
+            <li>soxr 品质三档：标准 / 高（默认）/ 极高；DSD→PCM 目标可调</li>
+            <li>ReplayGain：关（默认，守 bit-perfect）/ 曲目 / 专辑；交叉淡化 0～12 秒</li>
+            <li><b>mixer_type none</b>，auto_resample / auto_format / auto_channels 全关，软件音量不插手</li>
+            <li>链路 5 档：auto / USB DAC / DDC 同轴 / 模拟 / HDMI，auto 按链路自动定档</li>
+          </ul>
+        </div>
+        <div class="pr-card">
+          <h4><i>✓</i>信号链自检</h4>
+          <ul>
+            <li>只读 ALSA <b>hw_params 实测</b>判定，读不到一律标「待验证」，不冒充直通</li>
+            <li>八态判定：直通 / 原生 DSD / DoP / DSD 转 PCM / 重采样 / 降混 / 待验证 / 空闲</li>
+            <li>测试音 <b>−22 dBFS、1 kHz 正弦</b>，六档采样率逐档播，测完自动恢复原进度</li>
+            <li>HDMI 读 <b>EDID / ELD</b>：14 种编码、采样率、位深、声道与厂商码；同轴不猜末端型号</li>
+            <li>输出指纹 + 输出档案记住设备的实测结论，可导出可复现的链路报告</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subhead">工程底座 · 看不见但撑得住</h3>
+      <div class="fact-strip">
+        <div class="fact"><b>16 种音频格式</b>FLAC / WAV / AIFF / AIF / MP3 / M4A / AAC / OGG / Opus / MP2 / WavPack / Musepack / APE / DSF / DFF / DTS · 格式矩阵由解码插件动态生成，不写死</div>
+        <div class="fact"><b>纯标准库后端</b>服务端只用 Python 3 标准库，不装第三方包；声纹、神经网络、输出档案写本机 SQLite / JSON 侧车，不动曲库标签</div>
+        <div class="fact"><b>实时不轮询</b>MPD idle + SSE 推状态与运行日志；八分区设置、五语界面 725 条文案词条；314 项单元测试、13 个 systemd 服务与定时器常驻守护</div>
+      </div>
+      <p class="tech-note">说明：参数取自参考机当前配置与源码，可按合作需求调整；DSD 能否原生直出取决于末端设备能力，本机实测链路（同轴 → 有源箱）只走 PCM，官网不做无法兑现的承诺。</p>
+    </div>
+  </section>
+
   <section class="section" id="screens">
     <div class="container">
       <div class="shead">
-        <div class="no">04 / 真机界面</div>
+        <div class="no">05 / 真机界面</div>
         <h2>不画效果图，直接看真机</h2>
         <p>下面全部来自 T1S 参考机上的实际浏览器：手机、平板与电脑打开同一个地址，曲库、歌词、状态和专业设置都在里面。</p>
       </div>
@@ -492,7 +606,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="flow">
     <div class="container">
       <div class="shead">
-        <div class="no">05 / 播放链路</div>
+        <div class="no">06 / 播放链路</div>
         <h2>声音怎么走，页面就怎么标</h2>
         <p>源格式与实际输出分开显示。采样率不一致就是重采样，多声道变两声道就是降混，不把转换说成直通。</p>
       </div>
@@ -518,7 +632,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="compare">
     <div class="container">
       <div class="shead">
-        <div class="no">06 / 横向对比</div>
+        <div class="no">07 / 横向对比</div>
         <h2>和成熟数播比，差在哪、强在哪</h2>
         <p>选三款公开规格可查的主流机型，只比官方写明的硬指标与功能边界；听感不做纸面判断。横向滑动可看完整表格。</p>
       </div>
@@ -564,7 +678,7 @@ footer a:hover{color:var(--brand)}
             </tr>
             <tr>
               <th>音效 / 调节</th>
-              <td class="ours">重采样 / ReplayGain / 交叉淡化 / DSP 平衡极性 / FIR / 十境连续调节<small>小光给建议并一键应用，反馈成长；七分区设置</small></td>
+              <td class="ours">重采样 / ReplayGain / 交叉淡化 / DSP 平衡极性 / FIR / 十境连续调节<small>小光给建议并一键应用，反馈成长；八分区设置</small></td>
               <td>BluOS 均衡器 / Dirac Live Ready<small>多音箱与低音炮管理</small></td>
               <td>7 段 EQ<small>多房间同步</small></td>
               <td>10 段图示 + 参数 EQ / RoomFit<small>24 组预设、房间校正</small></td>
@@ -598,7 +712,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="spec">
     <div class="container">
       <div class="shead">
-        <div class="no">07 / 参考机规格</div>
+        <div class="no">08 / 参考机规格</div>
         <h2>实机参数，照单写明</h2>
         <p>以下为当前 T1S 参考机实测配置，可按合作需求调整机箱、存储、声卡与屏幕。</p>
       </div>
@@ -620,7 +734,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="activity">
     <div class="container">
       <header class="shead">
-        <div class="no">08 / 最近更新 · 研发成果 · 进度</div>
+        <div class="no">09 / 最近更新 · 研发成果 · 进度</div>
         <h2>持续进化，看得见</h2>
         <p>版本记录与官方发布清单实时同步，研发成果来自工作室公开的白皮书。</p>
       </header>
