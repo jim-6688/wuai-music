@@ -341,7 +341,7 @@ footer a:hover{color:var(--brand)}
       </div>
       <div class="grid3">
         <div class="card"><div class="k">01</div><h3>曲库留在本地</h3><p>机械盘装歌，系统盘跑服务。SMB 直连拷歌，Web 文件管理、NAS 导入、回收站都在同一页。</p></div>
-        <div class="card"><div class="k">02</div><h3>声音走直路</h3><p>MPD 0.24 加 mixer_type none，默认不重采样、不用软件音量。接 DDC 后可走数字口到功放。</p></div>
+        <div class="card"><div class="k">02</div><h3>声音走直路</h3><p>MPD 0.24.4 加 mixer_type none，默认不重采样、不用软件音量。接 DDC 后可走数字口到功放。</p></div>
         <div class="card"><div class="k">03</div><h3>一页管完全部</h3><p>手机、平板、电脑浏览器都能打开管理页。曲库、播放、设备、网络、系统设置集中在一处。</p></div>
       </div>
     </div>
@@ -357,14 +357,14 @@ footer a:hover{color:var(--brand)}
       <div class="metrics">
         <div class="metric"><b>7</b><span>设置分区</span></div>
         <div class="metric"><b>10</b><span>十境连续调节</span></div>
-        <div class="metric"><b>1501</b><span>参考机实测专辑</span></div>
+        <div class="metric"><b>886</b><span>参考机实测曲目</span></div>
         <div class="metric"><b>0</b><span>需要安装的客户端</span></div>
       </div>
       <div class="grid2">
         <div class="card">
           <div class="k">A</div><h3>播放与音质</h3>
           <ul>
-            <li>MPD 0.24 + mixer_type none，默认 bit-perfect 直出，不走系统重采样与软件音量</li>
+            <li>MPD 0.24.4 + mixer_type none，默认 bit-perfect 直出，不走系统重采样与软件音量</li>
             <li>重采样开关与升频目标：关 / 88.2 / 96 / 176.4 / 192 kHz，输出位深 16 / 24 bit</li>
             <li>ReplayGain（关 / 曲目 / 专辑）、无缝播放、交叉淡化 2–10 秒</li>
             <li>soxr 品质档位与 DSD→PCM 目标可调；播放中实时显示码率、输出设备与链路标注</li>
@@ -468,7 +468,7 @@ footer a:hover{color:var(--brand)}
         </figure>
         <figure class="shot shot--phone">
           <img src="assets/phone-wall.webp" loading="lazy" alt="手机端音乐墙：按专辑浏览，支持格式筛选与封面刮削" />
-          <figcaption>手机 · 音乐墙 <span>1501 张专辑</span></figcaption>
+          <figcaption>手机 · 音乐墙 <span>502 张专辑</span></figcaption>
         </figure>
         <figure class="shot">
           <img src="assets/tablet-butler.webp" loading="lazy" alt="平板端数播管家：设备概览、资源占用与曲库盘健康状态" />
@@ -481,8 +481,8 @@ footer a:hover{color:var(--brand)}
           <figcaption>桌面 · 播放页 <span>队列 + 歌词</span></figcaption>
         </figure>
         <figure class="shot">
-          <img src="assets/desktop-settings.webp" loading="lazy" alt="桌面端设置中心：音频分区中的重采样、输出位深、ReplayGain、DSP 等选项" />
-          <figcaption>桌面 · 设置中心 <span>音频 / 播放 / 设备…</span></figcaption>
+          <img src="assets/desktop-settings.webp" loading="lazy" alt="桌面端设置中心：曲库分区的声纹索引、AI 歌词，以及音频、播放、设备、网络、界面、系统等分区" />
+          <figcaption>桌面 · 设置中心 <span>声纹索引 / AI 歌词…</span></figcaption>
         </figure>
       </div>
       <p class="shotnote">截图取自参考机实际运行界面，未用设计稿替代；专辑与封面仅作界面演示。</p>
@@ -499,7 +499,7 @@ footer a:hover{color:var(--brand)}
       <div class="flow">
         <div class="node"><b>曲库盘</b><small>本地 FLAC / DSD / WAV</small></div>
         <div class="arrow">→</div>
-        <div class="node"><b>MPD 0.24</b><small>解码 · 不插重采样</small></div>
+        <div class="node"><b>MPD 0.24.4</b><small>解码 · 不插重采样</small></div>
         <div class="arrow">→</div>
         <div class="node"><b>声卡 / DDC</b><small>ALC662 · USB DDC 可选</small></div>
         <div class="arrow">→</div>
@@ -543,14 +543,14 @@ footer a:hover{color:var(--brand)}
             </tr>
             <tr>
               <th>解码 / 输出</th>
-              <td class="ours">ALC662，192 kHz / 24 bit，2 声道<small>默认直出；无内置高端 DAC</small></td>
+              <td class="ours">ALC662，192 kHz / 24 bit，2 声道<small>可加 USB DDC 走同轴；无内置高端 DAC</small></td>
               <td>32 bit / 384 kHz DAC<small>原生采样率至 192 kHz / 24 bit，DSD256</small></td>
               <td>ESS ES9033Q<small>最高 768 kHz / 32 bit PCM，DSD512</small></td>
               <td>ESS ES9038Q2M<small>最高 192 kHz / 24 bit，数字输出 bit-perfect</small></td>
             </tr>
             <tr>
               <th>本地曲库管理</th>
-              <td class="ours">SMB + Web 文件管理 + NAS 导入 + 回收站<small>音乐墙按专辑浏览，实测 1501 张</small></td>
+              <td class="ours">SMB + Web 文件管理 + NAS 导入 + 回收站<small>音乐墙按专辑浏览，实测 502 张 / 886 首</small></td>
               <td>USB 盘 + SMB 索引<small>官方标称最多 200,000 首</small></td>
               <td>USB 媒体 + UPnP / DLNA<small>StreamMagic 管理专辑与歌单</small></td>
               <td>USB 存储（FAT32 / NTFS / EXT4）<small>可给 DLNA 设备做媒体服务器</small></td>
@@ -603,11 +603,11 @@ footer a:hover{color:var(--brand)}
         <p>以下为当前 T1S 参考机实测配置，可按合作需求调整机箱、存储、声卡与屏幕。</p>
       </div>
       <table class="spec">
-        <tr><th>平台</th><td>TOPFEEL T1S / BYT30</td></tr>
+        <tr><th>平台</th><td>TOPFEEL T1S / BYT30；Debian 13 (trixie)</td></tr>
         <tr><th>处理器</th><td>Intel Celeron J1900 @ 1.99 GHz，4 核</td></tr>
-        <tr><th>内存 / 系统盘</th><td>4 GB / KINGBANK SSD 128 GB</td></tr>
-        <tr><th>曲库盘</th><td>HGST HTS545050A7E380 2.5 英寸机械盘</td></tr>
-        <tr><th>声卡</th><td>Realtek ALC662，最高 192 kHz / 24 bit，双声道</td></tr>
+        <tr><th>内存 / 系统盘</th><td>8 GB / KINGBANK KM100 120 GB</td></tr>
+        <tr><th>曲库盘</th><td>HGST HTS545050A7E380 500 GB 2.5 英寸机械盘，实测 886 首 / 502 张专辑 / 239 位艺人</td></tr>
+        <tr><th>声卡</th><td>板载 Realtek ALC662（最高 192 kHz / 24 bit，双声道）；可加 USB DDC，参考机实测接 SMSL PO100 Pro 走同轴</td></tr>
         <tr><th>网络</th><td>板载有线 ×3 + WiFi（参考机当前 WiFi 在线）</td></tr>
         <tr><th>显示</th><td>无屏无背光；可选 HDMI 接屏进入本地管理界面</td></tr>
         <tr><th>管理方式</th><td>浏览器访问 8080 端口，无需安装客户端</td></tr>
