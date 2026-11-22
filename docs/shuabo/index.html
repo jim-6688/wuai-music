@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>吾爱Music 数播 · 本地无损播放方案</title>
-<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、六源歌词与四源封面刮削，浏览器一页管理。面向硬件合作、渠道分销与定制开发。" />
+<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、小光 AI 管家与十境调音、AI 合成歌词、本地声纹核对，浏览器一页管理。面向硬件合作、渠道分销与定制开发。" />
 <meta name="theme-color" content="#f9f4f0" />
 <link rel="canonical" href="https://music.52ta.top/shuabo/" />
 <link rel="icon" type="image/png" href="assets/logo-v3.png" />
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="吾爱Music" />
 <meta property="og:title" content="吾爱Music 数播 · 本地无损播放方案" />
-<meta property="og:description" content="把曲库放进机器，把手机变成遥控器。无损直出、歌词封面自动刮削、专业设置一页管完。" />
+<meta property="og:description" content="把曲库放进机器，把手机变成遥控器。无损直出、小光 AI 管家陪你听也会帮你调音，专业设置一页管完。" />
 <meta property="og:url" content="https://music.52ta.top/shuabo/" />
 <meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -301,6 +301,7 @@ footer a:hover{color:var(--brand)}
     <nav class="nav">
       <a href="#why">方案</a>
       <a href="#ability">能力</a>
+      <a href="#buddy">小光</a>
       <a href="#screens">界面</a>
       <a href="#compare">对比</a>
       <a href="#spec">规格</a>
@@ -317,7 +318,7 @@ footer a:hover{color:var(--brand)}
       <div>
         <span class="eyebrow">WUAIMUSIC SERVER · 参考机 T1S</span>
         <h1>把曲库放进机器，<br /><span class="hl">把手机变成遥控器。</span></h1>
-        <p class="lead">吾爱Music 数播是一台面向本地无损曲库的无头播放方案。音乐留在机器里，浏览器就是控制台；默认 bit-perfect 直出，歌词和封面自动刮削，专业设置一页管完。</p>
+        <p class="lead">吾爱Music 数播是一台面向本地无损曲库的无头播放方案。音乐留在机器里，浏览器就是控制台；默认 bit-perfect 直出，小光 AI 管家陪你听、帮你调音、照看曲库，专业设置一页管完。</p>
         <div class="actions">
           <a class="btn btn--primary" href="#contact">合作咨询</a>
           <a class="btn btn--ghost" href="../">返回 App 官网</a>
@@ -351,11 +352,11 @@ footer a:hover{color:var(--brand)}
       <div class="shead">
         <div class="no">02 / 核心功能</div>
         <h2>一台数播该有的，都在这里</h2>
-        <p>播放、曲库、歌词封面、设备管理与授权售后全部做进同一页。下面每一项都已在参考机上跑通；硬件做不到的，规格表里直说。</p>
+        <p>播放、曲库、封面、设备管理与授权售后全部做进同一页。下面每一项都已在参考机上跑通；硬件做不到的，规格表里直说。</p>
       </div>
       <div class="metrics">
         <div class="metric"><b>7</b><span>设置分区</span></div>
-        <div class="metric"><b>6 + 4</b><span>歌词源 / 封面源</span></div>
+        <div class="metric"><b>10</b><span>十境连续调节</span></div>
         <div class="metric"><b>1501</b><span>参考机实测专辑</span></div>
         <div class="metric"><b>0</b><span>需要安装的客户端</span></div>
       </div>
@@ -375,7 +376,8 @@ footer a:hover{color:var(--brand)}
           <ul>
             <li>机械盘本地曲库 + SMB 共享，Web 文件管理、NAS 导入、回收站都在一页</li>
             <li>音乐墙按专辑浏览，格式筛选，点专辑直接播放或追加队列</li>
-            <li>歌词六源在线取词（酷狗 / QQ / 网易云 / 酷我 / lrc.cx / LRCLIB），逐字高亮，本地缓存 30 天</li>
+            <li>逐字歌词高亮；本地 LRC 自动升级为逐字时间轴，歌名与歌词不合时小光会提醒核对</li>
+            <li>AI 合成歌词：可选千问 / 火山引擎 / DeepSeek，填入自己的 API Key 即可生成；只传歌曲信息、不上传音频，结果仅写本地缓存</li>
             <li>封面四源刮削（网易云 / QQ / 酷我 / Apple Music），可手动换图，本地缓存 90 天</li>
             <li>中文路径、GB18030 / Big5 / Shift-JIS 全链路兼容</li>
           </ul>
@@ -385,6 +387,8 @@ footer a:hover{color:var(--brand)}
           <ul>
             <li>七分区设置中心：音频 / 播放 / 设备 / 网络 / 曲库 / 界面 / 系统</li>
             <li>自动待机、定时开机（RTC）、曲库机械盘休眠、极致聆听模式</li>
+            <li>沉浸舞台：星环与动态背景、5 档亮度、自动全屏、逐字歌词效果</li>
+            <li>简中 / 繁中 / 英 / 日 / 韩五语界面，即时切换不动歌词与文件名</li>
             <li>感知音量曲线：UI 30% ≈ ALSA 55%，解决线性刻度前段无声</li>
             <li>恢复出厂需设备密码，3 次错误锁 5 分钟；保留曲库 / 网络 / SSH / 缓存</li>
             <li>可选小爱语音 / 巴法云通道播放控制，不依赖公网端口或内网穿透</li>
@@ -403,10 +407,57 @@ footer a:hover{color:var(--brand)}
     </div>
   </section>
 
+  <section class="section" id="buddy">
+    <div class="container">
+      <div class="shead">
+        <div class="no">03 / 小光 AI 管家</div>
+        <h2>会陪你听，也会替你照看曲库</h2>
+        <p>小光跑在机器本地：纯标准库神经网络与声纹索引都在本机，权重只写侧车文件。它给建议、也会动手，但每一步都能在「运行日志」里看到。</p>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="k">01</div><h3>十境调音，越用越懂你</h3>
+          <ul>
+            <li>本地神经网络 v2 给出十境连续增益建议，一键应用，不再只是预设档位</li>
+            <li>点「满意 / 不满意」回传反馈，命中率与学习条数在界面可见</li>
+            <li>90 秒内手动改动记为隐式负样本，学会你的偏好而不是覆盖你</li>
+            <li>链路不支持的能力自动规避，例如当前同轴链路下禁用无效的 DSD 设置</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">02</div><h3>声纹核对，歌名不再靠猜</h3>
+          <ul>
+            <li>本地 Chromaprint 指纹建库，SQLite 侧车存储，全程不联网</li>
+            <li>倒排索引 + 偏移投票 + 逐位比对，置信度达阈值才提醒</li>
+            <li>歌名写错、文件被替换、同一首换成别的录音，小光会告诉你真实曲目</li>
+            <li>只在库内比对；库外歌曲回退到元数据，不冒充在线识别服务</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">03</div><h3>歌词与曲库，有人替你守着</h3>
+          <ul>
+            <li>独唱曲目自动剔除合唱版歌词，避免张冠李戴</li>
+            <li>本地 LRC 主动升级逐字时间轴；波形校验发现错位会即时修正</li>
+            <li>导入歌曲时实时监控：格式族、DSD、乱码、体积与同名歌词一屏可见</li>
+            <li>播放中有陪伴动作，给建议时会让位，不跟调音抢注意力</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">04</div><h3>可监督的自治</h3>
+          <ul>
+            <li>所有判断写进「运行日志」，来源、原因与结果都能追溯</li>
+            <li>不改音频标签、不覆盖用户曲库文件；生成内容只进本地缓存</li>
+            <li>自动调音可关闭，开关在设置里；默认均衡，不会擅自大改声音</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="screens">
     <div class="container">
       <div class="shead">
-        <div class="no">03 / 真机界面</div>
+        <div class="no">04 / 真机界面</div>
         <h2>不画效果图，直接看真机</h2>
         <p>下面全部来自 T1S 参考机上的实际浏览器：手机、平板与电脑打开同一个地址，曲库、歌词、状态和专业设置都在里面。</p>
       </div>
@@ -441,7 +492,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="flow">
     <div class="container">
       <div class="shead">
-        <div class="no">04 / 播放链路</div>
+        <div class="no">05 / 播放链路</div>
         <h2>声音怎么走，页面就怎么标</h2>
         <p>源格式与实际输出分开显示。采样率不一致就是重采样，多声道变两声道就是降混，不把转换说成直通。</p>
       </div>
@@ -467,7 +518,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="compare">
     <div class="container">
       <div class="shead">
-        <div class="no">05 / 横向对比</div>
+        <div class="no">06 / 横向对比</div>
         <h2>和成熟数播比，差在哪、强在哪</h2>
         <p>选三款公开规格可查的主流机型，只比官方写明的硬指标与功能边界；听感不做纸面判断。横向滑动可看完整表格。</p>
       </div>
@@ -506,21 +557,21 @@ footer a:hover{color:var(--brand)}
             </tr>
             <tr>
               <th>歌词 / 封面</th>
-              <td class="ours">六源逐字歌词 + 四源封面刮削<small>本地缓存，可手动换图</small></td>
+              <td class="ours">逐字歌词 + 四源封面刮削 + AI 合成歌词<small>自带 API Key，不上传音频；本地缓存，可手动换图</small></td>
               <td>专辑封面 JPG / PNG<small>官方规格未标注多源刮削</small></td>
               <td>App 内专辑封面浏览<small>官方规格未标注多源刮削</small></td>
               <td>触屏显示封面与小组件<small>官方规格未标注多源刮削</small></td>
             </tr>
             <tr>
               <th>音效 / 调节</th>
-              <td class="ours">重采样 / ReplayGain / 交叉淡化 / DSP 平衡极性 / FIR<small>七分区设置；感知音量曲线；密码恢复出厂</small></td>
+              <td class="ours">重采样 / ReplayGain / 交叉淡化 / DSP 平衡极性 / FIR / 十境连续调节<small>小光给建议并一键应用，反馈成长；七分区设置</small></td>
               <td>BluOS 均衡器 / Dirac Live Ready<small>多音箱与低音炮管理</small></td>
               <td>7 段 EQ<small>多房间同步</small></td>
               <td>10 段图示 + 参数 EQ / RoomFit<small>24 组预设、房间校正</small></td>
             </tr>
             <tr>
               <th>生态 / 多房间</th>
-              <td class="ours">浏览器控制 + App 遥控，可选小爱语音<small>不接主流流媒体订阅服务</small></td>
+              <td class="ours">浏览器控制 + App 遥控，小光 AI 管家在本地值守<small>可选小爱语音；不接主流流媒体订阅服务</small></td>
               <td>AirPlay 2 / Spotify / TIDAL / Qobuz / Roon<small>BluOS 最多 64 个播放器同步</small></td>
               <td>AirPlay 2 / Chromecast / Spotify / TIDAL / Qobuz / Roon<small>StreamMagic 多房间</small></td>
               <td>Google Cast / DLNA / Spotify / TIDAL / Roon<small>WiiM 生态多房间；官方标注不支持 AirPlay 2</small></td>
@@ -547,7 +598,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="spec">
     <div class="container">
       <div class="shead">
-        <div class="no">06 / 参考机规格</div>
+        <div class="no">07 / 参考机规格</div>
         <h2>实机参数，照单写明</h2>
         <p>以下为当前 T1S 参考机实测配置，可按合作需求调整机箱、存储、声卡与屏幕。</p>
       </div>
@@ -569,7 +620,7 @@ footer a:hover{color:var(--brand)}
   <section class="section" id="activity">
     <div class="container">
       <header class="shead">
-        <div class="no">07 / 最近更新 · 研发成果 · 进度</div>
+        <div class="no">08 / 最近更新 · 研发成果 · 进度</div>
         <h2>持续进化，看得见</h2>
         <p>版本记录与官方发布清单实时同步，研发成果来自工作室公开的白皮书。</p>
       </header>
