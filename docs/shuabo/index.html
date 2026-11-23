@@ -250,7 +250,23 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
   padding:14px 16px;font-size:13px;color:var(--fg2);
 }
 .fact b{display:block;color:var(--brand2);font-size:15px;margin-bottom:3px}
-@media (max-width:900px){.pr-grid,.fact-strip{grid-template-columns:1fr}}
+/* 低占用实测 */
+.lowres{display:grid;grid-template-columns:1fr 1.05fr;gap:22px;align-items:start;
+  margin-top:14px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px}
+.lowres > *{min-width:0}
+.lowres-copy p{margin:0 0 12px;font-size:13.5px;color:var(--fg2);line-height:1.75}
+.lowres-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0}
+.lowres-stats div{background:var(--panel2);border:1px solid var(--line);border-radius:12px;
+  padding:12px 10px;text-align:center}
+.lowres-stats b{display:block;font-size:clamp(20px,2.4vw,26px);color:var(--brand2);
+  letter-spacing:-.02em;line-height:1.15}
+.lowres-stats span{display:block;margin-top:4px;font-size:11px;color:var(--muted)}
+.lowres-shot{margin:0}
+.lowres-shot img{display:block;width:100%;border-radius:12px;background:#17121d;border:1px solid var(--line)}
+.lowres-shot figcaption{margin-top:8px;font-size:12px;color:var(--muted)}
+.lowres-note{font-size:12px!important;color:var(--muted)!important}
+@media (max-width:900px){.pr-grid,.fact-strip,.lowres{grid-template-columns:1fr}}
 
 /* 规格表 */
 .spec{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
@@ -344,6 +360,124 @@ footer a:hover{color:var(--brand)}
 .pstrip a:hover{background:var(--wash);color:var(--brand2)}
 .pstrip a.is-active{background:var(--grad);color:#fff;font-weight:650;box-shadow:0 4px 12px rgba(91,33,182,.2)}
 @media(max-width:640px){.pstrip .plabel{display:none}}
+
+/* ── 版本形态：轻量版引流 / OS 重点 / 合作定制 ── */
+.ed-lite{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.ed-lite .card{padding:20px 22px}
+.ed-lite .card .k{width:36px;height:36px;font-size:13px}
+.ed-lite .card h3{margin:12px 0 6px;font-size:17px}
+.ed-lite .card p{font-size:13.5px}
+.ed-lite .card ul{margin-top:10px;font-size:13px}
+.ed-lite .card li{margin:4px 0}
+.ed-tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
+  color:var(--brand2);background:var(--wash);border:1px solid var(--wash2);
+  border-radius:999px;padding:3px 10px;
+}
+/* OS 重点区 */
+.os-hero{
+  margin-top:30px;padding:30px;border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--panel) 0%,var(--wash) 100%);
+  border:1px solid var(--brand-line);box-shadow:var(--shadow);
+}
+.os-hero__head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.os-hero__badge{
+  width:52px;height:52px;border-radius:15px;background:var(--grad);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:17px;flex:0 0 auto;
+  box-shadow:0 8px 20px rgba(91,33,182,.25);
+}
+.os-hero__head h3{margin:2px 0 6px;font-size:23px;letter-spacing:-.02em}
+.os-hero__head p{margin:0;color:var(--fg2);font-size:14.5px;line-height:1.7;max-width:720px}
+.os-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.os-item{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 17px;
+}
+.os-item b{display:block;font-size:14px;margin-bottom:6px;color:var(--fg)}
+.os-item span{display:block;font-size:12.5px;color:var(--fg2);line-height:1.65}
+.os-foot{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:20px;padding-top:18px;border-top:1px solid var(--brand-line);
+}
+.os-foot .os-status{font-size:13px;color:var(--fg2);font-weight:600}
+.os-foot .os-status b{color:var(--brand2)}
+/* 合作定制 */
+.ed-custom{
+  margin-top:22px;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;
+  background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);
+  padding:26px 28px;box-shadow:var(--shadow-sm);
+}
+.ed-custom h3{margin:0 0 8px;font-size:19px}
+.ed-custom p{margin:0;color:var(--fg2);font-size:14px;line-height:1.7}
+.ed-custom ul{margin:12px 0 0;padding-left:18px;color:var(--fg2);font-size:13.5px;line-height:1.7}
+@media(max-width:900px){
+  .os-grid{grid-template-columns:repeat(2,1fr)}
+  .ed-custom{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .ed-lite{grid-template-columns:1fr}
+  .os-grid{grid-template-columns:1fr}
+  .os-hero{padding:22px}
+}
+
+/* ── 小光动态演示：随滚动切换形态，气泡同步说明 ── */
+.live-demo{display:grid;grid-template-columns:0.85fr 1.15fr;gap:34px;align-items:start;margin-top:8px}
+.live-stage{position:sticky;top:96px;min-height:460px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:22px;padding:22px;
+  border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);
+  box-shadow:var(--shadow-sm)}
+/* 灵体 */
+.live-orb{position:relative;width:132px;height:132px;flex:0 0 auto}
+.live-orb .lo-orbit{position:absolute;inset:0;border-radius:50%;
+  border:1px solid var(--wash2);border-top-color:var(--brand);animation:lo-spin 8s linear infinite}
+.live-orb .lo-core{position:absolute;inset:20px;border-radius:50%;background:var(--grad);
+  box-shadow:0 0 26px var(--wash2),inset 0 -8px 18px rgba(0,0,0,.12);
+  display:flex;align-items:center;justify-content:center;animation:lo-breathe 2.4s ease-in-out infinite}
+.live-orb .lo-face{position:relative;width:52px;height:34px}
+.live-orb .lo-eye{position:absolute;top:8px;width:7px;height:9px;border-radius:50%;background:#fff}
+.live-orb .lo-eye.l{left:9px}.live-orb .lo-eye.r{right:9px}
+.live-orb .lo-mouth{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);
+  width:14px;height:4px;border-radius:3px;background:#fff;transition:.3s}
+@keyframes lo-spin{to{transform:rotate(360deg)}}
+@keyframes lo-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+/* 形态切换时的专属动画 */
+.live-stage[data-act="play"] .lo-core{animation:lo-beat 1.1s ease-in-out infinite}
+.live-stage[data-act="spectrum"] .lo-core{animation:lo-scan 1s ease-in-out infinite}
+.live-stage[data-act="tone"] .lo-orbit{animation-duration:2.6s}
+.live-stage[data-act="lyric"] .lo-eye{animation:lo-sweep 1.5s ease-in-out infinite}
+.live-stage[data-act="lyric"] .lo-mouth{animation:lo-talk 1.1s ease-in-out infinite}
+.live-stage[data-mood="happy"] .lo-core{box-shadow:0 0 30px rgba(37,180,120,.45),inset 0 -8px 18px rgba(0,0,0,.12)}
+.live-stage[data-mood="oops"] .lo-core{box-shadow:0 0 30px rgba(220,80,80,.45),inset 0 -8px 18px rgba(0,0,0,.12)}
+.live-stage[data-mood="focus"] .lo-mouth{height:3px;border-radius:2px}
+@keyframes lo-beat{0%,100%{transform:scale(1)}38%{transform:scale(1.14)}68%{transform:scale(1.02)}}
+@keyframes lo-scan{0%,100%{transform:translateX(0) scaleX(1)}50%{transform:translateX(3px) scaleX(1.06)}}
+@keyframes lo-sweep{0%,100%{transform:translateX(0)}45%{transform:translateX(3px)}55%{transform:translateX(-3px)}}
+@keyframes lo-talk{0%,100%{height:4px}50%{height:8px}}
+/* 气泡 */
+.live-bubble{position:relative;max-width:320px;background:var(--bg2);border:1px solid var(--line2);
+  border-radius:16px;padding:15px 18px;text-align:left}
+.live-bubble::before{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(45deg);
+  width:12px;height:12px;background:var(--bg2);border-left:1px solid var(--line2);border-top:1px solid var(--line2)}
+.live-bubble .lb-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;
+  color:var(--brand2);background:var(--wash);border-radius:999px;padding:2px 9px;margin-bottom:8px}
+.live-bubble .lb-title{display:block;font-size:16px;font-weight:750;margin-bottom:5px}
+.live-bubble .lb-desc{display:block;font-size:13px;color:var(--fg2);line-height:1.65}
+/* 右侧滚动说明卡 */
+.live-steps{display:flex;flex-direction:column;gap:14px}
+.live-step{padding:20px 22px;border-radius:var(--radius);background:var(--panel);
+  border:1px solid var(--line);transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;opacity:.62}
+.live-step.is-on{opacity:1;border-color:var(--brand-line);background:linear-gradient(135deg,var(--panel),var(--wash));
+  transform:translateX(4px);box-shadow:var(--shadow-sm)}
+.live-step .ls-no{font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.live-step.is-on .ls-no{color:var(--brand2)}
+.live-step h4{margin:7px 0 6px;font-size:16px}
+.live-step p{margin:0;color:var(--fg2);font-size:13.5px;line-height:1.65}
+@media(max-width:900px){
+  .live-demo{grid-template-columns:1fr;gap:18px}
+  .live-stage{position:sticky;top:70px;min-height:auto;flex-direction:row;gap:18px;padding:14px 18px;z-index:5}
+  .live-orb{width:80px;height:80px}.live-orb .lo-core{inset:12px}.live-orb .lo-face{transform:scale(.7)}
+  .live-bubble{max-width:none;flex:1}.live-bubble::before{display:none}
+  .live-step{padding:16px 18px}
+}
 </style>
 </head>
 <body>
@@ -371,6 +505,7 @@ footer a:hover{color:var(--brand)}
       <a href="#screens">界面</a>
       <a href="#compare">对比</a>
       <a href="#spec">规格</a>
+      <a href="#versions">版本形态</a>
       <a href="#contact">合作咨询</a>
     </nav>
     <a class="navcta" href="#contact">合作咨询</a>
@@ -480,42 +615,143 @@ footer a:hover{color:var(--brand)}
       <div class="shead">
         <div class="no">03 / 小光 AI 管家</div>
         <h2>会陪你听，也会替你照看曲库</h2>
-        <p>小光跑在机器本地：纯标准库神经网络与声纹索引都在本机，权重只写侧车文件。它给建议、也会动手，但每一步都能在「运行日志」里看到。</p>
+        <p>小光是住在机器里的陪伴形象：一个会呼吸、会变表情的灵体，加一只把话说清楚的气泡。智能跑在机器本地——神经网络、声纹索引、偏好学习都在本机完成，权重只写侧车文件。它给建议、也会动手，但每一步都能在「运行日志」里看到。</p>
       </div>
+
+      <!-- ① 形象 -->
+      <h3 class="subhead">形象 · 会呼吸的灵体</h3>
+      <div class="grid3">
+        <div class="card">
+          <div class="k">◎</div><h3>能量灵体</h3>
+          <p>左下角常驻的光核，随心播放与任务状态改变呼吸节奏；可以拖动到顺手的位置，轻点展开气泡。</p>
+        </div>
+        <div class="card">
+          <div class="k">◔</div><h3>会说话的气泡</h3>
+          <p>贴着灵体展开：播报、建议、进度都在气泡里说清楚。给建议时会主动让位，不跟正在播放的内容抢注意力。</p>
+        </div>
+        <div class="card">
+          <div class="k">⌘</div><h3>一键进管家</h3>
+          <p>点「管家」进入完整面板：曲库管理、设备管理、运行日志三个分区，所有自动判断都能逐条追溯。</p>
+        </div>
+      </div>
+
+      <!-- ② 形态 -->
+      <h3 class="subhead">形态 · 三套维度叠加</h3>
+      <p style="color:var(--fg2);font-size:14.5px;line-height:1.7;margin:0 0 18px">你看到的小光不是一个固定样子，而是三套状态叠加出来的即时形态。</p>
+      <div class="grid3">
+        <div class="card">
+          <div class="k">4</div><h3>情绪 · 光效与表情</h3>
+          <p>平静、专注、开心、出错四种情绪：换光效颜色，改嘴型神态。达成目标是绿光，需要提醒是红光。</p>
+        </div>
+        <div class="card">
+          <div class="k">4</div><h3>动作 · 身体语言</h3>
+          <p>播放时心跳、分析频谱时扫描、核对歌词时扫眼、匹配音色时慢转。四种动作各有角标，一眼看出它在做什么。</p>
+        </div>
+        <div class="card">
+          <div class="k">4</div><h3>阶段 · 气泡行为</h3>
+          <p>待命、工作中、完成、出错四阶段：决定气泡是常驻、亮几秒收起，还是醒目提醒。工作进度实时显示。</p>
+        </div>
+      </div>
+
+      <!-- 动态演示：小光随滚动切形态，气泡说明能做什么 -->
+      <h3 class="subhead">看它工作 · 滚动试试</h3>
+      <p style="color:var(--fg2);font-size:14.5px;line-height:1.7;margin:0 0 18px">往下滚动，左边的小光会切换形态，气泡告诉你它此刻在做什么。</p>
+      <div class="live-demo" id="liveDemo">
+        <div class="live-stage" id="liveStage" data-act="" data-mood="calm">
+          <div class="live-orb" aria-hidden="true">
+            <div class="lo-orbit"></div>
+            <div class="lo-core"><div class="lo-face"><i class="lo-eye l"></i><i class="lo-eye r"></i><i class="lo-mouth"></i></div></div>
+          </div>
+          <div class="live-bubble">
+            <span class="lb-tag" id="lbTag">待命中</span>
+            <b class="lb-title" id="lbTitle">平静 · 陪你听着</b>
+            <span class="lb-desc" id="lbDesc">没有任务时安静待命，播放一起它就活过来。</span>
+          </div>
+        </div>
+        <div class="live-steps">
+          <div class="live-step is-on" data-act="" data-mood="calm"
+               data-tag="情绪形态 · calm" data-title="平静 · 陪你听着" data-desc="光核缓缓呼吸，没有任务时安静待命；一点开播放，它就醒过来。">
+            <span class="ls-no">01 / 待命</span><h4>平静 · 陪你听着</h4>
+            <p>光核缓缓呼吸，没有任务时安静待命；一点开播放，它就醒过来。</p>
+          </div>
+          <div class="live-step" data-act="play" data-mood="happy"
+               data-tag="动作形态 · play" data-title="开心 · 跟着节奏跳" data-desc="播放时灵体随节拍心跳，气泡报出正在听的曲名，绿光亮起。">
+            <span class="ls-no">02 / 播放中</span><h4>开心 · 跟着节奏跳</h4>
+            <p>播放时灵体随节拍心跳，气泡报出正在听的曲名，绿光亮起。</p>
+          </div>
+          <div class="live-step" data-act="spectrum" data-mood="focus"
+               data-tag="动作形态 · spectrum" data-title="专注 · 分析频谱" data-desc="后台体检、导入监控时切到扫描动作：逐首看格式、乱码与体积，进度实时显示。">
+            <span class="ls-no">03 / 后台体检</span><h4>专注 · 分析频谱</h4>
+            <p>后台体检、导入监控时切到扫描动作：逐首看格式、乱码与体积，进度实时显示。</p>
+          </div>
+          <div class="live-step" data-act="lyric" data-mood="focus"
+               data-tag="动作形态 · lyric" data-title="专注 · 核对歌词" data-desc="发现歌名或歌词不合时，眼睛开始扫动、嘴巴开合，像在逐字比对。">
+            <span class="ls-no">04 / 歌词核对</span><h4>专注 · 核对歌词</h4>
+            <p>发现歌名或歌词不合时，眼睛开始扫动、嘴巴开合，像在逐字比对。</p>
+          </div>
+          <div class="live-step" data-act="tone" data-mood="calm"
+               data-tag="动作形态 · tone" data-title="平静 · 匹配音色" data-desc="要给你调音建议时轨道慢下来，气泡给出十境方案——只建议，动不动手由你定。">
+            <span class="ls-no">05 / 调音建议</span><h4>平静 · 匹配音色</h4>
+            <p>要给你调音建议时轨道慢下来，气泡给出十境方案——只建议，动不动手由你定。</p>
+          </div>
+          <div class="live-step" data-act="" data-mood="oops"
+               data-tag="阶段形态 · done" data-title="提醒 · 发现不对劲" data-desc="歌名写错、文件被换过，红光一闪醒目提醒；说明完就退回待命，不反复打扰。">
+            <span class="ls-no">06 / 发现问题</span><h4>提醒 · 发现不对劲</h4>
+            <p>歌名写错、文件被换过，红光一闪醒目提醒；说明完就退回待命，不反复打扰。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ 能力 -->
+      <h3 class="subhead">能力 · 陪伴、学习与照看</h3>
       <div class="grid2">
         <div class="card">
-          <div class="k">01</div><h3>十境调音，越用越懂你</h3>
+          <div class="k">01</div><h3>开机先打个招呼</h3>
           <ul>
-            <li>本地神经网络 v2 给出十境连续增益建议，一键应用，不再只是预设档位</li>
-            <li>点「满意 / 不满意」回传反馈，命中率与学习条数在界面可见</li>
-            <li>90 秒内手动改动记为隐式负样本，学会你的偏好而不是覆盖你</li>
+            <li>打开数播，小光报今天的日期、天气与所在城市的限行尾号</li>
+            <li>公开数据取不到就安静跳过，绝不影响播放</li>
+            <li>播报有时效，隔天不会拿旧天气糊弄你</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">02</div><h3>十境调音，越用越懂你</h3>
+          <ul>
+            <li>本地神经网络给出十境连续增益建议，一键应用，不再只是预设档位</li>
+            <li>点「合适 / 不合适」回传反馈，命中率与学习条数在界面可见</li>
+            <li>短时间内的手动改动记隐式反馈，学会你的偏好而不是覆盖你</li>
             <li>链路不支持的能力自动规避，例如当前同轴链路下禁用无效的 DSD 设置</li>
           </ul>
         </div>
         <div class="card">
-          <div class="k">02</div><h3>声纹核对，歌名不再靠猜</h3>
+          <div class="k">03</div><h3>推荐歌曲，一键就听</h3>
           <ul>
-            <li>本地 Chromaprint 指纹建库，SQLite 侧车存储，全程不联网</li>
+            <li>按曲库的心情标签挑一首直接播放，气泡里说明为什么挑它</li>
+            <li>心情归类在本地完成，不靠外部服务猜你喜欢</li>
+            <li>想自己挑，顶部「心情音乐」里按心情浏览整组曲目</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">04</div><h3>声纹核对，歌名不再靠猜</h3>
+          <ul>
+            <li>本地指纹建库，侧车存储；只在库内比对，不冒充在线识别服务</li>
             <li>倒排索引 + 偏移投票 + 逐位比对，置信度达阈值才提醒</li>
             <li>歌名写错、文件被替换、同一首换成别的录音，小光会告诉你真实曲目</li>
-            <li>只在库内比对；库外歌曲回退到元数据，不冒充在线识别服务</li>
           </ul>
         </div>
         <div class="card">
-          <div class="k">03</div><h3>歌词与曲库，有人替你守着</h3>
+          <div class="k">05</div><h3>歌词与曲库，有人替你守着</h3>
           <ul>
-            <li>独唱曲目自动剔除合唱版歌词，避免张冠李戴</li>
-            <li>本地 LRC 主动升级逐字时间轴；波形校验发现错位会即时修正</li>
-            <li>导入歌曲时实时监控：格式族、DSD、乱码、体积与同名歌词一屏可见</li>
-            <li>播放中有陪伴动作，给建议时会让位，不跟调音抢注意力</li>
+            <li>后台体检：名称乱码、歌词时间轴、封面完整与冲突，只报告不改文件</li>
+            <li>独唱曲目自动剔除合唱版歌词；逐字时间轴升级，波形校验发现错位即时修正</li>
+            <li>导入实时监控：格式族、DSD、乱码、体积与同名歌词一屏可见</li>
           </ul>
         </div>
         <div class="card">
-          <div class="k">04</div><h3>可监督的自治</h3>
+          <div class="k">06</div><h3>本地大脑，可监督的自治</h3>
           <ul>
-            <li>所有判断写进「运行日志」，来源、原因与结果都能追溯</li>
-            <li>不改音频标签、不覆盖用户曲库文件；生成内容只进本地缓存</li>
-            <li>自动调音可关闭，开关在设置里；默认均衡，不会擅自大改声音</li>
+            <li>从评分、收藏、听完、重复与整理行为里学偏好，不记搜索与跳过</li>
+            <li>自动调音默认关闭、开关在设置里；所有判断写进运行日志</li>
+            <li>一键清空学习记忆；生成内容只进本地缓存，不覆盖曲库文件</li>
           </ul>
         </div>
       </div>
@@ -597,6 +833,23 @@ footer a:hover{color:var(--brand)}
         <div class="fact"><b>16 种音频格式</b>FLAC / WAV / AIFF / AIF / MP3 / M4A / AAC / OGG / Opus / MP2 / WavPack / Musepack / APE / DSF / DFF / DTS · 格式矩阵由解码插件动态生成，不写死</div>
         <div class="fact"><b>纯标准库后端</b>服务端只用 Python 3 标准库，不装第三方包；声纹、神经网络、输出档案写本机 SQLite / JSON 侧车，不动曲库标签</div>
         <div class="fact"><b>实时不轮询</b>MPD idle + SSE 推状态与运行日志；八分区设置、五语界面 725 条文案词条；314 项单元测试、13 个 systemd 服务与定时器常驻守护</div>
+      </div>
+      <h3 class="subhead">低占用 · 长期开机，不抢资源</h3>
+      <div class="lowres">
+        <div class="lowres-copy">
+          <p>数播是常年不关机的设备。后端只用 Python 3 标准库，状态靠 MPD idle + SSE 推送而不是轮询；播放优先的智能调度会提升解码器优先级、压住浏览器与后台扫描，停播后转入空闲维护并降频。屏幕上看到的资源面板，读数就摆在那里。</p>
+          <div class="lowres-stats">
+            <div><b>&lt;10%</b><span>CPU 占用（空闲）</span></div>
+            <div><b>18.9%</b><span>内存占用 · 1.45 / 7.66 GB</span></div>
+            <div><b>0%</b><span>曲库盘 / 系统盘 IO</span></div>
+          </div>
+          <p>无屏无背光、曲库机械盘定时休眠、空闲自动降频——把电留给声音。曲库盘 SMART、坏道与内核 I/O 错误计数在同一面板常驻，异常由后台按白名单处理并留痕。</p>
+          <p class="lowres-note">数据取自 T1S 参考机 0.6 秒采样的真机读数；功耗瓦数需配功率计实测，这里不作无依据的宣称。</p>
+        </div>
+        <figure class="lowres-shot">
+          <img src="assets/resource-monitor.webp" loading="lazy" alt="T1S 参考机管家设备管理面板实测：CPU 占用 9.7%、内存占用 18.9%、曲库盘与系统盘 IO 均为 0%，曲库盘 SMART PASSED" />
+          <figcaption>真机 · 管家 → 设备管理 · 资源占用与曲库盘健康</figcaption>
+        </figure>
       </div>
       <p class="tech-note">说明：参数取自参考机当前配置与源码，可按合作需求调整；DSD 能否原生直出取决于末端设备能力，本机实测链路（同轴 → 有源箱）只走 PCM，官网不做无法兑现的承诺。</p>
     </div>
@@ -758,6 +1011,7 @@ footer a:hover{color:var(--brand)}
         <tr><th>声卡</th><td>板载 Realtek ALC662（最高 192 kHz / 24 bit，双声道）；可加 USB DDC，参考机实测接 SMSL PO100 Pro 走同轴</td></tr>
         <tr><th>网络</th><td>板载有线 ×3 + WiFi（参考机当前 WiFi 在线）</td></tr>
         <tr><th>显示</th><td>无屏无背光；可选 HDMI 接屏进入本地管理界面</td></tr>
+        <tr><th>功耗策略</th><td class="ours">曲库机械盘定时休眠、空闲自动降频、播放优先调度；实测 CPU 占用 &lt;10%、内存 18.9%（0.6s 采样，详见「专业技术」）</td></tr>
         <tr><th>管理方式</th><td>手机用吾爱音乐 App 局域网直控；平板 / 电脑浏览器访问 8080 端口做专业设置</td></tr>
         <tr><th>硬件 ID</th><td>WUAI-XXXX-XXXX-XXXX-XXXX，换配件跟随变化</td></tr>
         <tr><th>不支持</th><td class="no">DSD Native / DoP、MQA、屏幕亮度、网口 LED（受当前硬件限制）</td></tr>
@@ -765,10 +1019,107 @@ footer a:hover{color:var(--brand)}
     </div>
   </section>
 
+  <section class="section" id="versions">
+    <div class="container">
+      <div class="shead">
+        <div class="no">09 / 版本形态</div>
+        <h2>一套内核，按需落地</h2>
+        <p>想在自己设备上先听起来的，看 NAS 版与 Docker 版；要完整体验的，重点看吾爱 OS；需要贴牌或深度定制的，我们提供合作集成。以下为规划口径，具体规格与上线时间以正式发布为准。</p>
+      </div>
+
+      <!-- 轻量部署：引流入口 -->
+      <div class="ed-lite">
+        <div class="card">
+          <span class="ed-tag">轻量部署</span>
+          <div class="k" style="margin-top:12px">NAS</div>
+          <h3>NAS 版</h3>
+          <p>装在 NAS 上，把现有曲库变成可播放、可管理的音乐库。<b>不开放底层</b>——只做无损级播放（FLAC / APE）与管理，DSD 等专业能力留给整机方案。</p>
+          <ul>
+            <li>播放层：无损级 FLAC / APE，曲库直连与播放控制</li>
+            <li>管理层：曲库索引、刮削与封面整理</li>
+            <li>开放能力：通过 API 获取歌词，供第三方调用</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="ed-tag">轻量部署</span>
+          <div class="k" style="margin-top:12px">DCK</div>
+          <h3>Docker 版</h3>
+          <p>容器化部署，在常见的 x86 / ARM 主机上一条命令起服务。</p>
+          <ul>
+            <li>容器隔离，升级与回滚省心</li>
+            <li>曲库目录挂载即用</li>
+          </ul>
+        </div>
+      </div>
+      <p class="compare-note">NAS 版与 Docker 版聚焦<b>播放与管理层</b>：只做<b>无损级播放（FLAC / APE）</b>，曲库能播能管、歌词可通过 API 对外提供；<b>底层不开放</b>（声卡 / DSP / 系统级调校不在这一层）。DSD 等专业格式与专业播放——bit-perfect 直出、DSP 调音、声卡适配——均为吾爱 OS 专属。</p>
+
+      <!-- 重点：吾爱 OS -->
+      <div class="os-hero">
+        <div class="os-hero__head">
+          <div class="os-hero__badge">OS</div>
+          <div>
+            <h3>吾爱 OS · 完整整机方案</h3>
+            <p>为数播硬件定制的整机系统，上电就是播放器。不是把 App 装进机器，而是从声卡、DDC、屏幕到遥控器整条链路一起调校，把本地播放该有的能力一次给全。</p>
+          </div>
+        </div>
+        <div class="os-grid">
+          <div class="os-item"><b>开机即用</b><span>上电进播放器，无需配置；遥控器方向键就能遍历整个曲库。</span></div>
+          <div class="os-item"><b>音质链路</b><span>bit-perfect 直出，ALSA 实测判定；十境调音与专业 EQ 可切换，DSD 播放自动旁路音色层。</span></div>
+          <div class="os-item"><b>小光 AI 管家</b><span>本地值守，陪你听也会帮你调音、照看曲库；功能长期在机身内运行。</span></div>
+          <div class="os-item"><b>智能歌词</b><span>逐字歌词自动匹配纠错，支持 AI 合成歌词与本地声纹核对。</span></div>
+          <div class="os-item"><b>曲库治理</b><span>本地与 NAS 曲库统一管理，中文曲库刮削与封面整理更准。</span></div>
+          <div class="os-item"><b>硬件适配</b><span>声卡 / DDC / 屏幕 / 遥控器深度适配，可按整机方案定制。</span></div>
+        </div>
+        <div class="os-foot">
+          <span class="os-status">获取方式：<b>敬请期待</b></span>
+          <a class="btn btn--ghost" href="#contact" style="min-height:38px;padding:0 15px">咨询整机合作 →</a>
+        </div>
+      </div>
+
+      <!-- 合作集成定制 -->
+      <div class="ed-custom">
+        <div>
+          <span class="ed-tag">B 端</span>
+          <h3 style="margin-top:10px">合作集成与定制</h3>
+          <p>如果你手里有硬件、有渠道，或需要把播放内核接进既有产品，我们把能力开放出来一起做。</p>
+          <ul>
+            <li>整机贴牌与渠道供货</li>
+            <li>特定屏幕、遥控器与机箱适配</li>
+            <li>DLNA 接入与 DSP 定制</li>
+          </ul>
+        </div>
+        <a class="btn btn--primary" href="#contact" style="min-height:44px;padding:0 20px">联系合作 →</a>
+      </div>
+
+      <h3 class="subhead">功能对照</h3>
+      <div class="compare-wrap">
+        <table class="compare" style="min-width:820px">
+          <thead>
+            <tr><th>能力</th><th>NAS 版</th><th>Docker 版</th><th>吾爱 OS</th><th>合作定制</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>播放层 · 曲库直连与播放控制</th><td class="ours">✓</td><td>✓</td><td>✓</td><td>按需</td></tr>
+            <tr><th>管理层 · 曲库索引 / 刮削 / 封面</th><td class="ours">✓</td><td>✓</td><td>✓</td><td>按需</td></tr>
+            <tr><th>逐字歌词 · API 对外提供</th><td class="ours">✓</td><td>✓</td><td>✓</td><td>按需</td></tr>
+            <tr><th>格式范围</th><td>无损级 FLAC / APE</td><td>无损级 FLAC / APE</td><td class="ours">无损 + DSD 等专业格式</td><td>按需</td></tr>
+            <tr><th>小光 AI 管家</th><td>✓</td><td>✓</td><td class="ours">✓</td><td>按需</td></tr>
+            <tr><th>AI 合成歌词 / 本地声纹核对</th><td>规划中</td><td>规划中</td><td class="ours">✓</td><td>按需</td></tr>
+            <tr><th>专业播放 · bit-perfect 直出 / ALSA 实测</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
+            <tr><th>专业播放 · 十境调音 / 专业 EQ</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
+            <tr><th>底层 · 声卡 / DDC 深度适配</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
+            <tr><th>底层 · 屏幕 / 遥控器适配</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
+            <tr><th>整机开箱即用</th><td>—</td><td>—</td><td class="ours">✓</td><td>✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compare-note">✓ 表示支持；「规划中」表示在路线图上但尚未落地；「不开放」表示该层能力不在此形态提供（底层调校属整机方案）；「按需」表示随合作方案确定；— 表示该形态不涉及。以上为规划口径，最终以各版本正式发布说明为准。NAS 版 / Docker 版获取方式均为<b>敬请期待</b>。</p>
+    </div>
+  </section>
+
   <section class="section" id="activity">
     <div class="container">
       <header class="shead">
-        <div class="no">09 / 最近更新 · 研发成果 · 进度</div>
+        <div class="no">10 / 最近更新 · 研发成果 · 进度</div>
         <h2>数播自己也在持续进化</h2>
         <p>这里记录的是数播参考机的功能迭代与真机跑通状态，不是 App 的发版清单；研发成果来自工作室公开的音频白皮书。</p>
       </header>
@@ -790,9 +1141,8 @@ footer a:hover{color:var(--brand)}
         <h2>想做一台自己的数播？</h2>
         <p>整机贴牌、渠道供货、特定屏幕与遥控器适配、DLNA 接入或 DSP 定制，都可以从一次咨询开始。这里不提供安装包，我们更想聊硬件与合作。</p>
         <div class="contact-form" id="contactForm">
-          <h3>留个手机号，直接拉起咨询</h3>
-          <p class="cf-hint">填上手机号（用于我们回拨联系），再点微信或 QQ：会先把联系方式复制到剪贴板，并拉起对应应用。手机号只留在你自己设备上，本站不上传、不保存。</p>
-          <div class="cf-row"><input id="cfPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="输入手机号，方便我们回电" /></div>
+          <h3>直接拉起咨询</h3>
+          <p class="cf-hint">点微信或 QQ 即可跳转：微信会拉起 App（桌面端打开微信官网），QQ 进入粉丝群。想电话沟通也可直接拨打下方号码。</p>
           <div class="cf-btns">
             <button type="button" class="cf-btn cf-btn--wx" id="cfWx">微信咨询</button>
             <button type="button" class="cf-btn cf-btn--qq" id="cfQq">QQ 咨询</button>
@@ -833,47 +1183,65 @@ footer a:hover{color:var(--brand)}
 <script src="assets/js/shuabo-data.js" defer></script>
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-// 合作咨询：手机号本机校验 + 复制联系方式/留言 + 拉起微信/QQ
+// 合作咨询：一键跳转微信/QQ（不再要求输入手机号）
 (function(){
-  var phone=document.getElementById("cfPhone"),msg=document.getElementById("cfMsg");
-  if(!phone||!msg)return;
-  var PHONE="18611269185",WX="jinghewang",QQ="https://qm.qq.com/q/9OqnRwgMD0";
+  var msg=document.getElementById("cfMsg");
+  if(!msg)return;
+  var WX="jinghewang",QQ="https://qm.qq.com/q/9OqnRwgMD0";
   function note(t){msg.textContent=t;clearTimeout(note.t);note.t=setTimeout(function(){msg.textContent=""},5000)}
-  function readPhone(){return (phone.value||"").replace(/\D/g,"")}
-  function validPhone(){var p=readPhone();return /^1\d{10}$/.test(p)}
   function copy(text,cb){
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){cb(true)},function(){cb(false)})}
     else{var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
       document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}
       document.body.removeChild(ta);cb(ok)}
   }
-  function launch(cb){ // 移动端尽量拉起 App，桌面端退回新窗口
+  function launch(scheme,web){ // 移动端拉起 App，桌面端打开官网
     var ua=navigator.userAgent||"",mobile=/Android|iPhone|iPad|iPod/i.test(ua);
-    if(mobile){location.href=cb.scheme}
-    else{window.open(cb.web,"_blank","noopener")}
+    if(mobile){location.href=scheme}
+    else{window.open(web,"_blank","noopener")}
   }
-  document.getElementById("cfWx").addEventListener("click",function(){
-    var p=readPhone();
-    if(!validPhone()){note("请先填写 11 位手机号，方便我们回电");phone.focus();return}
-    var text="你好，我想咨询吾爱Music 数播合作。回电手机："+p;
-    copy("微信号："+WX+"\n"+text,function(ok){
-      note(ok?"已复制微信号和留言，正在拉起微信，粘贴发送即可":"微信号："+WX+"，手机号："+p+"（请手动添加微信）");
-      launch({scheme:"weixin://",web:"https://weixin.qq.com/"});
-    });
+  var wxBtn=document.getElementById("cfWx"),qqBtn=document.getElementById("cfQq");
+  if(wxBtn)wxBtn.addEventListener("click",function(){
+    note("正在打开微信，添加好友即可咨询");
+    copy(WX,function(){}); // 顺手把微信号放进剪贴板，方便粘贴
+    launch("weixin://","https://weixin.qq.com/");
   });
-  document.getElementById("cfQq").addEventListener("click",function(){
-    var p=readPhone();
-    if(!validPhone()){note("请先填写 11 位手机号，方便我们回电");phone.focus();return}
-    var text="你好，我想咨询吾爱Music 数播合作。回电手机："+p;
-    copy(text,function(ok){
-      note(ok?"留言已复制，正在拉起 QQ 群，进群后粘贴即可":"请加 QQ 群咨询，手机号："+p);
-      window.open(QQ,"_blank","noopener");
-    });
+  if(qqBtn)qqBtn.addEventListener("click",function(){
+    note("正在打开 QQ 粉丝群");
+    window.open(QQ,"_blank","noopener");
   });
-  document.getElementById("cfCopyWx").addEventListener("click",function(){
+  var copyWx=document.getElementById("cfCopyWx");
+  if(copyWx)copyWx.addEventListener("click",function(){
     copy(WX,function(ok){note(ok?"微信号已复制："+WX:"微信号："+WX)});
   });
-  phone.addEventListener("input",function(){phone.value=phone.value.replace(/\D/g,"").slice(0,11)});
+})();
+
+/* 小光动态演示：滚动时切形态 + 气泡说明 */
+(function(){
+  var demo=document.getElementById('liveDemo'),stage=document.getElementById('liveStage');
+  if(!demo||!stage||!window.IntersectionObserver)return;
+  var tag=document.getElementById('lbTag'),title=document.getElementById('lbTitle'),
+      desc=document.getElementById('lbDesc');
+  var steps=[].slice.call(demo.querySelectorAll('.live-step'));
+  function apply(el){
+    steps.forEach(function(s){s.classList.toggle('is-on',s===el)});
+    stage.setAttribute('data-act',el.getAttribute('data-act')||'');
+    stage.setAttribute('data-mood',el.getAttribute('data-mood')||'calm');
+    if(tag)tag.textContent=el.getAttribute('data-tag')||'';
+    if(title)title.textContent=el.getAttribute('data-title')||'';
+    if(desc)desc.textContent=el.getAttribute('data-desc')||'';
+  }
+  var io=new IntersectionObserver(function(entries){
+    // 取当前与视口中心最近的那条，避免多卡同时进入时抖动
+    var best=null,bestD=Infinity;
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var d=Math.abs(e.boundingClientRect.top+e.boundingClientRect.height/2-innerHeight/2);
+      if(d<bestD){bestD=d;best=e.target}
+    });
+    if(best)apply(best);
+  },{rootMargin:'-25% 0px -35% 0px',threshold:0});
+  steps.forEach(function(s){io.observe(s)});
 })();
 </script>
 </body>
