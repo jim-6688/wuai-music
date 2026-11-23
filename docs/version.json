@@ -26,24 +26,24 @@
     },
     "hd": {
       "versionName": "3.0.1",
-      "versionCode": 143,
+      "versionCode": 144,
       "flavor": "hd",
       "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
-      "size": 70146140,
-      "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build144-hd-arm64-v8a.apk",
+      "size": 70080604,
+      "sha256": "69b2162f76077b8ab0f530e22d97c73a19c346642b256bedce9a83055f0a017a",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
-          "size": 70146140,
-          "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build144-hd-arm64-v8a.apk",
+          "size": 70080604,
+          "sha256": "69b2162f76077b8ab0f530e22d97c73a19c346642b256bedce9a83055f0a017a",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-armeabi-v7a.apk",
-          "size": 82335268,
-          "sha256": "d2674dcf15d91618af76391939d8b69cf28e44e4829e83e4ca6e386ffb95784f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build144-hd-armeabi-v7a.apk",
+          "size": 82269732,
+          "sha256": "ff9eed6c3496e70e74618d1a67b1d601763188c1cd3ac72e85b39293db158b6f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
