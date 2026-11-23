@@ -49,7 +49,22 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);
   text-align:center;color:var(--muted);font-size:12px}
 code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:12.5px}
 @media print{body{background:#fff}.wrap{padding:20px}.en-p{font-size:12px}}
-@media(max-width:640px){.toc{columns:1}h1{font-size:23px}}
+@media(max-width:640px){
+  .toc{columns:1}
+  h1{font-size:23px}
+  h2{font-size:19px}
+  h3{font-size:15.5px}
+  .wrap{padding:32px 18px 64px}
+  header{padding-bottom:22px;margin-bottom:26px}
+  .sitebar .sbwrap,.art-foot{width:calc(100% - 28px)}
+  /* 7 列参数表放不进手机宽度 → 容器内横向滚动，不能让它撑宽 layout viewport */
+  .table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+  .table-scroll table{margin:0;width:max-content;min-width:100%}
+  .table-scroll th,.table-scroll td{white-space:nowrap;overflow-wrap:normal;word-break:normal}
+  .table-scroll.is-scrollable::before{content:"← 左右滑动查看完整表格 →";display:block;
+    font-size:12px;color:var(--muted);padding:0 0 8px}
+  p,li,td,th,h2,h3,.note,.abstract,.toc,.formula,figcaption,code{overflow-wrap:anywhere;word-break:break-word}
+}
 
 /* 官网 studio 融入：顶栏与文末导航 */
 .sitebar{position:sticky;top:0;z-index:50;background:rgba(249,244,240,.92);
@@ -284,5 +299,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;
 <footer>© 2026 吾爱Music · 把功能做成证据　|　十境调音 · WUAI TENSCAPE · WuAi HiFi Laboratory</footer>
 
 </div>
+<script src="article.js"></script>
 </body>
 </html>

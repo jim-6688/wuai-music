@@ -478,6 +478,21 @@ footer a:hover{color:var(--brand)}
   .live-bubble{max-width:none;flex:1}.live-bubble::before{display:none}
   .live-step{padding:16px 18px}
 }
+/* 真机界面 · 交互演示入口 */
+.demobar{display:flex;align-items:center;gap:26px;justify-content:space-between;
+  margin-top:26px;padding:22px 24px;border:1px solid var(--brand-line);
+  border-radius:16px;background:var(--wash)}
+.demobar-tx b{font-size:16px;color:var(--fg)}
+.demobar-tx p{margin:7px 0 0;font-size:13.5px;line-height:1.7;color:var(--fg2)}
+.demobar-tx em{font-style:normal;color:var(--muted)}
+.demobar-btn{flex:none;display:inline-flex;align-items:center;gap:8px;
+  padding:11px 19px;border-radius:10px;background:var(--cta);color:#fff;
+  text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.demobar-btn:hover{filter:brightness(1.08)}
+[data-theme="dark"] .demobar{background:var(--wash2)}
+@media(max-width:720px){
+  .demobar{flex-direction:column;align-items:flex-start;gap:15px;padding:18px}
+}
 </style>
 </head>
 <body>
@@ -886,7 +901,14 @@ footer a:hover{color:var(--brand)}
           <figcaption>桌面 · 设置中心 <span>声纹索引 / AI 歌词…</span></figcaption>
         </figure>
       </div>
-      <p class="shotnote">手机图为吾爱音乐 App 真机界面，平板与桌面为参考机浏览器管理页；均未用设计稿替代，专辑与封面仅作界面演示。</p>
+      <div class="demobar">
+        <div class="demobar-tx">
+          <b>想自己点一点？打开交互演示</b>
+          <p>数播管理端界面原样运行，可播放、切歌、拖进度、浏览音乐墙。<em>演示内曲目、艺人、专辑、封面与设备状态均为生成的虚构样例，非真实设备与曲库。</em></p>
+        </div>
+        <a class="demobar-btn" href="demo/" target="_blank" rel="noopener">打开交互演示 <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="shotnote">手机图为吾爱音乐 App 真机界面，平板与桌面为参考机浏览器管理页；均未用设计稿替代，专辑与封面仅作界面演示。上方交互演示为纯前端样例，不代表真机实时状态。</p>
     </div>
   </section>
 

@@ -1,0 +1,43 @@
+/* 吾爱数播 · 官网交互演示样式（叠加在真机 UI 之上，不改真机样式） */
+
+/* 只读展示：收起系统 / 账号 / 写操作 / 在线刮削入口 */
+#bSys, #bLogout, #bUploadGlobal, #railUpload, #bSaveQueue, #bClear,
+#bMood, #bPlaylists, #bCovSearch, #bLyricSearch, #wScrapeAll,
+.wcard .sc[data-scrape],
+.seg button[data-mode="manage"],
+.seg button[data-mode="nas"],
+.seg button[data-mode="trash"] { display: none !important; }
+
+/* 右下角演示声明：与官网「不画效果图，直接看真机」的口径并存 */
+.demo-note{
+  position:fixed; right:18px; bottom:18px; z-index:99999;
+  width:min(370px, calc(100vw - 36px));
+  padding:14px 34px 14px 16px;
+  border:1px solid rgba(201,169,110,.42); border-radius:14px;
+  background:rgba(22,19,17,.93); color:#efe9df;
+  box-shadow:0 10px 32px rgba(0,0,0,.32);
+  font:13px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  backdrop-filter:blur(6px);
+}
+.demo-note .dn-hd{ display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+.demo-note .dn-dot{
+  width:7px; height:7px; border-radius:50%; background:#c9a96e; flex:none;
+}
+.demo-note b{ color:#c9a96e; font-weight:600; letter-spacing:.04em; font-size:13px; }
+.demo-note .dn-tx{ display:block; color:#d7d0c6; font-size:12.5px; }
+.demo-note .dn-link{
+  display:inline-block; margin-top:8px; color:#c9a96e; text-decoration:none; font-size:12.5px;
+}
+.demo-note .dn-link:hover{ text-decoration:underline; }
+.demo-note .dn-close{
+  position:absolute; top:8px; right:9px; width:24px; height:24px;
+  border:0; border-radius:6px; background:transparent; color:#a79f94;
+  font-size:18px; line-height:22px; cursor:pointer;
+}
+.demo-note .dn-close:hover{ background:rgba(255,255,255,.08); color:#efe9df; }
+.demo-note[hidden]{ display:none !important; }
+
+@media (max-width:640px){
+  .demo-note{ right:10px; bottom:10px; width:calc(100vw - 20px); padding:11px 30px 11px 13px; }
+  .demo-note .dn-tx{ font-size:12px; }
+}

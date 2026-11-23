@@ -61,6 +61,11 @@ img,svg{max-width:100%}
 .art-body blockquote small{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
 code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em;
   background:var(--wash);padding:2px 6px;border-radius:6px;color:var(--brand2)}
+/* 长命令/路径/英文串必须允许断行：否则窄屏会被撑宽，
+   移动浏览器会把 layout viewport 放大到内容宽度，整页看起来缩小、位置错乱。 */
+.art-body p,.art-body li,.art-body td,.art-body th,blockquote,.note,code{
+  overflow-wrap:anywhere;word-break:break-word}
+code{white-space:normal}
 
 /* 标注块：已验证 / 方法 / 边界 */
 .note{border-radius:14px;padding:16px 20px;margin:22px 0;font-size:14.5px}
@@ -89,10 +94,20 @@ td b{color:var(--fg)}
 .btn--ghost{border:1px solid var(--line2);background:var(--panel);color:var(--fg2)}
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:12.5px}
 
+/* 宽表在手机上改为容器内横向滚动，绝不撑破页面宽度 */
+@media(max-width:640px){
+  .table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+  .table-scroll table{margin:0;width:max-content;min-width:100%}
+  .table-scroll th,.table-scroll td{white-space:nowrap;overflow-wrap:normal;word-break:normal}
+  .table-scroll.is-scrollable::before{content:"← 左右滑动查看完整表格 →";display:block;
+    font-size:12px;color:var(--muted);padding:0 0 8px}
+}
 @media(max-width:560px){
   .wrap{width:calc(100% - 28px)}
   .art-head{padding-top:38px}
   .back{font-size:12px}
   table{font-size:12.5px}
   th,td{padding:9px 10px}
+  .art-body h2{font-size:21px}
+  .art-body blockquote{padding:15px 16px;font-size:15px}
 }

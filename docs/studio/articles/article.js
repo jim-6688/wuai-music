@@ -23,4 +23,24 @@
   setLang(saved === "en" ? "en" : "zh");
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
+
+  // 窄屏宽表：统一包一层可横向滚动的容器。表格按内容自然宽度呈现，
+  // 既不会把列压到断字，也不会撑宽移动浏览器的 layout viewport。
+  var tables = document.querySelectorAll("table");
+  for (var t = 0; t < tables.length; t++) {
+    var tb = tables[t], p = tb.parentNode;
+    if (p && p.classList && p.classList.contains("table-scroll")) continue;
+    var box = document.createElement("div");
+    box.className = "table-scroll";
+    p.insertBefore(box, tb);
+    box.appendChild(tb);
+  }
+  // 只有真正需要横滑的表才显示提示；窗口尺寸变化后重算。
+  function markScrollable() {
+    var boxes = document.querySelectorAll(".table-scroll");
+    for (var b = 0; b < boxes.length; b++)
+      boxes[b].classList.toggle("is-scrollable", boxes[b].scrollWidth > boxes[b].clientWidth + 2);
+  }
+  markScrollable();
+  window.addEventListener("resize", markScrollable);
 })();

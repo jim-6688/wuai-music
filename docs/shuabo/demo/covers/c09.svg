@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a1a1a"/><stop offset="1" stop-color="#2c2722"/></linearGradient></defs>
+<rect width="512" height="512" fill="url(#bg)"/>
+<ellipse cx="256" cy="256" rx="40" ry="24" fill="none" stroke="#b9776a" stroke-opacity="0.20" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="64" ry="38" fill="none" stroke="#b9776a" stroke-opacity="0.27" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="88" ry="52" fill="none" stroke="#b9776a" stroke-opacity="0.34" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="112" ry="66" fill="none" stroke="#b9776a" stroke-opacity="0.41" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="136" ry="80" fill="none" stroke="#b9776a" stroke-opacity="0.48" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="160" ry="94" fill="none" stroke="#b9776a" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="184" ry="108" fill="none" stroke="#b9776a" stroke-opacity="0.62" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="208" ry="122" fill="none" stroke="#b9776a" stroke-opacity="0.69" stroke-width="2"/>
+<ellipse cx="256" cy="256" rx="232" ry="136" fill="none" stroke="#b9776a" stroke-opacity="0.76" stroke-width="2"/>
+<circle cx="256" cy="256" r="10" fill="#b9776a"/>
+
+<rect x="18" y="18" width="476" height="476" fill="none" stroke="#b9776a" stroke-opacity=".30" stroke-width="1"/>
+</svg>

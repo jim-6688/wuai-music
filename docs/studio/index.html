@@ -280,6 +280,15 @@ footer a:hover{color:var(--brand)}
   .container{width:calc(100% - 28px)}
   .btn{width:100%}
   .navcta{display:none}
+  .section{padding:54px 0}
+  .rnote{padding:18px 18px}
+  /* 研究文章卡片：手机上收紧内边距、去掉箭头对标题的挤压 */
+  .pcard{padding:16px 16px;gap:8px}
+  .pcard__date{margin-bottom:2px}
+  .pcard__body{flex-basis:calc(100% - 30px)}
+  .pcard h3{font-size:16.5px}
+  .pcard p{font-size:13px}
+  .pcard__arrow{font-size:18px}
 }
 /* ── 产品矩阵切换条（与全站 6 个产品页统一）── */
 .pstrip{background:var(--bg2);border-bottom:1px solid var(--line)}
@@ -556,6 +565,17 @@ footer a:hover{color:var(--brand)}
           <h3 data-zh="无证据不是通过，是「待验证」" data-en="No evidence is not a pass — it is 'unverified'">无证据不是通过，是「待验证」</h3>
           <p data-zh="bit-perfect 只认 ALSA hw_params 实测，读不到就标琥珀色问号，绝不给无实测支撑的绿灯。这项判定已重做并上线，附 JSON / CSV 证据导出，任何人可复算。已写成白皮书。" data-en="Bit-perfect trusts only ALSA hw_params measurements; when unreadable it shows an amber question mark, never an unsupported green light. The verdict has been rebuilt and shipped with JSON / CSV evidence export for anyone to recompute. Published as a whitepaper.">bit-perfect 只认 ALSA hw_params 实测，读不到就标琥珀色问号，绝不给无实测支撑的绿灯。这项判定已重做并上线，附 JSON / CSV 证据导出，任何人可复算。已写成白皮书。</p>
           <a class="rnote__go" href="articles/signal-chain-transparency.html" data-zh="阅读白皮书 01 →" data-en="Read whitepaper 01 →">阅读白皮书 01 →</a>
+        </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="听感调音" data-en="PERCEPTUAL EQ">听感调音</span>
+          <h3 data-zh="把 PEQ 的三个参数翻译成十个听感维度，语义与专业必须互斥" data-en="Translating three PEQ parameters into ten perceptual dimensions — semantic and professional modes must be mutually exclusive">把 PEQ 的三个参数翻译成十个听感维度，语义与专业必须互斥</h3>
+          <p data-zh="十境不是十段均衡换皮：语义层用固定频点与 Q 值，把「冷暖／下潜／齿音」这类听感描述映射成滤波器；专业层保留完整十段参数，作为测量校正的落点。两层同时生效会重复处理同一频段，所以做成互斥而不是叠加。参数级验证见白皮书 02。" data-en="TENSCAPE is not a relabelled 10-band EQ: its semantic layer maps perceptual words such as warmth, sub-bass and sibilance onto filters with fixed frequency and Q, while the professional layer keeps a fully parametric ten-band EQ as the landing point for measured correction. Running both would process the same band twice, so the modes are exclusive rather than stacked. Parameter-level verification is in Whitepaper 02.">十境不是十段均衡换皮：语义层用固定频点与 Q 值，把「冷暖／下潜／齿音」这类听感描述映射成滤波器；专业层保留完整十段参数，作为测量校正的落点。两层同时生效会重复处理同一频段，所以做成互斥而不是叠加。参数级验证见白皮书 02。</p>
+          <a class="rnote__go" href="articles/tenscape-perceptual-eq.html" data-zh="阅读白皮书 02 →" data-en="Read whitepaper 02 →">阅读白皮书 02 →</a>
+        </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="链路实测" data-en="CHAIN MEASUREMENT">链路实测</span>
+          <h3 data-zh="DSD 直出不是开关问题，是这条链路的物理边界" data-en="Native DSD output is not a toggle — it is a physical limit of this chain">DSD 直出不是开关问题，是这条链路的物理边界</h3>
+          <p data-zh="参考机链路为 USB → USB DDC → 75Ω 同轴 → 有源音箱（PCM9211 全数字输入）。S/PDIF 承载不了 native DSD，接收端也不认 DoP；逐项实测后只有 PCM 有声，因此默认关闭 DoP 并保留重采样。结论只对这条链路成立，换接口必须重测——宁可写「不支持」，也不给没有实测支撑的绿灯。" data-en="The reference chain is USB → USB DDC → 75Ω coaxial S/PDIF → active speakers with a PCM9211 all-digital input. S/PDIF cannot carry native DSD and the receiver does not accept DoP; item-by-item measurement found PCM as the only path that produces sound, so DoP stays off and resampling remains enabled. This holds for this chain only — change the interface and it must be measured again. Better to state 'not supported' than to show a green light with no evidence.">参考机链路为 USB → USB DDC → 75Ω 同轴 → 有源音箱（PCM9211 全数字输入）。S/PDIF 承载不了 native DSD，接收端也不认 DoP；逐项实测后只有 PCM 有声，因此默认关闭 DoP 并保留重采样。结论只对这条链路成立，换接口必须重测——宁可写「不支持」，也不给没有实测支撑的绿灯。</p>
         </div>
       </div>
 
