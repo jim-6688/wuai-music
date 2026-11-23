@@ -1,73 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.0.0",
-      "versionCode": 142,
+      "versionName": "3.0.1",
+      "versionCode": 143,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-phone-arm64-v8a.apk",
-      "size": 70252312,
-      "sha256": "83969955cd5345c4cea10c6fa2f42308beb47110edacf2ec043fa3c4407dfd9d",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-phone-arm64-v8a.apk",
+      "size": 70252316,
+      "sha256": "888b29984528c03f445fbe27eb812ac6ff374178169366307b8f072274c93de3",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-phone-arm64-v8a.apk",
-          "size": 70252312,
-          "sha256": "83969955cd5345c4cea10c6fa2f42308beb47110edacf2ec043fa3c4407dfd9d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-phone-arm64-v8a.apk",
+          "size": 70252316,
+          "sha256": "888b29984528c03f445fbe27eb812ac6ff374178169366307b8f072274c93de3",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-phone-armeabi-v7a.apk",
-          "size": 82441440,
-          "sha256": "1cbfc59e8edf3b599a9ed2cd7e24f22b6f0cc47b175216cd659e3ecf851019e6",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-phone-armeabi-v7a.apk",
+          "size": 82474212,
+          "sha256": "521da3d3d5d44e99d94c54992bd0e9f20b9b5e5a12c59bf598223dcd1840df97",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "3.0.0",
-      "versionCode": 142,
+      "versionName": "3.0.1",
+      "versionCode": 143,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-hd-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
       "size": 70146140,
-      "sha256": "71275853207ae6a85b19fcedfff9d142234286103dff09ac15522d6552019b90",
+      "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-hd-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
           "size": 70146140,
-          "sha256": "71275853207ae6a85b19fcedfff9d142234286103dff09ac15522d6552019b90",
+          "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-hd-armeabi-v7a.apk",
-          "size": 82318884,
-          "sha256": "4bd2915084b5b180e7f9e67ffe185cacc94ef53f4ad7b18c58a5068f9ba202c1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-armeabi-v7a.apk",
+          "size": 82335268,
+          "sha256": "d2674dcf15d91618af76391939d8b69cf28e44e4829e83e4ca6e386ffb95784f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "3.0.0",
-      "versionCode": 142,
+      "versionName": "3.0.1",
+      "versionCode": 143,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《鹿柴》· 王维\n空山不见人，但闻人语响。\n返景入深林，复照青苔上。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-tv-arm64-v8a.apk",
-      "size": 70156989,
-      "sha256": "8e0a7ca2668c469bda7543033c8e1856a9ad2fea7084cdce8b4d34d1952e116c",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-tv-arm64-v8a.apk",
+      "size": 70156993,
+      "sha256": "fcdbd6aed64f8111ba0f2249f5b45c385b484aa4071b9682852df3ac401ec15d",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-tv-arm64-v8a.apk",
-          "size": 70156989,
-          "sha256": "8e0a7ca2668c469bda7543033c8e1856a9ad2fea7084cdce8b4d34d1952e116c",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-tv-arm64-v8a.apk",
+          "size": 70156993,
+          "sha256": "fcdbd6aed64f8111ba0f2249f5b45c385b484aa4071b9682852df3ac401ec15d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.0/WuAiMusic-3.0.0-build142-tv-armeabi-v7a.apk",
-          "size": 82362501,
-          "sha256": "12c42f7ce62860f07ad7996d87d2837ead26306b862618004b114dc4ef19af35",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-tv-armeabi-v7a.apk",
+          "size": 82378889,
+          "sha256": "4edd3c8465b2b14f469e0b5a2f86be607eb134c459ecdf0a5ba86f0b3889a8c5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -79,6 +79,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.0.1",
+      "date": "2026-11-23",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。"
+    },
     {
       "versionName": "3.0.0",
       "date": "2026-11-23",
