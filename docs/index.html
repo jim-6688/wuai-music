@@ -364,7 +364,7 @@ h1 .hl{background:var(--textgrad);-webkit-background-clip:text;background-clip:t
       </div>
       <div class="abilities">
         <div class="ab"><div class="num">16 种</div><h3 class="t">音频格式</h3><p class="d">FLAC、APE、DSD、WAV 等无损格式，本地直通声卡。</p></div>
-        <div class="ab"><div class="num">多源</div><h3 class="t">智能歌词</h3><p class="d">逐字歌词自动匹配纠错，偏移按曲目记住。</p></div>
+        <div class="ab"><div class="num">AI</div><h3 class="t">生成歌词</h3><p class="d">大模型生成歌词，逐字高亮，偏移按曲目记住。</p></div>
         <div class="ab"><div class="num">6 端</div><h3 class="t">同源体验</h3><p class="d">手机、桌面、车机、电视、数播，一处设置处处延续。</p></div>
         <div class="ab"><div class="num">7 款</div><h3 class="t">可视化</h3><p class="d">喷泉、黑胶、星空环、音波，让音乐看得见。</p></div>
         <div class="ab"><div class="num">CUE</div><h3 class="t">分轨精准</h3><p class="d">整轨专辑按索引精确切分，曲目独立播放。</p></div>
@@ -460,8 +460,8 @@ h1 .hl{background:var(--textgrad);-webkit-background-clip:text;background-clip:t
   /* 分类悬停 → 在卡片正上方弹出浮层；移开隐藏。下方介绍区常驻不动 */
   var views={
     phone:{kicker:'手机版 · 随身而听',title:'把整个曲库，<br />装进口袋',
-      desc:'本地与 NAS 统一曲库，单手就能翻遍。多源智能歌词记住你的偏移习惯，10 段均衡器与可视化，让每段通勤都更好听。',
-      pillars:[['统一曲库','本地与 SMB/WebDAV 一次整理，随处可播。'],['多源歌词','逐字歌词自动纠错，偏移按曲目记住。'],['随手美化','10 段均衡器、封面批量整理，口袋里也讲究。']],
+      desc:'本地与 NAS 统一曲库，单手就能翻遍。大模型生成歌词记住你的偏移习惯，10 段均衡器与可视化，让每段通勤都更好听。',
+      pillars:[['统一曲库','本地与 SMB/WebDAV 一次整理，随处可播。'],['生成歌词','大模型生成歌词，逐字高亮，偏移按曲目记住。'],['随手美化','10 段均衡器、封面批量整理，口袋里也讲究。']],
       img:'assets/img/phone/phone-03.webp',cap:'手机版 · 黑胶播放页',alt:'手机版整机 · 黑胶唱片与实时歌词',tall:true},
     pc:{kicker:'桌面版 · 宽屏主力',title:'三栏之间，<br />尽在掌握',
       desc:'为 Windows 宽屏打造的三栏播放器：文件、专辑墙与播放队列同屏。键鼠操控顺手，大屏上每一张封面都清晰。',
@@ -477,7 +477,7 @@ h1 .hl{background:var(--textgrad);-webkit-background-clip:text;background-clip:t
       img:'assets/img/tv/tv-04-nowplaying.webp',cap:'电视版 · 正在播放',alt:'电视版整机 · 正在播放页'},
     shuabo:{kicker:'数播版 · 参考音质',title:'浏览器一页，<br />管理整条信号链',
       desc:'T1S 参考机方案：MPD bit-perfect 直出，小光 AI 管家本地值守，浏览器里完成曲库、播放与七区设置。无头运行，零客户端。',
-      pillars:[['bit-perfect','直出不写格式，用 ALSA 实测判定真假。'],['小光管家','十境调音、声纹核对、AI 合成歌词，都在本机。'],['零客户端','浏览器一页管理，设置分区清晰。']],
+      pillars:[['bit-perfect','直出不写格式，用 ALSA 实测判定真假。'],['小光管家','十境调音、声纹核对、大模型生成歌词，都在本机。'],['零客户端','浏览器一页管理，设置分区清晰。']],
       img:'shuabo/assets/desktop-player.webp',cap:'数播版 · 浏览器一页管理',alt:'数播版界面'},
     lab:{kicker:'实验室 · 把功能做成证据',title:'可验证，<br />才算数',
       desc:'把功能真实性做成可复现的方法与数据：信号链判定、bit-perfect 审计、中文曲库治理，都写成白皮书公开。',

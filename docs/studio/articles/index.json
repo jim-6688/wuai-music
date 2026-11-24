@@ -36,15 +36,15 @@
       "date": "2026-11-20",
       "category": { "zh": "曲库智能化", "en": "Library Intelligence" },
       "title": {
-        "zh": "中文曲库刮削为什么难：AcoustID 的目标错配",
-        "en": "Why Chinese-library tagging is hard: AcoustID's target mismatch"
+        "zh": "中文曲库整理为什么难：AcoustID 的目标错配",
+        "en": "Why Chinese-library curation is hard: AcoustID's target mismatch"
       },
       "dek": {
-        "zh": "不是没源，是文本脏加缺少交叉验证——以及一条本地数据飞轮的路线。",
-        "en": "Not a shortage of sources, but dirty text and no cross-checks — and a local data-flywheel route."
+        "zh": "不是没数据，是文本脏加缺少交叉验证；歌词交给大模型生成，不碰第三方歌词版权。",
+        "en": "Not a shortage of data, but dirty text and no cross-checks; lyrics come from a model, never a third-party lyric database."
       },
       "file": "acoustid-target-mismatch.html",
-      "tags": ["AcoustID", "元数据", "数据飞轮", "合规"]
+      "tags": ["AcoustID", "元数据", "数据飞轮", "大模型生成歌词"]
     }
   ]
 }

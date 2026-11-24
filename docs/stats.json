@@ -1,49 +1,47 @@
 {
-  "githubDownloads": 1297,
+  "githubDownloads": 1342,
   "siteClicks": 129,
   "mirrors": {
-    "checkedAt": "2026-11-23T14:19:31+08:00",
+    "checkedAt": "2026-11-25T07:30:52+08:00",
     "repo": "https://gitee.com/jinghe-net/wuai-music",
     "gitee": {
       "phone": {
         "primary": {
-          "size": 70252316,
-          "attachId": 3795977,
-          "tag": "v3.0.1"
+          "size": 70518984,
+          "attachId": 3820170,
+          "tag": "v3.0.4"
         },
         "v7a": {
-          "size": 82474212,
-          "attachId": 3795980,
-          "tag": "v3.0.1"
+          "size": 0
         }
       },
       "hd": {
         "primary": {
-          "size": 70080604,
-          "attachId": 3799058,
-          "tag": "v3.0.1"
+          "size": 82388948,
+          "attachId": 3820178,
+          "tag": "v3.0.4"
         },
         "v7a": {
-          "size": 82269732,
-          "attachId": 3799069,
-          "tag": "v3.0.1"
+          "size": 82388948,
+          "attachId": 3820181,
+          "tag": "v3.0.4"
         }
       },
       "tv": {
         "primary": {
-          "size": 70156993,
-          "attachId": 3795998,
-          "tag": "v3.0.1"
+          "size": 70227053,
+          "attachId": 3820182,
+          "tag": "v3.0.4"
         },
         "v7a": {
-          "size": 82378889,
-          "attachId": 3796003,
-          "tag": "v3.0.1"
+          "size": 82399797,
+          "attachId": 3820184,
+          "tag": "v3.0.4"
         }
       }
     }
   },
-  "updatedAt": "2026-11-23T14:19:36+08:00",
+  "updatedAt": "2026-11-25T07:30:55+08:00",
   "_note": "githubDownloads = GitHub Release 的 download_count 之和（只算 .apk）；siteClicks = 本站下载按钮点击（同一浏览器只计一次）。页面会用实时接口覆盖这两个值，失败则显示本快照。mirrors = 码云 latest 直链的真实存在性与体积（v7a.size=0 表示没有 32 位包），页面据此决定要不要显示「32 位包」入口。",
-  "total": 1426
+  "total": 1471
 }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>吾爱Music 数播 · 本地无损播放方案</title>
-<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、小光 AI 管家与十境调音、AI 合成歌词、本地声纹核对，手机 App 直控、电脑浏览器专业设置。面向硬件合作、渠道分销与定制开发。" />
+<meta name="description" content="吾爱Music 数播参考机 T1S：本地曲库、MPD bit-perfect 直出、小光 AI 管家与十境调音、大模型生成歌词、本地声纹核对，浏览器一页管理，手机 App 可选遥控。面向硬件合作、渠道分销与定制开发。" />
 <meta name="theme-color" content="#f9f4f0" />
 <link rel="canonical" href="https://music.52ta.top/shuabo/" />
 <link rel="icon" type="image/png" href="assets/logo-v3.png" />
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="吾爱Music" />
 <meta property="og:title" content="吾爱Music 数播 · 本地无损播放方案" />
-<meta property="og:description" content="把曲库放进机器，把手机变成遥控器。无损直出、小光 AI 管家陪你听也会帮你调音，专业设置一页管完。" />
+<meta property="og:description" content="把曲库放进机器，让声音走直路。无损直出、小光 AI 管家陪你听也会帮你调音，浏览器一页管完。" />
 <meta property="og:url" content="https://music.52ta.top/shuabo/" />
 <meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -119,10 +119,10 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
 .hero-note{margin-top:20px;font-size:13px;color:var(--muted)}
 
 /* 真机截图 */
-.hero-shot{max-width:318px;margin-left:auto}
+.hero-shot{max-width:100%;margin-left:auto}
 .hero-shot img{
-  display:block;width:100%;border-radius:26px;border:7px solid #18121e;
-  box-shadow:0 30px 70px rgba(32,18,46,.30);background:#18121e;
+  display:block;width:100%;border-radius:16px;border:1px solid var(--line2);
+  box-shadow:0 30px 70px rgba(32,18,46,.22);background:#17121d;
 }
 .hero-shot small{display:block;margin-top:12px;text-align:center;color:var(--muted);font-size:12px}
 
@@ -425,33 +425,69 @@ footer a:hover{color:var(--brand)}
   align-items:center;justify-content:center;gap:22px;padding:22px;
   border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);
   box-shadow:var(--shadow-sm)}
-/* 灵体 */
+/* 能量小精灵：头 + 躯干 + 四肢，全部跟随主题紫色，纯 CSS 动画 */
 .live-orb{position:relative;width:132px;height:132px;flex:0 0 auto}
-.live-orb .lo-orbit{position:absolute;inset:0;border-radius:50%;
-  border:1px solid var(--wash2);border-top-color:var(--brand);animation:lo-spin 8s linear infinite}
-.live-orb .lo-core{position:absolute;inset:20px;border-radius:50%;background:var(--grad);
-  box-shadow:0 0 26px var(--wash2),inset 0 -8px 18px rgba(0,0,0,.12);
-  display:flex;align-items:center;justify-content:center;animation:lo-breathe 2.4s ease-in-out infinite}
-.live-orb .lo-face{position:relative;width:52px;height:34px}
-.live-orb .lo-eye{position:absolute;top:8px;width:7px;height:9px;border-radius:50%;background:#fff}
-.live-orb .lo-eye.l{left:9px}.live-orb .lo-eye.r{right:9px}
-.live-orb .lo-mouth{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);
-  width:14px;height:4px;border-radius:3px;background:#fff;transition:.3s}
+.live-orb .lo-orbit{position:absolute;inset:5px;border-radius:50%;
+  border:1px dashed var(--brand3);opacity:.55;animation:lo-spin 16s linear infinite}
+/* 头：缩小上移，给躯干和四肢腾出空间 */
+.live-orb .lo-core{position:absolute;left:36px;top:0;width:60px;height:60px;border-radius:50%;
+  background:var(--grad);box-shadow:0 0 26px var(--wash2),inset 0 -8px 16px rgba(0,0,0,.14);
+  display:flex;align-items:center;justify-content:center;animation:lo-breathe 3.4s ease-in-out infinite;z-index:3}
+.live-orb .lo-face{position:relative;width:38px;height:27px}
+.live-orb .lo-eye{position:absolute;top:6px;width:6px;height:8px;border-radius:50%;background:#fff;
+  animation:lo-blink 5.2s infinite}
+.live-orb .lo-eye.l{left:7px}.live-orb .lo-eye.r{right:7px;animation-delay:.12s}
+.live-orb .lo-mouth{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+  width:11px;height:4px;border-radius:0 0 8px 8px;background:#fff;transition:height .25s,border-radius .25s}
+/* 躯干：能量凝聚的上窄下宽小身体 */
+.live-orb .lo-torso{position:absolute;left:44px;top:51px;width:44px;height:40px;z-index:2;
+  border-radius:16px 16px 18px 18px;background:var(--grad);
+  box-shadow:0 0 18px var(--wash2),inset 0 -6px 12px rgba(0,0,0,.16);
+  animation:lo-torso 3.4s ease-in-out infinite;transform-origin:top center}
+/* 四肢：圆润的能量短肢，跟主题紫色 */
+.live-orb .lo-arm,.live-orb .lo-leg{position:absolute;z-index:1;
+  background:linear-gradient(180deg,var(--brand3),var(--brand2));
+  box-shadow:0 0 10px var(--wash2);border-radius:5px}
+.live-orb .lo-arm{width:9px;height:27px;top:58px;transform-origin:top center}
+.live-orb .lo-leg{width:11px;height:23px;top:84px;transform-origin:center 3px}
+.live-orb .arm-l{left:31px;transform:rotate(20deg);animation:lo-arm-l 3.4s ease-in-out infinite}
+.live-orb .arm-r{left:92px;transform:rotate(-20deg);animation:lo-arm-r 3.4s ease-in-out infinite}
+.live-orb .leg-l{left:52px;transform:rotate(4deg);animation:lo-leg-l 3.4s ease-in-out infinite}
+.live-orb .leg-r{left:69px;transform:rotate(-4deg);animation:lo-leg-r 3.4s ease-in-out infinite}
 @keyframes lo-spin{to{transform:rotate(360deg)}}
-@keyframes lo-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-/* 形态切换时的专属动画 */
+@keyframes lo-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes lo-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
+@keyframes lo-torso{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.05)}}
+@keyframes lo-arm-l{0%,100%{transform:rotate(20deg)}50%{transform:rotate(27deg)}}
+@keyframes lo-arm-r{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(-27deg)}}
+@keyframes lo-leg-l{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-3deg)}}
+@keyframes lo-leg-r{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(3deg)}}
+/* 形态切换：姿势随情绪/动作联动 */
 .live-stage[data-act="play"] .lo-core{animation:lo-beat 1.1s ease-in-out infinite}
+.live-stage[data-act="play"] .lo-arm{animation-duration:.9s}
 .live-stage[data-act="spectrum"] .lo-core{animation:lo-scan 1s ease-in-out infinite}
-.live-stage[data-act="tone"] .lo-orbit{animation-duration:2.6s}
+.live-stage[data-act="spectrum"] .lo-torso,.live-stage[data-act="spectrum"] .lo-arm,
+.live-stage[data-act="spectrum"] .lo-leg{animation-duration:1.05s}
+.live-stage[data-act="tone"] .lo-orbit{animation-duration:6s}
+.live-stage[data-act="tone"] .lo-arm,.live-stage[data-act="tone"] .lo-leg{animation-duration:2.4s}
 .live-stage[data-act="lyric"] .lo-eye{animation:lo-sweep 1.5s ease-in-out infinite}
 .live-stage[data-act="lyric"] .lo-mouth{animation:lo-talk 1.1s ease-in-out infinite}
-.live-stage[data-mood="happy"] .lo-core{box-shadow:0 0 30px rgba(37,180,120,.45),inset 0 -8px 18px rgba(0,0,0,.12)}
-.live-stage[data-mood="oops"] .lo-core{box-shadow:0 0 30px rgba(220,80,80,.45),inset 0 -8px 18px rgba(0,0,0,.12)}
+.live-stage[data-mood="happy"] .lo-core{box-shadow:0 0 30px rgba(37,180,120,.45),inset 0 -8px 16px rgba(0,0,0,.14)}
+.live-stage[data-mood="happy"] .arm-l{animation-name:lo-arm-happy-l}
+.live-stage[data-mood="happy"] .arm-r{animation-name:lo-arm-happy-r}
+.live-stage[data-mood="oops"] .lo-core{box-shadow:0 0 30px rgba(220,80,80,.45),inset 0 -8px 16px rgba(0,0,0,.14)}
+.live-stage[data-mood="oops"] .arm-l{animation-name:lo-arm-oops-l}
+.live-stage[data-mood="oops"] .arm-r{animation-name:lo-arm-oops-r}
 .live-stage[data-mood="focus"] .lo-mouth{height:3px;border-radius:2px}
+.live-stage[data-mood="focus"] .lo-torso{filter:saturate(.85)}
 @keyframes lo-beat{0%,100%{transform:scale(1)}38%{transform:scale(1.14)}68%{transform:scale(1.02)}}
 @keyframes lo-scan{0%,100%{transform:translateX(0) scaleX(1)}50%{transform:translateX(3px) scaleX(1.06)}}
 @keyframes lo-sweep{0%,100%{transform:translateX(0)}45%{transform:translateX(3px)}55%{transform:translateX(-3px)}}
-@keyframes lo-talk{0%,100%{height:4px}50%{height:8px}}
+@keyframes lo-talk{0%,100%{height:4px}50%{height:10px}}
+@keyframes lo-arm-happy-l{0%,100%{transform:rotate(38deg)}50%{transform:rotate(46deg)}}
+@keyframes lo-arm-happy-r{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(-46deg)}}
+@keyframes lo-arm-oops-l{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-2deg)}}
+@keyframes lo-arm-oops-r{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(2deg)}}
 /* 气泡 */
 .live-bubble{position:relative;max-width:320px;background:var(--bg2);border:1px solid var(--line2);
   border-radius:16px;padding:15px 18px;text-align:left}
@@ -474,7 +510,15 @@ footer a:hover{color:var(--brand)}
 @media(max-width:900px){
   .live-demo{grid-template-columns:1fr;gap:18px}
   .live-stage{position:sticky;top:70px;min-height:auto;flex-direction:row;gap:18px;padding:14px 18px;z-index:5}
-  .live-orb{width:80px;height:80px}.live-orb .lo-core{inset:12px}.live-orb .lo-face{transform:scale(.7)}
+  .live-orb{width:80px;height:80px}
+  .live-orb .lo-orbit{inset:3px}
+  .live-orb .lo-core{left:22px;top:0;width:36px;height:36px}
+  .live-orb .lo-face{transform:scale(.6)}
+  .live-orb .lo-torso{left:27px;top:31px;width:26px;height:24px;border-radius:10px 10px 11px 11px}
+  .live-orb .lo-arm{width:6px;height:17px;top:35px}
+  .live-orb .lo-leg{width:7px;height:14px;top:51px}
+  .live-orb .arm-l{left:19px}.live-orb .arm-r{left:55px}
+  .live-orb .leg-l{left:32px}.live-orb .leg-r{left:41px}
   .live-bubble{max-width:none;flex:1}.live-bubble::before{display:none}
   .live-step{padding:16px 18px}
 }
@@ -533,7 +577,7 @@ footer a:hover{color:var(--brand)}
     <div class="container">
       <div>
         <span class="eyebrow">WUAIMUSIC SERVER · 参考机 T1S</span>
-        <h1>把曲库放进机器，<br /><span class="hl">把手机变成遥控器。</span></h1>
+        <h1>把曲库放进机器，<br /><span class="hl">让声音走直路。</span></h1>
         <p class="lead">吾爱Music 数播是一台面向本地无损曲库的无头播放方案。音乐留在机器里，浏览器就是控制台；默认 bit-perfect 直出，小光 AI 管家陪你听、帮你调音、照看曲库，专业设置一页管完。</p>
         <div class="actions">
           <a class="btn btn--primary" href="#contact">合作咨询</a>
@@ -542,8 +586,8 @@ footer a:hover{color:var(--brand)}
         <p class="hero-note">当前为参考机 / 方案验证机，非量产商品。整机合作、渠道合作与定制开发欢迎联系。</p>
       </div>
       <div class="hero-shot">
-        <img src="assets/phone-player.webp" alt="吾爱音乐手机版 App 播放页真机截图：黑胶封面、逐字歌词与播放控制，可局域网直控数播机" />
-        <small>手机用吾爱音乐 App 直接控制数播</small>
+        <img src="assets/desktop-player.webp" alt="吾爱Music 数播浏览器管理页真机截图：黑胶封面、播放队列、逐字歌词与实时码率链路标注" />
+        <small>数播浏览器管理页 · 播放链路实时标注</small>
       </div>
     </div>
   </section>
@@ -552,13 +596,13 @@ footer a:hover{color:var(--brand)}
     <div class="container">
       <div class="shead">
         <div class="no">01 / 为什么是数播</div>
-        <h2>本地音乐，不该被绑在手机上</h2>
-        <p>曲库放在机器里，播放交给专用链路。手机只负责选歌和看歌词，关掉屏幕音乐照常走。</p>
+        <h2>音乐留在机器里，播放交给专机</h2>
+        <p>曲库落在本地盘，解码与输出交给专用链路。上电即播，浏览器一页管完，不必依赖任何手机。</p>
       </div>
       <div class="grid3">
         <div class="card"><div class="k">01</div><h3>曲库留在本地</h3><p>机械盘装歌，系统盘跑服务。SMB 直连拷歌，Web 文件管理、NAS 导入、回收站都在同一页。</p></div>
         <div class="card"><div class="k">02</div><h3>声音走直路</h3><p>MPD 0.24.4 加 mixer_type none，默认不重采样、不用软件音量。接 DDC 后可走数字口到功放。</p></div>
-        <div class="card"><div class="k">03</div><h3>一页管完全部</h3><p>手机用吾爱音乐 App 直接控制播放；平板、电脑浏览器打开管理页，曲库、设备、网络、系统设置集中在一处。</p></div>
+        <div class="card"><div class="k">03</div><h3>一页管完全部</h3><p>浏览器就是控制台：曲库、播放、设备、网络与系统设置集中在一页。手机 App 可选，只作随手遥控。</p></div>
       </div>
     </div>
   </section>
@@ -591,10 +635,10 @@ footer a:hover{color:var(--brand)}
           <div class="k">B</div><h3>曲库与内容</h3>
           <ul>
             <li>机械盘本地曲库 + SMB 共享，Web 文件管理、NAS 导入、回收站都在一页</li>
-            <li>音乐墙按专辑浏览，格式筛选，点专辑直接播放或追加队列；封面直接标注来源与添加时间</li>
+            <li>音乐墙按专辑浏览，格式筛选，点专辑直接播放或追加队列；封面直接标注添加时间</li>
             <li>逐字歌词高亮；本地 LRC 自动升级为逐字时间轴，歌名与歌词不合时小光会提醒核对</li>
-            <li>AI 合成歌词：可选千问 / 火山引擎 / DeepSeek，填入自己的 API Key 即可生成；只传歌曲信息、不上传音频，结果仅写本地缓存</li>
-            <li>封面四源刮削（网易云 / QQ / 酷我 / Apple Music），可手动换图，本地缓存 90 天</li>
+            <li>大模型生成歌词：本机调用大模型按曲目信息生成，自带 API Key；只传歌曲信息、不上传音频，结果仅写本地缓存</li>
+            <li>封面本地整理：优先用音频内嵌封面，缺失时按曲目信息生成候选图，可手动换图，本地缓存 90 天</li>
             <li>中文路径、GB18030 / Big5 / Shift-JIS 全链路兼容</li>
           </ul>
         </div>
@@ -613,8 +657,8 @@ footer a:hover{color:var(--brand)}
         <div class="card">
           <div class="k">D</div><h3>连接与授权</h3>
           <ul>
-            <li>手机用吾爱音乐 App 局域网发现并直控数播；平板 / 电脑浏览器打开管理页做专业设置</li>
-            <li>设备主机名支持中文：手机发现列表直接显示中文名，系统内部自动转 punycode，重复 .local 后缀已去掉</li>
+            <li>浏览器访问本机 8080 端口即可完成全部专业设置；手机 App 可选，局域网发现后可直控播放</li>
+            <li>设备主机名支持中文：浏览器与发现列表都显示中文名，系统内部自动转 punycode，重复 .local 后缀已去掉</li>
             <li>首次连接后台同步系统、曲库与管理快照：设备版本、曲库规模离线可见，音乐墙先显示本地快照再静默刷新</li>
             <li>硬件 ID 随主板、全部物理网卡、内置盘、CPU 与内存变化</li>
             <li>对接自有授权平台 license.52ta.top，便于激活绑定与售后追溯</li>
@@ -630,19 +674,19 @@ footer a:hover{color:var(--brand)}
       <div class="shead">
         <div class="no">03 / 小光 AI 管家</div>
         <h2>会陪你听，也会替你照看曲库</h2>
-        <p>小光是住在机器里的陪伴形象：一个会呼吸、会变表情的灵体，加一只把话说清楚的气泡。智能跑在机器本地——神经网络、声纹索引、偏好学习都在本机完成，权重只写侧车文件。它给建议、也会动手，但每一步都能在「运行日志」里看到。</p>
+        <p>小光是住在机器里的陪伴形象：一个会呼吸、会长出手脚的能量小精灵，加一只把话说清楚的气泡。智能跑在机器本地——神经网络、声纹索引、偏好学习都在本机完成，权重只写侧车文件。它给建议、也会动手，但每一步都能在「运行日志」里看到。</p>
       </div>
 
       <!-- ① 形象 -->
-      <h3 class="subhead">形象 · 会呼吸的灵体</h3>
+      <h3 class="subhead">形象 · 会呼吸的能量小精灵</h3>
       <div class="grid3">
         <div class="card">
-          <div class="k">◎</div><h3>能量灵体</h3>
-          <p>左下角常驻的光核，随心播放与任务状态改变呼吸节奏；可以拖动到顺手的位置，轻点展开气泡。</p>
+          <div class="k">✦</div><h3>能量小精灵</h3>
+          <p>左下角常驻的小家伙：圆圆的头、小小的身体，还有会摆的手和脚。随播放与任务状态呼吸、摆动；可以拖动到顺手的位置，轻点展开气泡。</p>
         </div>
         <div class="card">
           <div class="k">◔</div><h3>会说话的气泡</h3>
-          <p>贴着灵体展开：播报、建议、进度都在气泡里说清楚。给建议时会主动让位，不跟正在播放的内容抢注意力。</p>
+          <p>贴着小精灵展开：播报、建议、进度都在气泡里说清楚。给建议时会主动让位，不跟正在播放的内容抢注意力。</p>
         </div>
         <div class="card">
           <div class="k">⌘</div><h3>一键进管家</h3>
@@ -656,11 +700,11 @@ footer a:hover{color:var(--brand)}
       <div class="grid3">
         <div class="card">
           <div class="k">4</div><h3>情绪 · 光效与表情</h3>
-          <p>平静、专注、开心、出错四种情绪：换光效颜色，改嘴型神态。达成目标是绿光，需要提醒是红光。</p>
+          <p>平静、专注、开心、出错四种情绪：换光效颜色，改嘴型神态；开心张臂、出错垂臂。达成目标是绿光，需要提醒是红光。</p>
         </div>
         <div class="card">
           <div class="k">4</div><h3>动作 · 身体语言</h3>
-          <p>播放时心跳、分析频谱时扫描、核对歌词时扫眼、匹配音色时慢转。四种动作各有角标，一眼看出它在做什么。</p>
+          <p>播放时心跳、分析频谱时扫描、核对歌词时扫眼、匹配音色时慢转，手脚的摆动也跟着变速。四种动作各有角标，一眼看出它在做什么。</p>
         </div>
         <div class="card">
           <div class="k">4</div><h3>阶段 · 气泡行为</h3>
@@ -675,6 +719,10 @@ footer a:hover{color:var(--brand)}
         <div class="live-stage" id="liveStage" data-act="" data-mood="calm">
           <div class="live-orb" aria-hidden="true">
             <div class="lo-orbit"></div>
+            <!-- 能量小精灵：头 + 躯干 + 四肢 -->
+            <i class="lo-arm arm-l"></i><i class="lo-arm arm-r"></i>
+            <i class="lo-leg leg-l"></i><i class="lo-leg leg-r"></i>
+            <div class="lo-torso"></div>
             <div class="lo-core"><div class="lo-face"><i class="lo-eye l"></i><i class="lo-eye r"></i><i class="lo-mouth"></i></div></div>
           </div>
           <div class="live-bubble">
@@ -685,14 +733,14 @@ footer a:hover{color:var(--brand)}
         </div>
         <div class="live-steps">
           <div class="live-step is-on" data-act="" data-mood="calm"
-               data-tag="情绪形态 · calm" data-title="平静 · 陪你听着" data-desc="光核缓缓呼吸，没有任务时安静待命；一点开播放，它就醒过来。">
+               data-tag="情绪形态 · calm" data-title="平静 · 陪你听着" data-desc="小精灵缓缓呼吸，没有任务时安静待命；一点开播放，它就醒过来。">
             <span class="ls-no">01 / 待命</span><h4>平静 · 陪你听着</h4>
-            <p>光核缓缓呼吸，没有任务时安静待命；一点开播放，它就醒过来。</p>
+            <p>小精灵缓缓呼吸，没有任务时安静待命；一点开播放，它就醒过来。</p>
           </div>
           <div class="live-step" data-act="play" data-mood="happy"
-               data-tag="动作形态 · play" data-title="开心 · 跟着节奏跳" data-desc="播放时灵体随节拍心跳，气泡报出正在听的曲名，绿光亮起。">
+               data-tag="动作形态 · play" data-title="开心 · 跟着节奏跳" data-desc="播放时小精灵随节拍心跳、手臂跟着摆，气泡报出正在听的曲名，绿光亮起。">
             <span class="ls-no">02 / 播放中</span><h4>开心 · 跟着节奏跳</h4>
-            <p>播放时灵体随节拍心跳，气泡报出正在听的曲名，绿光亮起。</p>
+            <p>播放时小精灵随节拍心跳、手臂跟着摆，气泡报出正在听的曲名，绿光亮起。</p>
           </div>
           <div class="live-step" data-act="spectrum" data-mood="focus"
                data-tag="动作形态 · spectrum" data-title="专注 · 分析频谱" data-desc="后台体检、导入监控时切到扫描动作：逐首看格式、乱码与体积，进度实时显示。">
@@ -875,40 +923,31 @@ footer a:hover{color:var(--brand)}
       <div class="shead">
         <div class="no">05 / 真机界面</div>
         <h2>不画效果图，直接看真机</h2>
-        <p>手机端是吾爱音乐 App 直接控制数播的真机画面；平板与桌面是浏览器管理页。全部为实机截图，未用设计稿替代。</p>
+        <p>下面都是数播参考机的浏览器管理页：桌面播放页、平板管家与设置中心。全部为实机截图，未用设计稿替代。</p>
       </div>
       <div class="gallery">
-        <figure class="shot shot--phone">
-          <img src="assets/phone-player.webp" loading="lazy" alt="吾爱音乐手机版 App 播放页：黑胶封面、逐字歌词与播放控制，可直控数播" />
-          <figcaption>手机 · App 控制数播 <span>逐字歌词</span></figcaption>
-        </figure>
-        <figure class="shot shot--phone">
-          <img src="assets/phone-wall.webp" loading="lazy" alt="吾爱音乐手机版 App 本地曲库：专辑浏览、格式筛选与歌曲列表" />
-          <figcaption>手机 · App 本地曲库 <span>专辑 / 歌曲</span></figcaption>
+        <figure class="shot">
+          <img src="assets/desktop-player.webp" loading="lazy" alt="桌面端播放页：黑胶封面、播放队列与逐字歌词，顶部标注实时码率与输出链路" />
+          <figcaption>桌面 · 播放页 <span>队列 + 歌词</span></figcaption>
         </figure>
         <figure class="shot">
           <img src="assets/tablet-butler.webp" loading="lazy" alt="平板端数播管家：设备概览、资源占用与曲库盘健康状态" />
           <figcaption>平板 · 数播管家 <span>资源 / SMART</span></figcaption>
         </figure>
-      </div>
-      <div class="gallery gallery--wide">
         <figure class="shot">
-          <img src="assets/desktop-player.webp" loading="lazy" alt="桌面端播放页：黑胶封面、播放队列与逐字歌词" />
-          <figcaption>桌面 · 播放页 <span>队列 + 歌词</span></figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="assets/desktop-settings.webp" loading="lazy" alt="桌面端设置中心：曲库分区的声纹索引、AI 歌词，以及音频、播放、设备、网络、界面、系统等分区" />
+          <img src="assets/desktop-settings.webp" loading="lazy" alt="桌面端设置中心：声纹索引、AI 歌词，以及音频、播放、设备、网络、界面、系统等分区" />
           <figcaption>桌面 · 设置中心 <span>声纹索引 / AI 歌词…</span></figcaption>
         </figure>
       </div>
       <div class="demobar">
         <div class="demobar-tx">
           <b>想自己点一点？打开交互演示</b>
-          <p>数播管理端界面原样运行，可播放、切歌、拖进度、浏览音乐墙。<em>演示内曲目、艺人、专辑、封面与设备状态均为生成的虚构样例，非真实设备与曲库。</em></p>
+          <p>数播管理端界面原样运行，可播放、切歌、拖进度、浏览音乐墙。<em>演示为受控访问，需向管理员索取访问密码；曲目、艺人、专辑、封面与设备状态均为生成的虚构样例，非真实设备与曲库。</em></p>
         </div>
-        <a class="demobar-btn" href="demo/" target="_blank" rel="noopener">打开交互演示 <span aria-hidden="true">↗</span></a>
+        <a class="demobar-btn" href="demo/" target="_blank" rel="noopener">输入密码进入 <span aria-hidden="true">↗</span></a>
       </div>
-      <p class="shotnote">手机图为吾爱音乐 App 真机界面，平板与桌面为参考机浏览器管理页；均未用设计稿替代，专辑与封面仅作界面演示。上方交互演示为纯前端样例，不代表真机实时状态。</p>
+      <p class="shotnote">手机图为吾爱音乐 App 真机界面，平板与桌面为参考机浏览器管理页；均未用设计稿替代，专辑与封面仅作界面演示。上方交互演示需访问密码，且在浏览器本地解密后呈现，为纯前端样例，不代表真机实时状态。</p>
+      <p class="shotnote">以上均为参考机浏览器管理页真机截图，未用设计稿替代；专辑与封面仅作界面演示。</p>
     </div>
   </section>
 
@@ -980,10 +1019,10 @@ footer a:hover{color:var(--brand)}
             </tr>
             <tr>
               <th>歌词 / 封面</th>
-              <td class="ours">逐字歌词 + 四源封面刮削 + AI 合成歌词<small>自带 API Key，不上传音频；本地缓存，可手动换图</small></td>
-              <td>专辑封面 JPG / PNG<small>官方规格未标注多源刮削</small></td>
-              <td>App 内专辑封面浏览<small>官方规格未标注多源刮削</small></td>
-              <td>触屏显示封面与小组件<small>官方规格未标注多源刮削</small></td>
+              <td class="ours">逐字歌词 + 本地封面整理 + 大模型生成歌词<small>自带 API Key，不上传音频；本地缓存，可手动换图</small></td>
+              <td>专辑封面 JPG / PNG<small>官方规格未标注封面整理能力</small></td>
+              <td>App 内专辑封面浏览<small>官方规格未标注封面整理能力</small></td>
+              <td>触屏显示封面与小组件<small>官方规格未标注封面整理能力</small></td>
             </tr>
             <tr>
               <th>音效 / 调节</th>
@@ -994,7 +1033,7 @@ footer a:hover{color:var(--brand)}
             </tr>
             <tr>
               <th>生态 / 多房间</th>
-              <td class="ours">手机用吾爱音乐 App 直控，平板 / 电脑浏览器做专业设置<small>小光 AI 管家本地值守；可选小爱语音；不接主流流媒体订阅</small></td>
+              <td class="ours">浏览器一页完成专业设置<small>小光 AI 管家本地值守；手机 App 可选遥控；小爱语音可选；不接主流流媒体订阅</small></td>
               <td>AirPlay 2 / Spotify / TIDAL / Qobuz / Roon<small>BluOS 最多 64 个播放器同步</small></td>
               <td>AirPlay 2 / Chromecast / Spotify / TIDAL / Qobuz / Roon<small>StreamMagic 多房间</small></td>
               <td>Google Cast / DLNA / Spotify / TIDAL / Roon<small>WiiM 生态多房间；官方标注不支持 AirPlay 2</small></td>
@@ -1088,7 +1127,7 @@ footer a:hover{color:var(--brand)}
           <div class="os-item"><b>开机即用</b><span>上电进播放器，无需配置；遥控器方向键就能遍历整个曲库。</span></div>
           <div class="os-item"><b>音质链路</b><span>bit-perfect 直出，ALSA 实测判定；十境调音与专业 EQ 可切换，DSD 播放自动旁路音色层。</span></div>
           <div class="os-item"><b>小光 AI 管家</b><span>本地值守，陪你听也会帮你调音、照看曲库；功能长期在机身内运行。</span></div>
-          <div class="os-item"><b>智能歌词</b><span>逐字歌词自动匹配纠错，支持 AI 合成歌词与本地声纹核对。</span></div>
+          <div class="os-item"><b>生成歌词</b><span>大模型生成歌词，逐字高亮，偏移按曲目记住；本地声纹核对。</span></div>
           <div class="os-item"><b>曲库治理</b><span>本地与 NAS 曲库统一管理，中文曲库刮削与封面整理更准。</span></div>
           <div class="os-item"><b>硬件适配</b><span>声卡 / DDC / 屏幕 / 遥控器深度适配，可按整机方案定制。</span></div>
         </div>
@@ -1125,7 +1164,7 @@ footer a:hover{color:var(--brand)}
             <tr><th>逐字歌词 · API 对外提供</th><td class="ours">✓</td><td>✓</td><td>✓</td><td>按需</td></tr>
             <tr><th>格式范围</th><td>无损级 FLAC / APE</td><td>无损级 FLAC / APE</td><td class="ours">无损 + DSD 等专业格式</td><td>按需</td></tr>
             <tr><th>小光 AI 管家</th><td>✓</td><td>✓</td><td class="ours">✓</td><td>按需</td></tr>
-            <tr><th>AI 合成歌词 / 本地声纹核对</th><td>规划中</td><td>规划中</td><td class="ours">✓</td><td>按需</td></tr>
+            <tr><th>大模型生成歌词 / 本地声纹核对</th><td>规划中</td><td>规划中</td><td class="ours">✓</td><td>按需</td></tr>
             <tr><th>专业播放 · bit-perfect 直出 / ALSA 实测</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
             <tr><th>专业播放 · 十境调音 / 专业 EQ</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
             <tr><th>底层 · 声卡 / DDC 深度适配</th><td>不开放</td><td>不开放</td><td class="ours">✓</td><td>✓</td></tr>
@@ -1196,7 +1235,7 @@ footer a:hover{color:var(--brand)}
 
 <footer>
   <div class="container">
-    <span>© <span id="year"></span> 吾爱Music · 本地音乐，机器管曲库，手机做遥控</span>
+    <span>© <span id="year"></span> 吾爱Music · 本地音乐，机器管曲库，浏览器做管理</span>
     <span><a href="../">App 官网</a> · <a href="https://license.52ta.top/" target="_blank" rel="noopener noreferrer">授权平台</a></span>
   </div>
 </footer>

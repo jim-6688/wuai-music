@@ -1,49 +1,43 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.0.1",
-      "versionCode": 143,
+      "versionName": "3.0.4",
+      "versionCode": 148,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-phone-arm64-v8a.apk",
-      "size": 70252316,
-      "sha256": "888b29984528c03f445fbe27eb812ac6ff374178169366307b8f072274c93de3",
+      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n· 设置菜单重做：原来的扁平长列表改为「曲库管家 + 5 个分类入口」分组首页，查找更直观。\n· 音乐日历新版：默认显示选中日所在的一行周历，有播放记录的日期带蓝点，点箭头展开整月；播放记录改为卡片式列表。\n· 玻璃界面补上整圈边缘折射高光，质感更通透；播放控制栏改为悬浮玻璃胶囊，背后的歌词可以透出来。\n\n《绝句》· 杜甫\n两个黄鹂鸣翠柳，一行白鹭上青天。\n窗含西岭千秋雪，门泊东吴万里船。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.4/WuAiMusic-3.0.4-build148-phone-arm64-v8a.apk",
+      "size": 70518988,
+      "sha256": "9e3a250ed0d422f01cb001b1ee8695c4ddd72335fc2870ca87a410525f3bcd57",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-phone-arm64-v8a.apk",
-          "size": 70252316,
-          "sha256": "888b29984528c03f445fbe27eb812ac6ff374178169366307b8f072274c93de3",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.4/WuAiMusic-3.0.4-build148-phone-arm64-v8a.apk",
+          "size": 70518988,
+          "sha256": "9e3a250ed0d422f01cb001b1ee8695c4ddd72335fc2870ca87a410525f3bcd57",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
-        },
-        "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-phone-armeabi-v7a.apk",
-          "size": 82474212,
-          "sha256": "521da3d3d5d44e99d94c54992bd0e9f20b9b5e5a12c59bf598223dcd1840df97",
-          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
       "versionName": "3.0.1",
-      "versionCode": 144,
+      "versionCode": 143,
       "flavor": "hd",
       "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build144-hd-arm64-v8a.apk",
-      "size": 70080604,
-      "sha256": "69b2162f76077b8ab0f530e22d97c73a19c346642b256bedce9a83055f0a017a",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
+      "size": 70146140,
+      "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build144-hd-arm64-v8a.apk",
-          "size": 70080604,
-          "sha256": "69b2162f76077b8ab0f530e22d97c73a19c346642b256bedce9a83055f0a017a",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
+          "size": 70146140,
+          "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build144-hd-armeabi-v7a.apk",
-          "size": 82269732,
-          "sha256": "ff9eed6c3496e70e74618d1a67b1d601763188c1cd3ac72e85b39293db158b6f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-armeabi-v7a.apk",
+          "size": 82335268,
+          "sha256": "d2674dcf15d91618af76391939d8b69cf28e44e4829e83e4ca6e386ffb95784f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
@@ -79,6 +73,21 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.0.4",
+      "date": "2026-11-25",
+      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n· 设置菜单重做：原来的扁平长列表改为「曲库管家 + 5 个分类入口」分组首页，查找更直观。\n· 音乐日历新版：默认显示选中日所在的一行周历，有播放记录的日期带蓝点，点箭头展开整月；播放记录改为卡片式列表。\n· 玻璃界面补上整圈边缘折射高光，质感更通透；播放控制栏改为悬浮玻璃胶囊，背后的歌词可以透出来。\n\n《绝句》· 杜甫\n两个黄鹂鸣翠柳，一行白鹭上青天。\n窗含西岭千秋雪，门泊东吴万里船。"
+    },
+    {
+      "versionName": "3.0.3",
+      "date": "2026-11-24",
+      "notes": "本次更新修复了一些问题。\n\n· 播放日历改版：默认显示选中日所在的一行周历，有播放记录的日期带蓝点，点中间箭头展开完整月历；播放记录改为卡片式列表。\n· 修复曲库管家页面背景发黑，改为跟随主题配色渐变。\n· 修复数播机管理设置里 NAS 输入框标签与内容重叠，标签现在固定在输入框上方。\n· 修复数播菜单反复闪屏、只能手动点击才能管理的问题：进入后自动连接，无需再次登录。\n\n《小池》· 杨万里\n泉眼无声惜细流，树阴照水爱晴柔。\n小荷才露尖尖角，早有蜻蜓立上头。"
+    },
+    {
+      "versionName": "3.0.2",
+      "date": "2026-11-24",
+      "notes": "本次更新新增「小光」智能管家与「十境调音」，修复了一些问题。\n\n· 新增「小光」智能管家：常驻界面可拖动，曲库管家并入其中；可体检曲库、给曲目打分、按歌手 / 专辑等 6 个维度浏览，并从收藏与评分中学习你的偏好。\n· 新增「十境调音」：10 段语义化音色调节，内置 6 套预设，支持小光一键智能调音；设备带 NPU / APU 时批量计算自动加速，并会实测判断是否真的更快。\n· 新增「设备自检」：一键体检设备状态，报告可导出，便于反馈问题。\n· 修复数播页面不断刷新、音乐墙打开失败或空白的问题，封面徽标被遮挡与串图一并修正。\n· 修复设置页字号不一致、拔出 U 盘后曲库残留、变形歌词唱到句中闪白、在线更新无法拉起安装、车机端缺少官方 logo 等问题。\n· 播放日历新增折叠形态，可为音乐列表腾出空间。\n\n《梅花》· 王安石\n墙角数枝梅，凌寒独自开。\n遥知不是雪，为有暗香来。"
+    },
     {
       "versionName": "3.0.1",
       "date": "2026-11-23",

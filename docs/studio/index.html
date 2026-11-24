@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>吾爱高保真音频工作室 · 把功能做成证据</title>
-<meta name="description" content="吾爱高保真音频工作室：以 MPD + ALSA + CamillaDSP 真实链路与 40GB 中文曲库为实验台，主攻信号链透明、本地曲库智能化与 AI 智能声场，只产出可复现的方法与数据。中英双语。" />
+<meta name="description" content="吾爱高保真音频工作室：以 MPD + ALSA + CamillaDSP 真实链路与 195 GB、2455 张专辑的中文曲库为实验台，主攻信号链透明、本地曲库智能化、小光本地 AI 神经网络引擎与智能声场，只产出可复现的方法与数据。中英双语。" />
 <meta name="theme-color" content="#f9f4f0" />
 <link rel="canonical" href="https://music.52ta.top/studio/" />
 <link rel="icon" type="image/png" href="assets/logo-v3.png" />
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="吾爱Music" />
 <meta property="og:title" content="吾爱高保真音频工作室 · 把功能做成证据" />
-<meta property="og:description" content="真实可测的播放链路 + 40GB 中文曲库 = 实验台。产出方法与数据，不产出功能截图。" />
+<meta property="og:description" content="实测播放链路 + 195 GB 中文曲库 + 本机小光 AI = 实验台。十境调音 8 项配置级验证通过，信号链实测数据可导出复算。" />
 <meta property="og:url" content="https://music.52ta.top/studio/" />
 <meta property="og:image" content="https://music.52ta.top/assets/icon/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -208,7 +208,7 @@ h1 .hl{background:linear-gradient(120deg,#8b57cf,#4a1a96);-webkit-background-cli
 .criterion b{color:var(--good)}
 
 /* 路线图 */
-.road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:16px;position:relative}
 .phase{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
 .phase__n{font-size:12px;font-weight:800;color:var(--brand);letter-spacing:.14em}
 .phase h3{font-size:18px;margin:10px 0 8px}
@@ -343,7 +343,7 @@ footer a:hover{color:var(--brand)}
       <div>
         <span class="eyebrow" data-zh="吾爱高保真音频工作室 · WUAI HI-FI STUDIO" data-en="WUAI HI-FI AUDIO STUDIO · EST. 2026">吾爱高保真音频工作室 · WUAI HI-FI STUDIO</span>
         <h1><span data-zh="把功能做成证据，" data-en="Turn features into evidence.">把功能做成证据，</span><br /><span class="hl" data-zh="把招牌做成真金。" data-en="Make every claim verifiable.">把招牌做成真金。</span></h1>
-        <p class="lead" data-zh="吾爱高保真音频工作室不另起炉灶——把一台真实可测的播放链路和 40GB 中文曲库当作实验台，只产出可复现的方法与数据。这里是吾爱音乐把'透明'从口号变成证据的地方。" data-en="The WuAi Hi-Fi Audio Studio is not a greenfield lab. We turn a real, measurable playback chain and a 40 GB Chinese music library into a test bench, and publish only reproducible methods and data. This is where 'transparency' stops being a slogan and becomes evidence.">吾爱高保真音频工作室不另起炉灶——把一台真实可测的播放链路和 40GB 中文曲库当作实验台，只产出可复现的方法与数据。这里是吾爱音乐把“透明”从口号变成证据的地方。</p>
+        <p class="lead" data-zh="吾爱高保真音频工作室不另起炉灶——把一台真实可测的播放链路、195 GB / 4569 文件的中文曲库和本机运行的小光 AI 当作实验台，主攻信号链透明、曲库智能化与小光 AI 神经网络引擎，只产出可复现的方法与数据。这里是吾爱音乐把'透明'从口号变成证据的地方。" data-en="The WuAi Hi-Fi Audio Studio is not a greenfield lab. We turn a real, measurable playback chain, a 195 GB Chinese music library of 4,569 files and the on-device Xiaoguang AI into a test bench, focusing on signal-chain transparency, library intelligence and Xiaoguang's local neural engine — and publish only reproducible methods and data. This is where 'transparency' stops being a slogan and becomes evidence.">吾爱高保真音频工作室不另起炉灶——把一台真实可测的播放链路、195 GB / 4569 文件的中文曲库和本机运行的小光 AI 当作实验台，主攻信号链透明、曲库智能化与小光 AI 神经网络引擎，只产出可复现的方法与数据。这里是吾爱音乐把“透明”从口号变成证据的地方。</p>
         <div class="actions">
           <a class="btn btn--primary" href="#pain" data-zh="看痛点与论证" data-en="See the Evidence">看痛点与论证</a>
           <a class="btn btn--ghost" href="../" data-zh="返回主站" data-en="Back to Main Site">返回主站</a>
@@ -353,10 +353,11 @@ footer a:hover{color:var(--brand)}
       <div class="bench">
         <div class="bench__top"><b data-zh="实验台 · 现成" data-en="TEST BENCH · READY">实验台 · 现成</b><span>wuai@T1S</span></div>
         <div class="bench__row"><span data-zh="播放链路" data-en="Playback chain">播放链路</span><b>MPD 0.24 · ALSA · CamillaDSP</b></div>
-        <div class="bench__row"><span data-zh="中文曲库" data-en="Chinese library">中文曲库</span><b data-zh="40 GB · 1500+ 专辑" data-en="40 GB · 1500+ albums">40 GB · 1500+ 专辑</b></div>
-        <div class="bench__row"><span data-zh="硬件实测" data-en="Hardware probe">硬件实测</span><b>hw_params · I²S / USB</b></div>
-        <div class="bench__row"><span data-zh="USB DDC" data-en="USB DDC">USB DDC</span><b><span class="dot dot--wait"></span><span data-zh="待到货" data-en="Pending delivery">待到货</span></b></div>
+        <div class="bench__row"><span data-zh="中文曲库" data-en="Chinese library">中文曲库</span><b data-zh="195 GB · 2455 专辑 / 4569 文件" data-en="195 GB · 2,455 albums / 4,569 files">195 GB · 2455 专辑 / 4569 文件</b></div>
+        <div class="bench__row"><span data-zh="输出实测" data-en="Measured output">输出实测</span><b data-zh="hw_params · 44.1 / 96 / 192 kHz" data-en="hw_params · 44.1 / 96 / 192 kHz">hw_params · 44.1 / 96 / 192 kHz</b></div>
+        <div class="bench__row"><span data-zh="USB DDC" data-en="USB DDC">USB DDC</span><b><span class="dot"></span><span data-zh="已接入 · XU316 级 / 异步" data-en="Connected · XU316-class / async">已接入 · XU316 级 / 异步</span></b></div>
         <div class="bench__row"><span data-zh="测量麦克风" data-en="Measurement mic">测量麦克风</span><b><span class="dot dot--wait"></span><span data-zh="UMIK-1 · 规划中" data-en="UMIK-1 · Planned">UMIK-1 · 规划中</span></b></div>
+        <div class="bench__row"><span data-zh="本地 AI" data-en="On-device AI">本地 AI</span><b><span class="dot dot--wait"></span><span data-zh="小光 · 起步阶段" data-en="Xiaoguang · Early stage">小光 · 起步阶段</span></b></div>
         <div class="bench__note" data-zh="重复使用的实验对象，不是从零采购。" data-en="Reusable test objects — not purchased from scratch.">重复使用的实验对象，不是从零采购。</div>
       </div>
     </div>
@@ -368,7 +369,7 @@ footer a:hover{color:var(--brand)}
       <div class="shead">
         <div class="no" data-zh="01 / 为什么存在" data-en="01 / WHY WE EXIST">01 / 为什么存在</div>
         <h2 data-zh="不另起炉灶，是把现有系统测量化" data-en="Not a new lab — an existing system, made measurable">不另起炉灶，是把现有系统测量化</h2>
-        <p data-zh="实验室和“从零搞研发”最大的区别，是已经有研究者拿不到的实验对象：一条真实可测的播放链路，和一个 40GB 的真实中文曲库。别人要搭这套台子得先买设备、攒数据；我们现成。" data-en="What sets this studio apart from 'R&D from scratch' is that we already own what other researchers cannot easily get: a real, measurable playback chain and a 40 GB Chinese music library. Others must buy gear and accumulate data first. We already have both.">实验室和“从零搞研发”最大的区别，是已经有研究者拿不到的实验对象：一条真实可测的播放链路，和一个 40GB 的真实中文曲库。别人要搭这套台子得先买设备、攒数据；我们现成。</p>
+        <p data-zh="实验室和“从零搞研发”最大的区别，是已经有研究者拿不到的实验对象：一条真实可测的播放链路、一个 195 GB、4569 文件的真实中文曲库，以及一台能长期采集本机反馈的小光 AI。别人要搭这套台子得先买设备、攒数据、养样本；我们现成。" data-en="What sets this studio apart from 'R&D from scratch' is that we already own what other researchers cannot easily get: a real, measurable playback chain, a 195 GB Chinese music library of 4,569 files, and a Xiaoguang AI that gathers on-device feedback over time. Others must buy gear, accumulate data and grow samples first. We already have all three.">实验室和“从零搞研发”最大的区别，是已经有研究者拿不到的实验对象：一条真实可测的播放链路、一个 195 GB、4569 文件的真实中文曲库，以及一台能长期采集本机反馈的小光 AI。别人要搭这套台子得先买设备、攒数据、养样本；我们现成。</p>
       </div>
       <div class="quote">
         <span data-zh="“咱们做的功能准确吗？都是真实专业的吗？还是纸老虎？”" data-en="&ldquo;Are our features accurate? Are they truly professional? Or are they paper tigers?&rdquo;">“咱们做的功能准确吗？都是真实专业的吗？还是纸老虎？”</span>
@@ -391,7 +392,8 @@ footer a:hover{color:var(--brand)}
           <h3 data-zh="对内的基建" data-en="Internal foundation">对内的基建</h3>
           <p data-zh="真实实现，敢亮细节。" data-en="Real implementations; details we dare to show.">真实实现，敢亮细节。</p>
           <ul>
-            <li data-zh="曲库落盘：1540 文件零缺失、大小全对" data-en="Library on disk: 1,540 files, zero missing">曲库落盘：1540 文件零缺失、大小全对</li>
+            <li data-zh="曲库落盘：4569 文件 / 195 GB，双端逐路径比对 0 失败" data-en="Library on disk: 4,569 files / 195 GB, path-by-path check with zero failures">曲库落盘：4569 文件 / 195 GB，双端逐路径比对 0 失败</li>
+            <li data-zh="封面与索引：155 落盘封面 + 1070 缓存图 0 截断，MPD 索引 3001 首" data-en="Covers & index: 155 stored covers + 1,070 cached images, zero truncated; MPD indexes 3,001 tracks">封面与索引：155 落盘封面 + 1070 缓存图 0 截断，MPD 索引 3001 首</li>
             <li data-zh="硬件 ID：整机指纹，换配件跟着变" data-en="Hardware ID: whole-machine fingerprint, changes with parts">硬件 ID：整机指纹，换配件跟着变</li>
             <li data-zh="感知音量曲线、密码恢复出厂" data-en="Perceptual volume curve, password-guarded factory reset">感知音量曲线、密码恢复出厂</li>
             <li data-zh="DSD / ReplayGain 标注诚实，非位流不冒充" data-en="Honest DSD / ReplayGain labels; no false bit-perfect claims">DSD / ReplayGain 标注诚实，非位流不冒充</li>
@@ -399,11 +401,11 @@ footer a:hover{color:var(--brand)}
         </div>
         <div class="tier tier--mid">
           <span class="tier__tag" data-zh="半真 · 证据链有洞" data-en="HALF-REAL · GAPS IN EVIDENCE">半真 · 证据链有洞</span>
-          <h3 data-zh="解析真，来源不稳" data-en="Real parsing, fragile sources">解析真，来源不稳</h3>
-          <p data-zh="实现是真的，但依赖非官方接口。" data-en="Implementation is real, but relies on unofficial sources.">实现是真的，但依赖非官方接口。</p>
+          <h3 data-zh="解析真，边界要认清" data-en="Real parsing, honest boundaries">解析真，边界要认清</h3>
+          <p data-zh="实现是真的，但生成与整理能力要如实标注。" data-en="Implementation is real, but generation and curation must be labeled honestly.">实现是真的，但生成与整理能力要如实标注。</p>
           <ul>
-            <li data-zh="逐字歌词：真移植，但多源随时失效" data-en="Word-by-word lyrics: real parsing, sources can vanish">逐字歌词：真移植，但多源随时失效</li>
-            <li data-zh="封面刮削：同上，来源不稳定" data-en="Cover art: same — unstable sources">封面刮削：同上，来源不稳定</li>
+            <li data-zh="逐字歌词：真移植，改由大模型现场生成，不取第三方歌词" data-en="Word-by-word lyrics: real parsing, generated on the fly — no third-party lyrics">逐字歌词：真移植，改由大模型现场生成，不取第三方歌词</li>
+            <li data-zh="封面整理：改用本地生成候选，不再刮削第三方" data-en="Cover curation: locally generated candidates, no third-party scraping">封面整理：改用本地生成候选，不再刮削第三方</li>
             <li data-zh="CamillaDSP：真实现，但明确非 bit-perfect" data-en="CamillaDSP: real, but explicitly not bit-perfect">CamillaDSP：真实现，但明确非 bit-perfect</li>
           </ul>
         </div>
@@ -414,7 +416,7 @@ footer a:hover{color:var(--brand)}
           <ul>
             <li data-zh="bit-perfect 假绿灯：读不到硬件证据就默认判直通" data-en="Fake bit-perfect green light: defaults to 'direct' with no hardware evidence">bit-perfect 假绿灯：读不到硬件证据就默认判直通</li>
             <li data-zh="“智能”心情分类：实为关键词打分，曲库零真标签" data-en="&ldquo;Smart&rdquo; mood: keyword scoring; zero real tags in library">“智能”心情分类：实为关键词打分，曲库零真标签</li>
-            <li data-zh="六源/四源数字好看，但来源随时被收走" data-en="Six-source / four-source numbers look good, but sources can be revoked">六源/四源数字好看，但来源随时被收走</li>
+            <li data-zh="“源数量”数字好看，但不等于歌词可用" data-en="&ldquo;Source count&rdquo; looks good, but does not mean usable lyrics">“源数量”数字好看，但不等于歌词可用</li>
             <li data-zh="硬件 ID “授权激活”：ID 真，激活未落地" data-en="Hardware-ID activation: ID real, activation not shipped">硬件 ID “授权激活”：ID 真，激活未落地</li>
           </ul>
         </div>
@@ -422,7 +424,7 @@ footer a:hover{color:var(--brand)}
       <div class="verdict">
         <b data-zh="核心判断：对外的招牌基本是纸老虎，对内的基建基本是真金——错位才是痛心的根源。" data-en="Core judgment: the outward signage is mostly paper tiger; the internal foundation is mostly real gold. The mismatch is the real pain.">核心判断：对外的招牌基本是纸老虎，对内的基建基本是真金——错位才是痛心的根源。</b>
         <p data-zh="去纸老虎化第一步很具体：假绿灯改“待验证”而不是默认绿、hw_params 只读当前启用的那一路、把信号链实测数据沉淀成可导出的证据。让“透明”从口号变成能亮出来的东西。" data-en="The first de-tigerization step is concrete: change the fake green light to 'unverified', read hw_params only from the active output, and export signal-chain measurements as evidence. Make 'transparency' something you can actually show.">去纸老虎化第一步很具体：假绿灯改“待验证”而不是默认绿、hw_params 只读当前启用的那一路、把信号链实测数据沉淀成可导出的证据。让“透明”从口号变成能亮出来的东西。</p>
-        <p style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)"><b style="color:var(--good)" data-zh="✓ 已落地（2026-11-20）" data-en="✓ SHIPPED (2026-11-20)">✓ 已落地（2026-11-20）</b><span data-zh="：上面三步已在 T1S 参考机上线——无硬件证据显示“待验证”、播放时只读当前输出 hw_params（实测 S16_LE @ 44.1 kHz）、并提供 /api/signal-chain 证据快照与 CSV 导出，任何人可复算。信号链透明白皮书有了第一份真实数据源。" data-en=": all three are live on the T1S reference unit — no hardware evidence shows 'unverified', playback reads only the active output's hw_params (measured S16_LE @ 44.1 kHz), and a /api/signal-chain evidence snapshot with CSV export is available for anyone to recompute. The transparency whitepaper now has its first real data source.">：上面三步已在 T1S 参考机上线——无硬件证据显示“待验证”、播放时只读当前输出 hw_params（实测 S16_LE @ 44.1 kHz）、并提供 /api/signal-chain 证据快照与 CSV 导出，任何人可复算。信号链透明白皮书有了第一份真实数据源。</span></p>
+        <p style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)"><b style="color:var(--good)" data-zh="✓ 已落地（2026-11-21）" data-en="✓ SHIPPED (2026-11-21)">✓ 已落地（2026-11-21）</b><span data-zh="：上面三步已在 T1S 参考机上线——无硬件证据显示“待验证”；播放只读当前输出 hw_params，实测板载 S16_LE @ 44.1 kHz 直通、24bit 源 S32_LE @ 96 kHz 无重采样、DSD64 解码为 S32_LE @ 192 kHz，DTS 5.1 则诚实标降混 2.0；USB DDC 已接入，能力探测读到 PCM 44.1–768 kHz / 原生 DSD / 异步传输；并提供 /api/signal-chain 证据快照与 CSV 导出，任何人可复算。" data-en=": all three are live on the T1S reference unit — no hardware evidence shows 'unverified'; playback reads only the active output's hw_params: onboard S16_LE @ 44.1 kHz direct, 24-bit sources at S32_LE @ 96 kHz without resampling, DSD64 decoded to S32_LE @ 192 kHz, and DTS 5.1 honestly marked as downmixed to 2.0. The USB DDC is connected; its probed capability reads PCM 44.1–768 kHz, native DSD and async transfer. A /api/signal-chain evidence snapshot with CSV export is available for anyone to recompute.">：上面三步已在 T1S 参考机上线——无硬件证据显示“待验证”；播放只读当前输出 hw_params，实测板载 S16_LE @ 44.1 kHz 直通、24bit 源 S32_LE @ 96 kHz 无重采样、DSD64 解码为 S32_LE @ 192 kHz，DTS 5.1 则诚实标降混 2.0；USB DDC 已接入，能力探测读到 PCM 44.1–768 kHz / 原生 DSD / 异步传输；并提供 /api/signal-chain 证据快照与 CSV 导出，任何人可复算。</span></p>
       </div>
     </div>
   </section>
@@ -438,16 +440,16 @@ footer a:hover{color:var(--brand)}
       <div class="dirs">
         <div class="dir">
           <div class="dir__no">DIRECTION 01</div>
-          <h3 data-zh="AI + 智能声场" data-en="AI + Smart Sound Field">AI + 智能声场</h3>
-          <span class="dir__en" data-zh="最远：需测量麦与听感验证" data-en="Farthest: needs measurement mic & listening validation">最远：需测量麦与听感验证</span>
-          <p data-zh="用测量麦克风采集房间响应，自动生成 PEQ 灌进 CamillaDSP，做可复现的自动房间校正。不自研大算法，切入点是“测量 → 生成 PEQ → 灌 DSP”工程闭环。" data-en="Capture room response with a measurement mic, auto-generate PEQ into CamillaDSP, and deliver reproducible room correction. No homegrown big models — the entry point is a measure → generate → load engineering loop.">用测量麦克风采集房间响应，自动生成 PEQ 灌进 CamillaDSP，做可复现的自动房间校正。不自研大算法，切入点是“测量 → 生成 PEQ → 灌 DSP”工程闭环。</p>
-          <span class="step" data-zh="切入点：测量 → PEQ → CamillaDSP" data-en="Entry: measure → PEQ → CamillaDSP">切入点：测量 → PEQ → CamillaDSP</span>
+          <h3 data-zh="小光 AI 神经网络引擎 + 智能声场" data-en="Xiaoguang AI neural engine + smart sound field">小光 AI 神经网络引擎 + 智能声场</h3>
+          <span class="dir__en" data-zh="起步阶段：先本地学习，后期主力发展" data-en="Early stage: local learning first, a main line later">起步阶段：先本地学习，后期主力发展</span>
+          <p data-zh="小光 AI 神经网络引擎是后期主力方向，目前仍处起步阶段：纯本地标准库实现，不联网、不下载模型；只学本机正反馈，权重写侧车文件。先用它给十境调音出建议，再延伸到房间声场；短期仍以规则冷启动为主，样本够了才切神经推理。" data-en="Xiaoguang's on-device AI neural engine is a future main line, still at an early stage: a pure-standard-library implementation that stays offline and downloads no models. It learns only from local positive feedback and writes weights to a sidecar file. It first suggests TENSCAPE settings, then extends to room correction; rule-based cold start remains the default until enough samples accumulate.">小光 AI 神经网络引擎是后期主力方向，目前仍处起步阶段：纯本地标准库实现，不联网、不下载模型；只学本机正反馈，权重写侧车文件。先用它给十境调音出建议，再延伸到房间声场；短期仍以规则冷启动为主，样本够了才切神经推理。</p>
+          <span class="step" data-zh="切入点：本地样本 → 权重侧车 → 十境建议" data-en="Entry: local samples → weight sidecar → TENSCAPE suggestions">切入点：本地样本 → 权重侧车 → 十境建议</span>
         </div>
         <div class="dir">
           <div class="dir__no">DIRECTION 02</div>
           <h3 data-zh="bit-perfect 与信号链透明" data-en="Bit-perfect & Signal-Chain Transparency">bit-perfect 与信号链透明</h3>
           <span class="dir__en" data-zh="最先：成本最低、最能立信誉" data-en="First: cheapest, strongest credibility">最先：成本最低、最能立信誉</span>
-          <p data-zh="把 analyze_playback 从“声明”变“证据”：每步采样落盘——源规格、解码、重采样、hw_params 实测、时间戳；无证据标“待验证”，导出 JSON / CSV 任何人可复算。DDC 到货前后各测一遍，就是现成对比实验。" data-en="Turn analyze_playback from a claim into evidence: log every stage — source spec, decode, resampling, measured hw_params, timestamps; mark 'unverified' without evidence, export JSON / CSV anyone can recompute. Measure before and after the DDC arrives for a ready-made comparison.">把 analyze_playback 从“声明”变“证据”：每步采样落盘——源规格、解码、重采样、hw_params 实测、时间戳；无证据标“待验证”，导出 JSON / CSV 任何人可复算。DDC 到货前后各测一遍，就是现成对比实验。</p>
+          <p data-zh="把 analyze_playback 从“声明”变“证据”：每步采样落盘——源规格、解码、重采样、hw_params 实测、时间戳；无证据标“待验证”，导出 JSON / CSV 任何人可复算。USB DDC 已接入，设备能力实测到 PCM 44.1–768 kHz / 原生 DSD / 异步传输，播放路径对比继续做。" data-en="Turn analyze_playback from a claim into evidence: log every stage — source spec, decode, resampling, measured hw_params, timestamps; mark 'unverified' without evidence, export JSON / CSV anyone can recompute. The USB DDC is connected, with probed capability of PCM 44.1–768 kHz, native DSD and async transfer; playback-path comparisons continue.">把 analyze_playback 从“声明”变“证据”：每步采样落盘——源规格、解码、重采样、hw_params 实测、时间戳；无证据标“待验证”，导出 JSON / CSV 任何人可复算。USB DDC 已接入，设备能力实测到 PCM 44.1–768 kHz / 原生 DSD / 异步传输，播放路径对比继续做。</p>
           <span class="step" data-zh="第一份产出：《信号链透明白皮书》" data-en="First deliverable: Signal-Chain Transparency Whitepaper">第一份产出：《信号链透明白皮书》</span>
         </div>
         <div class="dir">
@@ -530,6 +532,12 @@ footer a:hover{color:var(--brand)}
           <p data-zh="前两步跑顺后再上：UMIK-1 测房间响应，测量 → 生成 PEQ → 灌 CamillaDSP，配听感验证，不做自研大算法。" data-en="Only after the first two are smooth: UMIK-1 room response, measure → generate PEQ → load CamillaDSP, validated by listening — no homegrown big models.">前两步跑顺后再上：UMIK-1 测房间响应，测量 → 生成 PEQ → 灌 CamillaDSP，配听感验证，不做自研大算法。</p>
           <div class="phase__out" data-zh="产出：房间校正方法与实测报告" data-en="Output: room-correction method + measurement report">产出：房间校正方法与实测报告</div>
         </div>
+        <div class="phase">
+          <div class="phase__n">PHASE 04 · FUTURE</div>
+          <h3 data-zh="小光 AI 神经网络引擎" data-en="Xiaoguang AI neural engine">小光 AI 神经网络引擎</h3>
+          <p data-zh="起步阶段、尚未成型，但定为后期主力方向：从本机正反馈里学偏好，权重只落侧车，不联网、不下载模型；先接十境建议，再逐步承担声场与曲库照看。当前仍以规则冷启动为主，不设成熟时间表。" data-en="Still at an early stage, but set as a future main line: learn preferences from local positive feedback only, keep weights in a sidecar, stay offline and download no models. It starts with TENSCAPE suggestions, then takes on sound field and library care. Rule-based cold start remains the default for now, with no maturity date promised.">起步阶段、尚未成型，但定为后期主力方向：从本机正反馈里学偏好，权重只落侧车，不联网、不下载模型；先接十境建议，再逐步承担声场与曲库照看。当前仍以规则冷启动为主，不设成熟时间表。</p>
+          <div class="phase__out" data-zh="产出：本地学习数据集 + 可解释的建议方法" data-en="Output: on-device learning dataset + explainable suggestions">产出：本地学习数据集 + 可解释的建议方法</div>
+        </div>
       </div>
     </div>
   </section>
@@ -552,12 +560,12 @@ footer a:hover{color:var(--brand)}
         <div class="rnote">
           <span class="rnote__k" data-zh="道与术" data-en="STRATEGY">道与术</span>
           <h3 data-zh="bit-perfect 修「说的能不能对」，核心价值建「说的能不能信」" data-en="Bit-perfect fixes 'is it correct'; core value builds 'is it trustworthy'">bit-perfect 修「说的能不能对」，核心价值建「说的能不能信」</h3>
-          <p data-zh="DDC 到货一测便知，是术；可验证 + 懂中文曲库才是值得长期投入的道。二者共享同一份数据底座——信号链实测数据与曲库语义数据，走同一个「采集 → 沉淀 → 导出」结构。低频高杠杆，不搞大干快上。" data-en="The DDC is a matter of technique — plug it in and measure. Verifiability plus fluency in Chinese music is the strategy worth long-term investment. Both share one data foundation — signal-chain measurements and library semantics through the same collect → deposit → export structure. Low frequency, high leverage, no big-bang rollout.">DDC 到货一测便知，是术；可验证 + 懂中文曲库才是值得长期投入的道。二者共享同一份数据底座——信号链实测数据与曲库语义数据，走同一个「采集 → 沉淀 → 导出」结构。低频高杠杆，不搞大干快上。</p>
+          <p data-zh="USB DDC 已接入并完成能力实测，是术；可验证 + 懂中文曲库才是值得长期投入的道。二者共享同一份数据底座——信号链实测数据与曲库语义数据，走同一个「采集 → 沉淀 → 导出」结构。低频高杠杆，不搞大干快上。" data-en="The USB DDC is connected and its capability measured — that is technique. Verifiability plus fluency in Chinese music is the strategy worth long-term investment. Both share one data foundation — signal-chain measurements and library semantics through the same collect → deposit → export structure. Low frequency, high leverage, no big-bang rollout.">USB DDC 已接入并完成能力实测，是术；可验证 + 懂中文曲库才是值得长期投入的道。二者共享同一份数据底座——信号链实测数据与曲库语义数据，走同一个「采集 → 沉淀 → 导出」结构。低频高杠杆，不搞大干快上。</p>
         </div>
         <div class="rnote">
           <span class="rnote__k" data-zh="方法诊断" data-en="METHOD">方法诊断</span>
           <h3 data-zh="AcoustID 匹配「同一段录音」，而整理要问「哪一首歌」" data-en="AcoustID matches 'the same recording'; curation asks 'which song'">AcoustID 匹配「同一段录音」，而整理要问「哪一首歌」</h3>
-          <p data-zh="中文曲库难，不是没源，是文本脏加缺少交叉验证——目标错配才是根因。路线是文本优先、指纹兜底：时长交叉验证淘汰误匹配、激进清洗文件名、先锁专辑再配曲目。已写成研究文章。" data-en="Chinese libraries are hard not for lack of sources, but dirty text plus no cross-checks — a target mismatch is the root cause. The route: text first, fingerprint as fallback — duration cross-checks reject false matches, aggressive filename cleaning, lock the album before tracks. Published as a research paper.">中文曲库难，不是没源，是文本脏加缺少交叉验证——目标错配才是根因。路线是文本优先、指纹兜底：时长交叉验证淘汰误匹配、激进清洗文件名、先锁专辑再配曲目。已写成研究文章。</p>
+          <p data-zh="中文曲库难，不是没数据，是文本脏加缺少交叉验证——目标错配才是根因。路线是文本优先、指纹兜底：时长交叉验证淘汰误匹配、激进清洗文件名、先锁专辑再配曲目；歌词交给大模型生成，从根上不碰第三方歌词版权。已写成研究文章。" data-en="Chinese libraries are hard not for lack of data, but dirty text plus no cross-checks — a target mismatch is the root cause. The route: text first, fingerprint as fallback — duration cross-checks reject false matches, aggressive filename cleaning, lock the album before tracks; lyrics come from a model, carrying no third-party lyric copyright. Published as a research paper.">中文曲库难，不是没数据，是文本脏加缺少交叉验证——目标错配才是根因。路线是文本优先、指纹兜底：时长交叉验证淘汰误匹配、激进清洗文件名、先锁专辑再配曲目；歌词交给大模型生成，从根上不碰第三方歌词版权。已写成研究文章。</p>
           <a class="rnote__go" href="articles/acoustid-target-mismatch.html" data-zh="阅读研究文章 →" data-en="Read the paper →">阅读研究文章 →</a>
         </div>
         <div class="rnote">
@@ -577,6 +585,16 @@ footer a:hover{color:var(--brand)}
           <h3 data-zh="DSD 直出不是开关问题，是这条链路的物理边界" data-en="Native DSD output is not a toggle — it is a physical limit of this chain">DSD 直出不是开关问题，是这条链路的物理边界</h3>
           <p data-zh="参考机链路为 USB → USB DDC → 75Ω 同轴 → 有源音箱（PCM9211 全数字输入）。S/PDIF 承载不了 native DSD，接收端也不认 DoP；逐项实测后只有 PCM 有声，因此默认关闭 DoP 并保留重采样。结论只对这条链路成立，换接口必须重测——宁可写「不支持」，也不给没有实测支撑的绿灯。" data-en="The reference chain is USB → USB DDC → 75Ω coaxial S/PDIF → active speakers with a PCM9211 all-digital input. S/PDIF cannot carry native DSD and the receiver does not accept DoP; item-by-item measurement found PCM as the only path that produces sound, so DoP stays off and resampling remains enabled. This holds for this chain only — change the interface and it must be measured again. Better to state 'not supported' than to show a green light with no evidence.">参考机链路为 USB → USB DDC → 75Ω 同轴 → 有源音箱（PCM9211 全数字输入）。S/PDIF 承载不了 native DSD，接收端也不认 DoP；逐项实测后只有 PCM 有声，因此默认关闭 DoP 并保留重采样。结论只对这条链路成立，换接口必须重测——宁可写「不支持」，也不给没有实测支撑的绿灯。</p>
         </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="实测验证" data-en="VERIFIED">实测验证</span>
+          <h3 data-zh="白皮书 02：十境调音 8 项配置级验证通过" data-en="Whitepaper 02: TENSCAPE passes 8 configuration-level checks">白皮书 02：十境调音 8 项配置级验证通过</h3>
+          <p data-zh="零处理直通、晨昏 +100 的 180 Hz −6 dB 与 6 kHz +6 dB 反向搁架、深潜 +50 的 70 Hz +5 dB、圆润 +80 的 3 kHz Q4.0 +6.4 dB，加上语义／专业互斥、旧配置兼容与旋钮往返误差小于 1，8 项配置级验证全部通过。听感盲听仍待做。" data-en="All-zero inserts no filters; Shade +100 gives a 180 Hz −6 dB / 6 kHz +6 dB anti-phase shelf pair; Depth +50 gives a 70 Hz +5 dB low shelf; Sweet +80 gives a 3 kHz Q4.0 +6.4 dB peak. Semantic and pro modes stay exclusive, legacy state defaults to semantic all-zero, and knob round-trip error stays under 1. All eight configuration-level checks passed; listening-panel evaluation is still pending.">零处理直通、晨昏 +100 的 180 Hz −6 dB 与 6 kHz +6 dB 反向搁架、深潜 +50 的 70 Hz +5 dB、圆润 +80 的 3 kHz Q4.0 +6.4 dB，加上语义／专业互斥、旧配置兼容与旋钮往返误差小于 1，8 项配置级验证全部通过。听感盲听仍待做。</p>
+          <a class="rnote__go" href="articles/tenscape-perceptual-eq.html" data-zh="阅读白皮书 02 →" data-en="Read whitepaper 02 →">阅读白皮书 02 →</a>
+        </div>
+        <div class="rnote">
+          <span class="rnote__k" data-zh="后期主力" data-en="NEXT MAIN LINE">后期主力</span>
+          <h3 data-zh="小光 AI 神经网络引擎：起步阶段，尚未成型" data-en="Xiaoguang AI neural engine: early stage, not yet mature">小光 AI 神经网络引擎：起步阶段，尚未成型</h3>
+          <p data-zh="纯本地标准库 MLP，不联网、不下载模型，权重与样本只写本机侧车；样本不足时走规则冷启动，够了才切神经推理，并给出每个预设的概率与信心。当前先落在十境建议上，后期作为主力方向继续发展。" data-en="A pure-standard-library MLP that stays offline and downloads no models: weights and samples live only in a local sidecar. Rule-based cold start applies until enough samples accumulate, then neural inference takes over and reports each preset's probability and confidence. It starts with TENSCAPE suggestions and is the main line for later development.">纯本地标准库 MLP，不联网、不下载模型，权重与样本只写本机侧车；样本不足时走规则冷启动，够了才切神经推理，并给出每个预设的概率与信心。当前先落在十境建议上，后期作为主力方向继续发展。</p>        </div>
       </div>
 
       <div style="margin-top:44px">
@@ -604,7 +622,7 @@ footer a:hover{color:var(--brand)}
         <ul>
           <li data-zh="流媒体授权：门槛在商务资质，谈不动，不在实验室射程内。" data-en="Streaming licenses: a business-credential barrier, out of a lab's range.">流媒体授权：门槛在商务资质，谈不动，不在实验室射程内。</li>
           <li data-zh="自研大算法：声场那块用成熟测量 + PEQ 工程闭环，不做算法军备竞赛。" data-en="Homegrown big algorithms: sound field uses mature measurement + PEQ engineering, not an algorithm arms race.">自研大算法：声场那块用成熟测量 + PEQ 工程闭环，不做算法军备竞赛。</li>
-          <li data-zh="把“可插拔”当答案：拔得快不等于消除授权风险，只能止损。" data-en="Treating 'pluggable' as the answer: swap-ability limits loss but doesn't remove licensing risk.">把“可插拔”当答案：拔得快不等于消除授权风险，只能止损。</li>
+          <li data-zh="从第三方歌词库取文本：本质是复制内容，接口再稳也背着版权风险；我们改由大模型现场生成。" data-en="Taking text from third-party lyric databases: that is copying content, and a stable API still carries copyright risk; we generate lyrics on the fly instead.">从第三方歌词库取文本：本质是复制内容，接口再稳也背着版权风险；我们改由大模型现场生成。</li>
         </ul>
         <div class="soft" data-zh="诚实代价：数据飞轮冷启动慢、头几个月覆盖率低；语义数据靠“用户确认”喂养，所以产品机制必须让人愿意确认——不能悄悄改库。" data-en="Honest costs: the data flywheel is slow to start, with low coverage at first; semantics are fed by 'user confirmation', so the product must make confirming worthwhile — never silently rewrite the library.">诚实代价：数据飞轮冷启动慢、头几个月覆盖率低；语义数据靠“用户确认”喂养，所以产品机制必须让人愿意确认——不能悄悄改库。</div>
       </div>
