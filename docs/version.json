@@ -1,19 +1,19 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.0.5",
-      "versionCode": 149,
+      "versionName": "3.0.6",
+      "versionCode": 150,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题。\n\n· 修复播放控制栏与底部菜单栏重叠的问题，控制栏现在位于导航栏上方并跟随系统安全区。\n· 玻璃界面更透：降低填充的灰色浓度，靠模糊与亮边塑造通透感，不再像蒙了一层灰膜。\n\n《饮湖上初晴后雨》· 苏轼\n水光潋滟晴方好，山色空蒙雨亦奇。\n欲把西湖比西子，淡妆浓抹总相宜。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.5/WuAiMusic-3.0.5-build149-phone-arm64-v8a.apk",
-      "size": 70518988,
-      "sha256": "a94c5af83274ab46aa4ef90a3abe6a2e27605ad2bbe2022867384332c872475d",
+      "notes": "本次更新修复了一些问题。\n\n· 液态玻璃质感重做：播放控制栏与底部导航栏改用通透的白色薄雾填充 + 强背景模糊，边缘加上「外暗内亮」双层描边，浅色模式下也能看出玻璃厚度。\n· 黑胶唱片缩小：唱片直径缩到原来的约八成，木座四周留白更多，唱臂几何同步缩放。\n\n《六月二十七日望湖楼醉书》· 苏轼\n黑云翻墨未遮山，白雨跳珠乱入船。\n卷地风来忽吹散，望湖楼下水如天。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.6/WuAiMusic-3.0.6-build150-phone-arm64-v8a.apk",
+      "size": 70518984,
+      "sha256": "1001f6f0c593b4e68da2b86d605eb1932337062120571d74211037fc6afa4508",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.5/WuAiMusic-3.0.5-build149-phone-arm64-v8a.apk",
-          "size": 70518988,
-          "sha256": "a94c5af83274ab46aa4ef90a3abe6a2e27605ad2bbe2022867384332c872475d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.6/WuAiMusic-3.0.6-build150-phone-arm64-v8a.apk",
+          "size": 70518984,
+          "sha256": "1001f6f0c593b4e68da2b86d605eb1932337062120571d74211037fc6afa4508",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         }
       }
@@ -73,6 +73,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.0.6",
+      "date": "2026-11-25",
+      "notes": "本次更新修复了一些问题。\n\n· 液态玻璃质感重做：播放控制栏与底部导航栏改用通透的白色薄雾填充 + 强背景模糊，边缘加上「外暗内亮」双层描边，浅色模式下也能看出玻璃厚度。\n· 黑胶唱片缩小：唱片直径缩到原来的约八成，木座四周留白更多，唱臂几何同步缩放。\n\n《六月二十七日望湖楼醉书》· 苏轼\n黑云翻墨未遮山，白雨跳珠乱入船。\n卷地风来忽吹散，望湖楼下水如天。"
+    },
     {
       "versionName": "3.0.5",
       "date": "2026-11-25",
