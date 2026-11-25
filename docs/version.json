@@ -1,19 +1,19 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.0.4",
-      "versionCode": 148,
+      "versionName": "3.0.5",
+      "versionCode": 149,
       "flavor": "phone",
-      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n· 设置菜单重做：原来的扁平长列表改为「曲库管家 + 5 个分类入口」分组首页，查找更直观。\n· 音乐日历新版：默认显示选中日所在的一行周历，有播放记录的日期带蓝点，点箭头展开整月；播放记录改为卡片式列表。\n· 玻璃界面补上整圈边缘折射高光，质感更通透；播放控制栏改为悬浮玻璃胶囊，背后的歌词可以透出来。\n\n《绝句》· 杜甫\n两个黄鹂鸣翠柳，一行白鹭上青天。\n窗含西岭千秋雪，门泊东吴万里船。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.4/WuAiMusic-3.0.4-build148-phone-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题。\n\n· 修复播放控制栏与底部菜单栏重叠的问题，控制栏现在位于导航栏上方并跟随系统安全区。\n· 玻璃界面更透：降低填充的灰色浓度，靠模糊与亮边塑造通透感，不再像蒙了一层灰膜。\n\n《饮湖上初晴后雨》· 苏轼\n水光潋滟晴方好，山色空蒙雨亦奇。\n欲把西湖比西子，淡妆浓抹总相宜。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.5/WuAiMusic-3.0.5-build149-phone-arm64-v8a.apk",
       "size": 70518988,
-      "sha256": "9e3a250ed0d422f01cb001b1ee8695c4ddd72335fc2870ca87a410525f3bcd57",
+      "sha256": "a94c5af83274ab46aa4ef90a3abe6a2e27605ad2bbe2022867384332c872475d",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.4/WuAiMusic-3.0.4-build148-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.5/WuAiMusic-3.0.5-build149-phone-arm64-v8a.apk",
           "size": 70518988,
-          "sha256": "9e3a250ed0d422f01cb001b1ee8695c4ddd72335fc2870ca87a410525f3bcd57",
+          "sha256": "a94c5af83274ab46aa4ef90a3abe6a2e27605ad2bbe2022867384332c872475d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         }
       }
@@ -73,6 +73,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.0.5",
+      "date": "2026-11-25",
+      "notes": "本次更新修复了一些问题。\n\n· 修复播放控制栏与底部菜单栏重叠的问题，控制栏现在位于导航栏上方并跟随系统安全区。\n· 玻璃界面更透：降低填充的灰色浓度，靠模糊与亮边塑造通透感，不再像蒙了一层灰膜。\n\n《饮湖上初晴后雨》· 苏轼\n水光潋滟晴方好，山色空蒙雨亦奇。\n欲把西湖比西子，淡妆浓抹总相宜。"
+    },
     {
       "versionName": "3.0.4",
       "date": "2026-11-25",
