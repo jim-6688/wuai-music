@@ -1,19 +1,19 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.0.6",
-      "versionCode": 150,
+      "versionName": "3.0.8",
+      "versionCode": 152,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题。\n\n· 液态玻璃质感重做：播放控制栏与底部导航栏改用通透的白色薄雾填充 + 强背景模糊，边缘加上「外暗内亮」双层描边，浅色模式下也能看出玻璃厚度。\n· 黑胶唱片缩小：唱片直径缩到原来的约八成，木座四周留白更多，唱臂几何同步缩放。\n\n《六月二十七日望湖楼醉书》· 苏轼\n黑云翻墨未遮山，白雨跳珠乱入船。\n卷地风来忽吹散，望湖楼下水如天。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.6/WuAiMusic-3.0.6-build150-phone-arm64-v8a.apk",
-      "size": 70518984,
-      "sha256": "1001f6f0c593b4e68da2b86d605eb1932337062120571d74211037fc6afa4508",
+      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n· 小光管家：设置里的「曲库管家」升级为「小光管家」，曲库体检的待补封面/歌手信息由小光在后台自动补全，不再需要手动逐项美化。\n· 小光会「听」歌了：离线分析每首歌的拍速、调性与响度，并结合你的手动校准，越用越懂你的口味；新增真正的小光歌词矫正，调过的偏移会学成习惯，新歌自动对齐。\n· TV 端音乐美化改为「小光歌词助手」，保留获取歌词与校准时间轴两项能力，去掉笨重的操作包裹。\n\n《观书有感》· 朱熹\n半亩方塘一鉴开，天光云影共徘徊。\n问渠那得清如许？为有源头活水来。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.8/WuAiMusic-3.0.8-build152-phone-arm64-v8a.apk",
+      "size": 70518988,
+      "sha256": "6e0da89bfe96affc7acb1cebdb39e726cbfb787dbdb5ebce703c8ce7d0c6e906",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.6/WuAiMusic-3.0.6-build150-phone-arm64-v8a.apk",
-          "size": 70518984,
-          "sha256": "1001f6f0c593b4e68da2b86d605eb1932337062120571d74211037fc6afa4508",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.8/WuAiMusic-3.0.8-build152-phone-arm64-v8a.apk",
+          "size": 70518988,
+          "sha256": "6e0da89bfe96affc7acb1cebdb39e726cbfb787dbdb5ebce703c8ce7d0c6e906",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         }
       }
@@ -73,6 +73,16 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.0.8",
+      "date": "2026-11-25",
+      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n· 小光管家：设置里的「曲库管家」升级为「小光管家」，曲库体检的待补封面/歌手信息由小光在后台自动补全，不再需要手动逐项美化。\n· 小光会「听」歌了：离线分析每首歌的拍速、调性与响度，并结合你的手动校准，越用越懂你的口味；新增真正的小光歌词矫正，调过的偏移会学成习惯，新歌自动对齐。\n· TV 端音乐美化改为「小光歌词助手」，保留获取歌词与校准时间轴两项能力，去掉笨重的操作包裹。\n\n《观书有感》· 朱熹\n半亩方塘一鉴开，天光云影共徘徊。\n问渠那得清如许？为有源头活水来。"
+    },
+    {
+      "versionName": "3.0.7",
+      "date": "2026-11-25",
+      "notes": "本次更新修复了一些问题。\n\n· 浅色模式玻璃重做：播放控制栏与底部导航栏改为接近纯白的半透明玻璃，去掉浅色下的灰边，对齐酷安 dock 的通透观感（深色模式保持原样）。\n· 黑胶唱片进一步缩小：唱机整体留出四周空白，不再撑满整张封面卡片。\n\n《寻隐者不遇》· 贾岛\n松下问童子，言师采药去。\n只在此山中，云深不知处。"
+    },
     {
       "versionName": "3.0.6",
       "date": "2026-11-25",
