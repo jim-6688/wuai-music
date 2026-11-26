@@ -1,26 +1,20 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.2.2",
-      "versionCode": 157,
+      "versionName": "3.2.3",
+      "versionCode": 158,
       "flavor": "phone",
-      "notes": "小光听得懂歌了：认类型、看音色、按曲目自动调十境；学会主动提醒，知识一次更新双端生效。数播页菜单归位，全局管家不再内嵌。\n\n《题破山寺后禅院》· 常建\n清晨入古寺，初日照高林。\n曲径通幽处，禅房花木深。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-phone-arm64-v8a.apk",
-      "size": 70994838,
-      "sha256": "a6c70fc4408a4b6f03f7f6584dcc7ad52c3d354a18913ee882fdcc6680a8096f",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《登乐游原》· 李商隐\n向晚意不适，驱车登古原。\n夕阳无限好，只是近黄昏。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.3/WuAiMusic-3.2.3-build158-phone-arm64-v8a.apk",
+      "size": 70929306,
+      "sha256": "be0f6de5250bd45118232349fdb635daf91d71938fb4bfd64a69df4b089789f5",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-phone-arm64-v8a.apk",
-          "size": 70994838,
-          "sha256": "a6c70fc4408a4b6f03f7f6584dcc7ad52c3d354a18913ee882fdcc6680a8096f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.3/WuAiMusic-3.2.3-build158-phone-arm64-v8a.apk",
+          "size": 70929306,
+          "sha256": "be0f6de5250bd45118232349fdb635daf91d71938fb4bfd64a69df4b089789f5",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
-        },
-        "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-phone-armeabi-v7a.apk",
-          "size": 83118432,
-          "sha256": "99bed7fcd7c224763a988441984f28b0ecb9fe5534ea97ed29e48f8ff0bfe0f6",
-          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
@@ -79,6 +73,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.2.3",
+      "date": "2026-11-26",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《登乐游原》· 李商隐\n向晚意不适，驱车登古原。\n夕阳无限好，只是近黄昏。"
+    },
     {
       "versionName": "3.2.2",
       "date": "2026-11-26",
