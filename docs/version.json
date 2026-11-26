@@ -1,67 +1,73 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.0.8",
-      "versionCode": 152,
+      "versionName": "3.2.2",
+      "versionCode": 157,
       "flavor": "phone",
-      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n· 小光管家：设置里的「曲库管家」升级为「小光管家」，曲库体检的待补封面/歌手信息由小光在后台自动补全，不再需要手动逐项美化。\n· 小光会「听」歌了：离线分析每首歌的拍速、调性与响度，并结合你的手动校准，越用越懂你的口味；新增真正的小光歌词矫正，调过的偏移会学成习惯，新歌自动对齐。\n· TV 端音乐美化改为「小光歌词助手」，保留获取歌词与校准时间轴两项能力，去掉笨重的操作包裹。\n\n《观书有感》· 朱熹\n半亩方塘一鉴开，天光云影共徘徊。\n问渠那得清如许？为有源头活水来。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.8/WuAiMusic-3.0.8-build152-phone-arm64-v8a.apk",
-      "size": 70518988,
-      "sha256": "6e0da89bfe96affc7acb1cebdb39e726cbfb787dbdb5ebce703c8ce7d0c6e906",
+      "notes": "小光听得懂歌了：认类型、看音色、按曲目自动调十境；学会主动提醒，知识一次更新双端生效。数播页菜单归位，全局管家不再内嵌。\n\n《题破山寺后禅院》· 常建\n清晨入古寺，初日照高林。\n曲径通幽处，禅房花木深。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-phone-arm64-v8a.apk",
+      "size": 70994838,
+      "sha256": "a6c70fc4408a4b6f03f7f6584dcc7ad52c3d354a18913ee882fdcc6680a8096f",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.8/WuAiMusic-3.0.8-build152-phone-arm64-v8a.apk",
-          "size": 70518988,
-          "sha256": "6e0da89bfe96affc7acb1cebdb39e726cbfb787dbdb5ebce703c8ce7d0c6e906",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-phone-arm64-v8a.apk",
+          "size": 70994838,
+          "sha256": "a6c70fc4408a4b6f03f7f6584dcc7ad52c3d354a18913ee882fdcc6680a8096f",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-phone-armeabi-v7a.apk",
+          "size": 83118432,
+          "sha256": "99bed7fcd7c224763a988441984f28b0ecb9fe5534ea97ed29e48f8ff0bfe0f6",
+          "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release-v7a.apk"
         }
       }
     },
     "hd": {
-      "versionName": "3.0.1",
-      "versionCode": 143,
+      "versionName": "3.2.2",
+      "versionCode": 157,
       "flavor": "hd",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
-      "size": 70146140,
-      "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
+      "notes": "小光听得懂歌了：认类型、看音色、按曲目自动调十境；学会主动提醒，知识一次更新双端生效。数播页菜单归位，全局管家不再内嵌。\n\n《题破山寺后禅院》· 常建\n清晨入古寺，初日照高林。\n曲径通幽处，禅房花木深。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-hd-arm64-v8a.apk",
+      "size": 70954202,
+      "sha256": "7d4de0df576c5733170f1c65a445582ee5231aefe333df0078518a9563ee6f79",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-arm64-v8a.apk",
-          "size": 70146140,
-          "sha256": "005ae775b20ec2516c4c9d986bfb30458dffe189c13503e0e41247856cfe64c1",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-hd-arm64-v8a.apk",
+          "size": 70954202,
+          "sha256": "7d4de0df576c5733170f1c65a445582ee5231aefe333df0078518a9563ee6f79",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-hd-armeabi-v7a.apk",
-          "size": 82335268,
-          "sha256": "d2674dcf15d91618af76391939d8b69cf28e44e4829e83e4ca6e386ffb95784f",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-hd-armeabi-v7a.apk",
+          "size": 83061412,
+          "sha256": "6b9a3295b6475c285544170969d6bcf5f7767ab68d5daa4a9edd16760abd7096",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-hd-release-v7a.apk"
         }
       }
     },
     "tv": {
-      "versionName": "3.0.1",
-      "versionCode": 143,
+      "versionName": "3.2.2",
+      "versionCode": 157,
       "flavor": "tv",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《望洞庭》· 刘禹锡\n湖光秋月两相和，潭面无风镜未磨。\n遥望洞庭山水翠，白银盘里一青螺。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-tv-arm64-v8a.apk",
-      "size": 70156993,
-      "sha256": "fcdbd6aed64f8111ba0f2249f5b45c385b484aa4071b9682852df3ac401ec15d",
+      "notes": "小光听得懂歌了：认类型、看音色、按曲目自动调十境；学会主动提醒，知识一次更新双端生效。数播页菜单归位，全局管家不再内嵌。\n\n《题破山寺后禅院》· 常建\n清晨入古寺，初日照高林。\n曲径通幽处，禅房花木深。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-tv-arm64-v8a.apk",
+      "size": 70965051,
+      "sha256": "e07948959e214d107032047eb22a2260b2c608463bb462d9517bea62df895fea",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-tv-arm64-v8a.apk",
-          "size": 70156993,
-          "sha256": "fcdbd6aed64f8111ba0f2249f5b45c385b484aa4071b9682852df3ac401ec15d",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-tv-arm64-v8a.apk",
+          "size": 70965051,
+          "sha256": "e07948959e214d107032047eb22a2260b2c608463bb462d9517bea62df895fea",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release.apk"
         },
         "armeabi-v7a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.0.1/WuAiMusic-3.0.1-build143-tv-armeabi-v7a.apk",
-          "size": 82378889,
-          "sha256": "4edd3c8465b2b14f469e0b5a2f86be607eb134c459ecdf0a5ba86f0b3889a8c5",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.2/WuAiMusic-3.2.2-build157-tv-armeabi-v7a.apk",
+          "size": 83072261,
+          "sha256": "6b82eaa84001d22725447f76927ab87665844ace04789a9554faff76892bdc31",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-tv-release-v7a.apk"
         }
       }
@@ -73,6 +79,31 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.2.2",
+      "date": "2026-11-26",
+      "notes": "小光听得懂歌了：认类型、看音色、按曲目自动调十境；学会主动提醒，知识一次更新双端生效。数播页菜单归位，全局管家不再内嵌。\n\n《题破山寺后禅院》· 常建\n清晨入古寺，初日照高林。\n曲径通幽处，禅房花木深。"
+    },
+    {
+      "versionName": "3.2.1",
+      "date": "2026-11-26",
+      "notes": "本次更新修复了一些问题。\n\n《听弹琴》· 刘长卿\n泠泠七弦上，静听松风寒。\n古调虽自爱，今人多不弹。"
+    },
+    {
+      "versionName": "3.2.0",
+      "date": "2026-11-26",
+      "notes": "本次更新增加了一些功能，优化了使用体验。\n\n《春夜喜雨》· 杜甫\n好雨知时节，当春乃发生。\n随风潜入夜，润物细无声。"
+    },
+    {
+      "versionName": "3.1.0",
+      "date": "2026-11-25",
+      "notes": "本次更新修复了一些问题。\n\n《乌衣巷》· 刘禹锡\n朱雀桥边野草花，乌衣巷口夕阳斜。\n旧时王谢堂前燕，飞入寻常百姓家。"
+    },
+    {
+      "versionName": "3.0.9",
+      "date": "2026-11-25",
+      "notes": "本次更新增加了一些功能，修复了一些问题。\n\n《滁州西涧》· 韦应物\n独怜幽草涧边生，上有黄鹂深树鸣。\n春潮带雨晚来急，野渡无人舟自横。"
+    },
     {
       "versionName": "3.0.8",
       "date": "2026-11-25",
