@@ -1,19 +1,19 @@
 {
   "releases": {
     "phone": {
-      "versionName": "3.2.3",
-      "versionCode": 158,
+      "versionName": "3.2.4",
+      "versionCode": 159,
       "flavor": "phone",
-      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《登乐游原》· 李商隐\n向晚意不适，驱车登古原。\n夕阳无限好，只是近黄昏。",
-      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.3/WuAiMusic-3.2.3-build158-phone-arm64-v8a.apk",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《宿建德江》· 孟浩然\n移舟泊烟渚，日暮客愁新。\n野旷天低树，江清月近人。",
+      "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.4/WuAiMusic-3.2.4-build159-phone-arm64-v8a.apk",
       "size": 70929306,
-      "sha256": "be0f6de5250bd45118232349fdb635daf91d71938fb4bfd64a69df4b089789f5",
+      "sha256": "ebd37072efbd94cca5e0f087c109f517b8c377e45983ecdcbde527ec82d7bf9d",
       "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk",
       "variants": {
         "arm64-v8a": {
-          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.3/WuAiMusic-3.2.3-build158-phone-arm64-v8a.apk",
+          "url": "https://github.com/jim-6688/wuai-music/releases/download/v3.2.4/WuAiMusic-3.2.4-build159-phone-arm64-v8a.apk",
           "size": 70929306,
-          "sha256": "be0f6de5250bd45118232349fdb635daf91d71938fb4bfd64a69df4b089789f5",
+          "sha256": "ebd37072efbd94cca5e0f087c109f517b8c377e45983ecdcbde527ec82d7bf9d",
           "urlMirror": "https://gitee.com/jinghe-net/wuai-music/releases/download/latest/app-phone-release.apk"
         }
       }
@@ -73,6 +73,11 @@
     "tv": 1
   },
   "changelog": [
+    {
+      "versionName": "3.2.4",
+      "date": "2026-11-26",
+      "notes": "本次更新修复了一些问题，增加了一些功能。\n\n《宿建德江》· 孟浩然\n移舟泊烟渚，日暮客愁新。\n野旷天低树，江清月近人。"
+    },
     {
       "versionName": "3.2.3",
       "date": "2026-11-26",
